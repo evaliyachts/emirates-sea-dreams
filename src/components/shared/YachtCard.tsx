@@ -25,6 +25,7 @@ const YachtCard = ({ yacht, index = 0 }: YachtCardProps) => {
           alt={`${yacht.name} - ${yacht.length_ft}ft ${yacht.type} yacht rental in Dubai`}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           loading="lazy"
+          referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
         <span className="absolute top-4 left-4 liquid-pill">
