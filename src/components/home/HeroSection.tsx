@@ -42,7 +42,7 @@ const HeroSection = () => {
       <motion.div style={{
       y: textY,
       opacity
-    }} className="relative z-10 text-center max-w-4xl mx-auto px-4">
+    }} className="relative z-10 text-center max-w-4xl mx-auto px-4 pl-[15px] pb-[183px]">
         <motion.div initial={{
         opacity: 0,
         y: 30
