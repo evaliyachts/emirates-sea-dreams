@@ -8,7 +8,7 @@ import {
 import { PLACEHOLDER_IMAGE } from "@/lib/constants";
 
 const SERVICES = [
-  { title: "Private Yacht Charter", url: "/yachts", image: PLACEHOLDER_IMAGE },
+  { title: "Private Yacht Charter", url: "/yachts", image: "https://evali.fra1.cdn.digitaloceanspaces.com/birthday-party/IMG-20250404-WA0001-1.webp" },
   { title: "Sunset Cruise", url: "/yachts", image: PLACEHOLDER_IMAGE },
   { title: "Birthday Party", url: "/occasions", image: PLACEHOLDER_IMAGE },
   { title: "Corporate Events", url: "/occasions", image: PLACEHOLDER_IMAGE },
