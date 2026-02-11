@@ -225,7 +225,12 @@
   }
 
   .hero-gradient {
-    background: linear-gradient(0deg, hsl(var(--navy-deep) / 0.3) 0%, hsl(var(--navy-deep) / 0.7) 40%, hsl(var(--navy-deep) / 0.95) 100%);
+    background: linear-gradient(
+  180deg,
+  hsl(var(--navy-deep) / 0.95) 0%,
+  hsl(var(--navy-deep) / 0.7) 60%,
+  hsl(var(--navy-deep) / 0.3) 100%
+);
   }
 
   .gold-glow {
