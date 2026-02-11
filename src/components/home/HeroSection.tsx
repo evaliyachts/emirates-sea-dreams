@@ -82,7 +82,7 @@ const HeroSection = () => {
       }} transition={{
         duration: 0.8,
         delay: 0.6
-      }} className="text-lg md:text-xl text-muted-foreground mb-3 font-light">
+      }} className="text-lg md:text-xl mb-3 font-light text-white">
           Private charters • Dubai Marina • Sunset cruises • VIP service
         </motion.p>
 
