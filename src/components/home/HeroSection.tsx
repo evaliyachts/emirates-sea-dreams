@@ -86,15 +86,7 @@ const HeroSection = () => {
           Private charters • Dubai Marina • Sunset cruises • VIP service
         </motion.p>
 
-        <motion.p initial={{
-        opacity: 0
-      }} animate={{
-        opacity: 1
-      }} transition={{
-        delay: 0.7
-      }} className="text-primary font-display text-xl mb-8">
-          From AED ___/hour
-        </motion.p>
+        
 
         <motion.div initial={{
         opacity: 0,
@@ -107,10 +99,10 @@ const HeroSection = () => {
         delay: 0.8
       }} className="sm:flex-row gap-4 justify-center mb-10 flex flex-row">
           <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 liquid-btn-primary text-base hover:scale-105 transition-transform">
-            <MessageCircle className="w-5 h-5" /> Book
+            <MessageCircle className="w-5 h-5" /> Book on WhatsApp
           </a>
           <Link to="/yachts" className="inline-flex items-center justify-center gap-2 px-8 py-4 liquid-btn text-foreground text-base hover:scale-105 transition-transform">
-            <Compass className="w-5 h-5" /> Yachts
+            <Compass className="w-5 h-5" /> Explore Yachts
           </Link>
         </motion.div>
 
