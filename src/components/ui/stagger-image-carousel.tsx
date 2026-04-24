@@ -156,7 +156,7 @@ export const StaggerImageCarousel: React.FC<StaggerImageCarouselProps> = ({
       {/* Fullscreen dialog */}
       <Dialog open={!!fullscreenSrc} onOpenChange={() => setFullscreenSrc(null)}>
         <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 border-0 bg-black/95 flex items-center justify-center">
-          <VisuallyHidden><DialogTitle>Image preview</DialogTitle></VisuallyHidden>
+          <DialogTitle className="sr-only">Image preview</DialogTitle>
           {fullscreenSrc && (
             <img
               src={fullscreenSrc}
