@@ -1432,30 +1432,53 @@ const yachtsRaw: Yacht[] = [
   }
 ];
 
-// Folders whose images are indexed starting at 0 on the CDN.
-// All other folders start at index 1, so a "...0.webp" URL would 404.
-const ZERO_INDEXED_FOLDERS = new Set<string>([
-  "evali_55_feet_yacht_rental_dubai",
-]);
-
-const rewriteAndFilter = (url: string): string | null => {
-  const cdnUrl = url.replace(SUPABASE_BASE, CDN_BASE);
-  // Match "<folder>/<folder><index>.webp"
-  const m = cdnUrl.match(/\/([^/]+)\/\1(\d+)\.(webp|jpg|jpeg|png)$/i);
-  if (m) {
-    const folder = m[1];
-    const idx = parseInt(m[2], 10);
-    if (idx === 0 && !ZERO_INDEXED_FOLDERS.has(folder)) {
-      // This image does not exist on the CDN — drop it so the next one becomes the cover.
-      return null;
-    }
-  }
-  return cdnUrl;
+const verifiedCdnGalleries: Record<string, { folder: string; indexes: number[] }> = {
+  "evali-55ft-yacht-for-rent-in-dubai": { folder: "evali_55_feet_yacht_rental_dubai", indexes: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] },
+  "majesty-50ft-yacht-charter-dubai": { folder: "50_feet_royal_majesty", indexes: [1, 2, 3, 4, 5, 6, 7, 8, 9] },
+  "sunseeker-65ft-yacht-rental-dubai": { folder: "90_feet_sunseeker_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7, 8] },
+  "crownline-33ft-yacht-rental-dubai": { folder: "azimut_42_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5] },
+  "majesty-63ft-yacht-rental-dubai": { folder: "56_feet_majesty_yacht_trip", indexes: [1, 2, 3, 4, 5] },
+  "azimut-62ft-yacht-rental-dubai": { folder: "64_feet_azimut_italian_racht_rental_dubai", indexes: [0, 1, 2, 3, 4, 5] },
+  "gulf-craft-47ft-yacht-rental-dubai": { folder: "majesty_44_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5] },
+  "oryx-43ft-yacht-rental-dubai": { folder: "oryx_50_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6] },
+  "hatteras-55ft-yacht-rental-dubai": { folder: "64_feet_hatteras_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "ferretti-65ft-yacht-charter-dubai": { folder: "ferretti_50_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "majesty-70ft-yacht-charter-dubai": { folder: "88_feet_majesty_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "azimut-70ft-yacht-rental-dubai": { folder: "64_feet_azimut_italian_racht_rental_dubai", indexes: [0, 1, 2, 3, 4, 5] },
+  "sunseeker-55ft-yacht-rental-dubai": { folder: "92_feet_sunseeker_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6] },
+  "oryx-36ft-yacht-rental-dubai": { folder: "oryx_50_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6] },
+  "majesty-48ft-yacht-rental-dubai": { folder: "majesty_44_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5] },
+  "ferretti-88ft-yacht-charter-dubai": { folder: "ferretti_50_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "azimut-68ft-yacht-rental-dubai": { folder: "64_feet_azimut_italian_racht_rental_dubai", indexes: [0, 1, 2, 3, 4, 5] },
+  "majesty-101ft-yacht-charter-dubai": { folder: "101_feet_majesty_yacht_with_jacuzzi_for_rent", indexes: [1, 2, 3, 4, 5, 6] },
+  "azimut-85ft-yacht-rental-dubai": { folder: "azimut_55_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "bavaria-39ft-yacht-rental-dubai": { folder: "azimut_42_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5] },
+  "hatteras-60ft-yacht-charter-dubai": { folder: "64_feet_hatteras_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "benetti-164ft-yacht-charter-dubai": { folder: "110_feet_benetti_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6, 7, 8] },
+  "bavaria-50ft-yacht-rental-dubai": { folder: "azimut_50_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "majesty-73ft-yacht-charter-dubai": { folder: "88_feet_majesty_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "hatteras-38ft-yacht-rental-dubai": { folder: "64_feet_hatteras_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "hatteras-70ft-yacht-charter-dubai": { folder: "64_feet_hatteras_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "ferretti-100ft-yacht-charter-dubai": { folder: "108_feet_sundowner_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6, 7, 8, 9] },
+  "bavaria-44ft-yacht-rental-dubai": { folder: "azimut_42_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5] },
+  "majesty-56ft-yacht-rental-dubai": { folder: "56_feet_majesty_yacht_trip", indexes: [1, 2, 3, 4, 5] },
+  "ferretti-102ft-yacht-charter-dubai": { folder: "108_feet_sundowner_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6, 7, 8, 9] },
+  "majesty-80ft-yacht-charter-dubai": { folder: "88_feet_majesty_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "eva-75ft-yacht-charter-dubai": { folder: "90_feet_heysea_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "omega-100ft-dubai-yacht-charter": { folder: "100_feet_omega_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 7, 8] },
 };
 
-export const yachts: Yacht[] = yachtsRaw.map((y) => ({
-  ...y,
-  images: y.images
-    .map(rewriteAndFilter)
-    .filter((u): u is string => u !== null),
-}));
+const buildCdnGallery = (folder: string, indexes: number[]) =>
+  indexes.map((index) => `${CDN_BASE}${folder}/${folder}${index}.webp`);
+
+const rewriteToCdn = (url: string) => url.replace(SUPABASE_BASE, CDN_BASE);
+
+export const yachts: Yacht[] = yachtsRaw.map((y) => {
+  const verifiedGallery = verifiedCdnGalleries[y.slug];
+  return {
+    ...y,
+    images: verifiedGallery
+      ? buildCdnGallery(verifiedGallery.folder, verifiedGallery.indexes)
+      : y.images.map(rewriteToCdn),
+  };
+});
