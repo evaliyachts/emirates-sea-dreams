@@ -494,6 +494,21 @@ const verifiedCdnGalleries: Record<string, { folder: string; indexes: number[] }
   "56-feet-majesty-dubai-yacht-rental": { folder: "56_feet_majesty_yacht_trip", indexes: [1, 2, 3, 4, 5] },
   "55-feet-azimut-yacht-rental-dubai": { folder: "azimut_55_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
   "majesty-88ft-jacuzzi-dubai-yacht-rental": { folder: "88_feet_majesty_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  // New yachts
+  "sunseeker-82-feet-yacht-rental-dubai": { folder: "92_feet_sunseeker_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6] },
+  "azimut-80-feet-yacht-rental-dubai": { folder: "azimut_55_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "benetti-110ft-jacuzzi-yacht-rental-dubai": { folder: "110_feet_benetti_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6, 7, 8] },
+  "majesty-101ft-jacuzzi-dubai-yacht-rental": { folder: "88_feet_majesty_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "heysea-90ft-jacuzzi-yacht-rental-dubai": { folder: "90_feet_heysea_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "doretty-90ft-jacuzzi-dubai-yacht-rental": { folder: "90_feet_doretty_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "ocean-dream-143-feet-yacht-rental-dubai": { folder: "151_feet_dynasty_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "mzaail-135ft-dubai-yacht-rental": { folder: "135_feet_mzaail_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "doretty-95-feet-jacuzzi-yacht-rental-dubai": { folder: "95_feet_doretty_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6] },
+  "sunseeker-92-feet-dubai-yacht-rental": { folder: "92_feet_sunseeker_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6] },
+  "sunseeker-90-feet-yacht-rental-dubai": { folder: "90_feet_sunseeker_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7, 8] },
+  "dynasty-151-feet-dubai-yacht-rental": { folder: "151_feet_dynasty_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "luxury-120-feet-mega-yacht-rental-dubai": { folder: "135_feet_mzaail_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
+  "omega-100-feet-dubai-yacht-rental": { folder: "100_feet_omega_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 7, 8] },
 };
 
 const buildCdnGallery = (folder: string, indexes: number[]) =>
