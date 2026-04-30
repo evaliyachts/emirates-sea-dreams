@@ -87,14 +87,14 @@ const HeroSection = () => {
       }} className="text-base sm:text-lg md:text-xl leading-snug text-muted-foreground mb-3 font-light">
           {/* Desktop / tablet */}
           <span className="hidden sm:inline text-white">
-            Private charters • Dubai Marina • Sunset cruises • VIP service
+            <strong>Dubai yacht rental</strong> • Private yacht hire Dubai • Sunset yacht trips Dubai • Book yacht in Dubai
           </span>
 
           {/* Mobile */}
           <span className="inline sm:hidden">
-            Private charters • Dubai Marina
+            <strong>Dubai yacht rental</strong> • Yacht hire Dubai
             <br />
-            • Sunset cruises • VIP service
+            • Yacht trips Dubai • Book yacht Dubai
           </span>
         </motion.p>
 
