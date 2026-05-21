@@ -1,12 +1,13 @@
 export const BRAND_NAME = "Dubai Yatch";
 export const DOMAIN = "https://dubaiyatch.com";
-export const WHATSAPP_NUMBER = "+971500000000";
-export const PHONE_NUMBER = "+971500000000";
+export const PHONE_NUMBER = "+97150 464 1020";
+export const WHATSAPP_NUMBER = PHONE_NUMBER;
 export const PLACEHOLDER_IMAGE = "/placeholder.svg";
 
 export const getWhatsAppLink = (message?: string) => {
   const defaultMsg = `Hi Dubai Yatch, I want to book a yacht in Dubai. Date: __, Hours: __, Guests: __, Budget: __`;
-  return `https://wa.me/${WHATSAPP_NUMBER.replace('+', '')}?text=${encodeURIComponent(message || defaultMsg)}`;
+  const cleanNumber = WHATSAPP_NUMBER.replace(/[+\s]/g, '');
+  return `https://wa.me/${cleanNumber}?text=${encodeURIComponent(message || defaultMsg)}`;
 };
 
 export const getPhoneLink = () => `tel:${PHONE_NUMBER}`;
