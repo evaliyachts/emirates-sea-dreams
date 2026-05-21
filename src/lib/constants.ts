@@ -1,7 +1,7 @@
 export const BRAND_NAME = "Dubai Yatch";
 export const DOMAIN = "https://dubaiyatch.com";
-export const WHATSAPP_NUMBER = "+971500000000";
-export const PHONE_NUMBER = "+971500000000";
+export const PHONE_NUMBER = "+97150 464 1020";
+export const WHATSAPP_NUMBER = PHONE_NUMBER;
 export const PLACEHOLDER_IMAGE = "/placeholder.svg";
 
 export const getWhatsAppLink = (message?: string) => {
