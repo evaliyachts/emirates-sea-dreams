@@ -8,9 +8,13 @@ const Footer = () => (
     <div className="container mx-auto px-4">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
         <div>
-          <Link to="/" className="flex items-center gap-2 mb-4">
-            <Anchor className="w-6 h-6 text-primary" />
-            <span className="text-lg font-display font-bold">{BRAND_NAME}</span>
+          <Link to="/" className="flex items-center mb-4">
+            <img
+              src={logoAsset.url}
+              alt={BRAND_NAME}
+              className="h-8 w-auto"
+              referrerPolicy="no-referrer"
+            />
           </Link>
           <p className="text-sm text-muted-foreground leading-relaxed mb-4">
             Premium yacht rental experiences in Dubai Marina. Licensed crew, luxury fleet, and unforgettable moments on the Arabian Gulf.

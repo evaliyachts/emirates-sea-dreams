@@ -28,9 +28,13 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <Anchor className="w-7 h-7 text-primary transition-transform duration-300 group-hover:rotate-12" />
-          <span className="text-xl font-display font-bold text-foreground tracking-wide">{BRAND_NAME}</span>
+        <Link to="/" className="flex items-center group">
+          <img
+            src={logoAsset.url}
+            alt={BRAND_NAME}
+            className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+            referrerPolicy="no-referrer"
+          />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
