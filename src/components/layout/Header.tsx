@@ -30,10 +30,9 @@ const Header = () => {
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link to="/" className="flex items-center group">
           <img
-            src={logoAsset.url}
+            src="/dubai-yachts-logo.png"
             alt={BRAND_NAME}
             className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
-            referrerPolicy="no-referrer"
           />
         </Link>
 
