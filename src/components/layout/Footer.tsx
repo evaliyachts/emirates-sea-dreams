@@ -1,15 +1,20 @@
 import { Link } from "react-router-dom";
-import { Anchor, MessageCircle, Phone, MapPin, Clock } from "lucide-react";
+import { MessageCircle, Phone, MapPin, Clock } from "lucide-react";
 import { BRAND_NAME, NAV_LINKS, getWhatsAppLink, getPhoneLink } from "@/lib/constants";
+import logoAsset from "@/assets/dubai-yachts-logo.png.asset.json";
 
 const Footer = () => (
   <footer className="liquid-divider pt-16 pb-8 border-t border-border/30">
     <div className="container mx-auto px-4">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
         <div>
-          <Link to="/" className="flex items-center gap-2 mb-4">
-            <Anchor className="w-6 h-6 text-primary" />
-            <span className="text-lg font-display font-bold">{BRAND_NAME}</span>
+          <Link to="/" className="flex items-center mb-4">
+            <img
+              src={logoAsset.url}
+              alt={BRAND_NAME}
+              className="h-8 w-auto"
+              referrerPolicy="no-referrer"
+            />
           </Link>
           <p className="text-sm text-muted-foreground leading-relaxed mb-4">
             Premium yacht rental experiences in Dubai Marina. Licensed crew, luxury fleet, and unforgettable moments on the Arabian Gulf.
