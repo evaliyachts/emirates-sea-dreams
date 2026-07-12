@@ -99,7 +99,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground">Operating Hours</p>
-                  <p className="text-xs text-muted-foreground">Daily 6AM–11PM • Support 24/7</p>
+                  <p className="text-xs text-muted-foreground">Daily 6AM–11:00PM • Support 24/7</p>
                 </div>
               </div>
             </AnimatedSection>
