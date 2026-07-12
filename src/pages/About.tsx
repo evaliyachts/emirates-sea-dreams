@@ -14,8 +14,8 @@ const values = [
 const About = () => (
   <Layout>
     <SEOHead
-      title="About Dubai Yatch | Premium Yacht Charter Company in Dubai"
-      description="Learn about Dubai Yatch — Dubai's premier luxury yacht rental company. Our story, values, and commitment to exceptional experiences."
+      title="About Dubai Yacht | Premium Yacht Charter Company in Dubai"
+      description="Learn about Dubai Yacht — Dubai's premier luxury yacht rental company. Our story, values, and commitment to exceptional experiences."
       path="/about"
     />
 
@@ -23,7 +23,7 @@ const About = () => (
       <div className="container mx-auto px-4">
         <AnimatedSection className="text-center mb-14">
           <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-4">
-            About Dubai Yatch
+            About Dubai Yacht
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Dubai's premier luxury yacht rental company, delivering unforgettable experiences on the Arabian Gulf since day one.
@@ -33,13 +33,13 @@ const About = () => (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
           <AnimatedSection direction="left">
             <div className="rounded-2xl overflow-hidden h-80">
-              <img src={yachts[0]?.images[0]} alt="Dubai Yatch fleet" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <img src={yachts[0]?.images[0]} alt="Dubai Yacht fleet" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             </div>
           </AnimatedSection>
           <AnimatedSection direction="right" className="flex flex-col justify-center">
             <h2 className="text-3xl font-display font-bold text-foreground mb-4">Our Story</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Founded with a passion for the sea and a commitment to luxury, Dubai Yatch has grown into one of Dubai's most trusted yacht charter companies. We believe every journey on the water should be extraordinary.
+              Founded with a passion for the sea and a commitment to luxury, Dubai Yacht has grown into one of Dubai's most trusted yacht charter companies. We believe every journey on the water should be extraordinary.
             </p>
             <p className="text-muted-foreground leading-relaxed">
               From intimate sunset cruises to grand celebrations, our curated fleet and professional crew ensure a seamless, premium experience every time. Based in Dubai Marina, we serve guests from around the world.

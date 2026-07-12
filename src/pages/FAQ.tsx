@@ -40,7 +40,7 @@ const faqGroups = [
 const FAQ = () => (
   <Layout>
     <SEOHead
-      title="FAQ - Yacht Rental in Dubai | Dubai Yatch"
+      title="FAQ - Yacht Rental in Dubai | Dubai Yacht"
       description="Frequently asked questions about yacht rental in Dubai. Pricing, booking, cancellation, what to bring, and everything you need to know."
       path="/faq"
       keywords="yacht rental dubai faq, dubai yacht questions, yacht booking dubai"

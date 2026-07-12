@@ -24,8 +24,8 @@ const Contact = () => {
   return (
     <Layout>
       <SEOHead
-        title="Book a Yacht in Dubai | WhatsApp Instant Booking – Dubai Yatch"
-        description="Contact Dubai Yatch to book your luxury yacht charter. WhatsApp, call, or fill out our inquiry form for instant availability."
+        title="Book a Yacht in Dubai | WhatsApp Instant Booking – Dubai Yacht"
+        description="Contact Dubai Yacht to book your luxury yacht charter. WhatsApp, call, or fill out our inquiry form for instant availability."
         path="/contact"
         keywords="book yacht dubai, yacht booking dubai, contact dubai yacht rental"
       />

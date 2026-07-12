@@ -3,7 +3,7 @@ import { AnimatedSection } from "@/components/shared/AnimatedSection";
 
 /**
  * Keyword-rich SEO content section for the homepage.
- * Covers all target two/three-word phrases for Dubai Yatch with proper
+ * Covers all target two/three-word phrases for Dubai Yacht with proper
  * H2/H3 hierarchy, bold emphasis, and on-page internal links so search
  * engines (and AI search like ChatGPT, Perplexity, Gemini) can clearly
  * understand the topical relevance of the page.
@@ -14,11 +14,11 @@ const SEOContentSection = () => (
       <AnimatedSection className="text-center mb-10">
         <span className="liquid-pill inline-block">Yacht Rental Dubai</span>
         <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mt-4 mb-4">
-          Yacht Rental Dubai — Luxury Yacht Charter Dubai by Dubai Yatch
+          Yacht Rental Dubai — Luxury Yacht Charter Dubai by Dubai Yacht
         </h2>
         <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed">
           Looking for a premium <strong>yacht rental Dubai</strong> experience?{" "}
-          <strong>Dubai Yatch</strong> is your trusted destination for{" "}
+          <strong>Dubai Yacht</strong> is your trusted destination for{" "}
           <strong>Dubai yacht rental</strong>, <strong>luxury yacht charter Dubai</strong>,
           and private <strong>yacht hire Dubai</strong> across Dubai Marina, JBR,
           Bluewaters, Palm Jumeirah, Atlantis, and Burj Al Arab.
@@ -128,7 +128,7 @@ const SEOContentSection = () => (
         {/* Block 4 — quick links */}
         <div className="liquid-glass-gold p-6 md:p-8 text-center">
           <h3 className="text-2xl font-display font-bold text-foreground mb-4">
-            Explore Dubai Yatch
+            Explore Dubai Yacht
           </h3>
           <p className="text-muted-foreground leading-relaxed mb-5">
             Discover our full range of <strong>yacht rental Dubai</strong> services,

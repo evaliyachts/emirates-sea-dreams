@@ -4,7 +4,7 @@ import { AnimatedSection } from "@/components/shared/AnimatedSection";
 
 const Privacy = () => (
   <Layout>
-    <SEOHead title="Privacy Policy | Dubai Yatch" description="Privacy policy for Dubai Yatch yacht rental services." path="/privacy" />
+    <SEOHead title="Privacy Policy | Dubai Yacht" description="Privacy policy for Dubai Yacht yacht rental services." path="/privacy" />
     <div className="pt-28 pb-20">
       <div className="container mx-auto px-4 max-w-3xl">
         <AnimatedSection>

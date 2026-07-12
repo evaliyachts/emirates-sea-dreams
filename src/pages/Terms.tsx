@@ -4,7 +4,7 @@ import { AnimatedSection } from "@/components/shared/AnimatedSection";
 
 const Terms = () => (
   <Layout>
-    <SEOHead title="Terms & Conditions | Dubai Yatch" description="Terms and conditions for yacht rental services provided by Dubai Yatch." path="/terms" />
+    <SEOHead title="Terms & Conditions | Dubai Yacht" description="Terms and conditions for yacht rental services provided by Dubai Yacht." path="/terms" />
     <div className="pt-28 pb-20">
       <div className="container mx-auto px-4 max-w-3xl">
         <AnimatedSection>
@@ -19,7 +19,7 @@ const Terms = () => (
             <h2 className="text-xl font-display font-semibold text-foreground">4. Weather</h2>
             <p>If weather conditions make sailing unsafe, we will offer free rescheduling or a full refund at our discretion.</p>
             <h2 className="text-xl font-display font-semibold text-foreground">5. Liability</h2>
-            <p>Dubai Yatch carries full maritime insurance. Guests are responsible for personal belongings and any damage caused to the yacht beyond normal wear.</p>
+            <p>Dubai Yacht carries full maritime insurance. Guests are responsible for personal belongings and any damage caused to the yacht beyond normal wear.</p>
           </div>
         </AnimatedSection>
       </div>

@@ -14,7 +14,7 @@ const iconMap: Record<string, React.ElementType> = {
 const Occasions = () => (
   <Layout>
     <SEOHead
-      title="Yacht Experiences for Every Occasion in Dubai | Dubai Yatch"
+      title="Yacht Experiences for Every Occasion in Dubai | Dubai Yacht"
       description="Birthday parties, proposals, corporate events, fishing trips, sunset cruises — discover the perfect yacht experience in Dubai."
       path="/occasions"
       keywords="birthday yacht party dubai, proposal yacht dubai, corporate yacht event dubai, fishing yacht dubai, sunset cruise dubai"

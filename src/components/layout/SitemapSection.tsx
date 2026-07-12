@@ -17,10 +17,10 @@ const SitemapSection = () => {
     >
       <div className="container mx-auto px-4">
         <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-2">
-          Dubai Yatch Sitemap — Yacht Rental Dubai
+          Dubai Yacht Sitemap — Yacht Rental Dubai
         </h2>
         <p className="text-sm text-muted-foreground mb-8 max-w-3xl">
-          Explore every page on Dubai Yatch — from{" "}
+          Explore every page on Dubai Yacht — from{" "}
           <strong>yacht rental Dubai</strong> and{" "}
           <strong>luxury yacht charter Dubai</strong> to{" "}
           <strong>Dubai yacht booking</strong> and yacht trips in Dubai.
@@ -38,7 +38,7 @@ const SitemapSection = () => {
               <li><Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">Services — Yacht Charter Dubai</Link></li>
               <li><Link to="/offers" className="text-muted-foreground hover:text-primary transition-colors">Offers — Dubai Yacht Charter Packages</Link></li>
               <li><Link to="/occasions" className="text-muted-foreground hover:text-primary transition-colors">Occasions — Yacht Trips Dubai</Link></li>
-              <li><Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">About Dubai Yatch</Link></li>
+              <li><Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">About Dubai Yacht</Link></li>
               <li><Link to="/faq" className="text-muted-foreground hover:text-primary transition-colors">FAQ — Yacht Rental Dubai</Link></li>
               <li><Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors">Contact — Book Yacht in Dubai</Link></li>
               <li><Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors">Terms</Link></li>

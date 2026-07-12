@@ -22,7 +22,7 @@ const ServiceDetails = () => {
   return (
     <Layout>
       <SEOHead
-        title={`${service.title} - Yacht Service in Dubai | Dubai Yatch`}
+        title={`${service.title} - Yacht Service in Dubai | Dubai Yacht`}
         description={service.description.slice(0, 155)}
         path={`/services/${service.slug}`}
         keywords={`${service.title} dubai, yacht ${service.category} dubai, dubai yatch ${service.title}`}
@@ -50,7 +50,7 @@ const ServiceDetails = () => {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.4 }}
                     src={gallery[activeImg]}
-                    alt={`${service.title} on a Dubai Yatch charter`}
+                    alt={`${service.title} on a Dubai Yacht charter`}
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
                     onError={(e) => {
@@ -99,7 +99,7 @@ const ServiceDetails = () => {
               </p>
               <div className="flex flex-wrap gap-3">
                 <a
-                  href={getWhatsAppLink(`Hi Dubai Yatch, I'm interested in the ${service.title} service. Please share details.`)}
+                  href={getWhatsAppLink(`Hi Dubai Yacht, I'm interested in the ${service.title} service. Please share details.`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 liquid-btn text-green-400 font-medium"

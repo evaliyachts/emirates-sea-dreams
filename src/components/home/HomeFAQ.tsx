@@ -8,7 +8,7 @@ import {
 
 const faqs = [
   { q: "How much does yacht rental in Dubai cost?", a: "Yacht rental Dubai pricing starts from AED 400/hour for standard yachts, AED 750/hour for luxury yacht rental Dubai, and AED 2,000/hour for superyacht charter. Every Dubai yacht rental price includes captain, crew, and fuel." },
-  { q: "How can I book a yacht in Dubai?", a: "You can book yacht in Dubai with Dubai Yatch in under a minute. Send us your date and group size on WhatsApp and we'll confirm your Dubai yacht booking instantly with the best luxury yacht charter Dubai option." },
+  { q: "How can I book a yacht in Dubai?", a: "You can book yacht in Dubai with Dubai Yacht in under a minute. Send us your date and group size on WhatsApp and we'll confirm your Dubai yacht booking instantly with the best luxury yacht charter Dubai option." },
   { q: "What is included in a Dubai yacht charter?", a: "Every Dubai yacht charter includes a licensed captain, crew, fuel, soft drinks, towels, sound system, swimming gear, and safety equipment — perfect for a private yacht hire Dubai trip." },
   { q: "Is a deposit required for Dubai yacht booking?", a: "A 50% deposit is required to confirm your Dubai yacht bookings. The remaining balance is due on the day of your luxury yacht rental Dubai charter." },
   { q: "What is the cancellation policy?", a: "Free cancellation up to 48 hours before departure. Cancellations within 48 hours of your yacht trip Dubai are subject to a 50% charge." },
