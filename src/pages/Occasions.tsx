@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import Layout from "@/components/layout/Layout";
 import SEOHead from "@/components/shared/SEOHead";
-import { AnimatedSection, StaggerContainer, staggerItemVariants } from "@/components/shared/AnimatedSection";
+import { AnimatedSection, StaggerContainer } from "@/components/shared/AnimatedSection";
+import { staggerItemVariants } from "@/lib/animation-variants";
 import { occasions } from "@/data/occasions";
 import { getWhatsAppLink } from "@/lib/constants";
 import { Cake, Heart, Briefcase, Fish, Sunset, PartyPopper, Camera } from "lucide-react";

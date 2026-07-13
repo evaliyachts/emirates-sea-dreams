@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Shield, DollarSign, Users, Compass, Calendar, Anchor } from "lucide-react";
-import { StaggerContainer, staggerItemVariants } from "@/components/shared/AnimatedSection";
+import { StaggerContainer } from "@/components/shared/AnimatedSection";
+import { staggerItemVariants } from "@/lib/animation-variants";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
 
 const highlights = [

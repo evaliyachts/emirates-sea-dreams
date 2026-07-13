@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { testimonials } from "@/data/testimonials";
-import { StaggerContainer, staggerItemVariants, AnimatedSection } from "@/components/shared/AnimatedSection";
+import { StaggerContainer, AnimatedSection } from "@/components/shared/AnimatedSection";
+import { staggerItemVariants } from "@/lib/animation-variants";
 
 const TestimonialsSection = () => {
   const avgRating = (testimonials.reduce((s, t) => s + t.rating, 0) / testimonials.length).toFixed(1);
