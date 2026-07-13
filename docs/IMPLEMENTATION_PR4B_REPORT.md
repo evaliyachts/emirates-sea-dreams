@@ -106,7 +106,34 @@ Remote branch validation at head `a9bc402`:
 | Catalogue after hydration | 19 unique published yacht links; no visible Evali branding; zero fallback images |
 | Representative detail after hydration | correct title/H1/canonical/robots; eight gallery images; approved absolute social image; `Service` + `BreadcrumbList` graph with factual `Offer` |
 
-Netlify adds its normal preview-only response `X-Robots-Tag`; generated page metadata remains `index, follow`. Post-merge production smoke evidence remains pending until the approved squash merge deploy exists.
+Netlify adds its normal preview-only response `X-Robots-Tag`; generated page metadata remains `index, follow`.
+
+## Post-merge production smoke
+
+- Squash merge SHA: `7817c882c002378caf6efb94fde37e0994bc0b96`
+- Netlify production deploy ID: `6a5559d8727df40008f3775f`
+- Production deploy published: `2026-07-13T21:34:33.888Z`
+- Production JavaScript bundle: `index-Bzyqg2st.js`
+
+| Production check | Result |
+| --- | --- |
+| Published canonical owners | 23/23 direct 200; no redirect or `Location` header |
+| Published yacht details | 19/19 direct 200 |
+| Blocked yacht owners | 5/5 real 404 |
+| Unknown route | real 404 |
+| Sitemap | 23 exact production canonical URLs; no invented `lastmod` |
+| Robots | 200; references `https://yachtrentaldxb.com/sitemap.xml` |
+| Production yacht media | 126/126 verified; neutral fallback decoded; zero published fallback-only yachts |
+| Canonical/robots/H1/schema | correct in initial HTML across the published crawl |
+| Visible inherited yacht branding | none on generated yacht details or hydrated catalogue/detail checks |
+| Redirects | zero; the default Netlify hostname remains direct 200 in this phase |
+| Language alternates | no live hreflang or x-default |
+| HTML/404/robots/sitemap caching | revalidation; not immutable |
+| Fingerprinted asset caching | long-lived immutable |
+| Production source map | absent (`404`) |
+| Browser hydration | representative production detail completed with zero console warnings/errors; eight-image gallery, approved social image, factual schema and no fallback |
+
+Local `main` and `origin/main` matched the squash merge before this evidence-only follow-up. Search Console was not changed, analytics was not enabled, and PR 5 has not begun.
 
 ## PR 5 dependency
 
