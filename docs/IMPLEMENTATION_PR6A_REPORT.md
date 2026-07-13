@@ -1,8 +1,11 @@
 # English Implementation PR 6A Report
 
-Prepared: 2026-07-14  
-Branch: `agent/english-pr6a-service-approval-pack`  
-Pull request: pending creation  
+Prepared: 2026-07-14
+
+Branch: `agent/english-pr6a-service-approval-pack`
+
+Pull request: pending creation
+
 Final commit: pending
 
 ## Scope

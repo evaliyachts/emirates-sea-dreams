@@ -1,7 +1,9 @@
 # English Service Fact Approval Pack
 
-Prepared: 2026-07-14  
-Production authority: `https://yachtrentaldxb.com/`  
+Prepared: 2026-07-14
+
+Production authority: `https://yachtrentaldxb.com/`
+
 Status: **owner decisions pending; no service detail is approved for publication**
 
 ## Purpose and boundary

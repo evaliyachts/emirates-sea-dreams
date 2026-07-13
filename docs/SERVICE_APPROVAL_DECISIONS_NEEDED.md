@@ -1,6 +1,7 @@
 # Service Approval Decisions Needed
 
-Prepared: 2026-07-14  
+Prepared: 2026-07-14
+
 Production authority: `https://yachtrentaldxb.com/`
 
 ## Current gate

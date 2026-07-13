@@ -1,7 +1,9 @@
 # English Service Media Approval Pack
 
-Prepared: 2026-07-14  
-Production authority: `https://yachtrentaldxb.com/`  
+Prepared: 2026-07-14
+
+Production authority: `https://yachtrentaldxb.com/`
+
 Status: **service-detail media rights pending**
 
 ## Current source observations
