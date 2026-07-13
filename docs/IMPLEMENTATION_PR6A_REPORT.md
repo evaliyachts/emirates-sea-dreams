@@ -4,9 +4,9 @@ Prepared: 2026-07-14
 
 Branch: `agent/english-pr6a-service-approval-pack`
 
-Pull request: pending creation
+Pull request: `#14`
 
-Final commit: pending
+Head commit: recorded by the pull request after final documentation review
 
 ## Scope
 
