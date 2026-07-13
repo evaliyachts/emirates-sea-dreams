@@ -4,9 +4,10 @@ import { StaggerContainer } from "@/components/shared/AnimatedSection";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { selectHomepageFeaturedYachts } from "@/lib/homepage-featured-yachts";
 
 const FeaturedYachts = () => {
-  const featured = publishableYachts.filter((yacht) => yacht.featured).slice(0, 6);
+  const featured = selectHomepageFeaturedYachts(publishableYachts);
 
   if (featured.length === 0) return null;
 

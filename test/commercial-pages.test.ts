@@ -6,6 +6,10 @@ import { renderStaticRoute } from "../src/entry-server";
 import { publishableYachts } from "../src/data/yachts";
 import { publishedFleetSummary } from "../src/lib/published-fleet";
 import {
+  HOMEPAGE_FEATURED_YACHT_LIMIT,
+  selectHomepageFeaturedYachts,
+} from "../src/lib/homepage-featured-yachts";
+import {
   approvedCommercialConsolidations,
   approvedRedirects,
   commercialCandidateRegistry,
@@ -189,5 +193,27 @@ describe("PR 5 commercial decision owners", () => {
       "final-actions",
     ]);
     expect(homepage.content.querySelectorAll('[data-home-section][style*="opacity:0"]')).toHaveLength(0);
+  });
+
+  it("restores six approved homepage yacht cards in source-priority order", () => {
+    const featured = selectHomepageFeaturedYachts(publishableYachts);
+    expect(featured).toHaveLength(HOMEPAGE_FEATURED_YACHT_LIMIT);
+    expect(featured.map((yacht) => yacht.id)).toEqual([
+      "yacht-royal-majesty-50",
+      "yacht-majesty-56",
+      "yacht-sunseeker-90",
+      "yacht-majesty-88",
+      "yacht-azimut-42",
+      "yacht-majesty-44",
+    ]);
+    expect(featured.every((yacht) => yacht.publicationStatus === "publishable")).toBe(true);
+
+    const homepage = render("/");
+    const section = homepage.content.querySelector('[data-home-section="featured-yachts"]')!;
+    expect(section.querySelectorAll("article")).toHaveLength(HOMEPAGE_FEATURED_YACHT_LIMIT);
+    expect([...section.querySelectorAll<HTMLAnchorElement>('a[href^="/yachts/"]')]
+      .map((link) => link.getAttribute("href")))
+      .toEqual(featured.map((yacht) => `/yachts/${yacht.slug}`));
+    expect(section.innerHTML).not.toMatch(/evaliyachts?|evali yacht|supabase\.co/i);
   });
 });
