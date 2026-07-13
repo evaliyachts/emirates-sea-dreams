@@ -5,7 +5,7 @@ Status: implementation complete; external review evidence is recorded in the pul
 ## Scope
 
 - Branch: `agent/english-pr2-route-manifest`
-- Pull request: recorded in the pull request description after publication
+- Pull request: `#3`
 - Final branch commit: use the immutable pull request head shown by GitHub; embedding a commit's own SHA in that commit would be self-referential
 - Phase: typed route ownership, evidence contracts, migration planning, and validation only
 - Public output: unchanged
@@ -116,7 +116,20 @@ The runtime application does not import the root `seo/` ownership modules. Keepi
 
 ## Quality results
 
-Final local, GitHub Quality, Netlify production-context build, and Deploy Preview results are recorded truthfully in the pull request description after each check completes. The required output comparison covers sitemap, robots, route declarations, homepage metadata, JavaScript bundle identity, redirect output, indexable paths, and language alternates.
+Local validation on Node `v24.18.0` and npm `11.16.0`:
+
+- `npm ci`: passed;
+- `npm run lint`: passed with no errors or warnings;
+- `npm run typecheck`: passed;
+- `npm test`: 6 files and 26 tests passed;
+- `npm run build`: passed;
+- `npm run seo:check`: passed;
+- `npm audit --omit=dev`: passed with 0 production vulnerabilities;
+- `git diff --check`: passed;
+- Netlify production-context offline build: passed;
+- Deploy Preview and GitHub Quality: recorded in the pull request description after the hosted checks complete.
+
+Generated output was compared with a clean `origin/main` archive using the same installed dependency tree. `dist/index.html`, the JavaScript bundle `index-BMEYjqxv.js`, the CSS bundle `index-DZ598SlR.css`, `sitemap.xml`, and `robots.txt` were byte-for-byte identical. React route declarations, homepage metadata, generator inputs, and Netlify configuration are unchanged. No redirect, indexable path, or language alternate was added.
 
 ## Dependency for Implementation PR 3
 
