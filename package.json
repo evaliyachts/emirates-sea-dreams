@@ -20,7 +20,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "seo:check": "tsx scripts/seo-check.ts"
+    "seo:check": "tsx scripts/seo-check.ts",
+    "media:verify": "tsx scripts/media-verify.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

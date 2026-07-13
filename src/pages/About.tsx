@@ -2,7 +2,8 @@ import Layout from "@/components/layout/Layout";
 import SEOHead from "@/components/shared/SEOHead";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
 import { Anchor, Heart, Shield, Users } from "lucide-react";
-import { yachts } from "@/data/yachts";
+import { publishableYachts } from "@/data/yachts";
+import { NEUTRAL_YACHT_FALLBACK } from "@/data/media-rights";
 
 const values = [
   { icon: Anchor, title: "Premium Fleet", desc: "Every yacht in our fleet is maintained to the highest standards of luxury and safety." },
@@ -33,7 +34,7 @@ const About = () => (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
           <AnimatedSection direction="left">
             <div className="rounded-2xl overflow-hidden h-80">
-              <img src={yachts[0]?.images[0]} alt="Dubai Yacht fleet" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <img src={publishableYachts[0]?.media[0]?.path ?? NEUTRAL_YACHT_FALLBACK} alt="Yacht catalogue placeholder" className="w-full h-full object-cover" />
             </div>
           </AnimatedSection>
           <AnimatedSection direction="right" className="flex flex-col justify-center">

@@ -5,6 +5,7 @@ import {
   approvedCommercialConsolidations,
   approvedRedirects,
   blockedStaticRoutes,
+  blockedYachts,
   canonicalUrlForPath,
   commercialCandidateRegistry,
   englishRouteManifest,
@@ -13,7 +14,10 @@ import {
   routeGroups,
   searchConsoleAggregateBaseline,
   validateEnglishSeoOwnership,
+  yachtCatalogueRegistry,
 } from "../seo/index";
+import { mediaRightsRegistry } from "../src/data/media-rights";
+import { publishableYachts } from "../src/data/yachts";
 
 const failures = validateEnglishSeoOwnership();
 const read = (path: string) => readFile(resolve(path), "utf8");
@@ -26,6 +30,27 @@ const titles = new Set<string>();
 const descriptions = new Set<string>();
 const canonicals = new Set<string>();
 const h1s = new Set<string>();
+const publishedYachtRoutes = publishedStaticRoutes.filter((route) => route.pageType === "yacht");
+const publishedYachtsById = new Map(publishableYachts.map((yacht) => [yacht.id, yacht]));
+
+if (yachtCatalogueRegistry.length !== 24) failures.push(`Yacht inventory must contain 24 dispositions; found ${yachtCatalogueRegistry.length}.`);
+if (publishableYachts.length + blockedYachts.length !== 24) failures.push("Publishable and blocked yacht counts must total 24.");
+if (publishedYachtRoutes.length !== publishableYachts.length) failures.push("Generated yacht route count must equal publishable yacht count.");
+if (publishedYachtRoutes.some((route) => !publishedYachtsById.has(route.id))) failures.push("A yacht route was published without a strict publishable record.");
+
+for (const yacht of publishableYachts) {
+  const paths = yacht.media.map((media) => media.path);
+  if (new Set(paths).size !== paths.length) failures.push(`${yacht.id}: duplicate media paths.`);
+  for (const media of yacht.media) {
+    const rights = mediaRightsRegistry.find((record) => record.id === media.rightsRecordId);
+    if (!rights || rights.productionPath !== media.path || !rights.approvedHosts.includes("yachtrentaldxb.com")) {
+      failures.push(`${yacht.id}: media lacks an exact approved English-domain rights record.`);
+    }
+    if (/^https:\/\//.test(media.path) && new URL(media.path).hostname !== new URL(rights?.productionPath ?? media.path).hostname) {
+      failures.push(`${yacht.id}: remote media final authority is not allowlisted.`);
+    }
+  }
+}
 
 for (const route of publishedStaticRoutes) {
   const html = await read(routeFile(route.path));
@@ -64,6 +89,9 @@ for (const route of publishedStaticRoutes) {
   if (/yachtrentaldxb\.netlify\.app|https:\/\/yacht-dxb\.com/i.test(head)) failures.push(`${route.path}: forbidden metadata authority.`);
   if (/hreflang\s*=|x-default/i.test(head)) failures.push(`${route.path}: live language alternates are prohibited.`);
   if (/<!--app-(?:head|html)-->/i.test(html)) failures.push(`${route.path}: static template markers remain.`);
+  if ((route.path === "/yachts" || route.pageType === "yacht") && /evaliyachts?|evali yacht|evaliyacht\.com|evaliyachts\.com/i.test(`${head}\n${visible}`)) {
+    failures.push(`${route.path}: inherited Evali branding or authority appears in generated yacht output.`);
+  }
 
   const jsonLd = [...html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
   jsonLd.forEach((block, index) => {
@@ -77,6 +105,30 @@ for (const route of publishedStaticRoutes) {
       failures.push(`${route.path}: invalid JSON-LD block ${index + 1}.`);
     }
   });
+
+  if (route.pageType === "yacht") {
+    const yacht = publishedYachtsById.get(route.id);
+    if (!yacht) {
+      failures.push(`${route.path}: generated detail lacks a publishable record.`);
+    } else {
+      if (!visible.includes(yacht.name) || !visible.includes(`${yacht.pricePerHour.toLocaleString()}`)) {
+        failures.push(`${route.path}: visible yacht facts do not match the strict record.`);
+      }
+      if (jsonLd.length !== 1) {
+        failures.push(`${route.path}: exactly one JSON-LD block is required.`);
+      } else {
+        const value = JSON.parse(jsonLd[0][1]) as { "@graph"?: Array<Record<string, unknown>> };
+        const graph = value["@graph"] ?? [];
+        const service = graph.find((node) => node["@type"] === "Service");
+        const breadcrumb = graph.find((node) => node["@type"] === "BreadcrumbList");
+        const offer = service?.offers as Record<string, unknown> | undefined;
+        if (!service || !breadcrumb || graph.length !== 2) failures.push(`${route.path}: yacht schema must contain only Service and BreadcrumbList owners.`);
+        if (offer?.["@type"] !== "Offer" || offer.price !== yacht.pricePerHour || offer.priceCurrency !== "AED" || offer.url !== expectedCanonical) {
+          failures.push(`${route.path}: Offer does not match visible price and canonical ownership.`);
+        }
+      }
+    }
+  }
 
   if (titles.has(title)) failures.push(`${route.path}: duplicate title.`); else titles.add(title);
   if (descriptions.has(description)) failures.push(`${route.path}: duplicate description.`); else descriptions.add(description);
@@ -97,7 +149,7 @@ const sitemapUrls = [...publicSitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((mat
 const expectedUrls = publishedStaticRoutes.map((route) => canonicalUrlForPath(route.path));
 if (JSON.stringify(sitemapUrls) !== JSON.stringify(expectedUrls)) failures.push("Sitemap does not equal published manifest owners.");
 if (/<lastmod>/.test(publicSitemap)) failures.push("Sitemap contains unverified lastmod values.");
-if (sitemapUrls.length !== 4) failures.push(`Current PR 3 sitemap must contain 4 URLs; found ${sitemapUrls.length}.`);
+if (sitemapUrls.length !== publishedStaticRoutes.length) failures.push(`Sitemap must equal generated indexable routes; found ${sitemapUrls.length}.`);
 if (!blockedStaticRoutes.every((route) => !sitemapUrls.includes(canonicalUrlForPath(route.path)))) failures.push("Blocked route entered sitemap.");
 
 const robots = await read("dist/robots.txt");
@@ -105,7 +157,7 @@ if (!robots.includes(`Sitemap: ${ENGLISH_PRODUCTION_ORIGIN}/sitemap.xml`)) failu
 
 const netlify = await read("netlify.toml");
 const rewriteBlocks = [...netlify.matchAll(/\[\[redirects\]\]([\s\S]*?)(?=\n\[\[|$)/g)].map((match) => match[1]);
-if (rewriteBlocks.length !== 3 || rewriteBlocks.some((block) => !/status = 200/.test(block))) failures.push("Exactly three 200 rewrites are required.");
+if (rewriteBlocks.length !== 3 + publishedYachtRoutes.length || rewriteBlocks.some((block) => !/status = 200/.test(block))) failures.push("Exact 200 rewrites must equal the three published hubs plus generated yacht details.");
 if (/status = 30[12]/.test(netlify) || /from = "\/\*"/.test(netlify)) failures.push("Redirect or wildcard fallback found.");
 if (approvedRedirects.length !== 0 || approvedCommercialConsolidations.length !== 0) failures.push("Evidence-gated approvals changed.");
 
@@ -122,6 +174,8 @@ const distFiles = await collectFiles(resolve("dist"));
 if (distFiles.some((file) => file.endsWith(".map"))) failures.push("Production source map found.");
 const generatedHtml = distFiles.filter((file) => file.endsWith(".html"));
 if (generatedHtml.length !== publishedStaticRoutes.length + 1) failures.push("Unexpected generated HTML page count.");
+const generatedYachtFiles = generatedHtml.filter((file) => file.includes("/_static/yachts/") && file.endsWith(".html"));
+if (generatedYachtFiles.length !== publishableYachts.length) failures.push("Generated yacht HTML count does not equal publishable yacht count.");
 for (const route of blockedStaticRoutes) {
   if (generatedHtml.includes(resolve(routeFile(route.path)))) failures.push(`${route.path}: blocked route generated an HTML file.`);
 }
@@ -141,5 +195,6 @@ if (failures.length) {
 
 console.log(`Static SEO passed: ${publishedStaticRoutes.length} published routes, ${blockedStaticRoutes.length} blocked routes, one real 404 document.`);
 console.log(`Manifest preserved: ${englishRouteManifest.length} routes (${routeGroups.static.length}/${routeGroups.yachts.length}/${routeGroups.services.length}).`);
+console.log(`Yacht gates: ${yachtCatalogueRegistry.length} source records, ${publishableYachts.length} publishable, ${blockedYachts.length} blocked, ${publishedYachtRoutes.length} generated details.`);
 console.log(`Evidence gates preserved: ${approvedRedirects.length} redirects, ${approvedCommercialConsolidations.length} consolidations, ${commercialCandidateRegistry.length} candidates, ${occasionDispositions.length} occasions.`);
-console.log(`Search Console remains aggregate evidence (${searchConsoleAggregateBaseline.knownUrls} known URLs); PR 4 has not begun.`);
+console.log(`Search Console remains aggregate evidence (${searchConsoleAggregateBaseline.knownUrls} known URLs); no Search Console action was taken.`);

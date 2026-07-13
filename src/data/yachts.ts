@@ -1,527 +1,62 @@
-export interface Yacht {
-  slug: string;
-  name: string;
-  type: "Standard" | "Luxury" | "Superyacht";
-  length_ft: number;
-  max_guests: number;
-  bedrooms: number;
-  bathrooms: number;
-  crew: number;
-  price_per_hour_from_aed: number;
-  images: string[];
-  featured: boolean;
-  description: string;
-  inclusions: string[];
-  add_ons: string[];
-  tags: string[];
-}
+import { z } from "zod";
 
-const SUPABASE_BASE = "https://rmkuurzppholugvtgtvk.supabase.co/storage/v1/object/public/yachts/";
-const CDN_BASE = "https://yacht.fra1.cdn.digitaloceanspaces.com/";
+export const yachtMediaRecordSchema = z.object({
+  type: z.literal("image"),
+  path: z.string().min(1).refine((path) => {
+    if (path.startsWith("/")) return !path.startsWith("//");
+    try {
+      return new URL(path).protocol === "https:";
+    } catch {
+      return false;
+    }
+  }, "Media paths must be root-relative local paths or valid HTTPS URLs."),
+  alt: z.string().min(1),
+  width: z.number().int().positive(),
+  height: z.number().int().positive(),
+  rightsRecordId: z.string().min(1),
+  rightsStatus: z.literal("approved"),
+  featured: z.boolean().optional(),
+  priority: z.number().int().optional(),
+}).strict();
 
-const STANDARD_INCLUSIONS = [
-  "Professional Captain",
-  "Fuel",
-  "Soft Drinks & Water",
-  "Ice & Cooler",
-  "Sound System",
-  "Safety Equipment",
-  "Crew Assistance",
-  "Towels & Amenities",
-  "Swimming Platform",
-];
-
-const STANDARD_ADD_ONS = [
-  "Jet Ski - AED 600/hr",
-  "BBQ Setup - AED 400",
-  "DJ Setup - AED 1500",
-  "Decoration Package - AED 800",
-];
-
-const STANDARD_TAGS = [
-  "birthday",
-  "corporate",
-  "cruise",
-  "dubai marina",
-  "party",
-  "palm jumeirah",
-  "sunset",
-];
-
-const yachtsRaw: Yacht[] = [
-  {
-    slug: "evali-yacht-55ft-yacht-rental-dubai",
-    name: "Evali Yacht 55ft Yacht Rental Dubai",
-    type: "Luxury",
-    length_ft: 55,
-    max_guests: 15,
-    bedrooms: 1,
-    bathrooms: 2,
-    crew: 3,
-    price_per_hour_from_aed: 1000,
-    images: [],
-    featured: true,
-    description:
-      "Modern 55ft Evali yacht rental Dubai (2025) with stylish interiors and spacious deck — perfect for parties, sightseeing, and private cruises in Dubai Marina.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["atlantis", "birthday", "bluewaters", "burj al arab", "corporate", "dubai marina", "palm jumeirah", "party"],
-  },
-  {
-    slug: "50-feet-royal-majesty-dubai-yacht-rental",
-    name: "50 Feet Royal Majesty Dubai Yacht Rental",
-    type: "Luxury",
-    length_ft: 50,
-    max_guests: 12,
-    bedrooms: 2,
-    bathrooms: 2,
-    crew: 3,
-    price_per_hour_from_aed: 600,
-    images: [],
-    featured: true,
-    description:
-      "Premium 50ft Royal Majesty Dubai yacht rental with elegant interiors — perfect for celebrations, sightseeing, and private cruises along Dubai's iconic coastline.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: STANDARD_TAGS,
-  },
-  {
-    slug: "42-feet-azimut-yacht-rental-dubai",
-    name: "42 Feet Azimut Yacht Rental Dubai",
-    type: "Standard",
-    length_ft: 42,
-    max_guests: 12,
-    bedrooms: 2,
-    bathrooms: 1,
-    crew: 2,
-    price_per_hour_from_aed: 500,
-    images: [],
-    featured: false,
-    description:
-      "Comfortable 42ft Azimut yacht rental Dubai, ideal for family trips, intimate gatherings, and relaxed cruising around Palm Jumeirah and Dubai Marina.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: STANDARD_TAGS,
-  },
-  {
-    slug: "majesty-44-feet-dubai-yacht-rental",
-    name: "Majesty 44 Feet Dubai Yacht Rental",
-    type: "Standard",
-    length_ft: 44,
-    max_guests: 12,
-    bedrooms: 3,
-    bathrooms: 2,
-    crew: 2,
-    price_per_hour_from_aed: 500,
-    images: [],
-    featured: false,
-    description:
-      "Majesty 44ft Dubai yacht rental with three bedrooms and a refined layout — great for small groups, special occasions, and private coastal cruising.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: STANDARD_TAGS,
-  },
-  {
-    slug: "50-feet-azimut-yacht-rental-dubai",
-    name: "50 Feet Azimut Yacht Rental Dubai",
-    type: "Luxury",
-    length_ft: 50,
-    max_guests: 15,
-    bedrooms: 1,
-    bathrooms: 2,
-    crew: 3,
-    price_per_hour_from_aed: 650,
-    images: [],
-    featured: false,
-    description:
-      "Stylish 50ft Azimut yacht rental Dubai featuring premium finishes and spacious sundeck — perfect for parties, corporate trips, and luxury cruising.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: STANDARD_TAGS,
-  },
-  {
-    slug: "oryx-50-feet-dubai-yacht-rental",
-    name: "Oryx 50 Feet Dubai Yacht Rental",
-    type: "Luxury",
-    length_ft: 50,
-    max_guests: 15,
-    bedrooms: 1,
-    bathrooms: 2,
-    crew: 3,
-    price_per_hour_from_aed: 550,
-    images: [],
-    featured: false,
-    description:
-      "Oryx 50ft Dubai yacht rental with a sleek design and comfortable layout — ideal for sightseeing, parties, and private cruising in Dubai Marina.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: STANDARD_TAGS,
-  },
-  {
-    slug: "ferretti-50-feet-yacht-rental-dubai",
-    name: "Ferretti 50 Feet Yacht Rental Dubai",
-    type: "Luxury",
-    length_ft: 50,
-    max_guests: 12,
-    bedrooms: 3,
-    bathrooms: 2,
-    crew: 3,
-    price_per_hour_from_aed: 1000,
-    images: [],
-    featured: false,
-    description:
-      "Iconic Ferretti 50ft yacht rental Dubai combining Italian design with luxury comfort — a perfect choice for VIP cruises, celebrations, and corporate events.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["birthday", "corporate", "cruise", "dubai marina", "party", "palm jumeirah", "vip"],
-  },
-  {
-    slug: "56-feet-majesty-dubai-yacht-rental",
-    name: "56 Feet Majesty Dubai Yacht Rental",
-    type: "Luxury",
-    length_ft: 56,
-    max_guests: 22,
-    bedrooms: 3,
-    bathrooms: 2,
-    crew: 3,
-    price_per_hour_from_aed: 750,
-    images: [],
-    featured: true,
-    description:
-      "Spacious 56ft Majesty Dubai yacht rental with three bedrooms and ample deck space — ideal for parties, corporate events, and family celebrations on the water.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: STANDARD_TAGS,
-  },
-  {
-    slug: "55-feet-azimut-yacht-rental-dubai",
-    name: "55 Feet Azimut Yacht Rental Dubai",
-    type: "Luxury",
-    length_ft: 55,
-    max_guests: 18,
-    bedrooms: 3,
-    bathrooms: 2,
-    crew: 3,
-    price_per_hour_from_aed: 750,
-    images: [],
-    featured: false,
-    description:
-      "Modern 55ft Azimut yacht rental Dubai (2020) with elegant interiors and spacious decks — a top pick for luxurious cruises, parties, and VIP events.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["birthday", "corporate", "cruise", "dubai marina", "party", "palm jumeirah", "vip"],
-  },
-  {
-    slug: "majesty-88ft-jacuzzi-dubai-yacht-rental",
-    name: "Majesty 88ft (Jacuzzi) Dubai Yacht Rental",
-    type: "Superyacht",
-    length_ft: 88,
-    max_guests: 50,
-    bedrooms: 4,
-    bathrooms: 4,
-    crew: 5,
-    price_per_hour_from_aed: 1800,
-    images: [],
-    featured: true,
-    description:
-      "Stunning Majesty 88ft superyacht with a private Jacuzzi for Dubai yacht rental — perfect for large parties, weddings, corporate events, and unforgettable VIP experiences.",
-    inclusions: [...STANDARD_INCLUSIONS, "Jacuzzi"],
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["birthday", "corporate", "cruise", "dubai marina", "party", "palm jumeirah", "sunset", "vip", "wedding", "jacuzzi"],
-  },
-  {
-    slug: "sunseeker-82-feet-yacht-rental-dubai",
-    name: "Sunseeker 82 Feet Yacht Rental Dubai",
-    type: "Superyacht",
-    length_ft: 82,
-    max_guests: 35,
-    bedrooms: 3,
-    bathrooms: 3,
-    crew: 4,
-    price_per_hour_from_aed: 1800,
-    images: [],
-    featured: false,
-    description:
-      "Sunseeker 82ft Dubai yacht rental with British design and luxury comfort — ideal for parties, corporate events, and premium cruising along Dubai's coastline.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["birthday", "corporate", "cruise", "dubai marina", "party", "palm jumeirah", "vip"],
-  },
-  {
-    slug: "azimut-80-feet-yacht-rental-dubai",
-    name: "Azimut 80 Feet Yacht Rental Dubai",
-    type: "Superyacht",
-    length_ft: 80,
-    max_guests: 30,
-    bedrooms: 3,
-    bathrooms: 3,
-    crew: 4,
-    price_per_hour_from_aed: 1700,
-    images: [],
-    featured: false,
-    description:
-      "Azimut 80ft Dubai yacht rental featuring Italian elegance and spacious decks — perfect for VIP events, parties, and luxury cruises in Dubai Marina.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["birthday", "corporate", "cruise", "dubai marina", "party", "palm jumeirah", "vip"],
-  },
-  {
-    slug: "benetti-110ft-jacuzzi-yacht-rental-dubai",
-    name: "Benetti 110ft (Jacuzzi) Yacht Rental Dubai",
-    type: "Superyacht",
-    length_ft: 110,
-    max_guests: 50,
-    bedrooms: 5,
-    bathrooms: 5,
-    crew: 6,
-    price_per_hour_from_aed: 4500,
-    images: [],
-    featured: true,
-    description:
-      "Iconic Benetti 110ft superyacht with a private Jacuzzi — the ultimate Dubai yacht rental for weddings, large parties, corporate gatherings, and exclusive VIP experiences.",
-    inclusions: [...STANDARD_INCLUSIONS, "Jacuzzi"],
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["birthday", "corporate", "cruise", "dubai marina", "party", "palm jumeirah", "sunset", "vip", "wedding", "jacuzzi"],
-  },
-  {
-    slug: "majesty-101ft-jacuzzi-dubai-yacht-rental",
-    name: "Majesty 101ft (Jacuzzi) Dubai Yacht Rental",
-    type: "Superyacht",
-    length_ft: 101,
-    max_guests: 50,
-    bedrooms: 4,
-    bathrooms: 4,
-    crew: 6,
-    price_per_hour_from_aed: 3000,
-    images: [],
-    featured: true,
-    description:
-      "Majesty 101ft superyacht with private Jacuzzi for Dubai yacht rental — a stunning choice for weddings, corporate events, and unforgettable celebrations on the water.",
-    inclusions: [...STANDARD_INCLUSIONS, "Jacuzzi"],
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["birthday", "corporate", "cruise", "dubai marina", "party", "palm jumeirah", "sunset", "vip", "wedding", "jacuzzi"],
-  },
-  {
-    slug: "heysea-90ft-jacuzzi-yacht-rental-dubai",
-    name: "Heysea 90ft (Jacuzzi) Yacht Rental Dubai",
-    type: "Superyacht",
-    length_ft: 90,
-    max_guests: 20,
-    bedrooms: 4,
-    bathrooms: 4,
-    crew: 5,
-    price_per_hour_from_aed: 5000,
-    images: [],
-    featured: true,
-    description:
-      "Heysea 90ft luxury yacht with private Jacuzzi for Dubai yacht rental — refined design and premium amenities for VIP cruises, celebrations, and exclusive events.",
-    inclusions: [...STANDARD_INCLUSIONS, "Jacuzzi"],
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["birthday", "corporate", "cruise", "dubai marina", "party", "palm jumeirah", "sunset", "vip", "wedding", "jacuzzi"],
-  },
-  {
-    slug: "doretty-90ft-jacuzzi-dubai-yacht-rental",
-    name: "Doretty 90ft (Jacuzzi) Dubai Yacht Rental",
-    type: "Superyacht",
-    length_ft: 90,
-    max_guests: 45,
-    bedrooms: 3,
-    bathrooms: 3,
-    crew: 5,
-    price_per_hour_from_aed: 1200,
-    images: [],
-    featured: false,
-    description:
-      "Doretty 90ft Dubai yacht rental with private Jacuzzi and spacious deck — great for large parties, corporate trips, and celebrations along Dubai's iconic coastline.",
-    inclusions: [...STANDARD_INCLUSIONS, "Jacuzzi"],
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["birthday", "corporate", "cruise", "dubai marina", "party", "palm jumeirah", "jacuzzi"],
-  },
-  {
-    slug: "ocean-dream-143-feet-yacht-rental-dubai",
-    name: "Ocean Dream 143 Feet Yacht Rental Dubai",
-    type: "Superyacht",
-    length_ft: 143,
-    max_guests: 130,
-    bedrooms: 6,
-    bathrooms: 6,
-    crew: 8,
-    price_per_hour_from_aed: 5000,
-    images: [],
-    featured: true,
-    description:
-      "Ocean Dream 143ft mega yacht for Dubai yacht rental — perfect for grand events, weddings, corporate galas, and unforgettable celebrations for up to 130 guests.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["birthday", "corporate", "cruise", "dubai marina", "party", "palm jumeirah", "sunset", "vip", "wedding"],
-  },
-  {
-    slug: "mzaail-135ft-dubai-yacht-rental",
-    name: "Mzaail 135ft Dubai Yacht Rental",
-    type: "Superyacht",
-    length_ft: 135,
-    max_guests: 110,
-    bedrooms: 5,
-    bathrooms: 5,
-    crew: 7,
-    price_per_hour_from_aed: 4000,
-    images: [],
-    featured: true,
-    description:
-      "Mzaail 135ft mega yacht Dubai rental with luxurious interiors and expansive decks — perfect for weddings, corporate events, and high-end celebrations on the water.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["birthday", "corporate", "cruise", "dubai marina", "party", "palm jumeirah", "sunset", "vip", "wedding"],
-  },
-  {
-    slug: "doretty-95-feet-jacuzzi-yacht-rental-dubai",
-    name: "Doretty 95 Feet (Jacuzzi) Yacht Rental Dubai",
-    type: "Superyacht",
-    length_ft: 95,
-    max_guests: 55,
-    bedrooms: 4,
-    bathrooms: 4,
-    crew: 5,
-    price_per_hour_from_aed: 2000,
-    images: [],
-    featured: false,
-    description:
-      "Doretty 95ft yacht rental Dubai with private Jacuzzi — spacious layout, modern amenities, and premium comfort for parties, corporate events, and celebrations.",
-    inclusions: [...STANDARD_INCLUSIONS, "Jacuzzi"],
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["birthday", "corporate", "cruise", "dubai marina", "party", "palm jumeirah", "vip", "wedding", "jacuzzi"],
-  },
-  {
-    slug: "sunseeker-92-feet-dubai-yacht-rental",
-    name: "Sunseeker 92 Feet Dubai Yacht Rental",
-    type: "Superyacht",
-    length_ft: 92,
-    max_guests: 20,
-    bedrooms: 4,
-    bathrooms: 3,
-    crew: 5,
-    price_per_hour_from_aed: 4500,
-    images: [],
-    featured: false,
-    description:
-      "Sunseeker 92ft Dubai yacht rental with timeless British design and luxury finishes — ideal for VIP cruises, corporate events, and intimate celebrations.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["birthday", "corporate", "cruise", "dubai marina", "party", "palm jumeirah", "vip"],
-  },
-  {
-    slug: "sunseeker-90-feet-yacht-rental-dubai",
-    name: "Sunseeker 90 Feet Yacht Rental Dubai",
-    type: "Superyacht",
-    length_ft: 90,
-    max_guests: 30,
-    bedrooms: 4,
-    bathrooms: 3,
-    crew: 5,
-    price_per_hour_from_aed: 2200,
-    images: [],
-    featured: false,
-    description:
-      "Sunseeker 90ft Dubai yacht rental with elegant design and spacious decks — a perfect pick for parties, corporate trips, and luxurious cruises.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["birthday", "corporate", "cruise", "dubai marina", "party", "palm jumeirah", "vip"],
-  },
-  {
-    slug: "dynasty-151-feet-dubai-yacht-rental",
-    name: "Dynasty 151 Feet Dubai Yacht Rental",
-    type: "Superyacht",
-    length_ft: 150,
-    max_guests: 120,
-    bedrooms: 7,
-    bathrooms: 7,
-    crew: 8,
-    price_per_hour_from_aed: 7500,
-    images: [],
-    featured: true,
-    description:
-      "Dynasty 151ft mega yacht for Dubai yacht rental — the ultimate venue for grand weddings, corporate galas, and luxurious celebrations for up to 120 guests.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["birthday", "corporate", "cruise", "dubai marina", "party", "palm jumeirah", "sunset", "vip", "wedding"],
-  },
-  {
-    slug: "luxury-120-feet-mega-yacht-rental-dubai",
-    name: "Luxury 120 Feet Mega Yacht Rental Dubai",
-    type: "Superyacht",
-    length_ft: 120,
-    max_guests: 80,
-    bedrooms: 6,
-    bathrooms: 6,
-    crew: 7,
-    price_per_hour_from_aed: 6000,
-    images: [],
-    featured: true,
-    description:
-      "Luxury 120ft mega yacht for Dubai yacht rental — sleek design and lavish interiors, perfect for large weddings, corporate events, and exclusive VIP gatherings.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["birthday", "corporate", "cruise", "dubai marina", "party", "palm jumeirah", "sunset", "vip", "wedding"],
-  },
-  {
-    slug: "omega-100-feet-dubai-yacht-rental",
-    name: "Omega 100 Feet Dubai Yacht Rental",
-    type: "Superyacht",
-    length_ft: 100,
-    max_guests: 50,
-    bedrooms: 3,
-    bathrooms: 3,
-    crew: 5,
-    price_per_hour_from_aed: 2500,
-    images: [],
-    featured: false,
-    description:
-      "Omega 100ft Dubai yacht rental with refined interiors and expansive deck space — ideal for parties, corporate events, and unforgettable celebrations on the water.",
-    inclusions: STANDARD_INCLUSIONS,
-    add_ons: STANDARD_ADD_ONS,
-    tags: ["birthday", "corporate", "cruise", "dubai marina", "party", "palm jumeirah", "vip", "wedding"],
-  },
-];
-
-const verifiedCdnGalleries: Record<string, { folder: string; indexes: number[] }> = {
-  "evali-yacht-55ft-yacht-rental-dubai": { folder: "evali_55_feet_yacht_rental_dubai", indexes: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] },
-  "50-feet-royal-majesty-dubai-yacht-rental": { folder: "50_feet_royal_majesty", indexes: [1, 2, 3, 4, 5, 6, 7, 8, 9] },
-  "42-feet-azimut-yacht-rental-dubai": { folder: "azimut_42_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5] },
-  "majesty-44-feet-dubai-yacht-rental": { folder: "majesty_44_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5] },
-  "50-feet-azimut-yacht-rental-dubai": { folder: "azimut_50_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
-  "oryx-50-feet-dubai-yacht-rental": { folder: "oryx_50_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6] },
-  "ferretti-50-feet-yacht-rental-dubai": { folder: "ferretti_50_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
-  "56-feet-majesty-dubai-yacht-rental": { folder: "56_feet_majesty_yacht_trip", indexes: [1, 2, 3, 4, 5] },
-  "55-feet-azimut-yacht-rental-dubai": { folder: "azimut_55_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
-  "majesty-88ft-jacuzzi-dubai-yacht-rental": { folder: "88_feet_majesty_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6, 7] },
-  // New yachts
-  "sunseeker-82-feet-yacht-rental-dubai": { folder: "92_feet_sunseeker_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6] },
-  "azimut-80-feet-yacht-rental-dubai": { folder: "azimut_55_feet_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
-  "benetti-110ft-jacuzzi-yacht-rental-dubai": { folder: "110_feet_benetti_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6, 7, 8] },
-  "majesty-101ft-jacuzzi-dubai-yacht-rental": { folder: "88_feet_majesty_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6, 7] },
-  "heysea-90ft-jacuzzi-yacht-rental-dubai": { folder: "90_feet_heysea_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6, 7] },
-  "doretty-90ft-jacuzzi-dubai-yacht-rental": { folder: "90_feet_doretty_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6, 7] },
-  "ocean-dream-143-feet-yacht-rental-dubai": { folder: "151_feet_dynasty_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
-  "mzaail-135ft-dubai-yacht-rental": { folder: "135_feet_mzaail_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
-  "doretty-95-feet-jacuzzi-yacht-rental-dubai": { folder: "95_feet_doretty_yacht_with_jacuzzi_charter", indexes: [1, 2, 3, 4, 5, 6] },
-  "sunseeker-92-feet-dubai-yacht-rental": { folder: "92_feet_sunseeker_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6] },
-  "sunseeker-90-feet-yacht-rental-dubai": { folder: "90_feet_sunseeker_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7, 8] },
-  "dynasty-151-feet-dubai-yacht-rental": { folder: "151_feet_dynasty_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
-  "luxury-120-feet-mega-yacht-rental-dubai": { folder: "135_feet_mzaail_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 6, 7] },
-  "omega-100-feet-dubai-yacht-rental": { folder: "100_feet_omega_yacht_rental_dubai", indexes: [1, 2, 3, 4, 5, 7, 8] },
-};
-
-const buildCdnGallery = (folder: string, indexes: number[]) =>
-  indexes.map((index) => `${CDN_BASE}${folder}/${folder}${index}.webp`);
-
-const rewriteToCdn = (url: string) => url.replace(SUPABASE_BASE, CDN_BASE);
-
-export const yachts: Yacht[] = yachtsRaw.map((y) => {
-  const verifiedGallery = verifiedCdnGalleries[y.slug];
-  return {
-    ...y,
-    images: verifiedGallery
-      ? buildCdnGallery(verifiedGallery.folder, verifiedGallery.indexes)
-      : y.images.map(rewriteToCdn),
-  };
+export const yachtRecordSchema = z.object({
+  id: z.string().min(1),
+  sourceNumericId: z.number().int().positive(),
+  slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+  name: z.string().min(1),
+  lengthFt: z.number().positive(),
+  guestCapacity: z.number().int().positive(),
+  yearBuilt: z.number().int().min(1900).max(2027),
+  pricePerHour: z.number().positive(),
+  minimumDuration: z.number().positive(),
+  numberOfBedrooms: z.number().int().nonnegative().optional(),
+  availability: z.enum(["available", "unavailable", "on-request", "pending"]),
+  featured: z.boolean().optional(),
+  priority: z.number().int().optional(),
+  media: z.array(yachtMediaRecordSchema).min(1),
+  publicationStatus: z.literal("publishable"),
+  blockers: z.array(z.string()).max(0),
+}).strict().superRefine((record, context) => {
+  const paths = record.media.map((media) => media.path);
+  if (new Set(paths).size !== paths.length) {
+    context.addIssue({ code: z.ZodIssueCode.custom, path: ["media"], message: "Duplicate media paths are prohibited." });
+  }
+  const serialized = JSON.stringify(record);
+  if (/hhttps:\/\//i.test(serialized)) {
+    context.addIssue({ code: z.ZodIssueCode.custom, message: "Malformed hhttps media URLs are prohibited." });
+  }
+  if (/evaliyachts?|evali yacht|supabase\.co/i.test(serialized)) {
+    context.addIssue({ code: z.ZodIssueCode.custom, message: "Inherited Evali or Supabase references are prohibited in publishable records." });
+  }
 });
+
+export type YachtMediaRecord = z.infer<typeof yachtMediaRecordSchema>;
+export type YachtRecord = z.infer<typeof yachtRecordSchema>;
+// A record enters this array only after every fact, offer, availability and media-rights gate passes.
+export const publishableYachts: readonly YachtRecord[] = [];
+export const TOTAL_YACHT_SOURCE_RECORDS = 24;
+
+export const yachtPath = (slug: string) => `/yachts/${slug}`;
+
+export const getPublishableYachtBySlug = (slug: string | undefined) =>
+  publishableYachts.find((yacht) => yacht.slug === slug);

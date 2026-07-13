@@ -58,3 +58,21 @@ Do not copy or rehost third-party images without explicit authorization. Rename 
 - Social image URLs are absolute HTTPS production URLs with alt and verified dimensions.
 - Failed remote sources do not retry indefinitely or blank the UI.
 - Only fingerprinted assets receive immutable caching; HTML, robots and sitemap do not.
+
+## PR 4 production decision — 2026-07-13
+
+No authorization in the English repository approves the 165 historical remote yacht observations for `yachtrentaldxb.com`. Therefore:
+
+- remote yacht URLs remain audit provenance only and are absent from strict production yacht records;
+- Arabic-project approval is still not treated as cross-domain permission;
+- remote yacht detail, card, homepage, Open Graph/Twitter, derivative, rehosting, and Netlify Image CDN use remain unapproved;
+- the sampled 403 source is not retained in a production gallery;
+- production yacht media count is **0** because publishable yacht count is **0**.
+
+PR 4 creates one original local fallback asset, `/media/yacht-neutral-fallback.svg`, with rights ID `english-neutral-yacht-fallback-001`. It is approved only as a neutral fallback on `yachtrentaldxb.com`, contains no third-party photography or inherited branding, and is verified as a decodable 1600×900 SVG. It is not used to create a placeholder detail page and is not emitted as yacht social metadata.
+
+| rightsRecordId | Source host | Approved surfaces | English domain | Arabic reuse | Social preview | Netlify Image CDN | Unresolved |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `english-neutral-yacht-fallback-001` | Local repository asset | Neutral fallback after an approved real image is unavailable | `yachtrentaldxb.com` | Not applicable / not reused | No | No | None |
+
+`npm run media:verify` validates every media record used by a publishable yacht plus the neutral fallback. A future remote record must use HTTPS, exactly match an approved English rights record, retain its approved host after redirects, return a supported image successfully with a non-empty body, decode dimensions, and match its declared width and height.

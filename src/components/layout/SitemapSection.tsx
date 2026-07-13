@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { yachts } from "@/data/yachts";
+import { publishableYachts, yachtPath } from "@/data/yachts";
 import { services } from "@/data/services";
 import { occasions } from "@/data/occasions";
 import { offers } from "@/data/offers";
@@ -49,16 +49,16 @@ const SitemapSection = () => {
           {/* Yachts */}
           <div className="md:col-span-2">
             <h3 className="font-display font-semibold text-foreground mb-3">
-              Yacht Rentals Dubai ({yachts.length})
+              Verified Yacht Records ({publishableYachts.length})
             </h3>
             <ul className="space-y-2 grid grid-cols-1 sm:grid-cols-2">
-              {yachts.map((y) => (
-                <li key={y.slug}>
+              {publishableYachts.map((yacht) => (
+                <li key={yacht.id}>
                   <Link
-                    to={`/yachts/${y.slug}`}
+                    to={yachtPath(yacht.slug)}
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    {y.name}
+                    {yacht.name}
                   </Link>
                 </li>
               ))}
