@@ -1,139 +1,105 @@
-import { useParams, Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { Link, useParams } from "react-router-dom";
+import { ArrowLeft, BedDouble, CalendarDays, Clock, Ruler, Users } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import SEOHead from "@/components/shared/SEOHead";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
-import { yachts } from "@/data/yachts";
-import { PLACEHOLDER_IMAGE, getWhatsAppLink, getPhoneLink } from "@/lib/constants";
-import { Users, BedDouble, Bath, Ruler, UserCheck, Check, MessageCircle, Phone, ArrowLeft } from "lucide-react";
 import { StaggerImageCarousel } from "@/components/ui/stagger-image-carousel";
+import { NEUTRAL_YACHT_FALLBACK } from "@/data/media-rights";
+import { getPublishableYachtBySlug, publishableYachts, yachtPath } from "@/data/yachts";
+import { buildYachtSeo } from "@/lib/yacht-seo";
 
 const YachtDetails = () => {
   const { slug } = useParams();
-  const yacht = yachts.find((y) => y.slug === slug);
+  const yacht = getPublishableYachtBySlug(slug);
 
   if (!yacht) {
     return (
       <Layout>
-        <div className="pt-28 pb-20 text-center">
-          <h1 className="text-3xl font-display font-bold text-foreground mb-4">Yacht Not Found</h1>
-          <Link to="/yachts" className="text-primary hover:underline">Back to Fleet</Link>
-        </div>
+        <main className="pt-28 pb-20 text-center">
+          <h1 className="text-3xl font-display font-bold text-foreground mb-4">Yacht record not published</h1>
+          <p className="text-muted-foreground mb-6">This yacht does not currently meet the website's publication evidence requirements.</p>
+          <Link to="/yachts" className="text-primary hover:underline">Back to the verified catalogue</Link>
+        </main>
       </Layout>
     );
   }
 
-  const images = yacht.images?.length ? yacht.images : [PLACEHOLDER_IMAGE];
-
-  const stats = [
-    { icon: Ruler, label: "Length", value: `${yacht.length_ft} ft` },
-    { icon: Users, label: "Guests", value: `Up to ${yacht.max_guests}` },
-    { icon: BedDouble, label: "Bedrooms", value: yacht.bedrooms.toString() },
-    { icon: Bath, label: "Bathrooms", value: yacht.bathrooms.toString() },
-    { icon: UserCheck, label: "Crew", value: yacht.crew.toString() },
+  const { path, title, description, jsonLd } = buildYachtSeo(yacht);
+  const images = yacht.media.map((media) => media.path);
+  const relatedYachts = publishableYachts.filter((candidate) => candidate.id !== yacht.id).slice(0, 3);
+  const details = [
+    { icon: Ruler, label: "Length", value: `${yacht.lengthFt} ft` },
+    { icon: Users, label: "Guest capacity", value: `${yacht.guestCapacity}` },
+    { icon: CalendarDays, label: "Year built", value: `${yacht.yearBuilt}` },
+    { icon: Clock, label: "Minimum duration", value: `${yacht.minimumDuration} hours` },
+    ...(yacht.numberOfBedrooms === undefined ? [] : [{ icon: BedDouble, label: "Bedrooms", value: `${yacht.numberOfBedrooms}` }]),
   ];
-
   return (
     <Layout>
-      <SEOHead
-        title={`${yacht.name} - ${yacht.length_ft}ft ${yacht.type} Yacht Rental Dubai | Dubai Yacht`}
-        description={yacht.description}
-        path={`/yachts/${yacht.slug}`}
-      />
-
-      {/* Hero with stagger carousel */}
-      <div className="relative pt-28 pb-10 overflow-hidden">
+      <SEOHead title={title} description={description} path={path} jsonLd={jsonLd} />
+      <main className="pt-28 pb-16">
         <div className="container mx-auto px-4">
-          <Link to="/yachts" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4">
-            <ArrowLeft className="w-4 h-4" /> Back to Fleet
+          <Link to="/yachts" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6">
+            <ArrowLeft className="w-4 h-4" /> Back to verified catalogue
           </Link>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-3xl md:text-5xl font-display font-bold text-foreground mb-2"
-          >
-            {yacht.name}
-          </motion.h1>
-          <p className="text-primary font-display text-xl mb-8">
-            From AED {yacht.price_per_hour_from_aed.toLocaleString()}/hour
-          </p>
+          <h1 className="text-3xl md:text-5xl font-display font-bold text-foreground mb-2">{yacht.name}</h1>
+          <p className="text-primary font-display text-xl mb-8">AED {yacht.pricePerHour.toLocaleString()} per hour</p>
 
-          <StaggerImageCarousel
-            images={images}
-            altPrefix={yacht.name}
-            fallbackSrc={PLACEHOLDER_IMAGE}
-          />
-        </div>
-      </div>
+          <StaggerImageCarousel images={images} altPrefix={yacht.name} fallbackSrc={NEUTRAL_YACHT_FALLBACK} />
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          <div className="lg:col-span-2 space-y-10">
-            <AnimatedSection>
-              <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-8">
-                {stats.map((s) => (
-                  <div key={s.label} className="glass-card p-4 text-center">
-                    <s.icon className="w-5 h-5 text-primary mx-auto mb-1" />
-                    <p className="text-xs text-muted-foreground">{s.label}</p>
-                    <p className="text-sm font-semibold text-foreground">{s.value}</p>
+          <AnimatedSection className="max-w-4xl mx-auto mt-12 space-y-10">
+            <section aria-labelledby="verified-facts-heading">
+              <h2 id="verified-facts-heading" className="text-2xl font-display font-bold text-foreground mb-5">Verified facts</h2>
+              <dl className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                {details.map((detail) => (
+                  <div key={detail.label} className="glass-card p-4 text-center">
+                    <detail.icon className="w-5 h-5 text-primary mx-auto mb-2" aria-hidden="true" />
+                    <dt className="text-xs text-muted-foreground">{detail.label}</dt>
+                    <dd className="text-sm font-semibold text-foreground">{detail.value}</dd>
                   </div>
                 ))}
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.1}>
-              <h2 className="text-2xl font-display font-bold text-foreground mb-3">Overview</h2>
-              <p className="text-muted-foreground leading-relaxed">{yacht.description}</p>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.2}>
-              <h2 className="text-2xl font-display font-bold text-foreground mb-3">What's Included</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {yacht.inclusions.map((inc) => (
-                  <div key={inc} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Check className="w-4 h-4 text-primary shrink-0" /> {inc}
-                  </div>
-                ))}
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.3}>
-              <h2 className="text-2xl font-display font-bold text-foreground mb-3">Available Add-ons</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {yacht.add_ons.map((ao) => (
-                  <div key={ao} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> {ao}
-                  </div>
-                ))}
-              </div>
-            </AnimatedSection>
-          </div>
-
-          {/* Sticky sidebar */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-24 glass-card p-6 space-y-4">
-              <h3 className="text-xl font-display font-bold text-foreground">Book {yacht.name}</h3>
-              <p className="text-2xl font-display font-bold text-primary">
-                AED {yacht.price_per_hour_from_aed.toLocaleString()}<span className="text-sm text-muted-foreground font-body">/hour</span>
+              </dl>
+            </section>
+            <section aria-labelledby="booking-facts-heading" className="glass-card p-6">
+              <h2 id="booking-facts-heading" className="text-2xl font-display font-bold text-foreground mb-3">Booking facts</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                The verified hourly price is AED {yacht.pricePerHour.toLocaleString()}, with a minimum booking duration of {yacht.minimumDuration} hours.
+                {yacht.availability === "pending" ? " Current availability has not been published." : ` Recorded availability: ${yacht.availability}.`}
               </p>
-              <a
-                href={getWhatsAppLink(`Hi, I'd like to book the ${yacht.name} (${yacht.length_ft}ft, up to ${yacht.max_guests} guests).`)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-primary text-primary-foreground font-semibold hover:scale-105 transition-transform gold-glow"
-              >
-                <MessageCircle className="w-5 h-5" /> Book on WhatsApp
-              </a>
-              <a
-                href={getPhoneLink()}
-                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl glass-button text-foreground font-medium hover:scale-105 transition-transform"
-              >
-                <Phone className="w-5 h-5" /> Call Now
-              </a>
-            </div>
-          </div>
+            </section>
+            <section aria-labelledby="capacity-guidance-heading">
+              <h2 id="capacity-guidance-heading" className="text-2xl font-display font-bold text-foreground mb-3">Capacity guidance</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                The verified guest capacity is {yacht.guestCapacity}. A booking request should use the actual group size and must not exceed that published limit.
+              </p>
+            </section>
+            <section aria-labelledby="price-explanation-heading">
+              <h2 id="price-explanation-heading" className="text-2xl font-display font-bold text-foreground mb-3">How the published price works</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                The base calculation is AED {yacht.pricePerHour.toLocaleString()} multiplied by the confirmed booking hours, subject to the {yacht.minimumDuration}-hour minimum. No inclusions, add-ons, fuel policy, route or instant-confirmation promise is published on this record.
+              </p>
+            </section>
+            <section aria-labelledby="booking-steps-heading">
+              <h2 id="booking-steps-heading" className="text-2xl font-display font-bold text-foreground mb-3">Booking steps</h2>
+              <ol className="list-decimal pl-6 text-muted-foreground space-y-2">
+                <li>Review the verified specifications and hourly price.</li>
+                <li>Choose a requested duration of at least {yacht.minimumDuration} hours and a group size no greater than {yacht.guestCapacity}.</li>
+                <li>Use an approved booking channel when one is published. No unverified contact action is shown on this page.</li>
+              </ol>
+            </section>
+            {relatedYachts.length > 0 && (
+              <section aria-labelledby="related-yachts-heading">
+                <h2 id="related-yachts-heading" className="text-2xl font-display font-bold text-foreground mb-3">Other verified yachts</h2>
+                <ul className="space-y-2">
+                  {relatedYachts.map((related) => (
+                    <li key={related.id}><Link className="text-primary hover:underline" to={yachtPath(related.slug)}>{related.name}</Link></li>
+                  ))}
+                </ul>
+              </section>
+            )}
+          </AnimatedSection>
         </div>
-      </div>
+      </main>
     </Layout>
   );
 };

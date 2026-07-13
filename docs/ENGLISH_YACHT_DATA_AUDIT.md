@@ -66,3 +66,17 @@ Future strict validation should require stable `id`, slug, name, length, guest c
 ## Required evidence
 
 For each record: official source/owner, fact approver, approval date, price effective date, image rights, exact public name, manufacturer/model spelling, year, capacity, minimum duration, permitted bedrooms field, and any optional availability state. Unsupported bathrooms, crew, inclusions, add-ons and suitability claims should be removed rather than guessed.
+
+## PR 4 evidence-gated implementation — 2026-07-13
+
+The historical table above remains the source audit; its values were not converted into approved public facts. Implementation PR 4 replaces the permissive production yacht model with strict publishable and blocked contracts while preserving exactly 24 internal dispositions.
+
+- Publishable records: **0**.
+- Blocked records: **24**.
+- Generated yacht detail routes: **0**.
+- The former bathrooms, crew, universal inclusions/add-ons, tags, formulaic descriptions, remote gallery transforms, and unsupported type classifications were removed from the production yacht contract.
+- All records remain blocked by missing record-level fact approval, build year, minimum duration, and English-domain media authorization.
+- The 55-foot historical branded path is retained only in internal route/evidence records; no new owner or redirect is approved.
+- Dynasty 151/150, Heysea/Doretty/Mzaail spelling, and the generic 120-foot identity remain explicit blockers.
+
+This is a valid PR 4 completion state: blocked records are not presented as 200/noindex placeholders, are absent from the sitemap, and are not linked from generated yacht surfaces. See `IMPLEMENTATION_PR4_REPORT.md`.

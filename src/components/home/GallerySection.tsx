@@ -1,15 +1,17 @@
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
-import { yachts } from "@/data/yachts";
+import { publishableYachts } from "@/data/yachts";
 import { motion } from "framer-motion";
 
 const GallerySection = () => {
   const heights = ["h-48", "h-64", "h-56", "h-72", "h-52", "h-60", "h-44", "h-68"];
 
   // Pick the first image from each yacht as gallery items
-  const galleryImages = yachts
-    .filter((y) => y.images.length > 0)
+  const galleryImages = publishableYachts
+    .filter((yacht) => yacht.media.length > 0)
     .slice(0, heights.length)
-    .map((y) => ({ src: y.images[0], name: y.name }));
+    .map((yacht) => ({ src: yacht.media[0].path, name: yacht.name }));
+
+  if (galleryImages.length === 0) return null;
 
   return (
     <section className="section-padding liquid-divider">

@@ -185,3 +185,9 @@ See `ENGLISH_GOOGLE_ACCESS_EVIDENCE.md` for the Search Console gate.
 Implementation PR 3 replaces the mixed handwritten fallback/client-only architecture with shared React static rendering for the four evidence-cleared owners: `/`, `/yachts`, `/services`, and `/occasions`. The temporary sitemap is reduced from 52 advertised URLs to those four generated canonical pages. The other 48 manifest records remain represented but unpublished and must return real 404 responses on direct requests.
 
 The historical observations above remain the pre-PR-3 baseline. Deploy Preview and post-merge production status matrices are recorded in `IMPLEMENTATION_PR3_REPORT.md`; no later route is considered restored until its phase-specific verification gate passes.
+
+## PR 4 yacht publication update — 2026-07-13
+
+PR 4 preserves the four-route static publication set because none of the 24 yacht records passed every factual and media-rights gate. `/yachts` remains a direct static 200 and now links to no blocked detail route. All 24 historical yacht paths remain direct-request 404s, absent from static output and sitemap. The sitemap remains four URLs, and unknown paths retain the real Netlify 404 architecture.
+
+No redirect, wildcard rewrite, noindex shell, default-host redirect, or English trailing-slash migration was introduced. Deployment and post-merge production evidence belongs in `IMPLEMENTATION_PR4_REPORT.md`.

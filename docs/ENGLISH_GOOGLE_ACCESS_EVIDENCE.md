@@ -62,3 +62,9 @@ PR 3 makes four static routes suitable for future Live URL Tests without perform
 - occasion-hub representative: `https://yachtrentaldxb.com/occasions`.
 
 Detailed yacht and event pages remain unpublished and cannot replace the later required representative detail-page Live Tests. Do not click Validate Fix or submit the temporary sitemap from Codex. Search Console evidence remains pending user-authorized collection.
+
+## PR 4 yacht Live Test status
+
+No yacht detail route passed the record-level fact and English media-rights publication gates in PR 4. The required representative yacht Live URL Test therefore remains blocked; `/yachts` is a catalogue/hub test candidate, not a substitute for a published yacht detail page.
+
+No Search Console Live Test, sitemap submission, Validate Fix action, or result was performed or fabricated by Codex. The four-test evidence gate remains open.

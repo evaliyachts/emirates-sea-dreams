@@ -114,3 +114,9 @@ Examples such as `/dubai-yacht-booking`, `/luxury-yacht-rental-dubai`, `/yacht-c
 The ownership manifest remains at 52 records, but only `/`, `/yachts`, `/services`, and `/occasions` are currently eligible for static canonical publication. The three inner routes use exact Netlify status-200 file mappings and retain their non-trailing-slash public forms. These mappings are not SEO redirects.
 
 The remaining 48 manifest paths and all six commercial candidates remain unpublished direct-request 404s. Approved 301/302 redirects remain **0**, approved commercial consolidations remain **0**, and no wildcard or homepage fallback rule is active.
+
+## PR 4 yacht ownership result
+
+The strict yacht review did not approve any detail owner for publication. All 24 yacht paths remain represented in the 52-record manifest, blocked from static output, absent from the four-URL sitemap, and direct 404. The existing `/yachts` owner remains a static 200 but links only to strict publishable records, currently none.
+
+The historical 55-foot branded path and combined service overlap remain candidates only. Approved redirects remain **0** and approved commercial consolidations remain **0**. No neutral yacht slug, redirect destination, wildcard, or slash migration was created.

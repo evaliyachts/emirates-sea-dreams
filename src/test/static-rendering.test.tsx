@@ -10,7 +10,7 @@ import { renderStaticRoute } from "@/entry-server";
 describe("shared client and static route tree", () => {
   it.each([
     ["/", "Yacht Rental Dubai"],
-    ["/yachts", "Yachts for Rent in Dubai"],
+    ["/yachts", "Verified Yacht Catalogue"],
     ["/services", "Yacht Services"],
     ["/occasions", "Yacht Experiences"],
   ])("renders %s with route-specific initial HTML", (path, heading) => {
@@ -25,7 +25,7 @@ describe("shared client and static route tree", () => {
     expect(createAppQueryClient()).not.toBe(createAppQueryClient());
     const yachts = renderStaticRoute("/yachts");
     const services = renderStaticRoute("/services");
-    expect(yachts.head).toContain("Yachts for Rent in Dubai");
+    expect(yachts.head).toContain("Verified Yacht Catalogue in Dubai");
     expect(yachts.head).not.toContain("Yacht Services Dubai");
     expect(services.head).toContain("Yacht Services Dubai");
     expect(services.head).not.toContain("Yachts for Rent in Dubai");

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { yachts } from "@/data/yachts";
+import { publishableYachts } from "@/data/yachts";
 import YachtCard from "@/components/shared/YachtCard";
 import { StaggerContainer } from "@/components/shared/AnimatedSection";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
@@ -7,7 +7,9 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
 const FeaturedYachts = () => {
-  const featured = yachts.filter((y) => y.featured).slice(0, 6);
+  const featured = publishableYachts.filter((yacht) => yacht.featured).slice(0, 6);
+
+  if (featured.length === 0) return null;
 
   return (
     <section className="section-padding">
@@ -18,11 +20,7 @@ const FeaturedYachts = () => {
             Featured Yachts for Rent in Dubai
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Hand-picked <strong>luxury yacht rental Dubai</strong> selection — from intimate
-            <strong> private yacht charter Dubai</strong> cruises to grand{" "}
-            <strong>Dubai luxury yacht hire</strong> superyachts. Every{" "}
-            <strong>yacht for rent in Dubai</strong> departs from Dubai Marina with a
-            licensed captain and full hospitality crew.
+            Yacht records shown here have passed the current factual, offer and media-rights publication checks.
           </p>
         </AnimatedSection>
 

@@ -9,3 +9,4 @@ export * from "./routes";
 export * from "./search-console";
 export * from "./sitemap-migration";
 export * from "./validation";
+export * from "./yachts";

@@ -64,3 +64,15 @@ Store exports under `docs/seo-input/` with export date and property name. Redact
 ## Publication gates after PR 3
 
 The homepage and three hub routes can be statically published without resolving later record-level claims. Restoring the other 48 manifest records still requires the phase-specific evidence already listed above. In particular, yacht facts/media rights, service capabilities, legal approval, business facts, and Query × Page/links evidence remain unresolved; aggregate Search Console counts do not approve a route or redirect.
+
+## Yacht evidence remaining after PR 4
+
+The strict catalogue now records all 24 source identities, but none is publishable. For each yacht, provide an authoritative record and dated approval for:
+
+- exact English public name and manufacturer/model spelling;
+- length, guest capacity, build year, AED hourly price and price effective date;
+- minimum duration, optional verified bedrooms, and an accurate availability state;
+- English-domain media rights by exact asset and surface, including social preview/transformation/rehosting scope where applicable;
+- the approver and approval date.
+
+Separately resolve the Dynasty 151-route/150-source conflict, the Heysea/Doretty/Mzaail spellings, the generic 120-foot identity, and ownership/history for the branded 55-foot path. Query × Page and Links evidence is still required before a replacement owner or redirect can be approved. The neutral fallback does not satisfy missing yacht facts and must not be used to create a placeholder 200 page.

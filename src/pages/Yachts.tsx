@@ -1,89 +1,45 @@
-import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import Layout from "@/components/layout/Layout";
 import SEOHead from "@/components/shared/SEOHead";
 import YachtCard from "@/components/shared/YachtCard";
 import { AnimatedSection, StaggerContainer } from "@/components/shared/AnimatedSection";
-import { yachts, Yacht } from "@/data/yachts";
-import { SlidersHorizontal } from "lucide-react";
+import { publishableYachts, TOTAL_YACHT_SOURCE_RECORDS } from "@/data/yachts";
 
-const Yachts = () => {
-  const [typeFilter, setTypeFilter] = useState<string>("All");
-  const [sortBy, setSortBy] = useState<string>("recommended");
+const Yachts = () => (
+  <Layout>
+    <SEOHead
+      title="Verified Yacht Catalogue in Dubai | Dubai Yacht"
+      description="Browse yacht records that have passed the English site's factual, offer and media-rights publication checks."
+      path="/yachts"
+    />
 
-  const filtered = useMemo(() => {
-    let result = [...yachts];
-    if (typeFilter !== "All") result = result.filter((y) => y.type === typeFilter);
-    if (sortBy === "price-low") result.sort((a, b) => a.price_per_hour_from_aed - b.price_per_hour_from_aed);
-    if (sortBy === "price-high") result.sort((a, b) => b.price_per_hour_from_aed - a.price_per_hour_from_aed);
-    if (sortBy === "guests") result.sort((a, b) => b.max_guests - a.max_guests);
-    if (sortBy === "length") result.sort((a, b) => b.length_ft - a.length_ft);
-    return result;
-  }, [typeFilter, sortBy]);
+    <main className="pt-28 pb-16">
+      <div className="container mx-auto px-4">
+        <AnimatedSection className="text-center mb-10">
+          <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-4">
+            Verified Yacht Catalogue
+          </h1>
+          <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            This catalogue links only to yacht records whose public name, specifications, booking terms and image rights have been verified for this website. Records that have not passed every check are not presented as bookable yachts.
+          </p>
+        </AnimatedSection>
 
-  return (
-    <Layout>
-      <SEOHead
-        title="Yachts for Rent in Dubai | Yacht Rental Dubai Fleet — Dubai Yacht"
-        description="Yacht rental Dubai fleet — standard, luxury yacht charter Dubai, and superyacht hire. Compare yachts for rent in Dubai and book your Dubai yacht charter."
-        path="/yachts"
-      />
-
-      <div className="pt-28 pb-10">
-        <div className="container mx-auto px-4">
-          <AnimatedSection className="text-center mb-10">
-            <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-4">
-              Yachts for Rent in Dubai — Yacht Rental Dubai Fleet
-            </h1>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Find the perfect <strong>yacht for rent in Dubai</strong>. Compare our{" "}
-              <strong>Dubai yacht rental</strong> fleet, filter by{" "}
-              <strong>luxury yacht charter Dubai</strong> type, sort by price, and{" "}
-              <strong>book yacht in Dubai</strong> instantly with Dubai Yacht.
-            </p>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.2} className="flex flex-wrap items-center justify-between gap-4 mb-8">
-            <div className="flex items-center gap-2">
-              <SlidersHorizontal className="w-4 h-4 text-muted-foreground" />
-              {["All", "Standard", "Luxury", "Superyacht"].map((t) => (
-                <button
-                  key={t}
-                  onClick={() => setTypeFilter(t)}
-                  className={`px-4 py-2 text-sm rounded-lg transition-colors ${
-                    typeFilter === t ? "bg-primary/20 text-primary" : "text-muted-foreground hover:bg-secondary"
-                  }`}
-                >
-                  {t}
-                </button>
-              ))}
-            </div>
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2 text-sm rounded-lg bg-secondary text-foreground border border-border"
-            >
-              <option value="recommended">Recommended</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-              <option value="guests">Most Guests</option>
-              <option value="length">Longest</option>
-            </select>
-          </AnimatedSection>
-
+        {publishableYachts.length > 0 ? (
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.map((yacht, i) => (
-              <YachtCard key={yacht.slug} yacht={yacht} index={i} />
+            {publishableYachts.map((yacht, index) => (
+              <YachtCard key={yacht.id} yacht={yacht} index={index} />
             ))}
           </StaggerContainer>
-
-          {filtered.length === 0 && (
-            <p className="text-center text-muted-foreground py-16">No yachts match your filters.</p>
-          )}
-        </div>
+        ) : (
+          <AnimatedSection className="glass-card max-w-3xl mx-auto p-8 text-center">
+            <h2 className="text-2xl font-display font-semibold text-foreground mb-3">Verification in progress</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              No individual yacht record currently has all required publication evidence. The internal migration inventory contains {TOTAL_YACHT_SOURCE_RECORDS} records, and each remains unavailable here until its facts and media rights are approved.
+            </p>
+          </AnimatedSection>
+        )}
       </div>
-    </Layout>
-  );
-};
+    </main>
+  </Layout>
+);
 
 export default Yachts;
