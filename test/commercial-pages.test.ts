@@ -163,9 +163,29 @@ describe("PR 5 commercial decision owners", () => {
     expect(output).not.toMatch(/evaliyachts?|evaliyacht\.com|supabase\.co/i);
   });
 
-  it("does not restore the old fallback homepage composition", () => {
+  it("restores the full homepage visual sequence without changing PR 5 ownership", () => {
     const indexSource = read("src/pages/Index.tsx");
-    expect(indexSource).not.toMatch(/components\/home|TestimonialsSection|PackagesSection|RoutesSection|SEOContentSection/);
+    expect(indexSource).toMatch(/components\/home\/HeroSection/);
+    expect(indexSource).toMatch(/FeaturedYachts|ServicesSection|WhyChooseUs|ExperiencesSection/);
+    expect(indexSource).toMatch(/PackagesSection|SEOContentSection|TestimonialsSection/);
+    expect(indexSource).toMatch(/GallerySection|RoutesSection|HomeFAQ|CTAStrip/);
     expect(indexSource).toContain("data-commercial-content");
+
+    const sections = [...render("/").content.querySelectorAll<HTMLElement>("[data-home-section]")]
+      .map((section) => section.dataset.homeSection);
+    expect(sections).toEqual([
+      "hero",
+      "featured-yachts",
+      "services",
+      "decision-facts",
+      "occasion-themes",
+      "price-planning",
+      "rental-guide",
+      "planning-checkpoints",
+      "fleet-gallery",
+      "request-details",
+      "faq",
+      "final-actions",
+    ]);
   });
 });

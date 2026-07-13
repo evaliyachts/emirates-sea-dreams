@@ -1,52 +1,47 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { occasions } from "@/data/occasions";
-import { StaggerContainer } from "@/components/shared/AnimatedSection";
+import { Briefcase, Cake, Camera, Fish, Heart, PartyPopper, Sunset } from "lucide-react";
+import { StaggerContainer, AnimatedSection } from "@/components/shared/AnimatedSection";
 import { staggerItemVariants } from "@/lib/animation-variants";
-import { AnimatedSection } from "@/components/shared/AnimatedSection";
-import { Cake, Heart, Briefcase, Fish, Sunset, Camera, PartyPopper } from "lucide-react";
 
-const iconMap: Record<string, React.ElementType> = {
-  birthday: Cake,
-  proposal: Heart,
-  corporate: Briefcase,
-  fishing: Fish,
-  "sunset-cruise": Sunset,
-  "new-year": PartyPopper,
-  photoshoot: Camera,
-};
+const themes = [
+  { title: "Birthday", icon: Cake, copy: "Prepare the full guest count and list any optional setup separately." },
+  { title: "Marriage proposal", icon: Heart, copy: "Describe the preferred group size, date and optional setup request." },
+  { title: "Corporate gathering", icon: Briefcase, copy: "Prepare the purpose and practical needs for capability confirmation." },
+  { title: "Fishing request", icon: Fish, copy: "Equipment, safety, supplier and operating details require confirmation." },
+  { title: "Sunset timing", icon: Sunset, copy: "Request a preferred time without relying on a fixed route or duration." },
+  { title: "New Year's Eve", icon: PartyPopper, copy: "Seasonal availability and every operating detail remain on request." },
+  { title: "Photoshoot", icon: Camera, copy: "Photography, drone use, access and permissions are separate questions." },
+] as const;
 
 const ExperiencesSection = () => (
-  <section className="section-padding">
+  <section data-home-section="occasion-themes" className="section-padding">
     <div className="container mx-auto px-4">
-      <AnimatedSection className="text-center mb-14">
-        <span className="liquid-pill inline-block">Experiences</span>
-        <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mt-4 mb-4">
-          Yacht Experiences for Every Occasion
+      <AnimatedSection className="mb-14 text-center">
+        <span className="liquid-pill inline-block">Occasion themes</span>
+        <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
+          Turn an Occasion Idea into a Careful Request
         </h2>
-        <p className="text-muted-foreground max-w-xl mx-auto">
-          Whether it's a birthday, proposal, or corporate event — we create unforgettable moments on the water.
+        <p className="mx-auto max-w-xl text-muted-foreground">
+          These themes help organize a request. They do not promise a package, supplier, activity, route or inclusion.
         </p>
       </AnimatedSection>
 
-      <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {occasions.slice(0, 7).map((occ) => {
-          const Icon = iconMap[occ.slug] || Sunset;
-          return (
-            <motion.div key={occ.slug} variants={staggerItemVariants}>
-              <Link
-                to="/occasions"
-                className="liquid-glass-gold p-5 flex flex-col items-center text-center group hover:border-primary/30 transition-all block"
-              >
-                <div className="w-12 h-12 liquid-icon rounded-xl mb-3 group-hover:scale-110 transition-transform">
-                  <Icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-sm font-display font-semibold text-foreground">{occ.name}</h3>
-                <p className="text-xs text-muted-foreground mt-1">{occ.suggested_duration}</p>
-              </Link>
-            </motion.div>
-          );
-        })}
+      <StaggerContainer className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+        {themes.map(({ title, icon: Icon, copy }) => (
+          <motion.div key={title} variants={staggerItemVariants}>
+            <Link
+              to="/occasions"
+              className="liquid-glass-gold group block p-5 text-center transition-all hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <div className="liquid-icon mx-auto mb-3 h-12 w-12 rounded-xl transition-transform group-hover:scale-110">
+                <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
+              </div>
+              <h3 className="text-sm font-display font-semibold text-foreground">{title}</h3>
+              <p className="mt-2 text-xs leading-5 text-muted-foreground">{copy}</p>
+            </Link>
+          </motion.div>
+        ))}
       </StaggerContainer>
     </div>
   </section>

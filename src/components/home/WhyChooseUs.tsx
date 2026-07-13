@@ -1,48 +1,69 @@
 import { motion } from "framer-motion";
-import { Shield, DollarSign, Users, Compass, Calendar, Anchor } from "lucide-react";
-import { StaggerContainer } from "@/components/shared/AnimatedSection";
+import { Anchor, Calendar, CircleDollarSign, CircleHelp, Ruler, Users } from "lucide-react";
+import { StaggerContainer, AnimatedSection } from "@/components/shared/AnimatedSection";
 import { staggerItemVariants } from "@/lib/animation-variants";
-import { AnimatedSection } from "@/components/shared/AnimatedSection";
+import { formatAed, publishedFleetSummary } from "@/lib/published-fleet";
 
 const highlights = [
-  { icon: Anchor, title: "Luxury Fleet", desc: "Hand-picked yachts maintained to the highest standards of comfort and safety." },
-  { icon: DollarSign, title: "Transparent Pricing", desc: "No hidden fees. What you see is what you pay — fuel, crew, and essentials included." },
-  { icon: Users, title: "Professional Crew", desc: "Licensed, experienced captains and hospitality-trained crew for every charter." },
-  { icon: Shield, title: "Safety First", desc: "Full safety equipment, insurance coverage, and maritime compliance on every voyage." },
-  { icon: Calendar, title: "Flexible Packages", desc: "From 2-hour sunset cruises to full-day charters — tailored to your schedule." },
-  { icon: Compass, title: "Prime Routes", desc: "Dubai Marina, Palm Jumeirah, Burj Al Arab, Atlantis — explore Dubai's iconic coastline." },
-];
+  {
+    icon: Anchor,
+    title: "Verified catalogue",
+    desc: `Compare ${publishedFleetSummary.yachtCount} publishable yacht records rather than an unverified package list.`,
+  },
+  {
+    icon: Users,
+    title: "Capacity first",
+    desc: `Published capacities currently range from ${publishedFleetSummary.guestCapacity.minimum} to ${publishedFleetSummary.guestCapacity.maximum} guests. Match the complete group to a stated limit.`,
+  },
+  {
+    icon: Ruler,
+    title: "Factual dimensions",
+    desc: `The current published fleet ranges from ${publishedFleetSummary.lengthFt.minimum} to ${publishedFleetSummary.lengthFt.maximum} feet, with individual facts on every yacht page.`,
+  },
+  {
+    icon: CircleDollarSign,
+    title: "Published hourly rates",
+    desc: `Base hourly prices range from ${formatAed(publishedFleetSummary.pricePerHour.minimum)} to ${formatAed(publishedFleetSummary.pricePerHour.maximum)} before any separately confirmed request.`,
+  },
+  {
+    icon: Calendar,
+    title: "Minimum duration shown",
+    desc: `Each record states its own minimum, currently between ${publishedFleetSummary.minimumDuration.minimum} and ${publishedFleetSummary.minimumDuration.maximum} hours.`,
+  },
+  {
+    icon: CircleHelp,
+    title: "Confirmation boundaries",
+    desc: "Availability, operating details and optional services must be confirmed for the selected yacht, date and request.",
+  },
+] as const;
 
 const WhyChooseUs = () => (
-  <section className="section-padding liquid-divider">
+  <section data-home-section="decision-facts" className="section-padding liquid-divider">
     <div className="container mx-auto px-4">
-      <AnimatedSection className="text-center mb-14">
-        <span className="liquid-pill inline-block">Why Us</span>
-        <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mt-4 mb-4">
-          Why Choose Dubai Yacht for Your Yacht Rental Dubai
+      <AnimatedSection className="mb-14 text-center">
+        <span className="liquid-pill inline-block">Why compare here</span>
+        <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
+          Choose with Published Facts, Not Package Assumptions
         </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          Trusted by hundreds of guests for premium <strong>Dubai yacht rental</strong>,{" "}
-          <strong>luxury yacht charter Dubai</strong>, and{" "}
-          <strong>private yacht hire Dubai</strong> experiences across Dubai Marina,
-          Palm Jumeirah, and Burj Al Arab.
+        <p className="mx-auto max-w-2xl text-muted-foreground">
+          The useful comparison is the yacht record itself: capacity, length, year built, hourly price, minimum duration and bedrooms where recorded.
         </p>
       </AnimatedSection>
 
-      <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <StaggerContainer className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {highlights.map((item) => (
-          <motion.div
+          <motion.article
             key={item.title}
             variants={staggerItemVariants}
             whileHover={{ y: -4, transition: { duration: 0.2 } }}
             className="liquid-glass-gold p-6 text-center"
           >
-            <div className="w-14 h-14 mx-auto mb-4 liquid-icon">
-              <item.icon className="w-7 h-7 text-primary" />
+            <div className="liquid-icon mx-auto mb-4 h-14 w-14">
+              <item.icon className="h-7 w-7 text-primary" aria-hidden="true" />
             </div>
-            <h3 className="text-lg font-display font-semibold text-foreground mb-2">{item.title}</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-          </motion.div>
+            <h3 className="mb-2 text-lg font-display font-semibold text-foreground">{item.title}</h3>
+            <p className="text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
+          </motion.article>
         ))}
       </StaggerContainer>
     </div>

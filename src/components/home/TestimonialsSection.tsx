@@ -1,54 +1,52 @@
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
-import { testimonials } from "@/data/testimonials";
+import { CalendarCheck, CircleDollarSign, ListChecks } from "lucide-react";
 import { StaggerContainer, AnimatedSection } from "@/components/shared/AnimatedSection";
 import { staggerItemVariants } from "@/lib/animation-variants";
 
-const TestimonialsSection = () => {
-  const avgRating = (testimonials.reduce((s, t) => s + t.rating, 0) / testimonials.length).toFixed(1);
+const checkpoints = [
+  {
+    icon: ListChecks,
+    title: "Facts to compare",
+    copy: "Check capacity, length, year built, hourly price, minimum duration and bedrooms only where the record verifies them.",
+  },
+  {
+    icon: CalendarCheck,
+    title: "Details to prepare",
+    copy: "Prepare a preferred date, start-time preference, requested duration, complete guest count and a yacht shortlist.",
+  },
+  {
+    icon: CircleDollarSign,
+    title: "Items to confirm",
+    copy: "Confirm availability, operating details and every optional request or separate price before relying on the plan.",
+  },
+] as const;
 
-  return (
-    <section className="section-padding">
-      <div className="container mx-auto px-4">
-        <AnimatedSection className="text-center mb-14">
-          <span className="liquid-pill inline-block">Reviews</span>
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mt-4 mb-4">
-            What Our Guests Say
-          </h2>
-          <div className="flex items-center justify-center gap-2 mb-2">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-5 h-5 fill-primary text-primary" />
-            ))}
-          </div>
-          <p className="text-muted-foreground">{avgRating} average from {testimonials.length} reviews</p>
-        </AnimatedSection>
+const TestimonialsSection = () => (
+  <section data-home-section="planning-checkpoints" className="section-padding">
+    <div className="container mx-auto px-4">
+      <AnimatedSection className="mb-14 text-center">
+        <span className="liquid-pill inline-block">Decision checkpoints</span>
+        <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
+          What a Careful Yacht Request Should Separate
+        </h2>
+        <p className="mx-auto max-w-2xl text-muted-foreground">
+          Published facts, request details and later confirmations serve different purposes. Keeping them separate prevents assumptions.
+        </p>
+      </AnimatedSection>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {testimonials.slice(0, 9).map((t, i) => (
-            <motion.div
-              key={i}
-              variants={staggerItemVariants}
-              className="liquid-glass p-6"
-            >
-              <div className="flex items-center gap-1 mb-3">
-                {[...Array(t.rating)].map((_, j) => (
-                  <Star key={j} className="w-4 h-4 fill-primary text-primary" />
-                ))}
-              </div>
-              <p className="text-sm text-foreground/90 leading-relaxed mb-4 italic">"{t.text}"</p>
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-semibold text-foreground">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">{t.country} • {t.occasion}</p>
-                </div>
-                <span className="text-xs text-muted-foreground">{t.yacht}</span>
-              </div>
-            </motion.div>
-          ))}
-        </StaggerContainer>
-      </div>
-    </section>
-  );
-};
+      <StaggerContainer className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        {checkpoints.map(({ icon: Icon, title, copy }) => (
+          <motion.article key={title} variants={staggerItemVariants} className="liquid-glass p-6">
+            <div className="liquid-icon mb-4 h-12 w-12">
+              <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
+            </div>
+            <h3 className="text-xl font-semibold text-foreground">{title}</h3>
+            <p className="mt-3 text-sm leading-7 text-muted-foreground">{copy}</p>
+          </motion.article>
+        ))}
+      </StaggerContainer>
+    </div>
+  </section>
+);
 
 export default TestimonialsSection;
