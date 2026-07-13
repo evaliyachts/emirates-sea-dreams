@@ -1,6 +1,6 @@
 # English Implementation PR 1 Report
 
-Status: implementation complete locally; GitHub and Netlify results are recorded below after publication.
+Status: implementation and external PR validation passed.
 
 ## Scope
 
@@ -70,8 +70,8 @@ The checker explicitly reports that inner-route HTTP repair is deferred to Imple
 - Vite production build: passed.
 - Baseline output: `dist/index.html` 18.34 kB; CSS 75.06 kB (12.58 kB gzip); JavaScript 629.90 kB (191.39 kB gzip).
 - Netlify production-context build: passed with `netlify build --offline --context production`, using tracked `netlify.toml`, Node `24.18.0`, npm `11.16.0`, `npm run build`, and `dist`.
-- Deploy Preview: pending Git-connected draft PR build.
-- GitHub Quality: pending draft PR publication.
+- Deploy Preview: [passed](https://deploy-preview-2--yachtrentaldxb.netlify.app) (Netlify deploy `6a552d2259144e000822b576`). The homepage returns `200`; `/yachts` and a sampled unknown path retain the expected direct `404` behavior for this phase.
+- GitHub Quality: [passed](https://github.com/evaliyachts/emirates-sea-dreams/actions/runs/29274264818) on PR head `28a49359e16214c0b9b108e1a8c101bdc9b17883`.
 - Existing Vite warnings remain documented: the CSS font `@import` order and a JavaScript chunk above 500 kB. Fixing visual CSS or performance architecture is outside this foundation PR.
 
 ## SEO output and route preservation
@@ -95,5 +95,5 @@ The checker explicitly reports that inner-route HTTP repair is deferred to Imple
 | `npm audit --omit=dev` | Passed; 0 vulnerabilities |
 | Netlify production-context build | Passed offline |
 | `git diff --check` | Passed |
-| GitHub Quality | Pending publication |
-| Netlify Deploy Preview | Pending publication |
+| GitHub Quality | Passed |
+| Netlify Deploy Preview | Passed; root 200, current inner/unknown 404 preserved |
