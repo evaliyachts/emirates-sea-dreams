@@ -1,5 +1,9 @@
 # English Keyword and Page Ownership
 
+## Implementation PR 5 decision
+
+PR 5 creates no candidate commercial page. The homepage now owns broad private yacht rental and request-preparation intent, including rental/hire/charter/booking/luxury wording only where it helps the same decision. `/yachts` owns verified fleet, for-rent and price/capacity/minimum-duration comparison. `/services` and `/occasions` remain distinct planning hubs. All six historical candidate slugs remain inactive because Query × Page and Links evidence is still missing; no synonym-only doorway, redirect or consolidation is approved.
+
 ## Implementation PR 2 status
 
 The six historically discussed commercial slugs are now typed as non-canonical candidates. None is routed, sitemap-listed, indexable, approved for creation, or approved as a redirect owner. The 52 current paths retain distinct primary-intent records, while future title, description, and H1 copy ownership remains explicitly pending for its content phase. Approved commercial consolidations remain **zero**.

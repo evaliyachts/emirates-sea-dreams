@@ -1,70 +1,125 @@
-import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Briefcase, Cake, Camera, Fish, Heart, PartyPopper, Sunset } from "lucide-react";
 import Layout from "@/components/layout/Layout";
+import { CommercialHero, FaqSection, Section, YachtFactLinks } from "@/components/commercial/DecisionSections";
 import SEOHead from "@/components/shared/SEOHead";
-import { AnimatedSection, StaggerContainer } from "@/components/shared/AnimatedSection";
-import { staggerItemVariants } from "@/lib/animation-variants";
-import { occasions } from "@/data/occasions";
-import { getWhatsAppLink } from "@/lib/constants";
-import { Cake, Heart, Briefcase, Fish, Sunset, PartyPopper, Camera } from "lucide-react";
+import { publishedYachtsById } from "@/lib/published-fleet";
 
-const iconMap: Record<string, React.ElementType> = {
-  birthday: Cake, proposal: Heart, corporate: Briefcase, fishing: Fish,
-  "sunset-cruise": Sunset, "new-year": PartyPopper, photoshoot: Camera,
-};
+const comparisonYachts = publishedYachtsById("yacht-royal-majesty-50", "yacht-sunseeker-90", "yacht-ocean-dream-143");
+
+const occasionThemes = [
+  { title: "Birthday", icon: Cake, need: "Decide the complete guest count, preferred timing and any optional setup request. Cake, decoration, music and photography are not assumed." },
+  { title: "Marriage proposal", icon: Heart, need: "Describe the preferred group size and optional setup. Privacy details, decorations, route and suppliers require confirmation." },
+  { title: "Corporate gathering", icon: Briefcase, need: "Treat this as a request theme pending capability confirmation. Prepare the group size, purpose and any layout or hospitality questions." },
+  { title: "Fishing request", icon: Fish, need: "Fishing requires activity-specific capability, equipment, safety and operating confirmation. It is not implied by choosing a yacht." },
+  { title: "Sunset timing", icon: Sunset, need: "Request a preferred time rather than relying on a fixed sunset route or duration. Timing and operating details must be confirmed." },
+  { title: "New Year's Eve", icon: PartyPopper, need: "Seasonal availability, duration, route, viewing and hospitality remain unverified. Treat this only as a planning request." },
+  { title: "Photoshoot", icon: Camera, need: "Prepare the group size and shoot requirements. Photography, drone use, supplier access and permissions are separate confirmation questions." },
+] as const;
+
+const occasionFaqs = [
+  {
+    question: "Does each occasion theme have its own published page?",
+    answer: "No. The seven source occasion records remain represented by this hub or overlap historical service intents. No new occasion slug has been created in this phase.",
+  },
+  {
+    question: "How do I choose a yacht for an occasion?",
+    answer: "Begin with the full guest count, then compare the published capacity, minimum duration and hourly price. A factual match on those fields does not confirm optional setup or activity capability.",
+  },
+  {
+    question: "Are decorations, food or photography part of an occasion price?",
+    answer: "No default occasion price or inclusion is published. Each optional item is subject to confirmation and separate pricing unless an approved future record says otherwise.",
+  },
+  {
+    question: "Can an occasion request be confirmed instantly?",
+    answer: "No instant-confirmation promise is made. Yacht availability, timing and every optional request must be checked for the selected date.",
+  },
+] as const;
 
 const Occasions = () => (
   <Layout>
     <SEOHead
-      title="Yacht Experiences for Every Occasion in Dubai | Dubai Yacht"
-      description="Birthday parties, proposals, corporate events, fishing trips, sunset cruises — discover the perfect yacht experience in Dubai."
+      title="Private Yacht Occasions in Dubai | Planning Guide"
+      description="Compare seven private-yacht occasion themes, the decisions to prepare and verified yacht facts without assuming packages, routes or inclusions."
       path="/occasions"
     />
+    <div data-commercial-content>
 
-    <div className="pt-28 pb-20">
+    <CommercialHero
+      eyebrow="Occasion chooser"
+      title="Choose a Private Yacht Occasion by the Decisions It Requires"
+      introduction="This hub helps turn an occasion idea into a careful request. It keeps all seven source themes on one published page, avoids unsupported detail routes and separates verified yacht facts from optional event arrangements."
+      directAnswer="Start with the occasion, complete guest count, preferred date and requested duration. Then shortlist a yacht by verified capacity and price. Treat decoration, hospitality, photography, music and activities as separate requests subject to confirmation and separate pricing."
+    >
+      <div className="mt-8 flex flex-wrap gap-4">
+        <a href="#occasion-themes" className="liquid-btn-primary px-6 py-3">Compare occasion themes</a>
+        <Link to="/yachts" className="liquid-btn px-6 py-3 text-foreground">Compare yacht facts</Link>
+      </div>
+    </CommercialHero>
+
+    <section id="occasion-themes" className="py-12 md:py-16">
       <div className="container mx-auto px-4">
-        <AnimatedSection className="text-center mb-14">
-          <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-4">
-            Yacht Experiences
-          </h1>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Whatever the occasion, we create unforgettable moments on the water in Dubai.
-          </p>
-        </AnimatedSection>
-
-        <div className="space-y-12">
-          {occasions.map((occ) => {
-            const Icon = iconMap[occ.slug] || Sunset;
-            return (
-              <AnimatedSection key={occ.slug}>
-                <div className="glass-card p-6 md:p-8">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                      <Icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-display font-bold text-foreground">{occ.name}</h2>
-                      <p className="text-sm text-primary">{occ.tagline}</p>
-                    </div>
-                  </div>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{occ.description}</p>
-                  <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
-                    <span><strong className="text-foreground">Duration:</strong> {occ.suggested_duration}</span>
-                    <span><strong className="text-foreground">Add-ons:</strong> {occ.add_ons.join(", ")}</span>
-                  </div>
-                  <a
-                    href={getWhatsAppLink(`Hi, I'm interested in a ${occ.name} yacht experience.`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold hover:scale-105 transition-transform text-sm"
-                  >
-                    Inquire About {occ.name}
-                  </a>
-                </div>
-              </AnimatedSection>
-            );
-          })}
+        <h2 className="mb-6 text-3xl font-bold text-foreground md:text-4xl">Seven request themes, no invented packages</h2>
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {occasionThemes.map(({ title, icon: Icon, need }) => (
+            <article key={title} data-occasion-theme className="liquid-glass p-6">
+              <div className="liquid-icon h-11 w-11"><Icon className="h-5 w-5 text-primary" aria-hidden="true" /></div>
+              <h3 className="mt-4 text-xl font-semibold text-foreground">{title}</h3>
+              <p className="mt-3 leading-7 text-muted-foreground">{need}</p>
+            </article>
+          ))}
         </div>
       </div>
+    </section>
+
+    <Section title="Related celebration requests to describe clearly">
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {[
+          ["Engagement", "Separate the engagement request from a proposal and describe the expected group and any optional setup."],
+          ["Wedding", "Treat a wedding request as pending detailed capability confirmation; no ceremony format, supplier or package is promised."],
+          ["Anniversary", "State the preferred date, group size and optional hospitality or setup questions without assuming inclusions."],
+          ["Family celebration", "Count every adult and child within the selected yacht's published capacity and list any specific needs for confirmation."],
+          ["Corporate or private gathering", "Capability remains subject to confirmation. Prepare the purpose, group size, timing and practical requirements."],
+        ].map(([title, copy]) => (
+          <article key={title} className="liquid-glass-gold p-6">
+            <h3 className="text-xl font-semibold text-foreground">{title}</h3>
+            <p className="mt-3 leading-7 text-muted-foreground">{copy}</p>
+          </article>
+        ))}
+      </div>
+    </Section>
+
+    <Section title="Build the request in the right order">
+      <ol className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {[
+          ["Name the occasion", "Describe the user need without assuming a package or supplier."],
+          ["Count every guest", "Use the yacht's published maximum capacity as a comparison limit."],
+          ["Set a time request", "Prepare a date and duration that meets the chosen yacht's minimum."],
+          ["List optional items", "Separate each setup, hospitality, media or activity request for confirmation."],
+        ].map(([title, copy]) => (
+          <li key={title} className="liquid-glass p-6">
+            <h3 className="text-xl font-semibold text-foreground">{title}</h3>
+            <p className="mt-3 leading-7 text-muted-foreground">{copy}</p>
+          </li>
+        ))}
+      </ol>
+    </Section>
+
+    <YachtFactLinks
+      title="Three yacht records for capacity comparison"
+      yachts={comparisonYachts}
+      note="These examples span different published capacities and prices. They do not claim that a yacht is suitable or available for a particular occasion; confirm the complete request after shortlisting."
+    />
+
+    <Section title="Continue without entering an unpublished route">
+      <div className="flex flex-wrap gap-4">
+        <Link to="/yachts" className="liquid-btn-primary px-6 py-3">Compare all published yachts</Link>
+        <Link to="/services" className="liquid-btn px-6 py-3 text-foreground">Review optional service categories</Link>
+        <Link to="/#booking-request-guide" className="liquid-btn px-6 py-3 text-foreground">Prepare request details</Link>
+      </div>
+    </Section>
+
+    <FaqSection title="Occasion-planning questions" faqs={occasionFaqs} />
     </div>
   </Layout>
 );

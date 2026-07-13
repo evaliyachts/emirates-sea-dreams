@@ -65,8 +65,14 @@ describe("English PR 2 route ownership manifest", () => {
     expect(validateEnglishSeoOwnership()).toEqual([]);
   });
 
-  it("keeps future metadata pending and validates approved ownership uniqueness", () => {
-    expect(englishRouteManifest.every((route) => route.metadataOwnership.status === "pending")).toBe(true);
+  it("approves metadata only for the four PR 5 commercial owners and validates ownership uniqueness", () => {
+    const approvedPaths = englishRouteManifest
+      .filter((route) => route.metadataOwnership.status === "approved")
+      .map((route) => route.path);
+    expect(approvedPaths).toEqual(["/", "/yachts", "/services", "/occasions"]);
+    expect(englishRouteManifest
+      .filter((route) => !approvedPaths.includes(route.path))
+      .every((route) => route.metadataOwnership.status === "pending")).toBe(true);
     const validationSource = read("seo/validation.ts");
     expect(validationSource).toContain('(["title", "description", "h1"] as const)');
     expect(validationSource).toContain("Duplicate approved primary intent");

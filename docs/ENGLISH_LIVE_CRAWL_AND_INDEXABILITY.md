@@ -195,3 +195,7 @@ No redirect, wildcard rewrite, noindex shell, default-host redirect, or English 
 ## PR 4B yacht publication update — 2026-07-14
 
 PR 4B clears 19 existing yacht owners for exact static output after owner fact approval and successful verification of all 126 retained media URLs. The generated sitemap expands dynamically from four to 23 URLs. Five yacht manifest owners remain real direct-request 404s; service, commercial, support, and legal owners remain unpublished. No redirect, wildcard, trailing-slash migration, hreflang, analytics, or Search Console action is introduced. Immutable deployment and production smoke evidence belongs in `IMPLEMENTATION_PR4B_REPORT.md`.
+
+## PR 5 commercial-content update — 2026-07-14
+
+PR 5 enriches `/`, `/yachts`, `/services` and `/occasions` without changing their direct-200 ownership or adding a route. The sitemap remains 23 exact production URLs: four hubs and 19 yacht details. The six commercial candidates remain direct 404s; all 18 service details, five blocked yacht owners, and support/legal routes remain unpublished. Changed commercial sections link only to published owners. The global header/footer link set still exposes later-phase navigation as a documented transitional exception, but the published-page directory now lists only live owners. Deploy Preview and post-merge production evidence belongs in `IMPLEMENTATION_PR5_REPORT.md`.

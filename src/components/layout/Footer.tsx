@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MessageCircle, Phone, MapPin, Clock } from "lucide-react";
+import { CheckCircle2, MessageCircle, Phone } from "lucide-react";
 import { BRAND_NAME, NAV_LINKS, getWhatsAppLink, getPhoneLink } from "@/lib/constants";
 
 
@@ -16,7 +16,7 @@ const Footer = () => (
             />
           </Link>
           <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-            Premium yacht rental experiences in Dubai Marina. Licensed crew, luxury fleet, and unforgettable moments on the Arabian Gulf.
+            Published yacht facts and planning guidance for private yacht requests in Dubai. Availability and optional services require confirmation.
           </p>
           <div className="flex gap-3">
             <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="p-2 liquid-btn rounded-xl text-green-400">
@@ -38,24 +38,20 @@ const Footer = () => (
         </div>
 
         <div>
-          <h4 className="font-display font-semibold text-foreground mb-4">Service Areas</h4>
-          <ul className="space-y-2 text-sm text-muted-foreground">
-            {["Dubai Marina", "JBR & Bluewaters", "Palm Jumeirah", "Atlantis & Burj Al Arab", "Dubai Harbour", "World Islands"].map(a => (
-              <li key={a} className="flex items-center gap-2"><MapPin className="w-3 h-3 text-primary" />{a}</li>
-            ))}
-          </ul>
+          <h4 className="font-display font-semibold text-foreground mb-4">Published Guides</h4>
+          <nav className="flex flex-col gap-2 text-sm">
+            <Link to="/yachts" className="text-muted-foreground hover:text-primary transition-colors">Compare verified yachts and prices</Link>
+            <Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">Review optional service categories</Link>
+            <Link to="/occasions" className="text-muted-foreground hover:text-primary transition-colors">Plan a private yacht occasion</Link>
+          </nav>
         </div>
 
         <div>
-          <h4 className="font-display font-semibold text-foreground mb-4">Operating Hours</h4>
-          <div className="flex items-start gap-2 text-sm text-muted-foreground mb-3">
-            <Clock className="w-4 h-4 text-primary mt-0.5" />
-            <div>
-              <p>Daily: 6:00 AM – 11:00 PM</p>
-              <p>Booking Support: 24/7</p>
-            </div>
+          <h4 className="font-display font-semibold text-foreground mb-4">Before You Request</h4>
+          <div className="flex items-start gap-2 text-sm text-muted-foreground">
+            <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" aria-hidden="true" />
+            <p>Prepare your preferred date, duration, guest count, yacht shortlist and any optional requests. Confirm availability and operating details before relying on them.</p>
           </div>
-          <p className="text-sm text-muted-foreground">Pickup: Dubai Marina Dock</p>
         </div>
       </div>
 
