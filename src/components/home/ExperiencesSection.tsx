@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { occasions } from "@/data/occasions";
-import { StaggerContainer, staggerItemVariants } from "@/components/shared/AnimatedSection";
+import { StaggerContainer } from "@/components/shared/AnimatedSection";
+import { staggerItemVariants } from "@/lib/animation-variants";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
 import { Cake, Heart, Briefcase, Fish, Sunset, Camera, PartyPopper } from "lucide-react";
 

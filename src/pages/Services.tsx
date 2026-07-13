@@ -2,11 +2,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Layout from "@/components/layout/Layout";
 import SEOHead from "@/components/shared/SEOHead";
-import {
-  AnimatedSection,
-  StaggerContainer,
-  staggerItemVariants,
-} from "@/components/shared/AnimatedSection";
+import { AnimatedSection, StaggerContainer } from "@/components/shared/AnimatedSection";
+import { staggerItemVariants } from "@/lib/animation-variants";
 import { services, SERVICE_CATEGORIES } from "@/data/services";
 import { PLACEHOLDER_IMAGE } from "@/lib/constants";
 import { ArrowRight } from "lucide-react";

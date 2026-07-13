@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { offers } from "@/data/offers";
-import { StaggerContainer, staggerItemVariants, AnimatedSection } from "@/components/shared/AnimatedSection";
+import { StaggerContainer, AnimatedSection } from "@/components/shared/AnimatedSection";
+import { staggerItemVariants } from "@/lib/animation-variants";
 import { Check } from "lucide-react";
 import { getWhatsAppLink } from "@/lib/constants";
 

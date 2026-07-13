@@ -2,6 +2,10 @@
 
 Repository evidence is not business approval. Values below must be explicitly confirmed before they enter a central production contract or structured data. Arabic constants must not be copied automatically.
 
+## Implementation PR 1 status
+
+The typed approval foundation now lives in `src/config/site-facts.ts`. The production and default Netlify URLs are approved technical authorities from the implementation brief. All business, contact, operational, social, and analytics values remain pending; current source values have not been converted into business approval or wired into new visible output.
+
 | Fact | Current English source evidence | Approval status | Required action |
 | --- | --- | --- | --- |
 | Brand | `Dubai Yacht` in constants, logo alt, metadata and footer | Pending business approval | Confirm legal/display brand and optional alternate name |
