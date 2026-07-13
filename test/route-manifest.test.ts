@@ -17,6 +17,7 @@ import {
   sitemapMigrationMap,
   validateEnglishSeoOwnership,
 } from "../seo";
+import { publishableYachts } from "../src/data/yachts";
 
 const read = (path: string) => readFileSync(resolve(path), "utf8");
 
@@ -47,8 +48,8 @@ describe("English PR 2 route ownership manifest", () => {
     const manifestPaths = englishRouteManifest.map((route) => route.path);
     const publishedPaths = publishedStaticRoutes.map((route) => route.path);
 
-    expect(sitemapPaths).toHaveLength(4);
-    expect(new Set(sitemapPaths).size).toBe(4);
+    expect(sitemapPaths).toHaveLength(4 + publishableYachts.length);
+    expect(new Set(sitemapPaths).size).toBe(4 + publishableYachts.length);
     expect([...publishedPaths].sort()).toEqual([...sitemapPaths].sort());
     expect(manifestPaths).toHaveLength(52);
     expect(manifestPaths.filter((path) => path !== "/").every((path) => !path.endsWith("/"))).toBe(true);
@@ -107,7 +108,7 @@ describe("English PR 2 route ownership manifest", () => {
     expect(redirectCandidates.every((redirect) => !redirect.from.includes("*"))).toBe(true);
     expect(redirectCandidates.every((redirect) => redirect.proposedTo === undefined)).toBe(true);
     const netlify = read("netlify.toml");
-    expect([...netlify.matchAll(/status = 200/g)]).toHaveLength(3);
+    expect([...netlify.matchAll(/status = 200/g)]).toHaveLength(3 + publishableYachts.length);
     expect(netlify).not.toMatch(/status = 30[12]/);
     expect(netlify).not.toMatch(/from = "\/\*"/);
   });

@@ -84,3 +84,11 @@ The owner approved the existing yacht image URLs recorded in the English reposit
 This supersedes the earlier “no English-domain surface authorization” finding only for those two surfaces. It does not authorize Evali branding or branded paths, blocked URLs, homepage/related/commercial/event use, Open Graph/Twitter images, Netlify Image CDN transformation, copying, rehosting, derivatives, yacht facts, descriptions, inherited schema, ratings, universal inclusions, or stale Offers. The historical 55-foot branded gallery is not directly eligible because its paths expose prohibited branding and the sampled primary returned 403.
 
 No historical URL enters production in PR 4A. See `YACHT_FACT_APPROVAL_PACK.md`, `ENGLISH_YACHT_MEDIA_APPROVAL_PACK.md`, and `YACHT_APPROVAL_DECISIONS_NEEDED.md`.
+
+## PR 4B expanded owner approval and verification — 2026-07-14
+
+The owner approved the current repository `image_url` and gallery observations for these `yachtrentaldxb.com` surfaces: catalogue cards, yacht detail galleries, related-yacht cards, future homepage yacht cards, future commercial-page selections, and yacht-detail social previews. Every production URL remains conditional on `media:verify`; Evali-branded paths, failed URLs, rehosting, derivatives, inherited schema, stale Offers, and unapproved facts remain excluded.
+
+PR 4B retains 126 unique neutral-path URLs across 19 publishable yachts. Each URL returned HTTP success with a supported image content type, decoded dimensions, the same approved final host, and dimensions matching its strict media record. The neutral fallback also decoded successfully but is used by zero published yachts. No retained production URL failed; rejected source observations remain provenance only. The historical 55-foot branded primary URL remains recorded as a prior HTTP 403 and the whole route/gallery remains blocked.
+
+Each retained remote URL has an exact rights record generated in `src/data/media-rights.ts`, scoped to the approved English domain and surfaces. The first approved gallery item supplies the catalogue card and yacht-detail social image; social URLs remain absolute HTTPS URLs with verified alt text and dimensions. Netlify Image CDN transformation and Arabic-site reuse remain unapproved.

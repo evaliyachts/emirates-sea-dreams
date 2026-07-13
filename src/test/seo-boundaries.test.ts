@@ -2,20 +2,20 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { englishRouteManifest, publishedStaticRoutes } from "../../seo/index";
+import { publishableYachts } from "../data/yachts";
 
 const read = (path: string) => readFileSync(resolve(path), "utf8");
 
-describe("PR 3 SEO and HTTP boundaries", () => {
-  it("publishes only the four evidence-cleared manifest owners", () => {
+describe("static SEO and HTTP boundaries", () => {
+  it("publishes the four base owners plus the evidence-cleared yacht owners", () => {
     expect(englishRouteManifest).toHaveLength(52);
-    expect(publishedStaticRoutes.map((route) => route.path)).toEqual(["/", "/yachts", "/services", "/occasions"]);
+    const expectedPaths = [
+      "/", "/yachts", "/services", "/occasions",
+      ...publishableYachts.map((yacht) => `/yachts/${yacht.slug}`),
+    ];
+    expect(publishedStaticRoutes.map((route) => route.path)).toEqual(expectedPaths);
     const locations = [...read("public/sitemap.xml").matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-    expect(locations).toEqual([
-      "https://yachtrentaldxb.com/",
-      "https://yachtrentaldxb.com/yachts",
-      "https://yachtrentaldxb.com/services",
-      "https://yachtrentaldxb.com/occasions",
-    ]);
+    expect(locations).toEqual(expectedPaths.map((path) => `https://yachtrentaldxb.com${path === "/" ? "/" : path}`));
     expect(read("public/sitemap.xml")).not.toContain("<lastmod>");
   });
 
@@ -30,7 +30,7 @@ describe("PR 3 SEO and HTTP boundaries", () => {
 
   it("uses only exact 200 rewrites and no catch-all or redirect", () => {
     const config = read("netlify.toml");
-    expect([...config.matchAll(/status = 200/g)]).toHaveLength(3);
+    expect([...config.matchAll(/status = 200/g)]).toHaveLength(3 + publishableYachts.length);
     expect(config).not.toMatch(/status = 30[12]/);
     expect(config).not.toMatch(/from = "\/\*"/);
   });

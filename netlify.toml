@@ -6,7 +6,7 @@ publish = "dist"
 NODE_VERSION = "24.18.0"
 NPM_VERSION = "11.16.0"
 
-# Exact 200 rewrites publish only the three evidence-cleared inner routes.
+# Exact 200 rewrites publish only evidence-cleared inner routes.
 # There is intentionally no SPA fallback and no redirect in this phase.
 [[redirects]]
 from = "/yachts"
@@ -26,6 +26,120 @@ to = "/_static/occasions.html"
 status = 200
 force = true
 
+[[redirects]]
+from = "/yachts/50-feet-royal-majesty-dubai-yacht-rental"
+to = "/_static/yachts/50-feet-royal-majesty-dubai-yacht-rental.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/42-feet-azimut-yacht-rental-dubai"
+to = "/_static/yachts/42-feet-azimut-yacht-rental-dubai.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/majesty-44-feet-dubai-yacht-rental"
+to = "/_static/yachts/majesty-44-feet-dubai-yacht-rental.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/50-feet-azimut-yacht-rental-dubai"
+to = "/_static/yachts/50-feet-azimut-yacht-rental-dubai.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/oryx-50-feet-dubai-yacht-rental"
+to = "/_static/yachts/oryx-50-feet-dubai-yacht-rental.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/ferretti-50-feet-yacht-rental-dubai"
+to = "/_static/yachts/ferretti-50-feet-yacht-rental-dubai.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/56-feet-majesty-dubai-yacht-rental"
+to = "/_static/yachts/56-feet-majesty-dubai-yacht-rental.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/55-feet-azimut-yacht-rental-dubai"
+to = "/_static/yachts/55-feet-azimut-yacht-rental-dubai.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/majesty-88ft-jacuzzi-dubai-yacht-rental"
+to = "/_static/yachts/majesty-88ft-jacuzzi-dubai-yacht-rental.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/benetti-110ft-jacuzzi-yacht-rental-dubai"
+to = "/_static/yachts/benetti-110ft-jacuzzi-yacht-rental-dubai.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/majesty-101ft-jacuzzi-dubai-yacht-rental"
+to = "/_static/yachts/majesty-101ft-jacuzzi-dubai-yacht-rental.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/heysea-90ft-jacuzzi-yacht-rental-dubai"
+to = "/_static/yachts/heysea-90ft-jacuzzi-yacht-rental-dubai.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/doretty-90ft-jacuzzi-dubai-yacht-rental"
+to = "/_static/yachts/doretty-90ft-jacuzzi-dubai-yacht-rental.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/ocean-dream-143-feet-yacht-rental-dubai"
+to = "/_static/yachts/ocean-dream-143-feet-yacht-rental-dubai.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/mzaail-135ft-dubai-yacht-rental"
+to = "/_static/yachts/mzaail-135ft-dubai-yacht-rental.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/doretty-95-feet-jacuzzi-yacht-rental-dubai"
+to = "/_static/yachts/doretty-95-feet-jacuzzi-yacht-rental-dubai.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/sunseeker-92-feet-dubai-yacht-rental"
+to = "/_static/yachts/sunseeker-92-feet-dubai-yacht-rental.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/sunseeker-90-feet-yacht-rental-dubai"
+to = "/_static/yachts/sunseeker-90-feet-yacht-rental-dubai.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/yachts/omega-100-feet-dubai-yacht-rental"
+to = "/_static/yachts/omega-100-feet-dubai-yacht-rental.html"
+status = 200
+force = true
+
 [[headers]]
 for = "/"
 [headers.values]
@@ -33,6 +147,11 @@ Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
 for = "/yachts"
+[headers.values]
+Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+for = "/yachts/*"
 [headers.values]
 Cache-Control = "public, max-age=0, must-revalidate"
 

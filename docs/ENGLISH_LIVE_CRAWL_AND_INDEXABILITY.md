@@ -191,3 +191,7 @@ The historical observations above remain the pre-PR-3 baseline. Deploy Preview a
 PR 4 preserves the four-route static publication set because none of the 24 yacht records passed every factual and media-rights gate. `/yachts` remains a direct static 200 and now links to no blocked detail route. All 24 historical yacht paths remain direct-request 404s, absent from static output and sitemap. The sitemap remains four URLs, and unknown paths retain the real Netlify 404 architecture.
 
 No redirect, wildcard rewrite, noindex shell, default-host redirect, or English trailing-slash migration was introduced. Deployment and post-merge production evidence belongs in `IMPLEMENTATION_PR4_REPORT.md`.
+
+## PR 4B yacht publication update — 2026-07-14
+
+PR 4B clears 19 existing yacht owners for exact static output after owner fact approval and successful verification of all 126 retained media URLs. The generated sitemap expands dynamically from four to 23 URLs. Five yacht manifest owners remain real direct-request 404s; service, commercial, support, and legal owners remain unpublished. No redirect, wildcard, trailing-slash migration, hreflang, analytics, or Search Console action is introduced. Immutable deployment and production smoke evidence belongs in `IMPLEMENTATION_PR4B_REPORT.md`.

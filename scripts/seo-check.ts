@@ -65,6 +65,12 @@ for (const route of publishedStaticRoutes) {
   const ogDescription = matchAttr(head, "meta", "property", "og:description", "content") ?? "";
   const twitterTitle = matchAttr(head, "meta", "name", "twitter:title", "content") ?? "";
   const twitterDescription = matchAttr(head, "meta", "name", "twitter:description", "content") ?? "";
+  const ogImage = matchAttr(head, "meta", "property", "og:image", "content") ?? "";
+  const ogImageAlt = matchAttr(head, "meta", "property", "og:image:alt", "content") ?? "";
+  const ogImageWidth = matchAttr(head, "meta", "property", "og:image:width", "content") ?? "";
+  const ogImageHeight = matchAttr(head, "meta", "property", "og:image:height", "content") ?? "";
+  const twitterImage = matchAttr(head, "meta", "name", "twitter:image", "content") ?? "";
+  const twitterImageAlt = matchAttr(head, "meta", "name", "twitter:image:alt", "content") ?? "";
   const h1Matches = [...body.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)];
   const h1 = (h1Matches[0]?.[1] ?? "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
   const expectedCanonical = canonicalUrlForPath(route.path);
@@ -82,6 +88,9 @@ for (const route of publishedStaticRoutes) {
   if (canonical !== expectedCanonical || ogUrl !== expectedCanonical) failures.push(`${route.path}: canonical/og:url mismatch.`);
   if (ogTitle !== title || twitterTitle !== title || ogDescription !== description || twitterDescription !== description) {
     failures.push(`${route.path}: social metadata does not match title/description.`);
+  }
+  if ((ogImage && !/^https:\/\//.test(ogImage)) || (twitterImage && !/^https:\/\//.test(twitterImage))) {
+    failures.push(`${route.path}: social image URLs must be absolute HTTPS URLs.`);
   }
   if (h1Matches.length !== 1 || !h1) failures.push(`${route.path}: exactly one non-empty H1 is required.`);
   if (visible.length < 100) failures.push(`${route.path}: initial HTML lacks substantial visible text.`);
@@ -113,6 +122,17 @@ for (const route of publishedStaticRoutes) {
     } else {
       if (!visible.includes(yacht.name) || !visible.includes(`${yacht.pricePerHour.toLocaleString()}`)) {
         failures.push(`${route.path}: visible yacht facts do not match the strict record.`);
+      }
+      const primaryImage = yacht.media.find((media) => media.featured) ?? yacht.media[0];
+      if (
+        ogImage !== primaryImage.path ||
+        twitterImage !== primaryImage.path ||
+        ogImageAlt !== primaryImage.alt ||
+        twitterImageAlt !== primaryImage.alt ||
+        ogImageWidth !== `${primaryImage.width}` ||
+        ogImageHeight !== `${primaryImage.height}`
+      ) {
+        failures.push(`${route.path}: social metadata must use the approved primary yacht image, alt text and dimensions.`);
       }
       if (jsonLd.length !== 1) {
         failures.push(`${route.path}: exactly one JSON-LD block is required.`);
