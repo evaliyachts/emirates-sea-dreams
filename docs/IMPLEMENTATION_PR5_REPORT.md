@@ -6,6 +6,10 @@ Branch: `agent/english-pr5-commercial-decisions`
 Pull request: [#10](https://github.com/evaliyachts/emirates-sea-dreams/pull/10)
 
 Validated implementation commit: `487719528b07c8ec3292967d22c5a0341da9067f`
+
+Final PR branch commit: `99f0e016848cb2c84d86b3fbc9327b6e819191d0`
+
+Squash merge commit: `6bb76c27e87e0971bbac4ca725e5a6915703dff8`
 Scope: homepage and primary commercial decision pages only
 
 ## Ownership decision
@@ -107,7 +111,26 @@ Netlify Header rules and Redirect rules checks passed. “Pages changed” was s
 
 ## Post-merge production smoke
 
-Pending merge authorization through the approved automatic PR 5 workflow.
+Netlify production deploy `6a5562e4e61cd200086b6e56` published merge `6bb76c27e87e0971bbac4ca725e5a6915703dff8` at `2026-07-13T22:13:11.762Z`. The deployed JavaScript bundle is `index-DDQTET-U.js`, matching the browser-validated final preview output.
+
+| Production check | Result |
+| --- | --- |
+| Published canonical owners | 23/23 direct 200, zero `Location` headers |
+| Four enriched commercial/hub pages | Correct unique title, description, H1, self-canonical and initial visible content |
+| Published yacht details | 19/19 direct 200; factual yacht pages and Offers retained |
+| Blocked yacht owners | 5/5 real 404 |
+| Representative service, offer, contact, legal, candidate and unknown probes | 7/7 real 404; canonical-free `noindex, follow` document |
+| Sitemap | 23 exact production canonical URLs; no `lastmod` |
+| Robots | 200; references `https://yachtrentaldxb.com/sitemap.xml` |
+| Metadata authority | No preview or Arabic authority, meta keywords, accidental noindex, hreflang or x-default |
+| Structured data | Valid JSON-LD where present; no prohibited schema types |
+| Analytics | No analytics loader or event code detected |
+| Yacht media | 126/126 passed the release media verifier; production records unchanged |
+| Caching | HTML/system files revalidate; fingerprinted asset is long-lived immutable |
+| Source maps | Production JavaScript source-map request returns 404 |
+| Hydration evidence | Production uses the exact `index-DDQTET-U.js` bundle that hydrated all four changed pages and a yacht detail in preview with zero console warnings/errors |
+
+Local `main` and `origin/main` matched the merge before this evidence-only update. The feature branch was deleted. Search Console was not changed; analytics, hreflang, x-default and the default-Netlify-host redirect remain disabled. PR 6 has not begun.
 
 ## Remaining gates before PR 6
 
