@@ -1,35 +1,36 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
+import { HOME_SERVICE_MEDIA, type ServicePlanningCategoryId } from "@/data/home-media";
 import { cn } from "@/lib/utils";
 
-const SERVICES = [
-  {
+const PLANNING_CATEGORIES: Record<ServicePlanningCategoryId, { title: string; copy: string }> = {
+  celebration: {
     title: "Celebration planning",
     copy: "Describe the gathering, guest count and optional setup. Decoration, cake, photography and music require separate confirmation and pricing.",
-    accent: "from-amber-500/30 via-orange-400/10 to-background",
   },
-  {
+  romance: {
     title: "Romance requests",
     copy: "Prepare the preferred date, group size and any setup request without assuming a route, supplier, decoration or privacy feature.",
-    accent: "from-rose-500/25 via-fuchsia-400/10 to-background",
   },
-  {
+  hospitality: {
     title: "Hospitality requests",
     copy: "Food, barbecue and similar ideas are optional. Ask what can be confirmed for the selected yacht, date and group before relying on them.",
-    accent: "from-emerald-500/25 via-teal-400/10 to-background",
   },
-  {
+  "water-activity": {
     title: "Water activity requests",
     copy: "Swimming, fishing, Jet Ski and other activities need specific capability, supplier, safety and operating confirmation.",
-    accent: "from-sky-500/30 via-cyan-400/10 to-background",
   },
-  {
+  "private-experience": {
     title: "Private experience planning",
     copy: "Treat timing, duration and other experience ideas as request preferences. Availability and operating details remain subject to confirmation.",
-    accent: "from-violet-500/25 via-indigo-400/10 to-background",
   },
-] as const;
+};
+
+const SERVICES = HOME_SERVICE_MEDIA.map((image) => ({
+  ...PLANNING_CATEGORIES[image.planningCategoryId],
+  image,
+}));
 
 const ServicesSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -123,7 +124,7 @@ const ServicesSection = () => {
 
               return (
                 <article
-                  key={service.title}
+                  key={service.image.id}
                   className={cn(
                     "absolute inset-0 overflow-hidden rounded-3xl border border-border/40 transition-all duration-500 ease-out will-change-transform",
                     "shadow-[0_20px_60px_-20px_hsl(var(--background)/0.8)]",
@@ -138,11 +139,22 @@ const ServicesSection = () => {
                   <Link
                     to="/services"
                     tabIndex={isActive ? 0 : -1}
-                    className={cn("group relative flex h-full w-full flex-col justify-end bg-gradient-to-br p-7", service.accent)}
+                    aria-label={`${service.title}, planning image ${index + 1} of ${SERVICES.length}`}
+                    className="group relative block h-full w-full"
                   >
-                    <div className="absolute inset-5 rounded-[1.35rem] border border-foreground/10 bg-background/15 backdrop-blur-sm" />
-                    <div className="relative">
-                      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">Planning category {index + 1}</p>
+                    <img
+                      src={service.image.path}
+                      alt={service.image.alt}
+                      aria-hidden="true"
+                      width={service.image.width}
+                      height={service.image.height}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/45 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 p-6">
+                      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">Planning category</p>
                       <h3 className="text-2xl font-display font-bold text-foreground">{service.title}</h3>
                       <p className="mt-3 leading-7 text-muted-foreground">{service.copy}</p>
                     </div>
@@ -156,10 +168,10 @@ const ServicesSection = () => {
         <div className="flex justify-center gap-1.5 pb-8">
           {SERVICES.map((service, index) => (
             <button
-              key={service.title}
+              key={service.image.id}
               type="button"
               onClick={() => setActive(index)}
-              aria-label={`Show ${service.title}`}
+              aria-label={`Show planning image ${index + 1} of ${SERVICES.length}: ${service.title}`}
               aria-current={index === active ? "true" : undefined}
               className={cn(
                 "h-1.5 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4",

@@ -2,6 +2,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Compass } from "lucide-react";
+import { HOME_HERO_DESKTOP, HOME_HERO_MOBILE } from "@/data/home-media";
 import { formatAed, publishedFleetSummary } from "@/lib/published-fleet";
 
 const HeroSection = () => {
@@ -11,6 +12,7 @@ const HeroSection = () => {
     target: ref,
     offset: ["start start", "end start"],
   });
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 200]);
   const textY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 80]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, reduceMotion ? 1 : 0]);
 
@@ -20,20 +22,32 @@ const HeroSection = () => {
       data-home-section="hero"
       className="relative flex min-h-[760px] items-center justify-center overflow-hidden pt-24"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,hsl(var(--gold)/0.24),transparent_34%),radial-gradient(circle_at_78%_22%,hsl(var(--primary)/0.16),transparent_30%),linear-gradient(145deg,hsl(var(--background)),hsl(var(--navy)/0.92)_55%,hsl(var(--background)))]" />
       <motion.div
         aria-hidden="true"
-        animate={reduceMotion ? undefined : { y: [0, -18, 0], rotate: [0, 3, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -left-24 top-28 h-80 w-80 rounded-full border border-primary/15 bg-primary/5 blur-sm"
-      />
-      <motion.div
-        aria-hidden="true"
-        animate={reduceMotion ? undefined : { y: [0, 20, 0], rotate: [0, -4, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -right-20 bottom-16 h-96 w-96 rounded-full border border-foreground/10 bg-foreground/[0.025]"
-      />
-      <div className="absolute inset-0 hero-gradient opacity-70" />
+        style={{ y: imageY }}
+        className="absolute inset-0"
+      >
+        <picture className="block h-full w-full">
+          <source
+            media="(max-width: 639px)"
+            srcSet={HOME_HERO_MOBILE.path}
+            width={HOME_HERO_MOBILE.width}
+            height={HOME_HERO_MOBILE.height}
+          />
+          <img
+            src={HOME_HERO_DESKTOP.path}
+            alt={HOME_HERO_DESKTOP.alt}
+            width={HOME_HERO_DESKTOP.width}
+            height={HOME_HERO_DESKTOP.height}
+            className="h-full w-full scale-110 object-cover"
+            loading="eager"
+            decoding="async"
+            {...{ fetchpriority: "high" }}
+          />
+        </picture>
+      </motion.div>
+      <div className="absolute inset-0 bg-background/50" />
+      <div className="absolute inset-0 hero-gradient" />
 
       <motion.div
         style={{ y: textY, opacity }}
