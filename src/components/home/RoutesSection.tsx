@@ -1,43 +1,40 @@
-import { AnimatedSection } from "@/components/shared/AnimatedSection";
-import { MapPin } from "lucide-react";
-import { ParallaxSection } from "@/components/shared/AnimatedSection";
+import { AnimatedSection, ParallaxSection } from "@/components/shared/AnimatedSection";
+import { CalendarDays, Clock3, ListPlus, ShipWheel, Timer, Users } from "lucide-react";
 
-const routes = [
-  { name: "Dubai Marina", note: "Primary departure point" },
-  { name: "JBR & Bluewaters", note: "Ain Dubai views" },
-  { name: "Palm Jumeirah", note: "Iconic palm-shaped island" },
-  { name: "Atlantis", note: "Waterpark & resort views" },
-  { name: "Burj Al Arab", note: "Sail-shaped icon" },
-  { name: "Dubai Harbour", note: "Modern marina district" },
-];
+const requestDetails = [
+  { icon: CalendarDays, name: "Preferred date", note: "Prepare a date for availability checking" },
+  { icon: Clock3, name: "Start-time preference", note: "Treat timing as a request until confirmed" },
+  { icon: Timer, name: "Requested duration", note: "Meet the selected yacht's stated minimum" },
+  { icon: Users, name: "Complete guest count", note: "Keep the group within published capacity" },
+  { icon: ShipWheel, name: "Yacht shortlist", note: "Compare facts before requesting confirmation" },
+  { icon: ListPlus, name: "Optional requests", note: "List each item for separate confirmation" },
+] as const;
 
 const RoutesSection = () => (
-  <section className="section-padding">
+  <section data-home-section="request-details" className="section-padding">
     <div className="container mx-auto px-4">
-      <AnimatedSection className="text-center mb-14">
-        <span className="liquid-pill inline-block">Routes</span>
-        <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mt-4 mb-4">
-          Yacht Trips Dubai — Departure Points &amp; Routes
+      <AnimatedSection initiallyVisible className="mb-14 text-center">
+        <span className="liquid-pill inline-block">Request details</span>
+        <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
+          Prepare the Details Before Asking for Confirmation
         </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          Every <strong>yacht rental Dubai</strong> departs from Dubai Marina, with
-          flexible <strong>Dubai yacht trip</strong> routes covering Dubai's most
-          iconic landmarks for your <strong>luxury yacht charter Dubai</strong>.
+        <p className="mx-auto max-w-2xl text-muted-foreground">
+          No fixed sightseeing route or departure point is promised here. Operating and route details belong to the confirmation process.
         </p>
       </AnimatedSection>
 
       <ParallaxSection speed={0.15}>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
-          {routes.map((r) => (
-            <div key={r.name} className="liquid-glass p-4 flex items-start gap-3">
-              <div className="w-8 h-8 liquid-icon rounded-lg shrink-0">
-                <MapPin className="w-4 h-4 text-primary" />
+        <div className="mx-auto grid max-w-3xl grid-cols-2 gap-4 md:grid-cols-3">
+          {requestDetails.map(({ icon: Icon, name, note }) => (
+            <article key={name} className="liquid-glass flex items-start gap-3 p-4">
+              <div className="liquid-icon h-8 w-8 shrink-0 rounded-lg">
+                <Icon className="h-4 w-4 text-primary" aria-hidden="true" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-foreground">{r.name}</p>
-                <p className="text-xs text-muted-foreground">{r.note}</p>
+                <h3 className="text-sm font-semibold text-foreground">{name}</h3>
+                <p className="text-xs leading-5 text-muted-foreground">{note}</p>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </ParallaxSection>

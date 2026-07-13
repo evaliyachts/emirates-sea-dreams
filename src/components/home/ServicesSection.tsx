@@ -4,20 +4,32 @@ import { AnimatedSection } from "@/components/shared/AnimatedSection";
 import { cn } from "@/lib/utils";
 
 const SERVICES = [
-  { title: "Birthday Party", url: "/services/birthday-party", image: "https://evali.fra1.cdn.digitaloceanspaces.com/birthday-party/IMG-20250404-WA0001-1.webp" },
-  { title: "Wedding Anniversary Celebration", url: "/services/wedding-anniversary-parties", image: "https://evali.fra1.cdn.digitaloceanspaces.com/wedding-anniversary-celebration/IMG-20250404-WA0002.webp" },
-  { title: "Engagement Party", url: "/services/engagement-parties", image: "https://evali.fra1.cdn.digitaloceanspaces.com/engagement-party/IMG-20250405-WA0033.webp" },
-  { title: "Marriage Proposal", url: "/services/marriage-proposal-party", image: "https://evali.fra1.cdn.digitaloceanspaces.com/marriage-proposal-part/IMG-20250405-WA0004-1.webp" },
-  { title: "Graduation Party", url: "/services/graduation-parties", image: "https://evali.fra1.cdn.digitaloceanspaces.com/graduation-party/IMG-20250405-WA0020-1-1.webp" },
-  { title: "Wedding Parties", url: "/services/wedding-parties", image: "https://evali.fra1.cdn.digitaloceanspaces.com/wedding-celebration-on%20yacht-in-dubai/IMG-20250405-WA0036.webp" },
-  { title: "Jet Ski", url: "/services/jet-ski", image: "https://evali.fra1.cdn.digitaloceanspaces.com/jet-ski-rental/IMG_7681-1.jpg" },
-  { title: "Donut Ride", url: "/services/donut-ride", image: "https://evali.fra1.cdn.digitaloceanspaces.com/donut-ride-adventure/photo_2025-04-05_12-30-39-1.webp" },
-  { title: "Banana Boat Ride", url: "/services/banana-boat-ride", image: "https://evali.fra1.cdn.digitaloceanspaces.com/banana-boat-ride/photo_2025-04-05_12-29-24-1.webp" },
-  { title: "Barbecue on the Yacht", url: "/services/barbecue-on-the-yacht", image: "https://evali.fra1.cdn.digitaloceanspaces.com/bbq-experience/IMG_8252-1.webp" },
-  { title: "Swimming", url: "/services/swimming", image: "https://evali.fra1.cdn.digitaloceanspaces.com/swimming-experience-yacht-trip/IMG_7518-1.webp" },
-  { title: "Food Menu", url: "/services/food-menu", image: "https://evali.fra1.cdn.digitaloceanspaces.com/food-menu/photo_2025-04-02_19-40-12.webp" },
-  { title: "Fishing", url: "/services/fishing", image: "https://evali.fra1.cdn.digitaloceanspaces.com/fishing-trips/IMG_8214-1.webp" },
-];
+  {
+    title: "Celebration planning",
+    copy: "Describe the gathering, guest count and optional setup. Decoration, cake, photography and music require separate confirmation and pricing.",
+    accent: "from-amber-500/30 via-orange-400/10 to-background",
+  },
+  {
+    title: "Romance requests",
+    copy: "Prepare the preferred date, group size and any setup request without assuming a route, supplier, decoration or privacy feature.",
+    accent: "from-rose-500/25 via-fuchsia-400/10 to-background",
+  },
+  {
+    title: "Hospitality requests",
+    copy: "Food, barbecue and similar ideas are optional. Ask what can be confirmed for the selected yacht, date and group before relying on them.",
+    accent: "from-emerald-500/25 via-teal-400/10 to-background",
+  },
+  {
+    title: "Water activity requests",
+    copy: "Swimming, fishing, Jet Ski and other activities need specific capability, supplier, safety and operating confirmation.",
+    accent: "from-sky-500/30 via-cyan-400/10 to-background",
+  },
+  {
+    title: "Private experience planning",
+    copy: "Treat timing, duration and other experience ideas as request preferences. Availability and operating details remain subject to confirmation.",
+    accent: "from-violet-500/25 via-indigo-400/10 to-background",
+  },
+] as const;
 
 const ServicesSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -27,55 +39,44 @@ const ServicesSection = () => {
 
   useEffect(() => {
     const isInView = () => {
-      const el = sectionRef.current;
-      if (!el) return false;
-      const r = el.getBoundingClientRect();
-      // Section is "engaged" when its sticky stage roughly fills the viewport
-      return r.top <= 1 && r.bottom >= window.innerHeight - 1;
+      const element = sectionRef.current;
+      if (!element) return false;
+      const bounds = element.getBoundingClientRect();
+      return bounds.top <= 1 && bounds.bottom >= window.innerHeight - 1;
     };
 
-    const step = (dir: 1 | -1) => {
-      setActive((prev) => {
-        const next = prev + dir;
-        if (next < 0 || next > SERVICES.length - 1) return prev;
-        return next;
-      });
+    const step = (direction: 1 | -1) => {
+      setActive((current) => Math.min(SERVICES.length - 1, Math.max(0, current + direction)));
     };
 
-    const onWheel = (e: WheelEvent) => {
+    const onWheel = (event: WheelEvent) => {
       if (!isInView()) return;
-      const dir: 1 | -1 = e.deltaY > 0 ? 1 : -1;
-      const atStart = active === 0 && dir === -1;
-      const atEnd = active === SERVICES.length - 1 && dir === 1;
-      if (atStart || atEnd) return; // let page scroll past
-      e.preventDefault();
+      const direction: 1 | -1 = event.deltaY > 0 ? 1 : -1;
+      const atBoundary = (active === 0 && direction === -1) || (active === SERVICES.length - 1 && direction === 1);
+      if (atBoundary) return;
+      event.preventDefault();
       if (lockRef.current) return;
       lockRef.current = true;
-      step(dir);
-      window.setTimeout(() => {
-        lockRef.current = false;
-      }, 600);
+      step(direction);
+      window.setTimeout(() => { lockRef.current = false; }, 600);
     };
 
-    const onTouchStart = (e: TouchEvent) => {
-      touchStartY.current = e.touches[0]?.clientY ?? null;
+    const onTouchStart = (event: TouchEvent) => {
+      touchStartY.current = event.touches[0]?.clientY ?? null;
     };
-    const onTouchMove = (e: TouchEvent) => {
+    const onTouchMove = (event: TouchEvent) => {
       if (!isInView() || touchStartY.current == null) return;
-      const dy = touchStartY.current - (e.touches[0]?.clientY ?? 0);
-      if (Math.abs(dy) < 40) return;
-      const dir: 1 | -1 = dy > 0 ? 1 : -1;
-      const atStart = active === 0 && dir === -1;
-      const atEnd = active === SERVICES.length - 1 && dir === 1;
-      if (atStart || atEnd) return;
-      e.preventDefault();
+      const delta = touchStartY.current - (event.touches[0]?.clientY ?? 0);
+      if (Math.abs(delta) < 40) return;
+      const direction: 1 | -1 = delta > 0 ? 1 : -1;
+      const atBoundary = (active === 0 && direction === -1) || (active === SERVICES.length - 1 && direction === 1);
+      if (atBoundary) return;
+      event.preventDefault();
       if (lockRef.current) return;
       lockRef.current = true;
-      step(dir);
-      touchStartY.current = e.touches[0]?.clientY ?? null;
-      window.setTimeout(() => {
-        lockRef.current = false;
-      }, 600);
+      step(direction);
+      touchStartY.current = null;
+      window.setTimeout(() => { lockRef.current = false; }, 600);
     };
 
     window.addEventListener("wheel", onWheel, { passive: false });
@@ -89,80 +90,80 @@ const ServicesSection = () => {
   }, [active]);
 
   return (
-    <section ref={sectionRef} className="liquid-divider relative" style={{ height: "200vh" }}>
-      <div className="sticky top-0 h-screen w-full flex flex-col">
+    <section
+      ref={sectionRef}
+      data-home-section="services"
+      className="liquid-divider relative"
+      style={{ height: "200vh" }}
+    >
+      <div className="sticky top-0 flex h-screen w-full flex-col">
         <div className="container mx-auto px-4 pt-16">
-          <AnimatedSection className="text-center mb-8">
-            <span className="liquid-pill inline-block">Our Services</span>
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mt-4 mb-4">
-              Experiences We Offer
+          <AnimatedSection initiallyVisible className="mb-8 text-center">
+            <span className="liquid-pill inline-block">Optional requests</span>
+            <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
+              Plan Services Without Assuming Inclusions
             </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              From private charters to grand celebrations, discover the perfect
-              yacht experience tailored to your occasion.
+            <p className="mx-auto max-w-xl text-muted-foreground">
+              Use these categories to prepare questions. Each optional item remains subject to confirmation and separate pricing.
             </p>
           </AnimatedSection>
         </div>
 
-        <div className="flex-1 flex items-center justify-center [perspective:1200px]">
-          <div className="relative w-[88vw] max-w-md h-[55vh] max-h-[480px]">
+        <div className="flex flex-1 items-center justify-center [perspective:1200px]">
+          <div className="relative h-[55vh] max-h-[480px] w-[88vw] max-w-md">
             {SERVICES.map((service, index) => {
               const offset = index - active;
               const isActive = offset === 0;
               const isPast = offset < 0;
-              // Stack: active in front; upcoming behind with slight Y/scale offsets
               const translateY = isPast ? -120 : offset * 12;
               const translateZ = isPast ? 0 : -offset * 30;
               const rotate = isPast ? -8 : 0;
               const scale = isPast ? 0.9 : 1 - Math.min(offset, 3) * 0.04;
-              const opacity = isPast ? 0 : offset > 4 ? 0 : 1;
-              const z = SERVICES.length - Math.abs(offset);
+              const opacity = isPast || offset > 4 ? 0 : 1;
 
               return (
-                <div
+                <article
                   key={service.title}
                   className={cn(
-                    "absolute inset-0 rounded-3xl overflow-hidden transition-all duration-500 ease-out will-change-transform",
-                    "border border-border/40 shadow-[0_20px_60px_-20px_hsl(var(--background)/0.8)]"
+                    "absolute inset-0 overflow-hidden rounded-3xl border border-border/40 transition-all duration-500 ease-out will-change-transform",
+                    "shadow-[0_20px_60px_-20px_hsl(var(--background)/0.8)]",
                   )}
                   style={{
                     transform: `translateY(${translateY}px) translateZ(${translateZ}px) rotate(${rotate}deg) scale(${scale})`,
                     opacity,
-                    zIndex: z,
+                    zIndex: SERVICES.length - Math.abs(offset),
                     pointerEvents: isActive ? "auto" : "none",
                   }}
                 >
-                  <Link to={service.url} className="block w-full h-full relative group">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-5">
-                      <h3 className="text-xl font-display font-bold text-foreground">
-                        {service.title}
-                      </h3>
+                  <Link
+                    to="/services"
+                    tabIndex={isActive ? 0 : -1}
+                    className={cn("group relative flex h-full w-full flex-col justify-end bg-gradient-to-br p-7", service.accent)}
+                  >
+                    <div className="absolute inset-5 rounded-[1.35rem] border border-foreground/10 bg-background/15 backdrop-blur-sm" />
+                    <div className="relative">
+                      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">Planning category {index + 1}</p>
+                      <h3 className="text-2xl font-display font-bold text-foreground">{service.title}</h3>
+                      <p className="mt-3 leading-7 text-muted-foreground">{service.copy}</p>
                     </div>
                   </Link>
-                </div>
+                </article>
               );
             })}
           </div>
         </div>
 
-        {/* Progress dots */}
-        <div className="pb-8 flex justify-center gap-1.5">
-          {SERVICES.map((_, i) => (
+        <div className="flex justify-center gap-1.5 pb-8">
+          {SERVICES.map((service, index) => (
             <button
-              key={i}
-              onClick={() => setActive(i)}
-              aria-label={`Go to slide ${i + 1}`}
+              key={service.title}
+              type="button"
+              onClick={() => setActive(index)}
+              aria-label={`Show ${service.title}`}
+              aria-current={index === active ? "true" : undefined}
               className={cn(
-                "h-1.5 rounded-full transition-all",
-                i === active ? "w-6 bg-primary" : "w-1.5 bg-foreground/30"
+                "h-1.5 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4",
+                index === active ? "w-6 bg-primary" : "w-1.5 bg-foreground/30",
               )}
             />
           ))}

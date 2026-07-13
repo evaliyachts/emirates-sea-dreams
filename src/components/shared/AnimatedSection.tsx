@@ -28,9 +28,10 @@ interface AnimatedSectionProps {
   className?: string;
   delay?: number;
   direction?: "up" | "left" | "right" | "none";
+  initiallyVisible?: boolean;
 }
 
-export const AnimatedSection = ({ children, className = "", delay = 0, direction = "up" }: AnimatedSectionProps) => {
+export const AnimatedSection = ({ children, className = "", delay = 0, direction = "up", initiallyVisible = false }: AnimatedSectionProps) => {
   const initial: Record<string, number> = { opacity: 0 };
   if (direction === "up") initial.y = 40;
   if (direction === "left") initial.x = -40;
@@ -43,7 +44,7 @@ export const AnimatedSection = ({ children, className = "", delay = 0, direction
 
   return (
     <motion.div
-      initial={initial}
+      initial={initiallyVisible ? false : initial}
       whileInView={animate}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
@@ -58,12 +59,13 @@ interface StaggerContainerProps {
   children: ReactNode;
   className?: string;
   staggerDelay?: number;
+  initiallyVisible?: boolean;
 }
 
-export const StaggerContainer = ({ children, className = "", staggerDelay = 0.1 }: StaggerContainerProps) => {
+export const StaggerContainer = ({ children, className = "", staggerDelay = 0.1, initiallyVisible = false }: StaggerContainerProps) => {
   return (
     <motion.div
-      initial="hidden"
+      initial={initiallyVisible ? false : "hidden"}
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
       variants={{
