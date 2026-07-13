@@ -1,12 +1,22 @@
 import type { YachtRecord } from "@/data/yachts";
 import { yachtPath } from "@/data/yachts";
 import { DOMAIN } from "@/lib/constants";
+import { NEUTRAL_YACHT_FALLBACK } from "@/data/media-rights";
 
 export const buildYachtSeo = (yacht: YachtRecord) => {
   const path = yachtPath(yacht.slug);
   const canonical = `${DOMAIN}${path}`;
   const title = `${yacht.name} | Verified Price and Capacity — Dubai Yacht`;
   const description = `${yacht.name}: ${yacht.lengthFt} ft, capacity for ${yacht.guestCapacity}, built in ${yacht.yearBuilt}, from AED ${yacht.pricePerHour.toLocaleString()} per hour with a ${yacht.minimumDuration}-hour minimum.`;
+  const primaryImage = yacht.media.find((media) => media.featured) ?? yacht.media[0];
+  const socialImage = primaryImage.path === NEUTRAL_YACHT_FALLBACK
+    ? undefined
+    : {
+        url: primaryImage.path.startsWith("/") ? `${DOMAIN}${primaryImage.path}` : primaryImage.path,
+        alt: primaryImage.alt,
+        width: primaryImage.width,
+        height: primaryImage.height,
+      };
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -35,5 +45,5 @@ export const buildYachtSeo = (yacht: YachtRecord) => {
     ],
   };
 
-  return { path, canonical, title, description, jsonLd };
+  return { path, canonical, title, description, socialImage, jsonLd };
 };

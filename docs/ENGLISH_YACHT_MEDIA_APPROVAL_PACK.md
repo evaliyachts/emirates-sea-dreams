@@ -1,16 +1,18 @@
 # English Yacht Media Approval Pack
 
-Status: **limited business approval recorded; technical eligibility remains pending**
+Status: **superseded by expanded owner approval and PR 4B production verification**
 Approval date: 2026-07-14
 Allowed domain: `yachtrentaldxb.com`
 
 ## Approval scope
 
+> **PR 4B update:** The owner expanded the allowed surfaces on 2026-07-14 to catalogue cards, yacht detail galleries, related cards, future homepage cards, future commercial selections, and yacht-detail social previews. This expansion does not authorize Evali branding, blocked paths, rehosting, transformations, or any prohibited inherited field. PR 4B retains 126 neutral-path production URLs across 19 publishable yachts; every retained URL passed `media:verify`. The record sections below remain the PR 4A source/provenance snapshot and their former “pending” cells are superseded only where the strict PR 4B registry records an approved production URL.
+
 The owner approves the existing yacht image URLs recorded in the English repository for two surfaces only: catalogue cards and yacht detail pages.
 
 Approval is conditional per retained URL: `media:verify` must succeed before that URL enters production. No failure exemption is authorized. This does **not** approve Evali branding or branded paths, blocked URLs, homepage/related/commercial/event use, social previews, Netlify Image CDN transformation, copying, rehosting, derivatives, yacht facts, descriptions, inherited schema, ratings, universal inclusions, or stale Offers.
 
-URL existence and technical success do not prove that an image depicts the named yacht. Cross-record folder conflicts remain blockers. No URL in this pack is currently a production media record, and PR 4A publishes no gallery.
+URL existence and technical success do not prove identity by themselves. The current production set is the strict registry in `src/data/approved-yacht-media.ts`; see `ENGLISH_YACHT_MEDIA_VERIFICATION.md` and `IMPLEMENTATION_PR4B_REPORT.md`.
 
 ## 1. yacht-55ft-historical-brand-path
 

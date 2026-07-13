@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { approvedYachtMedia } from "./approved-yacht-media";
 
 export const mediaRightsRecordSchema = z.object({
   id: z.string().min(1),
@@ -21,6 +22,31 @@ export type MediaRightsRecord = z.infer<typeof mediaRightsRecordSchema>;
 export const NEUTRAL_YACHT_FALLBACK = "/media/yacht-neutral-fallback.svg";
 export const NEUTRAL_YACHT_FALLBACK_RIGHTS_ID = "english-neutral-yacht-fallback-001";
 
+const approvedRemoteMediaRights: MediaRightsRecord[] = approvedYachtMedia.map((media) =>
+  mediaRightsRecordSchema.parse({
+    id: media.rightsRecordId,
+    productionPath: media.path,
+    originalSource: "Owner-approved English repository image_url/gallery entry; historical source storage paths are represented by the established neutral CDN object URL.",
+    owner: "Business owner approval for yachtrentaldxb.com",
+    evidence: "Owner yacht fact and media approval recorded on 2026-07-14; URL retained only after media:verify passed.",
+    approvedHosts: ["yachtrentaldxb.com"],
+    approvedSurfaces: [
+      "Yacht catalogue cards",
+      "Yacht detail galleries",
+      "Related yacht cards",
+      "Homepage yacht cards in the relevant future page phase",
+      "Commercial-page yacht selections in the relevant future page phase",
+      "Yacht-detail Open Graph and Twitter social previews",
+    ],
+    arabicProjectReuseApproved: false,
+    socialPreviewApproved: true,
+    netlifyImageCdnTransformationApproved: false,
+    unresolvedIssues: [],
+    approvalDate: "2026-07-14",
+    status: "approved",
+  }),
+);
+
 export const mediaRightsRegistry: readonly MediaRightsRecord[] = [
   mediaRightsRecordSchema.parse({
     id: NEUTRAL_YACHT_FALLBACK_RIGHTS_ID,
@@ -37,4 +63,5 @@ export const mediaRightsRegistry: readonly MediaRightsRecord[] = [
     approvalDate: "2026-07-13",
     status: "approved",
   }),
+  ...approvedRemoteMediaRights,
 ];

@@ -1,8 +1,10 @@
 # Yacht Fact Approval Pack
 
-Status: **owner fact approval pending for all 24 records**
+Status: **superseded by the owner approval of 2026-07-14 and PR 4B publication mapping**
 Prepared: 2026-07-14
 Production authority: `https://yachtrentaldxb.com/`
+
+> **PR 4B update:** The owner subsequently approved the 24 source records' explicitly listed factual fields. The record-by-record sections below remain the immutable PR 4A review snapshot and do not describe the current release. PR 4B maps 21 approved source records to exact existing manifest owners: 19 are publishable and two remain blocked by the separate 55-foot route-brand gate and Dynasty 151/150 conflict. Three approved source records have no existing manifest owner and do not create routes. Three additional manifest yacht owners lack an exact approved source match. Current production data is defined only by `src/data/yachts.ts`; inherited descriptions and other unapproved fields remain excluded.
 
 ## How to use this pack
 
@@ -10,7 +12,7 @@ This is a review document, not production data. Repository values are source obs
 
 On 2026-07-14 the owner approved the existing English-repository yacht image URLs for **catalogue cards and yacht detail pages only**, and only when each retained production URL passes `media:verify`. This does not approve Evali branding, ratings, inherited schema, stale Offers, descriptions, universal inclusions, blocked URLs, other media surfaces, or any yacht fact.
 
-Current release invariants remain unchanged: 24 source records, 0 publishable yachts, 24 blocked yachts, 0 generated detail pages, 4 sitemap URLs, 0 redirects, and 0 commercial consolidations.
+The original PR 4A tables below are retained as historical review evidence. See `IMPLEMENTATION_PR4B_REPORT.md` for the current 19-published / 5-blocked manifest disposition and 23-URL sitemap result.
 
 ## 1. yacht-55ft-historical-brand-path
 

@@ -98,9 +98,22 @@ export const verifyRemoteImage = async (
 ): Promise<VerifiedImage> => {
   const requested = new URL(url);
   if (requested.protocol !== "https:") throw new Error(`${url}: remote yacht media must use HTTPS.`);
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 20_000);
-  const response = await fetcher(url, { redirect: "follow", signal: controller.signal }).finally(() => clearTimeout(timeout));
+  let response: Response | undefined;
+  let transportError: unknown;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 20_000);
+    try {
+      response = await fetcher(url, { redirect: "follow", signal: controller.signal });
+      break;
+    } catch (error) {
+      transportError = error;
+      if (attempt === 3) throw error;
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+  if (!response) throw transportError;
   if (!response.ok) throw new Error(`${url}: returned HTTP ${response.status}.`);
   const finalUrl = new URL(response.url || url);
   if (finalUrl.protocol !== "https:" || finalUrl.hostname !== requested.hostname) {
@@ -133,7 +146,14 @@ export const verifyProductionYachtMedia = async () => {
   const uniquePaths = new Set(media.map((record) => record.path));
   if (uniquePaths.size !== media.length) throw new Error("Production yacht media paths must be unique.");
   await verifyLocalImage(NEUTRAL_YACHT_FALLBACK);
-  await Promise.all(media.map(verifyYachtMediaRecord));
+  const queue = [...media];
+  await Promise.all(Array.from({ length: Math.min(6, queue.length) }, async () => {
+    for (;;) {
+      const record = queue.shift();
+      if (!record) return;
+      await verifyYachtMediaRecord(record);
+    }
+  }));
   return { yachtCount: publishableYachts.length, imageCount: media.length };
 };
 

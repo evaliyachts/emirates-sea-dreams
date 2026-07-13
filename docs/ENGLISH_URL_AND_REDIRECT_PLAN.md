@@ -120,3 +120,7 @@ The remaining 48 manifest paths and all six commercial candidates remain unpubli
 The strict yacht review did not approve any detail owner for publication. All 24 yacht paths remain represented in the 52-record manifest, blocked from static output, absent from the four-URL sitemap, and direct 404. The existing `/yachts` owner remains a static 200 but links only to strict publishable records, currently none.
 
 The historical 55-foot branded path and combined service overlap remain candidates only. Approved redirects remain **0** and approved commercial consolidations remain **0**. No neutral yacht slug, redirect destination, wildcard, or slash migration was created.
+
+## PR 4B yacht publication result
+
+Owner-approved facts and technically verified media clear 19 existing yacht manifest owners for exact non-trailing-slash static publication. Five yacht owners remain direct 404s and outside the sitemap. No path was renamed, no new slug was created, and approved redirects and commercial consolidations remain **zero**. The generated sitemap now contains the four base owners plus the 19 published yacht details.

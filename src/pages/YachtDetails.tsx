@@ -24,7 +24,7 @@ const YachtDetails = () => {
     );
   }
 
-  const { path, title, description, jsonLd } = buildYachtSeo(yacht);
+  const { path, title, description, socialImage, jsonLd } = buildYachtSeo(yacht);
   const images = yacht.media.map((media) => media.path);
   const relatedYachts = publishableYachts.filter((candidate) => candidate.id !== yacht.id).slice(0, 3);
   const details = [
@@ -36,7 +36,7 @@ const YachtDetails = () => {
   ];
   return (
     <Layout>
-      <SEOHead title={title} description={description} path={path} jsonLd={jsonLd} />
+      <SEOHead title={title} description={description} path={path} jsonLd={jsonLd} socialImage={socialImage} />
       <main className="pt-28 pb-16">
         <div className="container mx-auto px-4">
           <Link to="/yachts" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6">
@@ -64,7 +64,7 @@ const YachtDetails = () => {
               <h2 id="booking-facts-heading" className="text-2xl font-display font-bold text-foreground mb-3">Booking facts</h2>
               <p className="text-muted-foreground leading-relaxed">
                 The verified hourly price is AED {yacht.pricePerHour.toLocaleString()}, with a minimum booking duration of {yacht.minimumDuration} hours.
-                {yacht.availability === "pending" ? " Current availability has not been published." : ` Recorded availability: ${yacht.availability}.`}
+                Availability is on request and must be confirmed again during booking.
               </p>
             </section>
             <section aria-labelledby="capacity-guidance-heading">

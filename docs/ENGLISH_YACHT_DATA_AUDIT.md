@@ -80,3 +80,16 @@ The historical table above remains the source audit; its values were not convert
 - Dynasty 151/150, Heysea/Doretty/Mzaail spelling, and the generic 120-foot identity remain explicit blockers.
 
 This is a valid PR 4 completion state: blocked records are not presented as 200/noindex placeholders, are absent from the sitemap, and are not linked from generated yacht surfaces. See `IMPLEMENTATION_PR4_REPORT.md`.
+
+## PR 4B owner approval and publication update — 2026-07-14
+
+The owner later approved the 24 current source records for the explicitly named factual fields and approved their existing media URLs for defined English surfaces subject to `media:verify`. PR 4B uses the richer source snapshot with numeric IDs 2–25 and does not reinterpret the legacy audit reference numbers above as source IDs.
+
+- Exact approved source-to-current-manifest matches: **21**.
+- Publishable yacht owners: **19**.
+- Blocked yacht manifest owners: **5**.
+- Approved source records without current manifest owners: **3**; no route is created.
+- Retained production media: **126**, all verified.
+- Generated detail routes: **19**; sitemap URLs: **23** total.
+
+The branded 55-foot route and Dynasty 151/150 conflict remain blocked. Sunseeker 82, Azimut 80, and the generic 120-foot owner lack exact approved source mappings. See `IMPLEMENTATION_PR4B_REPORT.md` for the authoritative release mapping; the original table remains historical audit evidence only.
