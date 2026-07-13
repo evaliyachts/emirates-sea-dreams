@@ -11,6 +11,20 @@ This is an evidence-gated migration map, not a redirect implementation. Canonica
 5. Preserve query strings where safe and avoid wildcard rules that capture preview hosts.
 6. Do not publish a redirect until destination content, internal links, sitemap and canonical are ready in the same release.
 
+## Search Console disposition gate
+
+The 2026-06-30 Page Indexing summary does not approve any route disposition change. It supplies aggregate status counts, not URL-level query, page, link or redirect evidence.
+
+Still required before dispositions can be reviewed:
+
+- the six example URLs reported as Not found (404);
+- the two URLs reported as Crawled – currently not indexed;
+- the one URL reported as Page with redirect, including its chain and destination;
+- Query × Page performance evidence;
+- Links report evidence.
+
+Approved redirects remain **zero**. The 10,553 property-level impressions are not page evidence and cannot approve a redirect or consolidation.
+
 ## Static and hub URLs
 
 | Current URL | Response | Proposed owner/action | Destination | Evidence | Risk |

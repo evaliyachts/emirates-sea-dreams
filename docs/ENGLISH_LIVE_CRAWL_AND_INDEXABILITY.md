@@ -20,6 +20,33 @@ The 52 sitemap URLs produced this result:
 
 No recommendation in this report converts all 51 failures into indexable pages automatically. PR 2 must first classify canonical ownership; PR 3 should render only approved keep/enrich owners.
 
+## Historical Search Console status
+
+The following is a Google Search Console Page Indexing summary dated 2026-06-30. It is historical report evidence and is separate from the live crawl performed on 2026-07-13.
+
+| Search Console status | Count |
+| --- | ---: |
+| Known URLs | 55 |
+| Indexed | 1 |
+| Not indexed | 54 |
+| Discovered – currently not indexed | 45 |
+| Not found (404) | 6 |
+| Crawled – currently not indexed | 2 |
+| Page with redirect | 1 |
+
+Indexation rate: 1.8%. The report filter was **All known pages**.
+
+### Comparison with the live crawl
+
+| Evidence | Date | Scope | Result | What it proves |
+| --- | --- | --- | --- | --- |
+| Search Console Page Indexing | 2026-06-30 | 55 all-known URLs | 1 indexed, 54 not indexed | Historical Google classification; individual URLs not supplied |
+| Live sitemap crawl | 2026-07-13 | 52 current sitemap URLs | 1×200, 51×404 | Current direct HTTP behavior of the submitted inventory |
+
+The count `1 indexed + 45 discovered + 6 not found = 52` exactly matches the current sitemap count. This is a high-confidence inference that those three groups may correspond to the sitemap inventory, not a confirmed submitted-page mapping. The filter was not All submitted pages, and issue-detail URLs are absent.
+
+The other three known URLs—two crawled but not indexed and one page with redirect—remain unidentified. Their presence does not increase the intended route inventory beyond 52 and does not justify creating three routes. Classification lag and the different observation dates also mean the six historical Google 404s must not be equated with the 51 URLs returning 404 during the later live crawl.
+
 ## Deployment architecture
 
 - Framework: Vite 5.4.19, React 18.3.1, React Router 6.30.1.

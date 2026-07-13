@@ -13,7 +13,9 @@ The highest-risk technical issue is direct-route failure. The highest-risk conte
 
 | Work | Impact | Effort | Risk | Dependency | Order |
 | --- | --- | --- | --- | --- | ---: |
-| Search Console exports and Live Tests | Critical | Small | Low | Property access | 1 |
+| Search Console Page Indexing summary | Critical | Small | Low | Received: report dated 2026-06-30 | Evidence input received |
+| Query × Page evidence | Critical | Small | Low | Still missing | 1 |
+| Four Search Console Live URL Tests | Critical | Small | Low | Still missing | 1 |
 | Business/legal/media approvals | Critical | Medium | Low | Owner input | 1 |
 | Typed route ownership manifest | Critical | Medium | Medium | GSC evidence | 2 |
 | Static route output and real 404 | Critical | Large | Medium | Manifest | 3 |
@@ -24,13 +26,26 @@ The highest-risk technical issue is direct-route failure. The highest-risk conte
 | Accessibility/performance/conversion | Medium | Medium | Low | Stable pages/media | 8 |
 | Production crawl and GSC handoff | Critical | Medium | Medium | All prior work | 9 |
 
+## Post-audit Search Console baseline
+
+The original audit correctly recorded that no Search Console exports were available at audit time. A Page Indexing summary dated 2026-06-30 was supplied afterward and is now recorded in `ENGLISH_SEARCH_CONSOLE_BASELINE.md`.
+
+- Google reported 55 known URLs: 1 indexed and 54 not indexed, an indexation rate of 1.8%.
+- The non-indexed breakdown was 45 discovered but not indexed, 6 not found (404), 2 crawled but not indexed and 1 page with redirect.
+- Most known URLs therefore had been discovered but had not yet progressed to crawling/indexation at the report date.
+- The live sitemap has 52 URLs. The numerical match `1 indexed + 45 discovered + 6 not found = 52` is a high-confidence inference about possible sitemap membership, not a confirmed mapping, because the report filter was All known pages.
+- The current direct-route failure remains the strongest observed technical explanation for severe indexation failure. It directly accords with the existence of a Google 404 group, but it does not prove Google crawled the 45 discovered URLs or classified them based on the current response.
+- Content-quality conclusions cannot yet be applied to the 45 discovered URLs because the summary indicates they had not been crawled. Their source content still requires factual review before publication.
+- The two crawled-not-indexed URLs require individual inspection once their example URLs are supplied.
+- Property-level impressions are not Query × Page evidence and do not approve ownership, consolidation or redirects.
+
 ## Launch and indexation blockers
 
 1. 51 of 52 sitemap URLs return a real `404` on direct request.
 2. Inner-route initial HTML contains no route title, description, canonical, H1, content or schema.
 3. Client navigation can leave the root canonical/schema in the document and append route metadata, creating duplicate ownership signals.
 4. The sitemap is generated from data arrays rather than a canonical route manifest and assigns build-date `lastmod` to every URL.
-5. The external `403` report is unresolved; Search Console evidence is missing.
+5. The external `403` report is unresolved; Page Indexing summary evidence is available, but Live URL Tests are still missing.
 6. A sampled primary yacht image returned `403`, so critical media are not reliably crawlable.
 
 ## Technical findings
@@ -146,4 +161,4 @@ After the site is factually sound, pursue real relationships with Dubai event pl
 
 ## Evidence and uncertainty
 
-The audit uses repository source, live HTTP/browser behavior, the user-supplied historical ranking snapshot and a limited current competitor sample. It has no Search Console, analytics, backlink, Netlify admin, WAF admin, legal approval or media-rights evidence. Ranking-dependent route changes are therefore provisional.
+The audit uses repository source, live HTTP/browser behavior, the user-supplied historical ranking snapshot, the subsequently supplied 2026-06-30 Search Console Page Indexing summary and a limited current competitor sample. It still has no Query × Page export, Page Indexing issue URLs, Live URL Tests, analytics, backlink, Netlify admin, WAF admin, legal approval or media-rights evidence. Ranking-dependent route changes are therefore provisional.

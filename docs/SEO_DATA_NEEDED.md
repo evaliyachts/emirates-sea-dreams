@@ -1,20 +1,35 @@
 # SEO Data Needed
 
-No Search Console exports were found in `seo-input/`, `docs/seo-input/` or the workspace during the 2026-07-13 audit. Do not infer clicks, impressions, CTR, indexation or backlinks.
+## Evidence ledger
 
-## Google Search Console exports
+The original 2026-07-13 audit found no Search Console exports in `seo-input/`, `docs/seo-input/` or the workspace. A summary was supplied afterward and is recorded in `ENGLISH_SEARCH_CONSOLE_BASELINE.md`.
 
-Use the domain property for `yachtrentaldxb.com` and export, preferably for the last 16 months:
+### Received
 
-1. Performance → Search results → Queries.
-2. Performance → Search results → Pages.
-3. Query × page data, including clicks, impressions, CTR and position.
-4. Country, device and date breakdowns.
-5. Page Indexing export, including reasons and last crawl.
-6. Sitemap submission/status details.
-7. Core Web Vitals report.
-8. Links report: top linked pages, internal links and linking sites.
-9. URL Inspection Live Test evidence specified in `ENGLISH_GOOGLE_ACCESS_EVIDENCE.md`.
+- Page Indexing summary dated 2026-06-30.
+- Filter: All known pages.
+- Aggregate counts for indexed, discovered-not-indexed, 404, crawled-not-indexed and redirect statuses.
+- Ten-day property-level impressions overlay for 2026-06-21 through 2026-06-30.
+
+### Still required
+
+Use the `yachtrentaldxb.com` property and export the longest available period where applicable:
+
+1. Performance → Queries.
+2. Performance → Pages.
+3. Query × Page data, including clicks, impressions, CTR and position.
+4. Countries.
+5. Devices.
+6. Dates.
+7. Page Indexing issue-detail example URLs for all four non-indexed statuses: discovered, 404, crawled-not-indexed and redirect.
+8. Page Indexing filtered to All submitted pages.
+9. Page Indexing filtered to Unsubmitted pages only.
+10. Sitemap status/details.
+11. Links report: top linked pages, internal links and linking sites.
+12. Core Web Vitals.
+13. Four URL Inspection Live Tests specified in `ENGLISH_GOOGLE_ACCESS_EVIDENCE.md`.
+
+Do not infer query/page clicks, CTR, ownership, backlinks or redirect value from the received aggregate summary.
 
 Store exports under `docs/seo-input/` with export date and property name. Redact user data and credentials.
 

@@ -56,12 +56,12 @@ Add media and deployed-crawl checks when their foundations exist. Keep the Bun l
 **Priority:** critical impact / large effort / high decision risk
 **Objective:** make one manifest the source of canonical ownership before restoring route output.
 
-- Scope: inventory current/historic URLs; ingest GSC query-by-page, indexation and link evidence; type indexability, intent, title/description/H1 ownership, exact English canonical form, optional truthful update date, schema ownership, navigation targets and legacy redirects; define sitemap migration without publishing it yet.
+- Scope: inventory current/historic URLs; consume the received Page Indexing baseline and ingest the still-required GSC Query × Page, issue-URL and link evidence; type indexability, intent, title/description/H1 ownership, exact English canonical form, optional truthful update date, schema ownership, navigation targets and legacy redirects; define sitemap migration without publishing it yet.
 - Pages affected: all 52 current sitemap candidates plus any evidenced historic commercial URLs; seven occasion records are classified but not automatically routed.
 - Likely files: `src/seo/routes.*`, `src/seo/redirects.*`, validation scripts/tests, manifest-owned metadata inputs, migration evidence docs. Production sitemap remains unchanged until an approved coordinated release.
-- Dependencies: PR 1; GSC exports; business/legal facts; current backlink/history evidence.
+- Dependencies: PR 1; received Page Indexing baseline; still-required Query × Page, issue-URL and links exports; business/legal facts; current backlink/history evidence.
 - Risks: traffic loss from premature consolidation; synonym doorway pages; assuming all sitemap URLs deserve indexation.
-- Migration concerns: preserve current commercial paths by default; identify one primary intent per owner; mark unresolved routes explicitly.
+- Migration concerns: the 45 discovered-not-indexed URLs make route repair time-sensitive, but preserve current commercial paths by default; identify one primary intent per owner; mark unresolved routes explicitly. The aggregate baseline cannot approve commercial consolidation without Query × Page and links evidence.
 - Redirect concerns: record direct one-hop candidates only; do not activate. The combined engagement/wedding service and Evali-branded yacht route need evidence.
 - Tests: reject duplicate intent/title/description/H1/introduction/FAQ/section headings; malformed canonicals; duplicate routes; unsafe redirect chains; untruthful lastmod; sitemap expectation mismatch; unknown yacht fields.
 - Live validation: none requiring URL changes; compare manifest proposal against GSC exports and current live responses.

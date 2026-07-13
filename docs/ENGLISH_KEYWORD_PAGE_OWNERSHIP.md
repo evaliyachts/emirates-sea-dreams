@@ -1,6 +1,8 @@
 # English Keyword and Page Ownership
 
-The ranking positions below are the user-supplied historical baseline, not current rankings. Search Console evidence is absent. Current commercial URLs must be preserved by default until query-by-page data is reviewed.
+The ranking positions below are the user-supplied historical baseline, not current rankings. A 2026-06-30 Search Console Page Indexing summary and ten-day property-level impressions overlay are now available, but neither identifies queries by page. Current commercial URLs must be preserved by default until Query × Page data is reviewed.
+
+The reported 10,553 impressions are property-level historical evidence only. They cannot identify a current owner, prove cannibalization or approve consolidation. Every commercial ownership decision in this document remains provisional, and Query × Page plus links evidence is mandatory before a current commercial URL is merged, redirected or removed.
 
 ## Ownership map
 
