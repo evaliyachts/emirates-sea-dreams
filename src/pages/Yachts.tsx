@@ -27,7 +27,6 @@ const Yachts = () => {
         title="Yachts for Rent in Dubai | Yacht Rental Dubai Fleet — Dubai Yacht"
         description="Yacht rental Dubai fleet — standard, luxury yacht charter Dubai, and superyacht hire. Compare yachts for rent in Dubai and book your Dubai yacht charter."
         path="/yachts"
-        keywords="yacht rental dubai, yachts for rent in dubai, yacht for rent dubai, rent yacht in dubai, yacht hire dubai, dubai yacht charter, luxury yacht rental dubai, luxury yacht charter dubai, book yacht dubai, dubai yacht booking"
       />
 
       <div className="pt-28 pb-10">

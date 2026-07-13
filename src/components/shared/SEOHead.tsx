@@ -5,15 +5,14 @@ interface SEOHeadProps {
   title: string;
   description: string;
   path: string;
-  keywords?: string;
   jsonLd?: Record<string, unknown>;
 }
 
-const SEOHead = ({ title, description, path, keywords, jsonLd }: SEOHeadProps) => (
+const SEOHead = ({ title, description, path, jsonLd }: SEOHeadProps) => (
   <Helmet>
     <title>{title}</title>
     <meta name="description" content={description} />
-    {keywords && <meta name="keywords" content={keywords} />}
+    <meta name="robots" content="index, follow" />
     <link rel="canonical" href={`${DOMAIN}${path}`} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

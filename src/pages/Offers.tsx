@@ -14,7 +14,6 @@ const Offers = () => (
       title="Yacht Packages in Dubai | Sunset Cruises & VIP Charters"
       description="Explore curated yacht packages in Dubai — sunset escapes, marina parties, and VIP celebrations. Custom packages available."
       path="/offers"
-      keywords="yacht packages dubai, sunset cruise dubai yacht, yacht party dubai, vip yacht charter dubai"
     />
 
     <div className="pt-28 pb-20">

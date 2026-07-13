@@ -1,65 +1,51 @@
-import { readdirSync, readFileSync, statSync } from "node:fs";
-import { join, resolve } from "node:path";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { services } from "@/data/services";
-import { yachts } from "@/data/yachts";
+import { englishRouteManifest, publishedStaticRoutes } from "../../seo/index";
 
 const read = (path: string) => readFileSync(resolve(path), "utf8");
 
-const sourceFiles = (directory: string): string[] =>
-  readdirSync(directory).flatMap((entry) => {
-    const path = join(directory, entry);
-    if (statSync(path).isDirectory()) return entry === "test" ? [] : sourceFiles(path);
-    return /\.(ts|tsx)$/.test(entry) ? [path] : [];
+describe("PR 3 SEO and HTTP boundaries", () => {
+  it("publishes only the four evidence-cleared manifest owners", () => {
+    expect(englishRouteManifest).toHaveLength(52);
+    expect(publishedStaticRoutes.map((route) => route.path)).toEqual(["/", "/yachts", "/services", "/occasions"]);
+    const locations = [...read("public/sitemap.xml").matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+    expect(locations).toEqual([
+      "https://yachtrentaldxb.com/",
+      "https://yachtrentaldxb.com/yachts",
+      "https://yachtrentaldxb.com/services",
+      "https://yachtrentaldxb.com/occasions",
+    ]);
+    expect(read("public/sitemap.xml")).not.toContain("<lastmod>");
   });
 
-describe("PR 1 SEO and route boundaries", () => {
-  it("preserves the audited 52-URL inventory without creating route owners", () => {
-    const sitemap = read("public/sitemap.xml");
-    const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-
-    expect(locations).toHaveLength(52);
-    expect(new Set(locations).size).toBe(52);
-    expect(yachts).toHaveLength(24);
-    expect(services).toHaveLength(18);
-  });
-
-  it("preserves the current client route declarations", () => {
-    const appSource = read("src/App.tsx");
-    const routePaths = [...appSource.matchAll(/<Route path="([^"]+)"/g)].map((match) => match[1]);
-
-    expect(routePaths).toEqual([
-      "/",
-      "/yachts",
-      "/yachts/:slug",
-      "/offers",
-      "/services",
-      "/services/:slug",
-      "/occasions",
-      "/about",
-      "/faq",
-      "/contact",
-      "/terms",
-      "/privacy",
-      "*",
+  it("keeps the client route declarations unchanged in the shared route tree", () => {
+    const source = read("src/app/AppRoutes.tsx");
+    const paths = [...source.matchAll(/<Route path="([^"]+)"/g)].map((match) => match[1]);
+    expect(paths.slice(-13)).toEqual([
+      "/", "/yachts", "/yachts/:slug", "/offers", "/services", "/services/:slug",
+      "/occasions", "/about", "/faq", "/contact", "/terms", "/privacy", "*",
     ]);
   });
 
-  it("keeps homepage fallback metadata and visible content unchanged", () => {
-    const html = read("index.html");
-
-    expect(html.match(/<h1\b/g)).toHaveLength(1);
-    expect(html).toContain('<link rel="canonical" href="https://yachtrentaldxb.com/" />');
-    expect(html).toContain("Yacht Rental Dubai — Luxury Yacht Charter Dubai by Dubai Yacht");
+  it("uses only exact 200 rewrites and no catch-all or redirect", () => {
+    const config = read("netlify.toml");
+    expect([...config.matchAll(/status = 200/g)]).toHaveLength(3);
+    expect(config).not.toMatch(/status = 30[12]/);
+    expect(config).not.toMatch(/from = "\/\*"/);
   });
 
-  it("does not activate analytics or live language alternates", () => {
-    const productionSource = sourceFiles(resolve("src"))
-      .map((file) => readFileSync(file, "utf8"))
-      .join("\n");
-    const initialHtml = read("index.html");
+  it("removes fallback SEO and meta-keywords output", () => {
+    const template = read("index.html");
+    expect(template).toContain("<!--app-head-->");
+    expect(template).toContain("<!--app-html-->");
+    expect(`${template}\n${read("src/components/shared/SEOHead.tsx")}`).not.toMatch(/name="keywords"/i);
+    expect(template).not.toMatch(/LocalBusiness|application\/ld\+json/);
+  });
 
-    expect(productionSource).not.toMatch(/\bdataLayer\b|\bgtag\s*\(|googletagmanager/i);
-    expect(`${initialHtml}\n${productionSource}`).not.toMatch(/hreflang\s*=|x-default/i);
+  it("keeps analytics and language alternates absent", () => {
+    const source = `${read("index.html")}\n${read("src/components/shared/SEOHead.tsx")}`;
+    expect(source).not.toMatch(/\bdataLayer\b|\bgtag\s*\(|googletagmanager/i);
+    expect(source).not.toMatch(/hreflang\s*=|x-default/i);
   });
 });

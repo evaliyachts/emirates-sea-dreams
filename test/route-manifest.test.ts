@@ -10,6 +10,7 @@ import {
   commercialCandidateRegistry,
   englishRouteManifest,
   occasionDispositions,
+  publishedStaticRoutes,
   redirectCandidates,
   routeGroups,
   searchConsoleAggregateBaseline,
@@ -36,7 +37,7 @@ describe("English PR 2 route ownership manifest", () => {
     expect(englishRouteManifest).not.toHaveLength(searchConsoleAggregateBaseline.knownUrls);
   });
 
-  it("matches the current sitemap URL set exactly without changing English path form", () => {
+  it("publishes only evidence-cleared owners without changing English path form", () => {
     const sitemap = read("public/sitemap.xml");
     const sitemapPaths = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => {
       const url = new URL(match[1]);
@@ -44,10 +45,12 @@ describe("English PR 2 route ownership manifest", () => {
       return url.pathname;
     });
     const manifestPaths = englishRouteManifest.map((route) => route.path);
+    const publishedPaths = publishedStaticRoutes.map((route) => route.path);
 
-    expect(sitemapPaths).toHaveLength(52);
-    expect(new Set(sitemapPaths).size).toBe(52);
-    expect([...manifestPaths].sort()).toEqual([...sitemapPaths].sort());
+    expect(sitemapPaths).toHaveLength(4);
+    expect(new Set(sitemapPaths).size).toBe(4);
+    expect([...publishedPaths].sort()).toEqual([...sitemapPaths].sort());
+    expect(manifestPaths).toHaveLength(52);
     expect(manifestPaths.filter((path) => path !== "/").every((path) => !path.endsWith("/"))).toBe(true);
   });
 
@@ -103,7 +106,10 @@ describe("English PR 2 route ownership manifest", () => {
     expect(redirectCandidates.every((redirect) => redirect.status === "candidate")).toBe(true);
     expect(redirectCandidates.every((redirect) => !redirect.from.includes("*"))).toBe(true);
     expect(redirectCandidates.every((redirect) => redirect.proposedTo === undefined)).toBe(true);
-    expect(read("netlify.toml")).not.toContain("[[redirects]]");
+    const netlify = read("netlify.toml");
+    expect([...netlify.matchAll(/status = 200/g)]).toHaveLength(3);
+    expect(netlify).not.toMatch(/status = 30[12]/);
+    expect(netlify).not.toMatch(/from = "\/\*"/);
   });
 
   it("keeps inherited branding out of proposed ownership copy and limits planned schema", () => {
@@ -160,15 +166,11 @@ describe("English PR 2 route ownership manifest", () => {
     });
   });
 
-  it("does not integrate the manifest into production route/render/output code", () => {
-    const productionSource = sourceFiles(resolve("src"))
-      .map((file) => readFileSync(file, "utf8"))
-      .join("\n");
-    const appSource = read("src/App.tsx");
+  it("preserves route declarations while integrating publication only into build output", () => {
+    const appSource = read("src/app/AppRoutes.tsx");
     const routePaths = [...appSource.matchAll(/<Route path="([^"]+)"/g)].map((match) => match[1]);
 
-    expect(productionSource).not.toMatch(/from\s+["'][^"']*(?:\/seo|@\/seo)/);
-    expect(routePaths).toEqual([
+    expect(routePaths.slice(-13)).toEqual([
       "/",
       "/yachts",
       "/yachts/:slug",
@@ -183,6 +185,7 @@ describe("English PR 2 route ownership manifest", () => {
       "/privacy",
       "*",
     ]);
+    expect(read("scripts/build-static.ts")).toContain("publishedStaticRoutes");
   });
 
   it("keeps live hreflang and x-default absent", () => {

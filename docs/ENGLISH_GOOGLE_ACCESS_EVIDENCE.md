@@ -51,3 +51,14 @@ Record evidence from Netlify and any upstream DNS/CDN/WAF provider:
 ## Pass criteria
 
 This gate passes only when all four Live Tests report accessible, renderable and indexable pages; the intended canonical matches the user-declared canonical; critical resources load; and any WAF/CDN rule is documented. A failed or inconclusive test blocks Search Console submission and broad sitemap publication.
+
+## PR 3 Live Test readiness
+
+PR 3 makes four static routes suitable for future Live URL Tests without performing or fabricating those tests:
+
+- homepage: `https://yachtrentaldxb.com/`;
+- commercial/catalogue representative: `https://yachtrentaldxb.com/yachts`;
+- event-hub representative: `https://yachtrentaldxb.com/services`;
+- occasion-hub representative: `https://yachtrentaldxb.com/occasions`.
+
+Detailed yacht and event pages remain unpublished and cannot replace the later required representative detail-page Live Tests. Do not click Validate Fix or submit the temporary sitemap from Codex. Search Console evidence remains pending user-authorized collection.

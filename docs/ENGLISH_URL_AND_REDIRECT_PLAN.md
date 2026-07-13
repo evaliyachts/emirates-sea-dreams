@@ -108,3 +108,9 @@ Examples such as `/dubai-yacht-booking`, `/luxury-yacht-rental-dubai`, `/yacht-c
 - Likely evidence-gated consolidation/rename candidates: **2**.
 - Candidate 1: combined engagement/wedding service versus the two specific owners.
 - Candidate 2: Evali-branded 55-foot yacht route versus a future approved neutral owner.
+
+## PR 3 HTTP publication state
+
+The ownership manifest remains at 52 records, but only `/`, `/yachts`, `/services`, and `/occasions` are currently eligible for static canonical publication. The three inner routes use exact Netlify status-200 file mappings and retain their non-trailing-slash public forms. These mappings are not SEO redirects.
+
+The remaining 48 manifest paths and all six commercial candidates remain unpublished direct-request 404s. Approved 301/302 redirects remain **0**, approved commercial consolidations remain **0**, and no wildcard or homepage fallback rule is active.

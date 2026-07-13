@@ -179,3 +179,9 @@ See `ENGLISH_GOOGLE_ACCESS_EVIDENCE.md` for the Search Console gate.
 3. Establish a typed manifest and classify each route as keep/enrich, redirect, noindex or unresolved.
 4. Preserve current commercial URLs by default until no indexation, traffic, links or historical value is proven.
 5. In the static-rendering PR, require approved canonical routes to return `200` with route-specific initial HTML and unknown routes to return a real `404`.
+
+## PR 3 publication update — 2026-07-13
+
+Implementation PR 3 replaces the mixed handwritten fallback/client-only architecture with shared React static rendering for the four evidence-cleared owners: `/`, `/yachts`, `/services`, and `/occasions`. The temporary sitemap is reduced from 52 advertised URLs to those four generated canonical pages. The other 48 manifest records remain represented but unpublished and must return real 404 responses on direct requests.
+
+The historical observations above remain the pre-PR-3 baseline. Deploy Preview and post-merge production status matrices are recorded in `IMPLEMENTATION_PR3_REPORT.md`; no later route is considered restored until its phase-specific verification gate passes.
