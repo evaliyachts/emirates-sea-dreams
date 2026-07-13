@@ -5,7 +5,8 @@
 - Branch: `agent/english-pr4-verified-yachts`
 - Pull request: [#6](https://github.com/evaliyachts/emirates-sea-dreams/pull/6)
 - Initial implementation commit: `1ed4088`
-- Final branch commit: recorded in the final pull-request description because a commit cannot contain its own immutable SHA
+- Final PR branch commit: `baeea65ef5485b26d256a3503a03c86a9464c0d9`
+- Squash merge commit: `07c8a813cc7700e8a943c064f64f0ac37ea3f170`
 - Phase: verified yacht contract, catalogue, media rights, and evidence-gated detail publication only
 - Production authority: `https://yachtrentaldxb.com/`
 
@@ -75,4 +76,36 @@ PR 5 must begin from this evidence-gated publication state. It must not interpre
 
 ## Post-merge production smoke test
 
-Pending merge and production deployment. The final production status, deploy ID, bundle name, timestamp, sitemap count, blocked-route checks, schema scan, and media result will be recorded after the merged deployment is available.
+Production deployment and smoke testing completed successfully on 2026-07-13:
+
+- Netlify production deploy ID: `6a554ad511e63a00080bd5ca`
+- Netlify build ID: `6a554ad511e63a00080bd5c8`
+- Production context: `production`, branch `main`
+- Deploy created: `2026-07-13T20:30:13.805Z`
+- Deploy published: `2026-07-13T20:30:32.099Z`
+- Production JavaScript bundle: `index-CG4QRr_4.js`
+- GitHub main Quality run: [29282633503](https://github.com/evaliyachts/emirates-sea-dreams/actions/runs/29282633503), passed including `media:verify`
+
+| Production check | Result |
+| --- | --- |
+| Published canonical routes | 4/4 direct 200, no `Location` header |
+| Blocked yacht routes | 24/24 direct 404, no `Location` header |
+| Additional blocked support/service/commercial/unknown probes | 9/9 direct 404 |
+| Sitemap | 4 exact generated canonical URLs; no `lastmod` |
+| Robots | 200; references `https://yachtrentaldxb.com/sitemap.xml` |
+| Neutral fallback | 200 `image/svg+xml`; decoded 1600×900 locally |
+| Production yacht media | 0 URLs across 0 publishable yachts |
+| Redirects observed | 0 |
+| Default Netlify host | `/` and `/yachts` remain direct 200; no default-host redirect activated |
+| Yacht index metadata | Correct title, description, exact canonical, robots and H1 in initial HTML |
+| Yacht detail links | 0, matching the publishable set |
+| Visible inherited yacht branding | None on `/yachts` |
+| Yacht Product/rating schema | None |
+| Live hreflang/x-default | None |
+| Fingerprinted asset caching | Long-lived immutable |
+| HTML/404/robots/sitemap caching | Revalidation; not immutable |
+| Production source maps | Absent; no asset source-map references |
+| Browser hydration | Complete with expected visible catalogue state |
+| Browser warning/error logs | 0 on `/yachts`; 0 on representative blocked yacht 404 |
+
+The final production state remains 52 manifest records, four sitemap URLs, zero publishable yacht details, 24 blocked yacht records, zero approved redirects, and zero approved commercial consolidations. Search Console was not changed. PR 5 has not begun.
