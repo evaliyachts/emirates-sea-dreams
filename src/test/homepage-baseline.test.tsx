@@ -9,8 +9,8 @@ afterEach(() => {
   document.head.innerHTML = "";
 });
 
-describe("homepage baseline", () => {
-  it("renders the current visible H1 and content", () => {
+describe("homepage commercial owner", () => {
+  it("renders the PR 5 H1 and factual direct answer", () => {
     render(
       <HelmetProvider>
         <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
@@ -22,13 +22,14 @@ describe("homepage baseline", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: /Yacht Rental Dubai — Luxury Yacht Charter Dubai/i,
+        name: /Private Yacht Rental in Dubai, Compared with Verified Facts/i,
       }),
     ).toBeInTheDocument();
-    expect(screen.getByText("Premium Yacht Charters")).toBeInTheDocument();
+    expect(screen.getByText(/The current published catalogue contains 19 verified yacht records/i)).toBeInTheDocument();
+    expect(screen.getByText(/not described as a public, ticketed or shared cruise service/i)).toBeInTheDocument();
   });
 
-  it("preserves the current homepage metadata helper output", async () => {
+  it("emits the approved homepage metadata helper output", async () => {
     render(
       <HelmetProvider>
         <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
@@ -38,11 +39,11 @@ describe("homepage baseline", () => {
     );
 
     await waitFor(() => {
-      expect(document.title).toBe("Yacht Rental Dubai | Luxury Yacht Charter Dubai — Dubai Yacht");
+      expect(document.title).toBe("Private Yacht Rental Dubai | Compare Verified Yachts");
     });
 
     expect(document.querySelector('meta[name="description"]')?.getAttribute("content")).toContain(
-      "Yacht rental Dubai with Dubai Yacht",
+      "Compare 19 verified private yachts in Dubai",
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe(
       "https://yachtrentaldxb.com/",

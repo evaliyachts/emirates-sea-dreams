@@ -1,4 +1,4 @@
-import type { EnglishRouteRecord, PageType, RouteEvidence, SchemaOwner } from "./contracts";
+import type { EnglishRouteRecord, MetadataOwnership, PageType, RouteEvidence, SchemaOwner } from "./contracts";
 
 const sitemapEvidence: RouteEvidence = {
   source: "sitemap",
@@ -39,11 +39,16 @@ interface PreservedRouteInput {
   schemaOwnership: SchemaOwner[];
   verificationRequired: string[];
   renderingEligible?: boolean;
+  metadataOwnership?: MetadataOwnership;
   notes?: string[];
 }
 
 const preservedRoute = ({
   renderingEligible = false,
+  metadataOwnership = {
+    status: "pending",
+    note: "Future title, description, and H1 copy is not approved in PR 2.",
+  },
   secondaryIntents = [],
   notes = [],
   ...input
@@ -51,10 +56,7 @@ const preservedRoute = ({
   ...input,
   secondaryIntents,
   notes,
-  metadataOwnership: {
-    status: "pending",
-    note: "Future title, description, and H1 copy is not approved in PR 2.",
-  },
+  metadataOwnership,
   sitemapListed: true,
   currentHttpStatus: 404,
   decision: "preserve-pending-evidence",
@@ -81,8 +83,11 @@ const homeRoute: EnglishRouteRecord = {
   primaryIntent: "broad private yacht rental in Dubai",
   secondaryIntents: ["private yacht hire terminology", "fleet and booking journey overview"],
   metadataOwnership: {
-    status: "pending",
-    note: "Current homepage fallback metadata is a legacy observation; future copy ownership belongs to PR 5.",
+    status: "approved",
+    title: "Private Yacht Rental Dubai | Compare Verified Yachts",
+    description: "Compare 19 verified private yachts in Dubai by hourly price, guest capacity and minimum duration, then prepare a factual rental request.",
+    h1: "Private Yacht Rental in Dubai, Compared with Verified Facts",
+    note: "PR 5 assigns broad private-rental ownership to the homepage without activating a synonym candidate route.",
   },
   schemaOwnership: ["WebSite", "Organization", "ContactPoint"],
   evidence: [sitemapEvidence, repositoryEvidence, aggregateSearchConsoleEvidence],
@@ -103,6 +108,13 @@ const staticRoutes: EnglishRouteRecord[] = [
     schemaOwnership: ["Organization", "ContactPoint", "BreadcrumbList"],
     verificationRequired: ["Verified fleet contract and authorized media"],
     renderingEligible: true,
+    metadataOwnership: {
+      status: "approved",
+      title: "Yachts for Rent in Dubai | Compare 19 Verified Records",
+      description: "Compare 19 published Dubai yacht records by capacity, hourly price, minimum duration, length and verified vessel facts.",
+      h1: "Compare Yachts for Rent in Dubai by Verified Facts",
+      note: "PR 5 assigns factual fleet-comparison and for-rent intent to the existing catalogue owner.",
+    },
     notes: ["Catalogue path is preserved; verified record publication belongs to PR 4."],
   }),
   preservedRoute({
@@ -123,6 +135,13 @@ const staticRoutes: EnglishRouteRecord[] = [
     schemaOwnership: ["Organization", "ContactPoint", "BreadcrumbList"],
     verificationRequired: ["Service capability and optional-extra verification"],
     renderingEligible: true,
+    metadataOwnership: {
+      status: "approved",
+      title: "Private Yacht Service Planning in Dubai | Optional Requests",
+      description: "Plan private yacht celebration, romance, hospitality, water-activity and experience requests without assuming inclusions or availability.",
+      h1: "Plan Optional Services for a Private Yacht Request",
+      note: "PR 5 approves hub-level planning copy only; detail service capability remains blocked for PR 6.",
+    },
   }),
   preservedRoute({
     id: "occasion-index",
@@ -132,6 +151,13 @@ const staticRoutes: EnglishRouteRecord[] = [
     schemaOwnership: ["Organization", "ContactPoint", "BreadcrumbList"],
     verificationRequired: ["Occasion capability and hub-role approval"],
     renderingEligible: true,
+    metadataOwnership: {
+      status: "approved",
+      title: "Private Yacht Occasions in Dubai | Planning Guide",
+      description: "Compare seven private-yacht occasion themes, the decisions to prepare and verified yacht facts without assuming packages, routes or inclusions.",
+      h1: "Choose a Private Yacht Occasion by the Decisions It Requires",
+      note: "PR 5 approves hub-only chooser copy for all seven source themes without creating occasion detail routes.",
+    },
     notes: ["Seven source occasions remain hub-only dispositions in this phase."],
   }),
   preservedRoute({

@@ -76,3 +76,7 @@ The strict catalogue now records all 24 source identities, but none is publishab
 - the approver and approval date.
 
 Separately resolve the Dynasty 151-route/150-source conflict, the Heysea/Doretty/Mzaail spellings, the generic 120-foot identity, and ownership/history for the branded 55-foot path. Query × Page and Links evidence is still required before a replacement owner or redirect can be approved. The neutral fallback does not satisfy missing yacht facts and must not be used to create a placeholder 200 page.
+
+## Evidence remaining after PR 5
+
+The four published commercial/hub owners now provide evidence-safe decision content, but no historical commercial candidate was activated. Query × Page, Links and issue-URL evidence is still required before deciding whether any candidate deserves separate ownership or whether a current route should consolidate. PR 6 additionally requires service-specific business capability, optional-versus-included terms, safety/operational constraints, and suitable-yacht evidence for each event owner. Global phone, WhatsApp, brand, departure, hours and legal values remain pending unless separately approved.

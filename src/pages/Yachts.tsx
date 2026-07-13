@@ -1,44 +1,93 @@
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
+import { CommercialHero, FaqSection, Section } from "@/components/commercial/DecisionSections";
 import SEOHead from "@/components/shared/SEOHead";
 import YachtCard from "@/components/shared/YachtCard";
-import { AnimatedSection, StaggerContainer } from "@/components/shared/AnimatedSection";
-import { publishableYachts, TOTAL_YACHT_SOURCE_RECORDS } from "@/data/yachts";
+import { publishableYachts } from "@/data/yachts";
+import { formatAed, publishedFleetSummary } from "@/lib/published-fleet";
+
+const catalogueFaqs = [
+  {
+    question: "Which facts can I compare in this catalogue?",
+    answer: "Every published record states its length, maximum guest capacity, year built, hourly price, minimum duration and bedroom count when that field was approved. The site does not add unsupported yacht-type labels.",
+  },
+  {
+    question: "How should I use the guest-capacity number?",
+    answer: "Treat it as the stated maximum for comparison. Select a yacht whose published capacity is at least your complete expected group size, then reconfirm the count during the request.",
+  },
+  {
+    question: "Are bedroom counts available for every published yacht?",
+    answer: "Bedroom information appears only when it is part of the approved record. An omitted bedroom count should not be interpreted as zero or as evidence of another layout.",
+  },
+  {
+    question: "Why does every yacht say availability is on request?",
+    answer: "The source availability value is not a date-specific booking confirmation. Availability must be checked again for the requested date, time and duration.",
+  },
+] as const;
 
 const Yachts = () => (
   <Layout>
     <SEOHead
-      title="Verified Yacht Catalogue in Dubai | Dubai Yacht"
-      description="Browse yacht records that have passed the English site's factual, offer and media-rights publication checks."
+      title="Yachts for Rent in Dubai | Compare 19 Verified Records"
+      description="Compare 19 published Dubai yacht records by capacity, hourly price, minimum duration, length and verified vessel facts."
       path="/yachts"
     />
+    <div data-commercial-content>
 
-    <main className="pt-28 pb-16">
-      <div className="container mx-auto px-4">
-        <AnimatedSection className="text-center mb-10">
-          <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-4">
-            Verified Yacht Catalogue
-          </h1>
-          <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            This catalogue links only to yacht records whose public name, specifications, booking terms and image rights have been verified for this website. Records that have not passed every check are not presented as bookable yachts.
-          </p>
-        </AnimatedSection>
-
-        {publishableYachts.length > 0 ? (
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {publishableYachts.map((yacht, index) => (
-              <YachtCard key={yacht.id} yacht={yacht} index={index} />
-            ))}
-          </StaggerContainer>
-        ) : (
-          <AnimatedSection className="glass-card max-w-3xl mx-auto p-8 text-center">
-            <h2 className="text-2xl font-display font-semibold text-foreground mb-3">Verification in progress</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              No individual yacht record currently has all required publication evidence. The internal migration inventory contains {TOTAL_YACHT_SOURCE_RECORDS} records, and each remains unavailable here until its facts and media rights are approved.
-            </p>
-          </AnimatedSection>
-        )}
+    <CommercialHero
+      eyebrow="Published yacht catalogue"
+      title="Compare Yachts for Rent in Dubai by Verified Facts"
+      introduction="Use this catalogue when your main task is comparing private yachts—not reading another general rental page. Every linked record has passed the English site's fact and media publication checks."
+      directAnswer={`There are ${publishedFleetSummary.yachtCount} published yachts to compare. Stated capacities range from ${publishedFleetSummary.guestCapacity.minimum} to ${publishedFleetSummary.guestCapacity.maximum} guests, verified hourly prices range from ${formatAed(publishedFleetSummary.pricePerHour.minimum)} to ${formatAed(publishedFleetSummary.pricePerHour.maximum)}, and minimum durations range from ${publishedFleetSummary.minimumDuration.minimum} to ${publishedFleetSummary.minimumDuration.maximum} hours. Availability is on request for every record.`}
+    >
+      <div className="mt-8 flex flex-wrap gap-4">
+        <a href="#published-yachts" className="liquid-btn-primary px-6 py-3">Browse the catalogue</a>
+        <Link to="/#booking-request-guide" className="liquid-btn px-6 py-3 text-foreground">Prepare a request</Link>
       </div>
-    </main>
+    </CommercialHero>
+
+    <Section title="A practical comparison order">
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {[
+          ["1. Group size", "Eliminate records whose stated guest capacity is below your expected group."],
+          ["2. Minimum time", "Check the yacht-specific minimum before selecting your preferred duration."],
+          ["3. Hourly price", "Calculate the base amount from the verified rate and requested hours."],
+          ["4. Vessel facts", "Compare length, year built and bedrooms only where those facts are published."],
+        ].map(([title, copy]) => (
+          <article key={title} className="liquid-glass p-6">
+            <h3 className="text-xl font-semibold text-foreground">{title}</h3>
+            <p className="mt-3 leading-7 text-muted-foreground">{copy}</p>
+          </article>
+        ))}
+      </div>
+    </Section>
+
+    <section id="published-yachts" className="py-12 md:py-16">
+      <div className="container mx-auto px-4">
+        <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">All published yacht records</h2>
+        <p className="mb-8 max-w-3xl leading-7 text-muted-foreground">
+          Card prices are hourly AED amounts. The detail page shows the same approved facts and media. No package inclusion, fixed route or instant availability is implied.
+        </p>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {publishableYachts.map((yacht, index) => <YachtCard key={yacht.id} yacht={yacht} index={index} />)}
+        </div>
+      </div>
+    </section>
+
+    <Section title="From comparison to a request">
+      <div className="liquid-glass-gold max-w-4xl p-7">
+        <p className="leading-7 text-muted-foreground">
+          Record the yacht name, preferred date, requested hours and full guest count. Add any service or occasion request separately so it can be checked rather than assumed. The homepage request guide explains the information to prepare without sending you to an unpublished contact route.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-4">
+          <Link to="/#booking-request-guide" className="liquid-btn-primary px-6 py-3">Open the request guide</Link>
+          <Link to="/services" className="liquid-btn px-6 py-3 text-foreground">Review service categories</Link>
+        </div>
+      </div>
+    </Section>
+
+    <FaqSection title="Yacht comparison questions" faqs={catalogueFaqs} />
+    </div>
   </Layout>
 );
 

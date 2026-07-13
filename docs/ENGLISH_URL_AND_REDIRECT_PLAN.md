@@ -1,5 +1,9 @@
 # English URL Ownership and Redirect Plan
 
+## Implementation PR 5 publication decision
+
+The four existing published commercial/hub owners were enriched in place. No candidate URL was created, no path form changed, and no redirect or consolidation was approved. The generated publication set remains the four base owners plus 19 verified yacht details (23 sitemap URLs). The six historical commercial candidates remain unrouted 404s outside the manifest, while the 18 service details and five blocked yacht owners remain unpublished. Query × Page and Links evidence is still mandatory before a URL-ownership migration.
+
 ## Implementation PR 2 status
 
 The typed ownership implementation is now recorded in the non-runtime root `seo/` modules. It preserves exactly 52 current sitemap paths, keeps the six historical commercial candidates outside the manifest, and records two redirect candidates with no destination selected. Approved redirects and approved commercial consolidations remain **zero**. No public sitemap, redirect, canonical, route, or HTTP behavior changed. Query × Page, Links, and Page Indexing issue examples remain required before any candidate advances.

@@ -32,6 +32,8 @@ const canonicals = new Set<string>();
 const h1s = new Set<string>();
 const publishedYachtRoutes = publishedStaticRoutes.filter((route) => route.pageType === "yacht");
 const publishedYachtsById = new Map(publishableYachts.map((yacht) => [yacht.id, yacht]));
+const commercialPaths = new Set(["/", "/yachts", "/services", "/occasions"]);
+const publishedPaths = new Set(publishedStaticRoutes.map((route) => route.path));
 
 if (yachtCatalogueRegistry.length !== 24) failures.push(`Yacht inventory must contain 24 dispositions; found ${yachtCatalogueRegistry.length}.`);
 if (publishableYachts.length + blockedYachts.length !== 24) failures.push("Publishable and blocked yacht counts must total 24.");
@@ -102,6 +104,30 @@ for (const route of publishedStaticRoutes) {
     failures.push(`${route.path}: inherited Evali branding or authority appears in generated yacht output.`);
   }
 
+  if (commercialPaths.has(route.path)) {
+    const ownership = route.metadataOwnership;
+    if (
+      ownership.status !== "approved" ||
+      ownership.title !== title ||
+      ownership.description !== description ||
+      ownership.h1 !== h1
+    ) {
+      failures.push(`${route.path}: rendered metadata/H1 must match the approved PR 5 manifest ownership.`);
+    }
+    const commercialContent = body.match(/data-commercial-content="true">([\s\S]*?)<\/main>/i)?.[1] ?? "";
+    if (!commercialContent) failures.push(`${route.path}: PR 5 content boundary is missing.`);
+    for (const href of [...commercialContent.matchAll(/href="([^"]+)"/g)].map((match) => match[1])) {
+      if (href.startsWith("#")) continue;
+      const target = new URL(href, ENGLISH_PRODUCTION_ORIGIN);
+      if (target.origin !== ENGLISH_PRODUCTION_ORIGIN || !publishedPaths.has(target.pathname)) {
+        failures.push(`${route.path}: changed commercial content links to unpublished destination ${href}.`);
+      }
+    }
+    if (/licensed crew|five[- ]star|marina pickup|fuel is included|drinks are included|guaranteed availability|best price|customer testimonial|maritime insurance/i.test(commercialContent)) {
+      failures.push(`${route.path}: an unverified commercial claim survived in changed content.`);
+    }
+  }
+
   const jsonLd = [...html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
   jsonLd.forEach((block, index) => {
     try {
@@ -170,6 +196,7 @@ const expectedUrls = publishedStaticRoutes.map((route) => canonicalUrlForPath(ro
 if (JSON.stringify(sitemapUrls) !== JSON.stringify(expectedUrls)) failures.push("Sitemap does not equal published manifest owners.");
 if (/<lastmod>/.test(publicSitemap)) failures.push("Sitemap contains unverified lastmod values.");
 if (sitemapUrls.length !== publishedStaticRoutes.length) failures.push(`Sitemap must equal generated indexable routes; found ${sitemapUrls.length}.`);
+if (publishedStaticRoutes.length !== 4 + publishableYachts.length) failures.push("PR 5 must retain four base owners plus the dynamically published yacht details.");
 if (!blockedStaticRoutes.every((route) => !sitemapUrls.includes(canonicalUrlForPath(route.path)))) failures.push("Blocked route entered sitemap.");
 
 const robots = await read("dist/robots.txt");
