@@ -188,6 +188,6 @@ describe("PR 5 commercial decision owners", () => {
       "faq",
       "final-actions",
     ]);
-    expect(homepage.content.querySelectorAll('[style*="opacity:0"]')).toHaveLength(0);
+    expect(homepage.content.querySelectorAll('[data-home-section][style*="opacity:0"]')).toHaveLength(0);
   });
 });

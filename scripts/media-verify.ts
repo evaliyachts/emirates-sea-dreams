@@ -1,10 +1,11 @@
 import { readFile } from "node:fs/promises";
 import { extname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { HOMEPAGE_MEDIA, type HomepageMediaRecord } from "../src/data/home-media";
 import { mediaRightsRegistry, NEUTRAL_YACHT_FALLBACK } from "../src/data/media-rights";
 import { publishableYachts, type YachtMediaRecord } from "../src/data/yachts";
 
-const supportedContentTypes = new Set(["image/jpeg", "image/png", "image/webp", "image/svg+xml"]);
+const supportedContentTypes = new Set(["image/avif", "image/jpeg", "image/png", "image/webp", "image/svg+xml"]);
 
 export interface VerifiedImage {
   width: number;
@@ -68,7 +69,27 @@ const svgDimensions = (bytes: Uint8Array) => {
   return width > 0 && height > 0 ? { width, height } : undefined;
 };
 
+const avifDimensions = (bytes: Uint8Array) => {
+  const signature = new TextDecoder("ascii").decode(bytes.slice(4, 12));
+  if (!signature.startsWith("ftyp") || !/avi[fs]/.test(signature)) return undefined;
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  for (let offset = 4; offset + 16 <= bytes.length; offset += 1) {
+    if (
+      bytes[offset] === 0x69 &&
+      bytes[offset + 1] === 0x73 &&
+      bytes[offset + 2] === 0x70 &&
+      bytes[offset + 3] === 0x65
+    ) {
+      const width = view.getUint32(offset + 8);
+      const height = view.getUint32(offset + 12);
+      if (width > 0 && height > 0) return { width, height };
+    }
+  }
+  return undefined;
+};
+
 export const decodeImageDimensions = (bytes: Uint8Array, contentType: string) => {
+  if (contentType === "image/avif") return avifDimensions(bytes);
   if (contentType === "image/png") return pngDimensions(bytes);
   if (contentType === "image/jpeg") return jpegDimensions(bytes);
   if (contentType === "image/webp") return webpDimensions(bytes);
@@ -78,7 +99,7 @@ export const decodeImageDimensions = (bytes: Uint8Array, contentType: string) =>
 
 const contentTypeForLocalPath = (path: string) => {
   const extension = extname(path).toLowerCase();
-  return extension === ".svg" ? "image/svg+xml" : extension === ".png" ? "image/png" :
+  return extension === ".avif" ? "image/avif" : extension === ".svg" ? "image/svg+xml" : extension === ".png" ? "image/png" :
     [".jpg", ".jpeg"].includes(extension) ? "image/jpeg" : extension === ".webp" ? "image/webp" : "";
 };
 
@@ -141,6 +162,29 @@ export const verifyYachtMediaRecord = async (media: YachtMediaRecord) => {
   return result;
 };
 
+export const verifyHomepageMediaRecord = async (media: HomepageMediaRecord) => {
+  const rights = mediaRightsRegistry.find((record) => record.id === media.rightsRecordId);
+  if (!rights || rights.status !== "approved" || !rights.approvedHosts.includes("yachtrentaldxb.com")) {
+    throw new Error(`${media.path}: missing approved English-domain homepage rights record.`);
+  }
+  if (rights.productionPath !== media.path) throw new Error(`${media.path}: homepage rights record path does not match production media.`);
+  if (/^https?:\/\//.test(media.path)) throw new Error(`${media.path}: homepage snapshots must use a neutral local production path.`);
+  const result = await verifyLocalImage(media.path);
+  if (result.width !== media.width || result.height !== media.height) {
+    throw new Error(`${media.path}: declared ${media.width}x${media.height}, decoded ${result.width}x${result.height}.`);
+  }
+  return result;
+};
+
+export const verifyProductionHomepageMedia = async () => {
+  const paths = HOMEPAGE_MEDIA.map((record) => record.path);
+  const rightsIds = HOMEPAGE_MEDIA.map((record) => record.rightsRecordId);
+  if (new Set(paths).size !== paths.length) throw new Error("Production homepage media paths must be unique.");
+  if (new Set(rightsIds).size !== rightsIds.length) throw new Error("Production homepage media rights IDs must be unique.");
+  await Promise.all(HOMEPAGE_MEDIA.map(verifyHomepageMediaRecord));
+  return { imageCount: HOMEPAGE_MEDIA.length };
+};
+
 export const verifyProductionYachtMedia = async () => {
   const media = publishableYachts.flatMap((yacht) => yacht.media);
   const uniquePaths = new Set(media.map((record) => record.path));
@@ -158,6 +202,9 @@ export const verifyProductionYachtMedia = async () => {
 };
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
-  const result = await verifyProductionYachtMedia();
-  console.log(`Media verification passed: ${result.imageCount} production yacht images across ${result.yachtCount} publishable yachts; neutral fallback decoded successfully.`);
+  const [yachts, homepage] = await Promise.all([
+    verifyProductionYachtMedia(),
+    verifyProductionHomepageMedia(),
+  ]);
+  console.log(`Media verification passed: ${yachts.imageCount} production yacht images across ${yachts.yachtCount} publishable yachts; ${homepage.imageCount} approved local homepage images; neutral fallback decoded successfully.`);
 }

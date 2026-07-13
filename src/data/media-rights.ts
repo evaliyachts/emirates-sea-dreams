@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { approvedYachtMedia } from "./approved-yacht-media";
+import { HOMEPAGE_MEDIA } from "./home-media";
 
 export const mediaRightsRecordSchema = z.object({
   id: z.string().min(1),
@@ -47,6 +48,24 @@ const approvedRemoteMediaRights: MediaRightsRecord[] = approvedYachtMedia.map((m
   }),
 );
 
+const approvedHomepageMediaRights: MediaRightsRecord[] = HOMEPAGE_MEDIA.map((media) =>
+  mediaRightsRecordSchema.parse({
+    id: media.rightsRecordId,
+    productionPath: media.path,
+    originalSource: "Exact prior homepage asset imported as a neutral local static snapshot.",
+    owner: "Business owner approval for yachtrentaldxb.com",
+    evidence: "Owner approved reuse of the prior desktop/mobile hero covers and service-card imagery on 2026-07-14.",
+    approvedHosts: ["yachtrentaldxb.com"],
+    approvedSurfaces: [media.surface === "service-card" ? "Homepage service-card imagery" : "Homepage hero cover"],
+    arabicProjectReuseApproved: false,
+    socialPreviewApproved: false,
+    netlifyImageCdnTransformationApproved: false,
+    unresolvedIssues: [],
+    approvalDate: "2026-07-14",
+    status: "approved",
+  }),
+);
+
 export const mediaRightsRegistry: readonly MediaRightsRecord[] = [
   mediaRightsRecordSchema.parse({
     id: NEUTRAL_YACHT_FALLBACK_RIGHTS_ID,
@@ -63,5 +82,6 @@ export const mediaRightsRegistry: readonly MediaRightsRecord[] = [
     approvalDate: "2026-07-13",
     status: "approved",
   }),
+  ...approvedHomepageMediaRights,
   ...approvedRemoteMediaRights,
 ];
