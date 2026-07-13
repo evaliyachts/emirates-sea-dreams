@@ -7,9 +7,11 @@ Date: 2026-07-13 (Asia/Dubai)
 - Branch: `agent/english-pr3-static-rendering`
 - Pull request: [#4](https://github.com/evaliyachts/emirates-sea-dreams/pull/4)
 - Validated implementation commit: `739595b177e2b9b8948f031c10c8c3301d402720`
-- Final branch commit: recorded in the PR description and final merge report after this report-only update
-- Squash merge commit: pending
-- Production deploy ID and bundle: pending post-merge smoke test
+- Final branch commit: `98e5e0f94d1b8b4ddb038b3ffd126b53177bb12c`
+- Squash merge commit: `e837a9181875665025cebe8ee731100ed2983042`
+- Production deploy ID: `6a553fa179001200085c44c8`
+- Production publish time: `2026-07-13T19:42:44.787Z`
+- Production bundle: `/assets/index-B3VIeNjk.js`
 - Scope: static rendering, canonical-owner HTTP behavior, sitemap truth, and real 404 handling only
 
 ## Rendering architecture
@@ -65,7 +67,22 @@ Netlify Deploy Preview `6a553e65b6b618000857070b` at `https://deploy-preview-4--
 
 The preview sitemap contains exactly four production canonical URLs. Netlify adds its normal preview-only `X-Robots-Tag: noindex`; generated HTML remains `index, follow`. Browser validation of all four published pages and one blocked route found no hydration warning or console error. Route-specific titles, canonicals, H1s, and robots state remained correct after hydration.
 
-Post-merge production deployment and smoke-test fields remain pending until the PR is merged.
+## Post-merge production smoke test
+
+Netlify published merge `e837a9181875665025cebe8ee731100ed2983042` in production deploy `6a553fa179001200085c44c8`. GitHub Quality passed on the merge commit.
+
+| Production request | Status | Redirect/canonical result |
+| --- | ---: | --- |
+| `/` | 200 | no `Location`; canonical `https://yachtrentaldxb.com/` |
+| `/yachts` | 200 | no `Location`; exact no-slash self-canonical |
+| `/services` | 200 | no `Location`; exact no-slash self-canonical |
+| `/occasions` | 200 | no `Location`; exact no-slash self-canonical |
+| `/sitemap.xml`, `/robots.txt` | 200 | sitemap has four URLs; robots names the production sitemap |
+| `/offers`, `/about`, `/contact`, `/terms`, `/privacy` | 404 | no `Location`; branded canonical-free `noindex, follow` document |
+| representative yacht detail and service detail | 404 | no redirect or placeholder page |
+| commercial candidate and random unknown path | 404 | no redirect or SPA fallback |
+
+Published HTML and system files return revalidation caching; fingerprinted JS/CSS return long-lived immutable caching. Requests for JS and CSS source maps return 404. Production pages contain no preview authority, Arabic authority, live hreflang, x-default, or meta keywords. Browser checks of the homepage and a blocked route found no hydration warning or console error; robots, H1, title, and canonical state remained correct after hydration.
 
 ## Dependency for PR 4
 
