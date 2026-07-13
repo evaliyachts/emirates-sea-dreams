@@ -89,7 +89,24 @@ The complete local gate ran under Node `v24.18.0` and npm `11.16.0` from a clean
 
 The media verifier uses bounded concurrency and retries only transient transport exceptions. An HTTP failure such as 403, wrong content type, host change, undecodable body, or dimension mismatch still fails immediately; no expected-unavailable exception exists for production media.
 
-GitHub Quality, Netlify Deploy Preview, deployed route crawl, browser hydration, and post-merge production smoke results will be recorded after immutable branch/deployment references exist.
+Remote branch validation at head `a9bc402`:
+
+| Check | Result |
+| --- | --- |
+| GitHub Quality | [run 29286489438](https://github.com/evaliyachts/emirates-sea-dreams/actions/runs/29286489438), passed |
+| Netlify Deploy Preview | [deploy `6a55588dce6a1d0008939eca`](https://deploy-preview-9--yachtrentaldxb.netlify.app), passed |
+| Netlify redirect/header checks | passed |
+| Published route crawl | 23/23 direct 200; zero `Location` headers |
+| Published yacht details | 19/19 direct 200 |
+| Blocked yacht owners | 5/5 real 404 |
+| Unknown route | real 404 |
+| Preview sitemap | exactly 23 production canonical URLs |
+| Preview robots | 200; names the production sitemap |
+| Browser hydration | representative catalogue/detail completed with zero console warnings or errors |
+| Catalogue after hydration | 19 unique published yacht links; no visible Evali branding; zero fallback images |
+| Representative detail after hydration | correct title/H1/canonical/robots; eight gallery images; approved absolute social image; `Service` + `BreadcrumbList` graph with factual `Offer` |
+
+Netlify adds its normal preview-only response `X-Robots-Tag`; generated page metadata remains `index, follow`. Post-merge production smoke evidence remains pending until the approved squash merge deploy exists.
 
 ## PR 5 dependency
 
