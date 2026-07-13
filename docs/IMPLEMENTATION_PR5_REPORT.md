@@ -2,8 +2,9 @@
 
 Date: 2026-07-14  
 Branch: `agent/english-pr5-commercial-decisions`  
-Pull request: pending creation  
-Final branch commit: pending final validation  
+Pull request: [#10](https://github.com/evaliyachts/emirates-sea-dreams/pull/10)
+
+Validated implementation commit: `487719528b07c8ec3292967d22c5a0341da9067f`
 Scope: homepage and primary commercial decision pages only
 
 ## Ownership decision
@@ -66,11 +67,42 @@ PR 5 does not complete the entity graph. The four hubs emit no new JSON-LD. Exis
 
 ## Validation
 
-Final local, GitHub, Netlify Deploy Preview and deployed route results will be recorded here before merge. The required gate covers Node/npm pins, clean install, lint, typecheck, tests, static build, SEO validation, all 126 media URLs, production dependency audit, diff hygiene, production-context Netlify build, direct status checks, metadata/schema inspection, browser hydration and source-map absence.
+The clean gate ran under Node `v24.18.0` and npm `11.16.0`:
+
+| Check | Result |
+| --- | --- |
+| `npm ci` | Passed |
+| `npm run lint` | Passed; zero lint errors or warnings |
+| `npm run typecheck` | Passed |
+| `npm test` | 52/52 passed |
+| `npm run build` | Passed; 23 indexable documents plus real `404.html` |
+| `npm run seo:check` | Passed; 52 manifest records, 23 published, 29 blocked |
+| `npm run media:verify` | Passed; 126/126 production yacht images and neutral fallback |
+| `npm audit --omit=dev` | Passed; zero production vulnerabilities |
+| `git diff --check` | Passed |
+| Netlify production-context offline build | Passed |
+| GitHub Quality | [Run 29288633708](https://github.com/evaliyachts/emirates-sea-dreams/actions/runs/29288633708), passed |
+
+The build continues to report the pre-existing CSS `@import` ordering notice, stale Browserslist database notice, bundle-size advisory, and unused SSR `toast` import. None was introduced or expanded in this phase; all required commands completed successfully.
 
 ## Deploy Preview status
 
-Pending draft PR creation and Netlify deployment.
+Netlify deploy `6a5560e35e1be30008e6ea57` was created at `2026-07-13T22:04:19.692Z` for validated commit `4877195`. The preview URL is `https://deploy-preview-10--yachtrentaldxb.netlify.app`; its deployed asset is `index-DDQTET-U.js`.
+
+| Preview check | Result |
+| --- | --- |
+| Four commercial/hub routes | 4/4 direct 200, no `Location`, exact production canonical |
+| Published yacht details | 19/19 direct 200 |
+| Blocked yacht owners | 5/5 real 404 |
+| Representative service, offer, contact, legal, candidate and unknown probes | 7/7 real 404 |
+| Sitemap | 23 exact production canonical URLs; no `lastmod` |
+| Metadata/schema | Unique commercial metadata/H1; no prohibited authority, language alternate, analytics or schema |
+| Browser hydration | Four changed pages and one yacht detail retained correct title, H1 and canonical after load |
+| Browser console | Zero warnings or errors across those five routes |
+| Images after hydration | Homepage 3 primary images, catalogue 19 primary images, representative detail 8 gallery images |
+| Caching/source maps | Fingerprinted asset immutable; HTML/system files revalidate; bundle source map 404 |
+
+Netlify Header rules and Redirect rules checks passed. “Pages changed” was skipped by Netlify as a neutral informational check, not a failure.
 
 ## Post-merge production smoke
 
@@ -84,4 +116,3 @@ Pending merge authorization through the approved automatic PR 5 workflow.
 - All 18 service/event detail routes remain blocked pending PR 6 capability and fact work.
 - Support/legal pages remain blocked.
 - Business identity/contact approval, reciprocal-language work, analytics and Search Console actions remain outside this phase.
-
