@@ -1,5 +1,17 @@
 # SEO Data Needed
 
+## Implementation PR 2 evidence status
+
+Route ownership now consumes only the aggregate 2026-06-30 Page Indexing summary. The manifest deliberately assigns no Search Console issue status to an individual URL. The following remain blockers for redirect/consolidation decisions and for routes marked pending verification:
+
+- Query × Page export;
+- Links report;
+- Page Indexing issue example URLs for all six 404s, two crawled-not-indexed entries, and the one redirect entry;
+- four Live URL Tests;
+- business, legal, yacht, service, price, and media approvals listed below.
+
+No additional route was created from the 55 known-URL total.
+
 ## Evidence ledger
 
 The original 2026-07-13 audit found no Search Console exports in `seo-input/`, `docs/seo-input/` or the workspace. A summary was supplied afterward and is recorded in `ENGLISH_SEARCH_CONSOLE_BASELINE.md`.

@@ -1,5 +1,9 @@
 # English Event Authority Plan
 
+## Implementation PR 2 status
+
+All 18 current service/event paths are represented in the typed manifest and remain provisional current owners. All seven source occasions now have typed dispositions without creating detail routes. The combined engagement/wedding route remains an evidence-gated redirect candidate with no approved destination or redirect. Service publication remains blocked pending capability and factual verification; no `Event` schema is planned.
+
 Current event authority consists of `/services`, `/occasions`, 18 service detail records and seven occasion records without detail routes. Every current live event/hub URL except the homepage returns `404` directly. All keep/merge/create decisions below are provisional until Search Console and factual approval are available.
 
 ## Proposed taxonomy and hub

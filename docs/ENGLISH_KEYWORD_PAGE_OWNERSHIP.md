@@ -1,5 +1,9 @@
 # English Keyword and Page Ownership
 
+## Implementation PR 2 status
+
+The six historically discussed commercial slugs are now typed as non-canonical candidates. None is routed, sitemap-listed, indexable, approved for creation, or approved as a redirect owner. The 52 current paths retain distinct primary-intent records, while future title, description, and H1 copy ownership remains explicitly pending for its content phase. Approved commercial consolidations remain **zero**.
+
 The ranking positions below are the user-supplied historical baseline, not current rankings. A 2026-06-30 Search Console Page Indexing summary and ten-day property-level impressions overlay are now available, but neither identifies queries by page. Current commercial URLs must be preserved by default until Query × Page data is reviewed.
 
 The reported 10,553 impressions are property-level historical evidence only. They cannot identify a current owner, prove cannibalization or approve consolidation. Every commercial ownership decision in this document remains provisional, and Query × Page plus links evidence is mandatory before a current commercial URL is merged, redirected or removed.
