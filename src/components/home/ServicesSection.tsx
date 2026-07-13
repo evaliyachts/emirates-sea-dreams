@@ -98,7 +98,7 @@ const ServicesSection = () => {
     >
       <div className="sticky top-0 flex h-screen w-full flex-col">
         <div className="container mx-auto px-4 pt-16">
-          <AnimatedSection className="mb-8 text-center">
+          <AnimatedSection initiallyVisible className="mb-8 text-center">
             <span className="liquid-pill inline-block">Optional requests</span>
             <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
               Plan Services Without Assuming Inclusions

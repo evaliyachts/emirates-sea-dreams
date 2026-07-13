@@ -40,7 +40,7 @@ const HeroSection = () => {
         className="relative z-10 mx-auto max-w-5xl px-4 pb-20 text-center"
       >
         <motion.span
-          initial={{ opacity: 0, y: 24 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: reduceMotion ? 0 : 0.7, delay: reduceMotion ? 0 : 0.1 }}
           className="liquid-pill mb-5 inline-block"
@@ -49,7 +49,7 @@ const HeroSection = () => {
         </motion.span>
 
         <motion.h1
-          initial={{ opacity: 0, y: 32 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: reduceMotion ? 0 : 0.8, delay: reduceMotion ? 0 : 0.25 }}
           className="mb-5 text-4xl font-display font-bold leading-tight text-foreground sm:text-5xl md:text-7xl"
@@ -59,7 +59,7 @@ const HeroSection = () => {
 
         <motion.p
           data-page-introduction
-          initial={{ opacity: 0, y: 24 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: reduceMotion ? 0 : 0.7, delay: reduceMotion ? 0 : 0.4 }}
           className="mx-auto mb-7 max-w-3xl text-base font-light leading-7 text-muted-foreground sm:text-lg md:text-xl"
@@ -69,7 +69,7 @@ const HeroSection = () => {
 
         <motion.div
           data-direct-answer
-          initial={{ opacity: 0, y: 20 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: reduceMotion ? 0 : 0.7, delay: reduceMotion ? 0 : 0.55 }}
           className="liquid-glass-gold mx-auto mb-8 max-w-4xl p-5 text-left sm:p-6"
@@ -81,7 +81,7 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.7 }}
           className="flex flex-wrap justify-center gap-4"

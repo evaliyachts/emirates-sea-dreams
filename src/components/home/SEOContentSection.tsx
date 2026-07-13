@@ -4,7 +4,7 @@ import { AnimatedSection } from "@/components/shared/AnimatedSection";
 const SEOContentSection = () => (
   <section data-home-section="rental-guide" className="section-padding liquid-divider">
     <div className="container mx-auto max-w-5xl px-4">
-      <AnimatedSection className="mb-10 text-center">
+      <AnimatedSection initiallyVisible className="mb-10 text-center">
         <span className="liquid-pill inline-block">Private yacht guide</span>
         <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
           Rental, Hire and Charter: One Private-Yacht Decision
@@ -14,7 +14,7 @@ const SEOContentSection = () => (
         </p>
       </AnimatedSection>
 
-      <AnimatedSection className="space-y-10">
+      <AnimatedSection initiallyVisible className="space-y-10">
         <article className="liquid-glass p-6 md:p-8">
           <h3 className="mb-3 text-2xl font-display font-bold text-foreground">
             Compare verified vessel facts first

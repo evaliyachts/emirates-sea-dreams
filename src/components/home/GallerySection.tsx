@@ -11,7 +11,7 @@ const GallerySection = () => {
   return (
     <section data-home-section="fleet-gallery" className="section-padding liquid-divider">
       <div className="container mx-auto px-4">
-        <AnimatedSection className="mb-14 text-center">
+        <AnimatedSection initiallyVisible className="mb-14 text-center">
           <span className="liquid-pill inline-block">Fleet gallery</span>
           <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
             Explore Published Yacht Records Visually
@@ -27,7 +27,7 @@ const GallerySection = () => {
             return (
               <motion.div
                 key={yacht.id}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={false}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.08 }}

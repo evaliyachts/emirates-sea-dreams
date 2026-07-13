@@ -29,7 +29,7 @@ const estimateSteps = [
 const PackagesSection = () => (
   <section data-home-section="price-planning" className="section-padding liquid-divider">
     <div className="container mx-auto px-4">
-      <AnimatedSection className="mb-14 text-center">
+      <AnimatedSection initiallyVisible className="mb-14 text-center">
         <span className="liquid-pill inline-block">Price planning</span>
         <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
           Build a Factual Yacht Rental Estimate
@@ -39,7 +39,7 @@ const PackagesSection = () => (
         </p>
       </AnimatedSection>
 
-      <StaggerContainer className="mb-8 grid grid-cols-1 gap-5 md:grid-cols-3">
+      <StaggerContainer initiallyVisible className="mb-8 grid grid-cols-1 gap-5 md:grid-cols-3">
         {estimateSteps.map((step, index) => (
           <motion.article
             key={step.title}
@@ -63,7 +63,7 @@ const PackagesSection = () => (
         ))}
       </StaggerContainer>
 
-      <AnimatedSection className="text-center">
+      <AnimatedSection initiallyVisible className="text-center">
         <Link to="/yachts" className="font-semibold text-primary hover:underline">
           Compare the verified hourly rates in the yacht catalogue
         </Link>

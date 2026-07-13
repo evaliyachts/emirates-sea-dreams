@@ -17,7 +17,7 @@ const themes = [
 const ExperiencesSection = () => (
   <section data-home-section="occasion-themes" className="section-padding">
     <div className="container mx-auto px-4">
-      <AnimatedSection className="mb-14 text-center">
+      <AnimatedSection initiallyVisible className="mb-14 text-center">
         <span className="liquid-pill inline-block">Occasion themes</span>
         <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
           Turn an Occasion Idea into a Careful Request
@@ -27,7 +27,7 @@ const ExperiencesSection = () => (
         </p>
       </AnimatedSection>
 
-      <StaggerContainer className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+      <StaggerContainer initiallyVisible className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
         {themes.map(({ title, icon: Icon, copy }) => (
           <motion.div key={title} variants={staggerItemVariants}>
             <Link

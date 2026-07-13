@@ -24,7 +24,7 @@ const checkpoints = [
 const TestimonialsSection = () => (
   <section data-home-section="planning-checkpoints" className="section-padding">
     <div className="container mx-auto px-4">
-      <AnimatedSection className="mb-14 text-center">
+      <AnimatedSection initiallyVisible className="mb-14 text-center">
         <span className="liquid-pill inline-block">Decision checkpoints</span>
         <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
           What a Careful Yacht Request Should Separate
@@ -34,7 +34,7 @@ const TestimonialsSection = () => (
         </p>
       </AnimatedSection>
 
-      <StaggerContainer className="grid grid-cols-1 gap-5 md:grid-cols-3">
+      <StaggerContainer initiallyVisible className="grid grid-cols-1 gap-5 md:grid-cols-3">
         {checkpoints.map(({ icon: Icon, title, copy }) => (
           <motion.article key={title} variants={staggerItemVariants} className="liquid-glass p-6">
             <div className="liquid-icon mb-4 h-12 w-12">

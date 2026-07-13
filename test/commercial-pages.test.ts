@@ -171,7 +171,8 @@ describe("PR 5 commercial decision owners", () => {
     expect(indexSource).toMatch(/GallerySection|RoutesSection|HomeFAQ|CTAStrip/);
     expect(indexSource).toContain("data-commercial-content");
 
-    const sections = [...render("/").content.querySelectorAll<HTMLElement>("[data-home-section]")]
+    const homepage = render("/");
+    const sections = [...homepage.content.querySelectorAll<HTMLElement>("[data-home-section]")]
       .map((section) => section.dataset.homeSection);
     expect(sections).toEqual([
       "hero",
@@ -187,5 +188,6 @@ describe("PR 5 commercial decision owners", () => {
       "faq",
       "final-actions",
     ]);
+    expect(homepage.content.querySelectorAll('[style*="opacity:0"]')).toHaveLength(0);
   });
 });

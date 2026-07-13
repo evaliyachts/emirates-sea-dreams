@@ -13,7 +13,7 @@ const requestDetails = [
 const RoutesSection = () => (
   <section data-home-section="request-details" className="section-padding">
     <div className="container mx-auto px-4">
-      <AnimatedSection className="mb-14 text-center">
+      <AnimatedSection initiallyVisible className="mb-14 text-center">
         <span className="liquid-pill inline-block">Request details</span>
         <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
           Prepare the Details Before Asking for Confirmation

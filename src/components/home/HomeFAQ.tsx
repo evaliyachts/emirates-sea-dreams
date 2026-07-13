@@ -29,7 +29,7 @@ const faqs = [
 const HomeFAQ = () => (
   <section data-home-section="faq" className="section-padding liquid-divider">
     <div className="container mx-auto max-w-3xl px-4">
-      <AnimatedSection className="mb-14 text-center">
+      <AnimatedSection initiallyVisible className="mb-14 text-center">
         <span className="liquid-pill inline-block">FAQ</span>
         <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
           Private Yacht Rental Questions
@@ -39,7 +39,7 @@ const HomeFAQ = () => (
         </p>
       </AnimatedSection>
 
-      <AnimatedSection>
+      <AnimatedSection initiallyVisible>
         <Accordion type="single" collapsible className="space-y-3">
           {faqs.map((faq, index) => (
             <AccordionItem key={faq.question} value={`faq-${index}`} className="liquid-glass border-0 px-6">

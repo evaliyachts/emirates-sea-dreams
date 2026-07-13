@@ -40,7 +40,7 @@ const highlights = [
 const WhyChooseUs = () => (
   <section data-home-section="decision-facts" className="section-padding liquid-divider">
     <div className="container mx-auto px-4">
-      <AnimatedSection className="mb-14 text-center">
+      <AnimatedSection initiallyVisible className="mb-14 text-center">
         <span className="liquid-pill inline-block">Why compare here</span>
         <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
           Choose with Published Facts, Not Package Assumptions
@@ -50,7 +50,7 @@ const WhyChooseUs = () => (
         </p>
       </AnimatedSection>
 
-      <StaggerContainer className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <StaggerContainer initiallyVisible className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {highlights.map((item) => (
           <motion.article
             key={item.title}

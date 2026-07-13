@@ -6,7 +6,7 @@ const CTAStrip = () => (
   <section data-home-section="final-actions" className="section-padding relative overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5" />
     <div className="container relative z-10 mx-auto px-4 text-center">
-      <AnimatedSection>
+      <AnimatedSection initiallyVisible>
         <h2 className="mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
           Ready to Build a Factual Yacht Shortlist?
         </h2>

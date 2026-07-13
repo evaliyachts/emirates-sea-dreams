@@ -13,7 +13,7 @@ const FeaturedYachts = () => {
   return (
     <section data-home-section="featured-yachts" className="section-padding">
       <div className="container mx-auto px-4">
-        <AnimatedSection className="text-center mb-14">
+        <AnimatedSection initiallyVisible className="text-center mb-14">
           <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase">Our Fleet</span>
           <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mt-2 mb-4">
             Featured Yachts with Verified Rental Facts
@@ -23,13 +23,13 @@ const FeaturedYachts = () => {
           </p>
         </AnimatedSection>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+        <StaggerContainer initiallyVisible className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {featured.map((yacht, i) => (
             <YachtCard key={yacht.slug} yacht={yacht} index={i} />
           ))}
         </StaggerContainer>
 
-        <AnimatedSection className="text-center">
+        <AnimatedSection initiallyVisible className="text-center">
           <Link
             to="/yachts"
             className="inline-flex items-center gap-2 px-8 py-3 rounded-xl glass-button text-foreground font-medium hover:scale-105 transition-transform"
