@@ -3,7 +3,8 @@
 ## Release identity
 
 - Branch: `agent/english-pr4-verified-yachts`
-- Pull request: assigned after the draft PR is opened
+- Pull request: [#6](https://github.com/evaliyachts/emirates-sea-dreams/pull/6)
+- Initial implementation commit: `1ed4088`
 - Final branch commit: recorded in the final pull-request description because a commit cannot contain its own immutable SHA
 - Phase: verified yacht contract, catalogue, media rights, and evidence-gated detail publication only
 - Production authority: `https://yachtrentaldxb.com/`
