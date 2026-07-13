@@ -1,6 +1,6 @@
 # English Media Rights and Source Audit
 
-Status: **no production reuse approval register exists in the English repository**.
+Status: **limited catalogue/detail rights scope approved on 2026-07-14; production URL eligibility remains conditional on `media:verify`**.
 
 ## Current source inventory
 
@@ -76,3 +76,11 @@ PR 4 creates one original local fallback asset, `/media/yacht-neutral-fallback.s
 | `english-neutral-yacht-fallback-001` | Local repository asset | Neutral fallback after an approved real image is unavailable | `yachtrentaldxb.com` | Not applicable / not reused | No | No | None |
 
 `npm run media:verify` validates every media record used by a publishable yacht plus the neutral fallback. A future remote record must use HTTPS, exactly match an approved English rights record, retain its approved host after redirects, return a supported image successfully with a non-empty body, decode dimensions, and match its declared width and height.
+
+## PR 4A limited owner approval — 2026-07-14
+
+The owner approved the existing yacht image URLs recorded in the English repository for use on `yachtrentaldxb.com` **catalogue cards and yacht detail pages only**, conditional on every retained production URL passing `npm run media:verify`.
+
+This supersedes the earlier “no English-domain surface authorization” finding only for those two surfaces. It does not authorize Evali branding or branded paths, blocked URLs, homepage/related/commercial/event use, Open Graph/Twitter images, Netlify Image CDN transformation, copying, rehosting, derivatives, yacht facts, descriptions, inherited schema, ratings, universal inclusions, or stale Offers. The historical 55-foot branded gallery is not directly eligible because its paths expose prohibited branding and the sampled primary returned 403.
+
+No historical URL enters production in PR 4A. See `YACHT_FACT_APPROVAL_PACK.md`, `ENGLISH_YACHT_MEDIA_APPROVAL_PACK.md`, and `YACHT_APPROVAL_DECISIONS_NEEDED.md`.
