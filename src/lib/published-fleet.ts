@@ -26,4 +26,3 @@ export const publishedYachtsById = (...ids: string[]) => ids.map((id) => {
   if (!yacht) throw new Error(`Published yacht selection references an unavailable record: ${id}`);
   return yacht;
 });
-

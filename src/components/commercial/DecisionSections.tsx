@@ -57,7 +57,6 @@ export const FaqSection = ({ title, faqs }: { title: string; faqs: readonly Deci
     </div>
   </Section>
 );
-
 export const YachtFactLinks = ({
   title,
   yachts,
@@ -81,4 +80,3 @@ export const YachtFactLinks = ({
     </div>
   </Section>
 );
-
