@@ -1,5 +1,11 @@
 # English Event Authority Plan
 
+## Implementation PR 6A approval-pack status
+
+PR 6A documents the exact capability, optional-extra, safety, yacht-selection, occasion, and media decisions required before an event owner can publish. It approves no service capability, route, redirect, consolidation, or media surface. All 18 detail owners remain blocked, the seven occasions remain without detail routes, and the combined engagement/wedding route remains preserved without redirect pending Query × Page and links evidence.
+
+See `ENGLISH_SERVICE_FACT_APPROVAL_PACK.md`, `ENGLISH_SERVICE_MEDIA_APPROVAL_PACK.md`, and `SERVICE_APPROVAL_DECISIONS_NEEDED.md`. PR 6B may begin only after explicit owner approval is recorded.
+
 ## Implementation PR 2 status
 
 All 18 current service/event paths are represented in the typed manifest and remain provisional current owners. All seven source occasions now have typed dispositions without creating detail routes. The combined engagement/wedding route remains an evidence-gated redirect candidate with no approved destination or redirect. Service publication remains blocked pending capability and factual verification; no `Event` schema is planned.
