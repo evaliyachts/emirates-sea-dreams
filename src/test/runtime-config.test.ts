@@ -27,7 +27,7 @@ describe("runtime configuration", () => {
     expect(packageJson.scripts.prebuild).toBe("tsx scripts/generate-sitemap.ts");
     expect(packageJson.scripts.typecheck).toBe("tsc --noEmit");
     expect(packageJson.scripts.test).toBe("vitest run");
-    expect(packageJson.scripts["seo:check"]).toBe("node scripts/seo-check.mjs");
+    expect(packageJson.scripts["seo:check"]).toBe("tsx scripts/seo-check.ts");
     expect(JSON.stringify(packageJson.scripts)).not.toMatch(/bunx|\bbun\b/);
   });
 });

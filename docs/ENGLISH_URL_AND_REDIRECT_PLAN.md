@@ -1,5 +1,9 @@
 # English URL Ownership and Redirect Plan
 
+## Implementation PR 2 status
+
+The typed ownership implementation is now recorded in the non-runtime root `seo/` modules. It preserves exactly 52 current sitemap paths, keeps the six historical commercial candidates outside the manifest, and records two redirect candidates with no destination selected. Approved redirects and approved commercial consolidations remain **zero**. No public sitemap, redirect, canonical, route, or HTTP behavior changed. Query × Page, Links, and Page Indexing issue examples remain required before any candidate advances.
+
 This is an evidence-gated migration map, not a redirect implementation. Canonical route ownership must be completed before static restoration. No current commercial URL may be redirected, merged or removed until query-by-page Search Console data is reviewed, unless it is proven to have no indexation, traffic, links or historical value.
 
 ## Global rules
