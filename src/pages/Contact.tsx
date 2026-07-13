@@ -27,7 +27,6 @@ const Contact = () => {
         title="Book a Yacht in Dubai | WhatsApp Instant Booking – Dubai Yacht"
         description="Contact Dubai Yacht to book your luxury yacht charter. WhatsApp, call, or fill out our inquiry form for instant availability."
         path="/contact"
-        keywords="book yacht dubai, yacht booking dubai, contact dubai yacht rental"
       />
 
       <div className="pt-28 pb-20">

@@ -19,7 +19,6 @@ const Index = () => (
       title="Yacht Rental Dubai | Luxury Yacht Charter Dubai — Dubai Yacht"
       description="Yacht rental Dubai with Dubai Yacht — luxury yacht charter Dubai, private yacht hire Dubai, Dubai yacht booking & trips. Book yacht in Dubai on WhatsApp."
       path="/"
-      keywords="yacht rental dubai, dubai yacht rental, yacht rentals dubai, dubai yacht rentals, yacht for rent dubai, yacht hire dubai, dubai yacht hire, yacht charter dubai, dubai yacht charter, private yacht rental dubai, private yacht charter dubai, luxury yacht rental dubai, luxury yacht charter dubai, dubai luxury yacht rental, book yacht dubai, dubai yacht booking, yacht trip dubai, dubai yacht trips"
     />
     <HeroSection />
     <FeaturedYachts />

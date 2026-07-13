@@ -39,7 +39,6 @@ const YachtDetails = () => {
         title={`${yacht.name} - ${yacht.length_ft}ft ${yacht.type} Yacht Rental Dubai | Dubai Yacht`}
         description={yacht.description}
         path={`/yachts/${yacht.slug}`}
-        keywords={`${yacht.name} dubai, ${yacht.length_ft}ft yacht dubai, ${yacht.max_guests} guests yacht dubai`}
       />
 
       {/* Hero with stagger carousel */}

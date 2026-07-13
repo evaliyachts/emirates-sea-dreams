@@ -60,3 +60,7 @@ Store exports under `docs/seo-input/` with export date and property name. Redact
 - Any historic redirects/domain migrations.
 - Prior URL list beyond the current sitemap.
 - Current ranking export if available; do not scrape Google results.
+
+## Publication gates after PR 3
+
+The homepage and three hub routes can be statically published without resolving later record-level claims. Restoring the other 48 manifest records still requires the phase-specific evidence already listed above. In particular, yacht facts/media rights, service capabilities, legal approval, business facts, and Query × Page/links evidence remain unresolved; aggregate Search Console counts do not approve a route or redirect.

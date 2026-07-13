@@ -3,6 +3,7 @@ export * from "./candidates";
 export * from "./contracts";
 export * from "./occasions";
 export * from "./planned-output";
+export * from "./publication";
 export * from "./redirects";
 export * from "./routes";
 export * from "./search-console";

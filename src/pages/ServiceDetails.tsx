@@ -25,7 +25,6 @@ const ServiceDetails = () => {
         title={`${service.title} - Yacht Service in Dubai | Dubai Yacht`}
         description={service.description.slice(0, 155)}
         path={`/services/${service.slug}`}
-        keywords={`${service.title} dubai, yacht ${service.category} dubai, dubai yatch ${service.title}`}
       />
 
       <div className="pt-28 pb-20">

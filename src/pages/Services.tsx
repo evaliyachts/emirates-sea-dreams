@@ -14,7 +14,6 @@ const Services = () => (
       title="Yacht Services Dubai | Yacht Rental Dubai Packages — Dubai Yacht"
       description="Yacht services for your yacht rental Dubai — water sports, BBQ, fishing, jet ski, birthday & wedding packages, proposals on a luxury yacht charter Dubai."
       path="/services"
-      keywords="yacht services dubai, yacht rental dubai packages, luxury yacht charter dubai, yacht hire dubai, jet ski dubai, yacht bbq dubai, yacht birthday party dubai, yacht proposal dubai"
     />
 
     <div className="pt-28 pb-20">
