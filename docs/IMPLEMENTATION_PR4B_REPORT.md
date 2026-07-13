@@ -3,8 +3,8 @@
 Date: 2026-07-14
 Branch: `agent/english-pr4b-approved-yachts`
 Scope: publish owner-approved English yacht records and detail pages only
-PR: pending
-Final branch commit: pending
+PR: [#9](https://github.com/evaliyachts/emirates-sea-dreams/pull/9)
+Implementation commit: `7bd1e65`
 
 ## Release inventory
 
