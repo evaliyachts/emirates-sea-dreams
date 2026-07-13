@@ -5,7 +5,7 @@ Status: implementation complete locally; GitHub and Netlify results are recorded
 ## Scope
 
 - Branch: `agent/english-pr1-foundation`
-- Pull request: pending publication
+- Pull request: [#2](https://github.com/evaliyachts/emirates-sea-dreams/pull/2)
 - Phase: PR 1 — governance, verified facts, exact runtime, dependencies, CI, and test foundation only
 - Next dependency: PR 2 may begin only after this PR is reviewed and merged; no PR 2 route ownership or migration work is included here.
 
