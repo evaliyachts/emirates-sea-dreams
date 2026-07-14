@@ -199,3 +199,9 @@ PR 4B clears 19 existing yacht owners for exact static output after owner fact a
 ## PR 5 commercial-content update — 2026-07-14
 
 PR 5 enriches `/`, `/yachts`, `/services` and `/occasions` without changing their direct-200 ownership or adding a route. The sitemap remains 23 exact production URLs: four hubs and 19 yacht details. The six commercial candidates remain direct 404s; all 18 service details, five blocked yacht owners, and support/legal routes remain unpublished. Changed commercial sections link only to published owners. The global header/footer link set still exposes later-phase navigation as a documented transitional exception, but the published-page directory now lists only live owners. Deploy Preview and post-merge production evidence belongs in `IMPLEMENTATION_PR5_REPORT.md`.
+
+## PR 6B approved-service publication update — 2026-07-14
+
+PR 6B clears ten existing service owners for route-specific static publication after explicit capability, wording, yacht-selection and media approval. The generated sitemap expands from 23 to 33 production-authority URLs: four hubs, 19 yacht details and ten service details. The remaining eight service owners continue to generate no static file or Netlify rewrite and remain real direct-request 404s.
+
+The seven occasion records still create no detail route. Five yacht owners, `/offers`, `/contact`, `/terms`, `/privacy`, all six commercial candidates and unknown routes remain blocked. No redirect, wildcard, English trailing-slash migration, analytics, language alternate, Search Console action or default-Netlify-host redirect is introduced. Final Deploy Preview and post-merge production evidence belongs in `IMPLEMENTATION_PR6B_REPORT.md`.

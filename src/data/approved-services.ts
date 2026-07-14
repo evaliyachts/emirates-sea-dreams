@@ -27,6 +27,8 @@ export const approvedServiceRecordSchema = z.object({
   }).strict(),
   introduction: z.string().min(1),
   directAnswer: z.string().min(1),
+  whoItIsFor: z.string().min(1),
+  suitableGroupTypes: z.array(z.string().min(1)).min(2).max(4),
   optionalRequestBoundary: z.string().min(1),
   sections: z.array(z.object({
     heading: z.string().min(1),
@@ -90,6 +92,12 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
     },
     introduction: "A birthday yacht request starts with the people attending, the date you prefer and the yacht facts that fit the group. This page separates those verified decisions from celebration ideas, so you can compare published capacity, hourly price and minimum duration before asking about any optional setup.",
     directAnswer: "A private birthday yacht celebration is on request and subject to confirmation. Choose a published yacht that can hold the complete group, request a duration that meets its minimum, and list cake, decoration, music, dining or photography separately for supplier and price confirmation.",
+    whoItIsFor: "This request is for people planning a private birthday gathering who can confirm the complete guest count before comparing yacht capacity and optional celebration ideas.",
+    suitableGroupTypes: [
+      "A couple or small private birthday group within the selected yacht's published capacity.",
+      "Family and friends gathering for a birthday, with every adult and child counted.",
+      "A larger private birthday group that needs a higher-capacity published yacht comparison.",
+    ],
     optionalRequestBoundary: "Cake, decoration, music, dining, photography, balloons and entertainment are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
     sections: [
       {
@@ -130,7 +138,7 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
       { question: "Is birthday decoration part of the yacht's hourly price?", answer: "No decoration is assumed. Describe the requested setup and obtain availability, supplier and separate-price confirmation in the final written offer." },
       { question: "Can a birthday yacht request be confirmed from this page?", answer: "No. The service is on request and subject to confirmation, including the yacht, date, timing and every optional item." },
       { question: "How should I compare yachts for a birthday group?", answer: "Use the verified guest capacity first, then compare hourly price, minimum duration and length. Those facts do not confirm celebration equipment or extras." },
-      { question: "Does the birthday page promise a route or landmark stop?", answer: "No fixed route, departure point or landmark coverage is published. Include timing preferences in the request and wait for written confirmation." },
+      { question: "Does the birthday page promise a route or landmark stop?", answer: "No pre-set route, departure point or landmark coverage is published. Include timing preferences in the request and wait for written confirmation." },
     ],
     yachtIds: ["yacht-royal-majesty-50", "yacht-majesty-56", "yacht-majesty-88"],
     yachtSelectionNote: "These three records provide factual capacity and price comparisons for small, medium and larger groups. The selection does not verify birthday equipment, suppliers or setup compatibility.",
@@ -151,6 +159,11 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
     },
     introduction: "A proposal request benefits from careful planning without assuming a ready-made setup. Begin with whether the trip is for two people or a small group, compare the published yacht limits, and describe the preferred timing and optional presentation in a way that can be checked before you rely on it.",
     directAnswer: "A private yacht marriage proposal is on request and subject to confirmation. The yacht, date and timing must be confirmed, while letters, candles, flowers, decoration, dinner and photography remain optional requests with separate availability, supplier and price decisions.",
+    whoItIsFor: "This request is for a couple planning a private yacht proposal, with the option to include a small group only when the full guest count fits the selected yacht's published capacity.",
+    suitableGroupTypes: [
+      "A two-person proposal request built around verified yacht price and minimum-duration facts.",
+      "A proposal with a small private group, counted before the yacht shortlist is prepared.",
+    ],
     optionalRequestBoundary: "Letters, candles, flowers, styling, decoration, dinner, photography and music are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
     sections: [
       {
@@ -178,7 +191,7 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
     bookingSteps: [
       "Decide whether the request is for two people or includes additional guests.",
       "Compare published yacht capacity, rate, length and minimum duration.",
-      "Write down the preferred date, timing and sequence without assuming a fixed route.",
+      "Write down the preferred date, timing and sequence without assuming a pre-set route.",
       "Request each styling, dining or photography item separately and review the written response.",
     ],
     priceFactors: [
@@ -190,7 +203,7 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
     faqs: [
       { question: "Are proposal letters or candles automatically provided?", answer: "No. Letters, candles and other styling are optional requests that require availability, supplier and separate-price confirmation." },
       { question: "Is a photographer part of the proposal request?", answer: "Photography is not assumed. Ask whether a supplier can be confirmed for the date and rely only on the final written offer." },
-      { question: "Can I select a precise proposal landmark from this page?", answer: "No fixed route or landmark coverage is promised. Describe the preference and wait for operational confirmation." },
+      { question: "Can I select a precise proposal landmark from this page?", answer: "No pre-set route or landmark coverage is promised. Describe the preference and wait for operational confirmation." },
       { question: "When is a proposal yacht request confirmed?", answer: "It remains on request and subject to confirmation until the chosen yacht, date, timing and accepted optional items are confirmed in writing." },
     ],
     yachtIds: ["yacht-azimut-42", "yacht-royal-majesty-50", "yacht-sunseeker-92"],
@@ -212,6 +225,11 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
     },
     introduction: "An anniversary may be a quiet request for two people or a private gathering with family and friends. Define the complete group first, then compare yacht capacity, hourly price and minimum duration before discussing any optional dining, styling, flowers, music or photography.",
     directAnswer: "A private yacht anniversary celebration is on request and subject to confirmation. Yacht availability and timing must be checked, and dining, decoration, flowers, music and photography are separate optional requests rather than assumptions attached to the anniversary label.",
+    whoItIsFor: "This request is for a couple marking an anniversary or for a private anniversary gathering whose complete group can be compared with published yacht capacity.",
+    suitableGroupTypes: [
+      "A two-person private anniversary request.",
+      "An anniversary gathering with family or friends within a published yacht's capacity.",
+    ],
     optionalRequestBoundary: "Dining, decoration, flowers, cake, music, photography and styling are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
     sections: [
       {
@@ -273,6 +291,12 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
     },
     introduction: "An engagement gathering needs a clear group count and a yacht comparison before any styling or hospitality discussion. Use the verified fleet fields to identify possible sizes and budgets, then describe optional celebration requests without treating them as a package or a confirmed part of the yacht.",
     directAnswer: "A private engagement yacht celebration is on request and subject to confirmation. Compare the group against published yacht capacity, meet the vessel's minimum duration, and request cake, decoration, music, dining, flowers or photography separately for supplier and price confirmation.",
+    whoItIsFor: "This request is for a couple, family or invited private group preparing an engagement gathering and comparing yachts by verified capacity, size, rate and minimum duration.",
+    suitableGroupTypes: [
+      "A small engagement gathering with a complete confirmed guest count.",
+      "A family engagement celebration requiring a medium-capacity yacht comparison.",
+      "A larger private engagement group that remains within a selected yacht's published capacity.",
+    ],
     optionalRequestBoundary: "Cake, decoration, music, dining, flowers, balloons, photography and styling are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
     sections: [
       {
@@ -334,6 +358,11 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
     },
     introduction: "This page covers a private yacht celebration or gathering connected with a wedding. It does not establish legal ceremony authority. Start with the full guest count and verified yacht comparison, then prepare any hospitality, styling, music or photography requests for separate supplier confirmation.",
     directAnswer: "A private yacht wedding celebration is on request and subject to confirmation. It is presented as a private gathering rather than a legally authorized ceremony, and decoration, cake, catering, flowers, music, photography and entertainment remain optional requests with separate pricing.",
+    whoItIsFor: "This request is for a couple and invited private group planning a wedding-related yacht celebration or gathering, not for arranging a legally authorized ceremony.",
+    suitableGroupTypes: [
+      "A private wedding-related gathering with family and close guests.",
+      "A larger private celebration that requires a verified higher-capacity yacht comparison.",
+    ],
     optionalRequestBoundary: "Decoration, cake, catering, flowers, music, photography, dining, styling and entertainment are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
     sections: [
       {
@@ -361,7 +390,7 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
     bookingSteps: [
       "Define the private celebration or gathering without assuming legal ceremony capability.",
       "Confirm the full guest count and compare published yacht limits and prices.",
-      "Prepare preferred timing and duration without relying on a fixed route or departure.",
+      "Prepare preferred timing and duration without relying on a pre-set route or departure.",
       "Submit each supplier and setup request separately and review the final written offer.",
     ],
     priceFactors: [
@@ -395,6 +424,11 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
     },
     introduction: "A graduation gathering can be prepared accurately by separating the student group and yacht comparison from optional celebration ideas. Confirm every guest, compare verified capacity and price, and submit any cake, decoration, music, dining or photography request as a separate item.",
     directAnswer: "A private graduation yacht celebration is on request and subject to confirmation. The yacht and timing must be checked, while cake, decoration, music, dining, balloons and photography remain optional supplier requests with separate pricing.",
+    whoItIsFor: "This request is for a graduate and a private group of family or friends who can provide the complete guest count before choosing a yacht.",
+    suitableGroupTypes: [
+      "A small graduation gathering with family or close friends.",
+      "A medium or larger private graduation group matched to published yacht capacity.",
+    ],
     optionalRequestBoundary: "Cake, decoration, music, dining, balloons, photography, styling and entertainment are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
     sections: [
       {
@@ -435,7 +469,7 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
       { question: "Does a graduation request come with cake or balloons?", answer: "No. Cake and balloons are optional requests requiring supplier availability and separate-price confirmation." },
       { question: "Can students choose a yacht by the group size?", answer: "Yes, compare the complete group with verified capacity, but the actual yacht and date remain on request and subject to confirmation." },
       { question: "Is music or photography confirmed by this page?", answer: "No. Both are optional supplier requests and must appear in the final written offer before you rely on them." },
-      { question: "Does the graduation service follow a set route?", answer: "No fixed route, departure point or landmark sequence is published. Submit preferences for operational confirmation." },
+      { question: "Does the graduation service follow a set route?", answer: "No pre-set route, departure point or landmark sequence is published. Submit preferences for operational confirmation." },
     ],
     yachtIds: ["yacht-royal-majesty-50", "yacht-majesty-56", "yacht-doretty-90"],
     yachtSelectionNote: "The selected records compare verified capacity and hourly-rate ranges for different group sizes. They do not verify graduation equipment, styling or supplier access.",
@@ -456,6 +490,11 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
     },
     introduction: "A bachelor gathering can be planned as a respectful private group experience without adult-entertainment implications. Start with the complete guest count and published yacht limits, then describe music, setup, dining or entertainment preferences as optional requests governed by yacht rules and confirmation.",
     directAnswer: "A private bachelor yacht gathering is on request and subject to confirmation. Choose a yacht by verified capacity, price and minimum duration; conduct, music, setup, dining and entertainment requests remain subject to yacht rules, availability, supplier confirmation and separate pricing.",
+    whoItIsFor: "This request is for friends planning a respectful private bachelor gathering and willing to follow the selected yacht's conduct rules and confirmation process.",
+    suitableGroupTypes: [
+      "A small private group comparing yachts by verified price and capacity.",
+      "A larger group whose complete guest count fits a published yacht limit.",
+    ],
     optionalRequestBoundary: "Music, setup, dining, styling, photography and entertainment are optional requests subject to yacht rules, availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
     sections: [
       {
@@ -516,6 +555,11 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
     },
     introduction: "An afternoon tea idea is published here only as a requestable private yacht hospitality experience. Choose the yacht from verified capacity, price and duration fields, then ask whether a menu and supplier can be arranged for the preferred date rather than relying on a standard offering.",
     directAnswer: "A private yacht afternoon tea experience is on request and subject to confirmation. Tea service is not assumed in the yacht price; the menu, supplier, dietary questions, lead time and separate price must be confirmed in the final written offer.",
+    whoItIsFor: "This request is for a couple or private small group interested in asking whether an afternoon hospitality arrangement can be confirmed separately for a selected yacht.",
+    suitableGroupTypes: [
+      "A couple requesting a private afternoon yacht experience.",
+      "A small family or friends group within the selected yacht's published capacity.",
+    ],
     optionalRequestBoundary: "Afternoon tea, menu items, dining setup, flowers, styling and photography are optional requests subject to availability, supplier confirmation, lead time and separate pricing unless the final written offer states otherwise.",
     sections: [
       {
@@ -535,7 +579,7 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
       {
         heading: "Prepare time preferences without a fixed trip plan",
         paragraphs: [
-          "Afternoon describes the requested timing, not a guaranteed departure, route, duration or landmark sequence. The requested hours must also meet the yacht's published minimum.",
+          "Afternoon describes the requested timing, not a confirmed departure, route, duration or landmark sequence. The requested hours must also meet the yacht's published minimum.",
           "A complete request combines yacht, group, date, timing and hospitality questions so each element can be answered in writing.",
         ],
       },
@@ -556,7 +600,7 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
       { question: "Is afternoon tea part of the yacht's hourly price?", answer: "No tea service is assumed. Menu, supplier, lead time and separate price must be confirmed in writing." },
       { question: "Is there a published afternoon tea menu?", answer: "No fixed menu is published. Submit dietary questions and wait for the available supplier options and prices." },
       { question: "Will afternoon tea be prepared onboard?", answer: "No onboard-cooking or preparation promise is made. The supplier and service method require confirmation." },
-      { question: "Does afternoon tea follow a fixed route?", answer: "No. Afternoon is a timing preference; departure, route, duration and operational details remain subject to confirmation." },
+      { question: "Does afternoon tea follow a set route?", answer: "No. Afternoon is a timing preference; departure, route, duration and operational details remain subject to confirmation." },
     ],
     yachtIds: ["yacht-azimut-42", "yacht-majesty-44", "yacht-azimut-55"],
     yachtSelectionNote: "These records compare verified small-group capacity, rate, size and minimum duration. They do not confirm a menu, dining setup or hospitality supplier.",
@@ -576,6 +620,11 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
     },
     introduction: "A morning yacht trip is treated as a timing preference for a private experience, not a fixed itinerary or package. Compare published yacht facts for the complete group, choose a requested duration that respects the vessel minimum, and list breakfast or other hospitality ideas separately if you want them checked.",
     directAnswer: "A private morning yacht experience is on request and subject to confirmation. No fixed departure point, route, duration, breakfast, tea or activity is promised; hospitality requests require menu, supplier, lead-time and separate-price confirmation.",
+    whoItIsFor: "This request is for a couple, family or private group that prefers a morning timing request and can keep route, departure and hospitality details open until confirmation.",
+    suitableGroupTypes: [
+      "A couple or small group comparing a private morning timing request.",
+      "A family or friends group whose complete count fits the selected yacht's published capacity.",
+    ],
     optionalRequestBoundary: "Breakfast, tea, dining, photography, music and other hospitality or entertainment ideas are optional requests subject to availability, supplier confirmation, lead time and separate pricing unless the final written offer states otherwise.",
     sections: [
       {
@@ -614,7 +663,7 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
     ],
     faqs: [
       { question: "Does a morning yacht request include breakfast?", answer: "No breakfast is assumed. Menu, supplier, lead time, service method and separate price require confirmation." },
-      { question: "Is a morning route already decided?", answer: "No fixed route, departure point or landmark sequence is published. Morning is a requested time subject to operational confirmation." },
+      { question: "Is a morning route already decided?", answer: "No pre-set route, departure point or landmark sequence is published. Morning is a requested time subject to operational confirmation." },
       { question: "Can I request more than the minimum duration?", answer: "You may submit a longer requested duration. The chosen yacht, date, timing and total hours still require confirmation." },
       { question: "Are morning water activities offered?", answer: "No activity capability is claimed on this page. Swimming, fishing and water-activity detail owners remain blocked." },
     ],
@@ -636,6 +685,11 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
     },
     introduction: "A barbecue idea is published only as a requestable private yacht hospitality option. Select a yacht using verified capacity, hourly price and minimum duration, then ask whether a menu and supplier can be confirmed for the chosen date instead of assuming food or cooking forms part of the vessel booking.",
     directAnswer: "A private yacht barbecue request is on request and subject to confirmation. BBQ is not assumed in the yacht price, onboard cooking is not promised, and the menu, supplier, lead time, service method and separate price must be confirmed in writing.",
+    whoItIsFor: "This request is for a private group that wants to ask whether separate barbecue hospitality can be arranged for a selected yacht without assuming food or cooking is part of the vessel price.",
+    suitableGroupTypes: [
+      "A family or friends group comparing yachts by verified capacity and rate.",
+      "A private celebration group requesting a separately confirmed hospitality arrangement.",
+    ],
     optionalRequestBoundary: "BBQ, catering, menu items, dining setup, music, photography and styling are optional requests subject to availability, supplier confirmation, lead time and separate pricing unless the final written offer states otherwise.",
     sections: [
       {

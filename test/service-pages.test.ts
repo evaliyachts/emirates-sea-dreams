@@ -84,12 +84,14 @@ describe("English PR 6B approved service owners", () => {
     expect(new Set(approvedServices.map((service) => service.path))).toHaveLength(10);
   });
 
-  it("gives every page unique manifest metadata, H1, introduction, direct answer, sections and FAQs", () => {
+  it("gives every page unique metadata, H1, introduction, direct answer, audience, sections and FAQs", () => {
     const titles = new Set<string>();
     const descriptions = new Set<string>();
     const h1s = new Set<string>();
     const introductions = new Set<string>();
     const directAnswers = new Set<string>();
+    const audiences = new Set<string>();
+    const suitableGroupSets = new Set<string>();
     const headingSets = new Set<string>();
     const faqSets = new Set<string>();
 
@@ -102,6 +104,7 @@ describe("English PR 6B approved service owners", () => {
       const h1 = text(content.querySelector("h1"));
       const introduction = text(content.querySelector("[data-page-introduction]"));
       const directAnswer = text(content.querySelector("[data-direct-answer]"));
+      const audience = service.whoItIsFor;
       const headings = [...content.querySelectorAll("h2")].map(text);
       const faqs = [...content.querySelectorAll("[data-faq-question]")].map(text);
 
@@ -109,6 +112,10 @@ describe("English PR 6B approved service owners", () => {
       expect(content.querySelectorAll("h1")).toHaveLength(1);
       expect(introduction.split(/\s+/).length).toBeGreaterThan(35);
       expect(directAnswer.split(/\s+/).length).toBeGreaterThan(30);
+      expect(text(content)).toContain(audience);
+      service.suitableGroupTypes.forEach((group) => expect(text(content)).toContain(group));
+      expect(headings).toContain("Who this request is for");
+      expect(text(content)).toContain("Suitable group or occasion types");
       expect(headings.length).toBeGreaterThanOrEqual(9);
       expect(faqs).toHaveLength(4);
       expect(text(content).split(/\s+/).length).toBeGreaterThan(500);
@@ -118,11 +125,13 @@ describe("English PR 6B approved service owners", () => {
       h1s.add(h1);
       introductions.add(introduction);
       directAnswers.add(directAnswer);
+      audiences.add(audience);
+      suitableGroupSets.add(JSON.stringify(service.suitableGroupTypes));
       headingSets.add(JSON.stringify(headings));
       faqSets.add(JSON.stringify(faqs));
     });
 
-    [titles, descriptions, h1s, introductions, directAnswers, headingSets, faqSets]
+    [titles, descriptions, h1s, introductions, directAnswers, audiences, suitableGroupSets, headingSets, faqSets]
       .forEach((values) => expect(values).toHaveLength(10));
   });
 
@@ -148,7 +157,7 @@ describe("English PR 6B approved service owners", () => {
       expect(content.toLowerCase()).toContain("on request and subject to confirmation");
       expect(content.toLowerCase()).toContain("optional request");
       expect(content.toLowerCase()).toContain("separate pricing");
-      expect(content).not.toMatch(/fuel is included|drinks are included|package includes|guaranteed availability|open bar|fireworks|licensed crew|maritime insurance/i);
+      expect(content).not.toMatch(/\bincluded\b|\ball-inclusive\b|\bguaranteed\b|\bfree\b|fixed route|fixed duration|instant confirmation|open bar|fireworks|licensed crew|maritime insurance/i);
     });
 
     const bachelor = text(render("/services/bachelor-parties").document.querySelector("[data-service-content]"));
@@ -166,6 +175,26 @@ describe("English PR 6B approved service owners", () => {
       const content = text(render(path).document.querySelector("[data-service-content]"));
       expect(content).toMatch(/menu.*supplier.*lead time.*separate price/i);
       expect(content).not.toMatch(/standard menu|breakfast is included|tea is included|BBQ is included/i);
+    });
+  });
+
+  it("provides a safe booking CTA and links only to published owners or approved anchors", () => {
+    const publishedPaths = new Set(publishedStaticRoutes.map((route) => route.path));
+    approvedServices.forEach((service) => {
+      const content = render(service.path).document.querySelector(`[data-service-id="${service.id}"]`)!;
+      const cta = content.querySelector<HTMLAnchorElement>("[data-service-booking-cta]");
+      const disclaimer = text(content.querySelector("[data-service-confirmation-disclaimer]"));
+
+      expect(cta?.getAttribute("href")).toBe("/#booking-request-guide");
+      expect(text(cta)).toBe("Prepare a booking request");
+      expect(disclaimer).toContain("does not reserve a yacht or confirm availability");
+      expect(disclaimer).toContain("final written offer or WhatsApp confirmation");
+      expect(disclaimer).not.toMatch(/instant confirmation|guaranteed/i);
+
+      [...content.querySelectorAll<HTMLAnchorElement>("a[href]")].forEach((link) => {
+        const href = link.getAttribute("href")!;
+        expect(href === "/#booking-request-guide" || href.startsWith("#") || publishedPaths.has(href)).toBe(true);
+      });
     });
   });
 

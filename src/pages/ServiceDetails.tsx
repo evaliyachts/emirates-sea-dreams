@@ -107,6 +107,20 @@ const ServiceDetails = () => {
           </div>
         </Section>
 
+        <Section title="Who this request is for">
+          <div className="grid max-w-5xl gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="liquid-glass p-7">
+              <p className="leading-7 text-muted-foreground">{service.whoItIsFor}</p>
+            </div>
+            <div className="liquid-glass-gold p-7">
+              <h3 className="text-xl font-semibold text-foreground">Suitable group or occasion types</h3>
+              <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
+                {service.suitableGroupTypes.map((group) => <li key={group}>• {group}</li>)}
+              </ul>
+            </div>
+          </div>
+        </Section>
+
         {service.sections.map((section) => (
           <Section key={section.heading} title={section.heading}>
             <div className="liquid-glass max-w-4xl space-y-4 p-7">
@@ -165,6 +179,17 @@ const ServiceDetails = () => {
         </Section>
 
         <FaqSection title={`${service.name} planning questions`} faqs={service.faqs} />
+
+        <Section title="Prepare the booking request">
+          <div className="liquid-glass-gold max-w-4xl p-7">
+            <p data-service-confirmation-disclaimer className="leading-7 text-muted-foreground">
+              Preparing a request does not reserve a yacht or confirm availability. Optional details are confirmed only in the final written offer or WhatsApp confirmation for that request.
+            </p>
+            <Link data-service-booking-cta to="/#booking-request-guide" className="liquid-btn-primary mt-6 inline-flex px-6 py-3">
+              Prepare a booking request
+            </Link>
+          </div>
+        </Section>
 
         <Section title="Continue with published planning pages">
           <div className="flex flex-wrap gap-4">

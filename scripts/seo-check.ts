@@ -187,6 +187,13 @@ for (const route of publishedStaticRoutes) {
       failures.push(`${route.path}: generated service detail lacks an approved record.`);
     } else {
       const serviceContent = body.match(/data-service-content="true"[^>]*>([\s\S]*?)<\/main>/i)?.[1] ?? "";
+      const serviceVisible = serviceContent
+        .replace(/<[^>]+>/g, " ")
+        .replace(/&#x27;|&#39;/g, "'")
+        .replace(/&quot;/g, "\"")
+        .replace(/&amp;/g, "&")
+        .replace(/\s+/g, " ")
+        .trim();
       if (
         route.metadataOwnership.status !== "approved" ||
         route.metadataOwnership.title !== title ||
@@ -203,6 +210,15 @@ for (const route of publishedStaticRoutes) {
       }
       if (!visible.toLowerCase().includes("on request and subject to confirmation")) {
         failures.push(`${route.path}: approved availability boundary is missing.`);
+      }
+      if (!serviceVisible.includes(service.whoItIsFor) || service.suitableGroupTypes.some((group) => !serviceVisible.includes(group))) {
+        failures.push(`${route.path}: approved audience or suitable-group guidance is missing.`);
+      }
+      if (!/data-service-booking-cta="true"[^>]+href="\/#booking-request-guide"/.test(serviceContent)) {
+        failures.push(`${route.path}: safe booking-request CTA is missing.`);
+      }
+      if (!/does not reserve a yacht or confirm availability/i.test(serviceVisible) || !/final written offer or WhatsApp confirmation/i.test(serviceVisible)) {
+        failures.push(`${route.path}: booking confirmation boundary is missing.`);
       }
       const yachtLinks = [...serviceContent.matchAll(/href="(\/yachts\/[^"]+)"/g)].map((match) => match[1]);
       const expectedYachtLinks = service.yachtIds.map((id) => {
@@ -229,7 +245,7 @@ for (const route of publishedStaticRoutes) {
         if (!serviceNode || !breadcrumb || graph.length !== 2) failures.push(`${route.path}: service schema must contain only Service and BreadcrumbList owners.`);
         if (serviceNode?.name !== service.name || serviceNode.url !== expectedCanonical) failures.push(`${route.path}: Service schema lacks visible-name/canonical parity.`);
       }
-      if (/wild party|open bar|fireworks|instant(?:ly)? confirmed|guaranteed availability/i.test(visible)) {
+      if (/\bincluded\b|\ball-inclusive\b|\bguaranteed\b|\bfree\b|fixed route|fixed duration|instant confirmation|wild party|open bar|fireworks/i.test(serviceVisible)) {
         failures.push(`${route.path}: prohibited service promise or positioning appears in visible content.`);
       }
     }
