@@ -6,9 +6,15 @@ Branch: `agent/english-pr7-entity-schema-mapping`
 
 Base merge: `6d95dcbc92180e5d6fb5a65c18e7276ed267519a`
 
-Pull request: pending
+Pull request: [#16](https://github.com/evaliyachts/emirates-sea-dreams/pull/16)
 
-Final implementation commit, Deploy Preview and production evidence: recorded after remote validation
+Initial implementation commit: `4d5f82063d5a520d1203ea1645c25b527396bdb7`
+
+Deploy Preview: `https://deploy-preview-16--yachtrentaldxb.netlify.app`
+
+Netlify Deploy Preview ID: `6a559554ebc2080008b8a24b`
+
+Production evidence: recorded after merge and the Git-connected production deployment
 
 ## Scope and unchanged inventories
 
@@ -82,10 +88,16 @@ Local branch results on Node `v24.18.0` and npm `11.16.0`:
 
 The existing Vite bundle-size, CSS import-order and server-render `useLayoutEffect` notices remain non-failing baseline output; this entity/mapping phase does not alter CSS, motion architecture or bundle composition.
 
-Pending remote evidence:
+Remote branch evidence:
 
-- Deploy Preview crawl and hydration check;
-- GitHub Quality and Netlify Deploy Preview;
-- post-merge production smoke test.
+- GitHub Quality: passed ([run 29299467095](https://github.com/evaliyachts/emirates-sea-dreams/actions/runs/29299467095));
+- Netlify Deploy Preview: passed;
+- Netlify header and redirect-rule checks: passed; pages-changed check correctly skipped;
+- preview crawl: 33 published routes returned direct 200, all 19 blocked manifest owners and six commercial candidates returned direct 404, and a random unknown path returned a real 404;
+- preview sitemap: exactly 33 production canonical URLs; robots referenced the production sitemap;
+- every preview page emitted one parseable JSON-LD graph, exact production canonical, `index, follow`, and no live `hreflang` or `x-default`;
+- browser hydration: homepage, Royal Majesty 50 and birthday-service pages retained their route title, H1, canonical and schema after client hydration with no console errors.
+
+Pending remote evidence: post-merge production smoke test.
 
 No current production behavior changes until this PR is merged and the Git-connected production deploy completes.
