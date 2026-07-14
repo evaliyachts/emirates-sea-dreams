@@ -83,7 +83,7 @@ const YachtDetails = () => {
               <ol className="list-decimal pl-6 text-muted-foreground space-y-2">
                 <li>Review the verified specifications and hourly price.</li>
                 <li>Choose a requested duration of at least {yacht.minimumDuration} hours and a group size no greater than {yacht.guestCapacity}.</li>
-                <li><Link to="/contact" className="text-primary hover:underline">Prepare an enquiry</Link> for WhatsApp or use the approved phone channel. An enquiry is not a confirmed booking.</li>
+                <li><Link to="/contact" className="text-primary underline underline-offset-4">Prepare an enquiry</Link> for WhatsApp or use the approved phone channel. An enquiry is not a confirmed booking.</li>
               </ol>
             </section>
             {relatedYachts.length > 0 && (
