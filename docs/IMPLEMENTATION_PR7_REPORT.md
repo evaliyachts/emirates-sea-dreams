@@ -10,11 +10,21 @@ Pull request: [#16](https://github.com/evaliyachts/emirates-sea-dreams/pull/16)
 
 Initial implementation commit: `4d5f82063d5a520d1203ea1645c25b527396bdb7`
 
+Final branch commit: `e140b6bd55b0fbcd1bfef752273854cd0929d16e`
+
+Squash merge commit: `c755c832d6ede57a395a2b21c1153eb654cf58f8`
+
 Deploy Preview: `https://deploy-preview-16--yachtrentaldxb.netlify.app`
 
-Netlify Deploy Preview ID: `6a559554ebc2080008b8a24b`
+Final-head Netlify Deploy Preview ID: `6a55966ca9ece4000878502a`
 
-Production evidence: recorded after merge and the Git-connected production deployment
+Production deploy ID: `6a5596d5a338330008ebd6b8`
+
+Production build ID: `6a5596d5a338330008ebd6b6`
+
+Production deployment: created `2026-07-14T01:54:29.876Z`, published `2026-07-14T01:54:49.295Z`, ready `2026-07-14T01:54:58.457Z`
+
+Production application bundle: `assets/index-Cb0IU8cP.js`
 
 ## Scope and unchanged inventories
 
@@ -90,7 +100,7 @@ The existing Vite bundle-size, CSS import-order and server-render `useLayoutEffe
 
 Remote branch evidence:
 
-- GitHub Quality: passed ([run 29299467095](https://github.com/evaliyachts/emirates-sea-dreams/actions/runs/29299467095));
+- final-head GitHub Quality: passed ([run 29299664984](https://github.com/evaliyachts/emirates-sea-dreams/actions/runs/29299664984));
 - Netlify Deploy Preview: passed;
 - Netlify header and redirect-rule checks: passed; pages-changed check correctly skipped;
 - preview crawl: 33 published routes returned direct 200, all 19 blocked manifest owners and six commercial candidates returned direct 404, and a random unknown path returned a real 404;
@@ -98,6 +108,22 @@ Remote branch evidence:
 - every preview page emitted one parseable JSON-LD graph, exact production canonical, `index, follow`, and no live `hreflang` or `x-default`;
 - browser hydration: homepage, Royal Majesty 50 and birthday-service pages retained their route title, H1, canonical and schema after client hydration with no console errors.
 
-Pending remote evidence: post-merge production smoke test.
+## Post-merge production evidence
 
-No current production behavior changes until this PR is merged and the Git-connected production deploy completes.
+The Git-connected production deployment used the exact squash merge commit. Main-branch GitHub Quality passed in [run 29299739048](https://github.com/evaliyachts/emirates-sea-dreams/actions/runs/29299739048).
+
+Production smoke testing on `https://yachtrentaldxb.com` confirmed:
+
+- all 33 published canonical routes returned direct HTTP 200;
+- all 19 blocked manifest routes, all six commercial candidates and one random unknown URL returned real HTTP 404;
+- `sitemap.xml` contained exactly the 33 expected production canonical URLs and `robots.txt` referenced the production sitemap;
+- every published page remained `index, follow`, self-canonicalized to the production origin and emitted parseable JSON-LD;
+- emitted schema types were limited to `WebSite`, `Organization`, `Service` and `BreadcrumbList`, with factual yacht Offers nested under Service where applicable;
+- no redirect, live `hreflang`, `x-default`, preview-host canonical or prohibited schema type appeared;
+- both emitted asset source-map URLs returned HTTP 404;
+- the production application loaded `assets/index-Cb0IU8cP.js` with revalidated HTML caching;
+- post-deploy media verification passed for all 126 production yacht images, 15 approved local homepage images, seven approved service images and the neutral fallback.
+
+The crawl found six existing navigation destinations that remain intentionally blocked until later approved phases: `/offers`, `/about`, `/faq`, `/contact`, `/terms` and `/privacy`. Their direct 404 behavior and links predate PR 7; PR 7 did not change route or navigation ownership.
+
+PR 7 is complete in production. PR 8 has not begun.
