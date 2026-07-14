@@ -8,7 +8,7 @@ Pull request: [#19](https://github.com/evaliyachts/emirates-sea-dreams/pull/19)
 
 Final implementation commit before the release-report commit: `4a8cb780cd462cd1008fc912a51c00032ab72ecb`
 
-Status: **Deploy Preview validated; production evidence pending merge**
+Status: **Complete — production cutover and smoke test passed**
 
 ## Release boundary
 
@@ -40,7 +40,7 @@ The approved 12-section homepage sequence, 19 yacht facts/offers, 10 service pag
 
 ## Redirect decision
 
-The exact default production hostname was directly verified as `https://yachtrentaldxb.netlify.app/` and returned 200 before this change. PR 9 adds exactly one host-specific permanent redirect, preserving `:splat` and Netlify-supported query strings. The canonical host has no matching rule, Deploy Preview #19 remains directly accessible, and `/offers` remains a real 404 on the canonical host. Production one-hop/path/query checks remain gated on the merged deploy.
+The exact default production hostname was directly verified as `https://yachtrentaldxb.netlify.app/` and returned 200 before this change. PR 9 adds exactly one host-specific permanent redirect, preserving `:splat` and Netlify-supported query strings. The canonical host has no matching rule, Deploy Preview #19 remains directly accessible, and `/offers` remains a real 404 on the canonical host. The merged production one-hop/path/query results are recorded below.
 
 ## Route, sitemap, schema and media validation
 
@@ -138,4 +138,31 @@ The Netlify CLI production-context build required `--offline` because no local N
 
 The exact owner workflow and evidence ledger are in `ENGLISH_SEARCH_CONSOLE_LAUNCH.md`. Authenticated Live URL Tests, sitemap submission, representative indexing requests and exports remain manual owner actions. Codex has not performed or claimed any Search Console action.
 
-Production deploy ID, deployed assets, final canonical/default-host smoke test and final project handoff status remain pending squash merge and Netlify production deployment.
+## Production release evidence
+
+- PR 9 squash merge: `4213d639e231275d5d74eab434ab7ecb0aa058ae`.
+- Netlify production deploy: `6a5620183a4ce500085f9ed8`.
+- Deploy created: `2026-07-14T11:40:08.309Z`.
+- Published: `2026-07-14T11:40:28.155Z`.
+- Production JavaScript: `assets/index-0tPQ6NyV.js` (593,274 bytes).
+- Production CSS: `assets/index-B7x8aHbO.css` (76,500 bytes).
+- GitHub `quality` on the merge commit: passed at `2026-07-14T11:40:54Z`.
+
+The post-deploy production crawler passed all 38 canonical 200 routes, 23 real-404 checks and exact 38-URL sitemap membership. It found no redirecting canonical owner, broken internal link, blocked-owner link, duplicate metadata/H1, bad canonical authority, preview hostname, live `hreflang`/`x-default`, analytics data layer, console/hydration error or horizontal overflow.
+
+Default-host request | First response | Location | Final result
+--- | ---: | --- | ---
+`/` | 301 | `https://yachtrentaldxb.com/` | 200; one redirect
+`/yachts` | 301 | `https://yachtrentaldxb.com/yachts` | 200; one redirect
+`/contact?source=cutover-test` | 301 | exact canonical path and query | 200; one redirect
+`/offers?source=cutover-test` | 301 | exact canonical path and query | real 404; one redirect
+
+`deploy-preview-19--yachtrentaldxb.netlify.app` and `main--yachtrentaldxb.netlify.app` remain direct 200 responses. The removed feature-branch-style hostname returns 404 rather than redirecting. The canonical homepage remains direct 200 with no loop; `www` retains its existing one-hop 301 to the apex.
+
+Production HTML, `404.html`, `robots.txt` and `sitemap.xml` use `public,max-age=0,must-revalidate`. The fingerprinted JavaScript asset uses `public,max-age=31536000,immutable`. No source map was emitted and the matching `.js.map` request returns 404. Robots permits required resources and names only `https://yachtrentaldxb.com/sitemap.xml`; the sitemap is valid canonical HTTPS output with 38 entries and no blocked/default-host URL or fabricated change frequency/priority.
+
+The production browser audit repeated the ten representative classes at 390×844. Every page has visible initial content, an exact production self-canonical, one H1, valid JSON-LD and zero console/hydration warnings; no page creates `window.dataLayer` or emits a language alternate. Terms and Privacy publish the approved identity and `Effective date: 14 July 2026`. The representative yacht Offer remains AED 600 in both visible content and schema. Media validation remains green for all 126 production yacht URLs and approved local assets.
+
+## Final handoff state
+
+The implementation roadmap is complete. Search Console remains an authenticated owner action: run the nine Live URL Tests, submit the sitemap only after they pass, request the six representative URLs, and archive the listed exports. Analytics and language alternates remain intentionally disabled. No Search Console action was performed by Codex.
