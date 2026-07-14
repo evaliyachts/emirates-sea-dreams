@@ -7,7 +7,7 @@ Route ownership now consumes only the aggregate 2026-06-30 Page Indexing summary
 - Query × Page export;
 - Links report;
 - Page Indexing issue example URLs for all six 404s, two crawled-not-indexed entries, and the one redirect entry;
-- four Live URL Tests;
+- six authenticated Live URL Tests;
 - business, legal, yacht, service, price, and media approvals listed below.
 
 No additional route was created from the 55 known-URL total.
@@ -45,7 +45,7 @@ Use the `yachtrentaldxb.com` property and export the longest available period wh
 10. Sitemap status/details.
 11. Links report: top linked pages, internal links and linking sites.
 12. Core Web Vitals.
-13. Four URL Inspection Live Tests specified in `ENGLISH_GOOGLE_ACCESS_EVIDENCE.md`.
+13. Six URL Inspection Live Tests specified in `ENGLISH_GOOGLE_ACCESS_EVIDENCE.md`.
 
 Do not infer query/page clicks, CTR, ownership, backlinks or redirect value from the received aggregate summary.
 
@@ -93,4 +93,21 @@ The four published commercial/hub owners now provide evidence-safe decision cont
 
 The English–Arabic report now covers all 33 published English owners: 28 are verified true equivalents and five remain related but unsuitable for reciprocal tags. Resolve the Azimut 42, Majesty 44 and Oryx 50 price conflicts, the Heysea/هايغان identity, and the occasions-hub taxonomy mismatch before reconsidering those five rows. A coordinated release must be approved and deployed on both domains; no one-sided `hreflang` or `x-default` is authorized.
 
-The visible `Dubai Yacht` site name supports a minimal WebSite/Organization graph, but formal business-name approval, phone, WhatsApp, email, address, departure location, hours and social profiles remain pending. No ContactPoint or LocalBusiness may be emitted until the corresponding visible facts are approved. Query × Page, Links, issue-detail examples and the four Search Console Live URL Tests also remain open.
+The visible `Dubai Yacht` site name supports a minimal WebSite/Organization graph, but formal business-name approval, phone, WhatsApp, email, address, departure location, hours and social profiles remain pending. No ContactPoint or LocalBusiness may be emitted until the corresponding visible facts are approved. Query × Page, Links, issue-detail examples and the six Search Console Live URL Tests also remain open.
+
+## PR 8A final owner-input ledger
+
+No new Search Console evidence was received in PR 8A. Supply each artifact with the exact property, report/filter, date range, export date and evidence filename:
+
+Evidence | Status | Required detail
+--- | --- | ---
+Six authenticated Live URL Tests | Pending | Homepage, yacht catalogue, yacht detail, services hub, service detail and occasions hub; include Google accessibility, rendered resources, user/Google canonical and indexability.
+Performance Queries export | Pending | Longest useful period with clicks, impressions, CTR and position.
+Performance Pages export | Pending | Longest useful period with clicks, impressions, CTR and position.
+Query × Page export | Pending | Preserve the query-to-page relationship; aggregate totals are not a substitute.
+Links report | Pending | Top linked pages, internal links and linking sites.
+Page Indexing issue examples | Pending | Examples for discovered, not found, crawled-not-indexed and redirect groups.
+Core Web Vitals report | Pending | Mobile and desktop groups with affected URLs and status.
+Sitemap report | Pending | Submitted sitemap URL, last read, status, discovered pages and any errors.
+
+Business, support-route, legal, analytics and accessibility/performance decisions are itemized in `ENGLISH_FINAL_BUSINESS_APPROVAL_PACK.md`, `ENGLISH_SUPPORT_ROUTE_APPROVAL_PACK.md`, `ENGLISH_LEGAL_APPROVAL_PACK.md`, `ENGLISH_ANALYTICS_APPROVAL.md` and `ENGLISH_PR8_BASELINE.md`. Every unresolved owner decision remains pending.

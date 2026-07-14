@@ -11,16 +11,18 @@ The sampled primary yacht image returned `403` from the image CDN even while HTM
 
 ## Required Search Console Live Tests
 
-Run URL Inspection → **Test Live URL** while authenticated to the `yachtrentaldxb.com` property. Export screenshots or the reported fields for each route after PR 3 has made the intended owner a direct `200`:
+Run URL Inspection → **Test Live URL** while authenticated to the `yachtrentaldxb.com` property. PR 8A expands the release sample to six currently published representatives. Export screenshots or the reported fields for each route:
 
 | Page class | Candidate URL | Google accessibility | Rendered screenshot/resources | Google-selected canonical | User canonical | Indexability | Evidence ID |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Homepage | `https://yachtrentaldxb.com/` | Pending | Pending | Pending | Pending | Pending | Pending |
-| Commercial | Exact manifest owner selected in PR 2 | Pending | Pending | Pending | Pending | Pending | Pending |
-| Yacht | One verified yacht canonical selected in PR 2 | Pending | Pending | Pending | Pending | Pending | Pending |
-| Event | One verified event canonical selected in PR 2 | Pending | Pending | Pending | Pending | Pending | Pending |
+| Yacht catalogue | `https://yachtrentaldxb.com/yachts` | Pending | Pending | Pending | Pending | Pending | Pending |
+| Yacht detail | `https://yachtrentaldxb.com/yachts/50-feet-royal-majesty-dubai-yacht-rental` | Pending | Pending | Pending | Pending | Pending | Pending |
+| Services hub | `https://yachtrentaldxb.com/services` | Pending | Pending | Pending | Pending | Pending | Pending |
+| Service detail | `https://yachtrentaldxb.com/services/birthday-party` | Pending | Pending | Pending | Pending | Pending | Pending |
+| Occasions hub | `https://yachtrentaldxb.com/occasions` | Pending | Pending | Pending | Pending | Pending | Pending |
 
-Do not substitute source-code inspection, `curl -A Googlebot`, Rich Results Test, Lighthouse or a third-party crawler for these four Live Tests.
+Do not substitute source-code inspection, `curl -A Googlebot`, Rich Results Test, Lighthouse or a third-party crawler for these six Live Tests.
 
 ## Infrastructure investigation checklist
 
@@ -50,7 +52,7 @@ Record evidence from Netlify and any upstream DNS/CDN/WAF provider:
 
 ## Pass criteria
 
-This gate passes only when all four Live Tests report accessible, renderable and indexable pages; the intended canonical matches the user-declared canonical; critical resources load; and any WAF/CDN rule is documented. A failed or inconclusive test blocks Search Console submission and broad sitemap publication.
+This gate passes only when all six Live Tests report accessible, renderable and indexable pages; the intended canonical matches the user-declared canonical; critical resources load; and any WAF/CDN rule is documented. A failed or inconclusive test blocks Search Console submission and broad sitemap publication.
 
 ## PR 3 Live Test readiness
 
@@ -79,3 +81,18 @@ PR 7 verifies ordinary live HTTP, self-canonical and indexability evidence for a
 - event detail: `https://yachtrentaldxb.com/services/birthday-party`.
 
 Record Google-reported accessibility, rendered resources, user canonical, Google-selected canonical and indexability. No Search Console action was taken in PR 7.
+
+## PR 8A owner evidence ledger — 2026-07-14
+
+No authenticated Search Console export, screenshot or Live URL Test was supplied during PR 8A. The owner still needs to provide:
+
+- the six Live URL Test records in the required table above;
+- Performance Queries export;
+- Performance Pages export;
+- Query × Page export;
+- Links report;
+- Page Indexing issue-detail examples;
+- Core Web Vitals report;
+- sitemap report.
+
+For every artifact record the property, report/filter, date range, export date, evidence filename and any redaction. A pending field must not be marked received from an ordinary crawl or source-code check.
