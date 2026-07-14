@@ -54,7 +54,7 @@ const Contact = () => {
       />
       <div className="pt-28 pb-20" data-support-content="contact">
         <div className="container mx-auto px-4 max-w-5xl">
-          <AnimatedSection className="text-center mb-12">
+          <AnimatedSection initiallyVisible className="text-center mb-12">
             <span className="liquid-pill inline-block mb-4">Contact</span>
             <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-4">Prepare a Private Yacht Enquiry</h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">Compare a yacht first, then prepare the details needed to ask about availability. This browser form does not submit a booking.</p>

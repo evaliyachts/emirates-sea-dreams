@@ -119,7 +119,8 @@ describe("English PR 2 route ownership manifest", () => {
     expect(redirectCandidates.every((redirect) => redirect.proposedTo === undefined)).toBe(true);
     const netlify = read("netlify.toml");
     expect([...netlify.matchAll(/status = 200/g)]).toHaveLength(8 + publishableYachts.length + approvedServices.length);
-    expect(netlify).not.toMatch(/status = 30[12]/);
+    expect([...netlify.matchAll(/status = 301/g)]).toHaveLength(1);
+    expect(netlify).toMatch(/from = "https:\/\/yachtrentaldxb\.netlify\.app\/\*"[\s\S]*to = "https:\/\/yachtrentaldxb\.com\/:splat"/);
     expect(netlify).not.toMatch(/from = "\/\*"/);
   });
 

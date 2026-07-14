@@ -42,7 +42,7 @@ const FAQ = () => (
     />
     <div className="pt-28 pb-20" data-support-content="faq">
       <div className="container mx-auto px-4 max-w-3xl">
-        <AnimatedSection className="text-center mb-14">
+        <AnimatedSection initiallyVisible className="text-center mb-14">
           <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-4">Private Yacht Rental FAQ</h1>
           <p className="text-muted-foreground">Factual planning answers. Availability and booking details always require specific written confirmation.</p>
         </AnimatedSection>

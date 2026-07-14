@@ -6,8 +6,17 @@ publish = "dist"
 NODE_VERSION = "24.18.0"
 NPM_VERSION = "11.16.0"
 
+# The exact default production hostname is a duplicate authority unless it is
+# redirected before the path rewrites below. Deploy Preview and branch-deploy
+# hostnames do not match this fully qualified source rule.
+[[redirects]]
+from = "https://yachtrentaldxb.netlify.app/*"
+to = "https://yachtrentaldxb.com/:splat"
+status = 301
+force = true
+
 # Exact 200 rewrites publish only evidence-cleared inner routes.
-# There is intentionally no SPA fallback and no redirect in this phase.
+# There is intentionally no SPA fallback or route-level redirect.
 [[redirects]]
 from = "/yachts"
 to = "/_static/yachts.html"

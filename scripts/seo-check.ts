@@ -31,8 +31,10 @@ import {
   RESERVED_CONTACT_POINT_ENTITY_ID,
   WEBSITE_ENTITY_ID,
 } from "../src/lib/entity-schema";
+import { validateProductionData } from "./validate-production-data";
 
 const failures = [...validateEnglishSeoOwnership(), ...validateEnglishArabicRouteMappings()];
+validateProductionData();
 const read = (path: string) => readFile(resolve(path), "utf8");
 const escape = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const routeFile = (path: string) => path === "/" ? "dist/index.html" : `dist/_static${path}.html`;
@@ -374,8 +376,8 @@ if (!robots.includes(`Sitemap: ${ENGLISH_PRODUCTION_ORIGIN}/sitemap.xml`)) failu
 
 const languageReport = await read("docs/ENGLISH_ARABIC_HREFLANG_MAP.md");
 if (languageReport !== generateEnglishArabicMappingReport()) failures.push("Committed English–Arabic mapping report is stale.");
-if (languageMappingSummary.total + languageMappingPendingRouteIds.length !== publishedStaticRoutes.length || languageMappingSummary.trueEquivalents !== 28 || languageMappingSummary.relatedNotEquivalent !== 5 || languageMappingSummary.unmapped !== 0) {
-  failures.push("Language evidence must remain 33 verified mappings plus five PR 8B production-review-pending routes.");
+if (languageMappingSummary.total !== publishedStaticRoutes.length || languageMappingPendingRouteIds.length !== 0 || languageMappingSummary.trueEquivalents !== 31 || languageMappingSummary.relatedNotEquivalent !== 7 || languageMappingSummary.unmapped !== 0) {
+  failures.push("Language evidence must cover all 38 published routes with 31 true equivalents and seven related non-equivalents.");
 }
 if (englishArabicRouteMappings.some((record) => record.xDefaultAppropriate)) failures.push("x-default remains unapproved.");
 if (siteFacts.phoneDisplay.status !== "approved" || siteFacts.phoneE164.status !== "approved" || siteFacts.whatsappUrl.status !== "approved" || siteFacts.responsiblePerson.status !== "approved" || siteFacts.responsiblePerson.value !== "Mohammed Abdullah, Operation Manager" || siteFacts.legalPublicationDate.status !== "approved" || siteFacts.legalPublicationDate.value !== "14 July 2026" || siteFacts.analyticsEnabled.value !== false) {
@@ -387,8 +389,17 @@ if (siteFacts.publicAddress.status === "approved" || siteFacts.socialProfiles.st
 
 const netlify = await read("netlify.toml");
 const rewriteBlocks = [...netlify.matchAll(/\[\[redirects\]\]([\s\S]*?)(?=\n\[\[|$)/g)].map((match) => match[1]);
-if (rewriteBlocks.length !== 8 + publishedYachtRoutes.length + publishedServiceRoutes.length || rewriteBlocks.some((block) => !/status = 200/.test(block))) failures.push("Exact 200 rewrites must equal the eight inner base/support owners plus generated yacht and service details.");
-if (/status = 30[12]/.test(netlify) || /from = "\/\*"/.test(netlify)) failures.push("Redirect or wildcard fallback found.");
+const exactHostRedirects = rewriteBlocks.filter((block) => /status = 301/.test(block));
+const pathRewrites = rewriteBlocks.filter((block) => /status = 200/.test(block));
+if (pathRewrites.length !== 8 + publishedYachtRoutes.length + publishedServiceRoutes.length) failures.push("Exact 200 rewrites must equal the eight inner base/support owners plus generated yacht and service details.");
+if (
+  exactHostRedirects.length !== 1 ||
+  !/from = "https:\/\/yachtrentaldxb\.netlify\.app\/\*"/.test(exactHostRedirects[0] ?? "") ||
+  !/to = "https:\/\/yachtrentaldxb\.com\/:splat"/.test(exactHostRedirects[0] ?? "") ||
+  !/force = true/.test(exactHostRedirects[0] ?? "")
+) failures.push("The only permanent redirect must be the exact default-Netlify-host cutover rule.");
+if (rewriteBlocks.length !== pathRewrites.length + exactHostRedirects.length || /from = "\/\*"/.test(netlify)) failures.push("Unexpected redirect, status or wildcard fallback found.");
+if (/from = "https:\/\/(?:deploy-preview-|[^"\n]*--[^"\n]*\.netlify\.app|(?:www\.)?yachtrentaldxb\.com\/\*)/.test(netlify)) failures.push("The cutover redirect must not match preview, branch or canonical production hosts.");
 if (approvedRedirects.length !== 0 || approvedCommercialConsolidations.length !== 0) failures.push("Evidence-gated approvals changed.");
 
 const collectFiles = async (directory: string): Promise<string[]> => {
@@ -439,4 +450,4 @@ console.log(`Service gates: ${routeGroups.services.length} manifest owners, ${ap
 console.log(`Evidence gates preserved: ${approvedRedirects.length} redirects, ${approvedCommercialConsolidations.length} consolidations, ${commercialCandidateRegistry.length} candidates, ${occasionDispositions.length} occasions.`);
 console.log(`Search Console remains aggregate evidence (${searchConsoleAggregateBaseline.knownUrls} known URLs); no Search Console action was taken.`);
 console.log(`Entity schema passed: one WebSite and minimal Organization; ContactPoint and LocalBusiness remain omitted.`);
-console.log(`Language evidence passed: ${languageMappingSummary.total} verified mappings plus ${languageMappingPendingRouteIds.length} production-review-pending support/legal routes; no live alternate tags.`);
+console.log(`Language evidence passed: all ${languageMappingSummary.total} published routes reviewed (${languageMappingSummary.trueEquivalents} true equivalents, ${languageMappingSummary.relatedNotEquivalent} related non-equivalents); no live alternate tags.`);

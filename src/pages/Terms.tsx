@@ -23,7 +23,7 @@ const Terms = () => (
     <SEOHead title="Website and Yacht Request Terms | Dubai Yacht" description="Read the website and yacht-request terms covering enquiries, written confirmation, prices, payments, changes, capacity and supplier requests." path="/terms" jsonLd={buildBreadcrumbSchema("/terms", [{ name: "Home", path: "/" }, { name: "Terms", path: "/terms" }])} />
     <div className="pt-28 pb-20" data-support-content="terms">
       <div className="container mx-auto px-4 max-w-3xl">
-        <AnimatedSection>
+        <AnimatedSection initiallyVisible>
           <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-3">Website and Yacht Request Terms</h1>
           <p className="text-sm text-muted-foreground mb-10">Effective date: {LEGAL_PUBLICATION_DATE}</p>
           <div className="space-y-8 text-muted-foreground text-sm leading-relaxed">

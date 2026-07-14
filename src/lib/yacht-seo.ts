@@ -1,7 +1,7 @@
 import type { YachtRecord } from "@/data/yachts";
 import { yachtPath } from "@/data/yachts";
 import { DOMAIN } from "@/lib/constants";
-import { NEUTRAL_YACHT_FALLBACK } from "@/data/media-rights";
+import { NEUTRAL_YACHT_FALLBACK } from "@/data/media-constants";
 import { buildBreadcrumbNode, organizationReference, schemaGraph } from "@/lib/entity-schema";
 
 export const buildYachtSeo = (yacht: YachtRecord) => {

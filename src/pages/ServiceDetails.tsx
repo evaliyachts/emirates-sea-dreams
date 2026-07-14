@@ -79,9 +79,8 @@ const ServiceDetails = () => {
                   alt={service.media.alt}
                   width={service.media.width}
                   height={service.media.height}
-                  loading="eager"
+                  loading="lazy"
                   decoding="async"
-                  {...{ fetchpriority: "high" }}
                   className="max-h-[620px] w-full object-cover"
                 />
                 <figcaption className="px-5 py-4 text-sm leading-6 text-muted-foreground">

@@ -11,13 +11,13 @@ import {
 } from "../seo";
 
 describe("English PR 7 bilingual evidence report", () => {
-  it("preserves 33 live-reviewed mappings and records five new production-review-pending owners", () => {
-    expect(englishArabicRouteMappings).toHaveLength(33);
+  it("records final evidence for all 38 published owners", () => {
+    expect(englishArabicRouteMappings).toHaveLength(38);
     expect(new Set(englishArabicRouteMappings.map((record) => record.routeId))).toEqual(
       new Set(publishedStaticRoutes.filter((route) => !languageMappingPendingRouteIds.includes(route.id as typeof languageMappingPendingRouteIds[number])).map((route) => route.id)),
     );
-    expect(languageMappingSummary).toEqual({ total: 33, trueEquivalents: 28, relatedNotEquivalent: 5, unmapped: 0 });
-    expect(languageMappingPendingRouteIds).toEqual(["about", "faq", "contact", "terms", "privacy"]);
+    expect(languageMappingSummary).toEqual({ total: 38, trueEquivalents: 31, relatedNotEquivalent: 7, unmapped: 0 });
+    expect(languageMappingPendingRouteIds).toEqual([]);
     expect(englishArabicRouteMappings.length + languageMappingPendingRouteIds.length).toBe(publishedStaticRoutes.length);
     expect(validateEnglishArabicRouteMappings()).toEqual([]);
   });
@@ -39,12 +39,14 @@ describe("English PR 7 bilingual evidence report", () => {
   it("requires reciprocal future tags only for true equivalents", () => {
     const trueEquivalent = englishArabicRouteMappings.filter((record) => record.equivalenceStatus === "true-equivalent");
     const related = englishArabicRouteMappings.filter((record) => record.equivalenceStatus === "related-not-equivalent");
-    expect(trueEquivalent).toHaveLength(28);
+    expect(trueEquivalent).toHaveLength(31);
     expect(trueEquivalent.every((record) => record.samePrimaryIntent && record.reciprocalEnglishTagRequired && record.reciprocalArabicTagRequired)).toBe(true);
-    expect(related).toHaveLength(5);
+    expect(related).toHaveLength(7);
     expect(related.every((record) => !record.reciprocalEnglishTagRequired && !record.reciprocalArabicTagRequired && record.blockers.length > 0)).toBe(true);
     expect(related.map((record) => record.routeId).sort()).toEqual([
       "occasion-index",
+      "privacy",
+      "terms",
       "yacht-azimut-42",
       "yacht-heysea-90",
       "yacht-majesty-44",

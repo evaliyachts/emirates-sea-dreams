@@ -33,7 +33,7 @@ const Privacy = () => (
     <SEOHead title="Privacy Notice | Dubai Yacht" description="How Dubai Yacht handles browser-prepared enquiries, WhatsApp and phone communications, hosting logs, media requests and privacy requests." path="/privacy" jsonLd={buildBreadcrumbSchema("/privacy", [{ name: "Home", path: "/" }, { name: "Privacy", path: "/privacy" }])} />
     <div className="pt-28 pb-20" data-support-content="privacy">
       <div className="container mx-auto px-4 max-w-3xl">
-        <AnimatedSection>
+        <AnimatedSection initiallyVisible>
           <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-3">Privacy Notice</h1>
           <p className="text-sm text-muted-foreground mb-10">Effective date: {LEGAL_PUBLICATION_DATE}</p>
           <div className="space-y-8 text-muted-foreground text-sm leading-relaxed">

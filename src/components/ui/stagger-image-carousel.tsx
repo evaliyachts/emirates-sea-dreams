@@ -39,8 +39,11 @@ export const StaggerImageCarousel = ({ images, altPrefix = "Yacht image", fallba
   };
 
   const displayed = imageList.length ? imageList : [{ type: "image", path: fallbackSrc, alt: `${altPrefix} placeholder`, width: 1200, height: 800, rightsRecordId: "fallback", rightsStatus: "approved", carouselId: "fallback" } satisfies UsableImage];
-  const centerIndex = displayed.length % 2 ? (displayed.length + 1) / 2 : displayed.length / 2;
+  const centerIndex = Math.floor(displayed.length / 2);
   const currentPosition = images.findIndex((item) => item.path === displayed[centerIndex]?.path) + 1;
+  const visibleCards = displayed
+    .map((image, index) => ({ image, position: index - centerIndex }))
+    .filter(({ position }) => Math.abs(position) <= 2);
 
   return (
     <section aria-label={`${altPrefix} image gallery`} onKeyDown={(event) => {
@@ -49,8 +52,7 @@ export const StaggerImageCarousel = ({ images, altPrefix = "Yacht image", fallba
     }}>
       <p className="sr-only" aria-live="polite">Image {Math.max(1, currentPosition)} of {Math.max(1, images.length)}</p>
       <div className="relative w-full overflow-hidden" style={{ height: cardSize * 0.65 + 80 }}>
-        {displayed.map((image, index) => {
-          const position = displayed.length % 2 ? index - (displayed.length + 1) / 2 : index - displayed.length / 2;
+        {visibleCards.map(({ image, position }) => {
           const isCenter = position === 0;
           return <button
             type="button"

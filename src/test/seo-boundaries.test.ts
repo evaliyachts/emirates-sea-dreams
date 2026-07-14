@@ -31,10 +31,14 @@ describe("static SEO and HTTP boundaries", () => {
     ]);
   });
 
-  it("uses only exact 200 rewrites and no catch-all or redirect", () => {
+  it("uses exact 200 route rewrites plus one exact-host cutover redirect", () => {
     const config = read("netlify.toml");
     expect([...config.matchAll(/status = 200/g)]).toHaveLength(8 + publishableYachts.length + approvedServices.length);
-    expect(config).not.toMatch(/status = 30[12]/);
+    expect([...config.matchAll(/status = 301/g)]).toHaveLength(1);
+    expect(config).toMatch(/from = "https:\/\/yachtrentaldxb\.netlify\.app\/\*"[\s\S]*to = "https:\/\/yachtrentaldxb\.com\/:splat"[\s\S]*status = 301[\s\S]*force = true/);
+    expect(config).not.toMatch(/from = "https:\/\/deploy-preview-/);
+    expect(config).not.toMatch(/from = "https:\/\/branch-/);
+    expect(config).not.toMatch(/from = "https:\/\/(?:www\.)?yachtrentaldxb\.com\/\*"/);
     expect(config).not.toMatch(/from = "\/\*"/);
   });
 

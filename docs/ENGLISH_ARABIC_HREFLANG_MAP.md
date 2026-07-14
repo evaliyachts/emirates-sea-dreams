@@ -2,22 +2,22 @@
 
 Verified: 2026-07-14
 
-This report records the exact self-canonical URLs reviewed for 33 English routes on `yachtrentaldxb.com` and their Arabic candidates on `yacht-dxb.com`. Five PR 8B support/legal owners are approved for preview publication but require a fresh production-side language review after release. This is evidence for a future coordinated implementation, not live alternate-link output.
+This report records the exact self-canonical URLs reviewed for all 38 published English routes on `yachtrentaldxb.com` and their Arabic candidates on `yacht-dxb.com`. The five PR 8B support/legal owners received a fresh production-side review in PR 9. This is evidence for a future coordinated implementation, not live alternate-link output.
 
 ## Release state
 
-- Published English routes reviewed: 33.
-- True equivalents: 28.
-- Related but not equivalent: 5.
+- Published English routes reviewed: 38.
+- True equivalents: 31.
+- Related but not equivalent: 7.
 - Unmapped routes: 0.
-- PR 8B routes pending production language review: 5.
+- Routes pending production language review: 0.
 - Live `hreflang`: absent.
 - Live `x-default`: absent and not approved.
 - Reciprocal tags: not published. A true-equivalent row requires both the English and Arabic tags to ship in one coordinated future release.
 
 ## Evidence method
 
-On 2026-07-14, both sides of every row were requested directly. The recorded pages returned HTTP 200, declared `index, follow`, and self-canonicalized to the exact URLs below. Arabic membership was also compared with the live Arabic sitemap. Equivalence was accepted only when page intent and visible factual identity aligned; a price, identity, or taxonomy conflict keeps a row out of the true-equivalent set. Exact URL form is preserved: English inner canonicals have no trailing slash, while Arabic canonicals are encoded HTTPS URLs with a trailing slash.
+On 2026-07-14, both sides of every row were requested directly. The recorded pages returned HTTP 200, declared `index, follow`, and self-canonicalized to the exact URLs below. The Arabic FAQ candidate was followed to its single canonical owner before review. Arabic membership was also compared with the live Arabic sitemap. Equivalence was accepted only when page intent and visible factual identity aligned; a price, identity, taxonomy or legal-copy conflict keeps a row out of the true-equivalent set. Exact URL form is preserved: English inner canonicals have no trailing slash, while Arabic canonicals are encoded HTTPS URLs with a trailing slash.
 
 This live review supersedes older candidate-only mapping status for the currently published English set, but it does not rewrite the historical audit or authorize a deployment. Search Console Live URL Tests and reciprocal implementation approval remain separate release gates.
 
@@ -58,10 +58,16 @@ English canonical | Arabic canonical | Equivalence | English reciprocal tag | Ar
 `https://yachtrentaldxb.com/services/morning-yacht-trips` | `https://yacht-dxb.com/%D8%B1%D8%AD%D9%84%D8%A9-%D9%8A%D8%AE%D8%AA-%D8%B5%D8%A8%D8%A7%D8%AD%D9%8A%D8%A9-%D9%81%D9%8A-%D8%AF%D8%A8%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
 `https://yachtrentaldxb.com/services/engagement-parties` | `https://yacht-dxb.com/%D9%8A%D8%AE%D8%AA-%D9%84%D8%AD%D9%81%D9%84%D8%A9-%D8%AE%D8%B7%D9%88%D8%A8%D8%A9-%D9%81%D9%8A-%D8%AF%D8%A8%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
 `https://yachtrentaldxb.com/services/wedding-parties` | `https://yacht-dxb.com/%D8%AD%D9%81%D9%84%D8%A9-%D8%B2%D9%81%D8%A7%D9%81-%D8%B9%D9%84%D9%89-%D9%8A%D8%AE%D8%AA-%D9%81%D9%8A-%D8%AF%D8%A8%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/about` | `https://yacht-dxb.com/about/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/faq` | `https://yacht-dxb.com/%D8%A7%D9%84%D8%A3%D8%B3%D8%A6%D9%84%D8%A9-%D8%A7%D9%84%D8%B4%D8%A7%D8%A6%D8%B9%D8%A9/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/contact` | `https://yacht-dxb.com/contact/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/terms` | `https://yacht-dxb.com/terms/` | Related, not equivalent | Not approved | Not approved | No | The English and Arabic legal texts have separate approved wording, responsible-party disclosures and effective dates; legal equivalence requires coordinated owner/legal review.
+`https://yachtrentaldxb.com/privacy` | `https://yacht-dxb.com/privacy/` | Related, not equivalent | Not approved | Not approved | No | The English notice identifies an approved controller and provider/data categories that are not equivalent to the older Arabic notice; coordinated legal revision is required.
 
 ## Non-equivalent findings
 
 - `/occasions` is a seven-theme English chooser; the reviewed Arabic page is a focused yacht-for-occasions commercial owner.
 - Azimut 42, Majesty 44 and Oryx 50 publish conflicting hourly prices across the two sites.
 - The English Heysea 90 and Arabic هايغان 90 public identities require owner verification.
+- The Terms and Privacy pages remain related but non-equivalent because the separately approved legal texts differ in responsible-party disclosure, effective date and material detail.
 - No row in this section may emit reciprocal alternate tags until its conflict is resolved and the mapping is reverified.
