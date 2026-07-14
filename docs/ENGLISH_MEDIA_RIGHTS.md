@@ -138,3 +138,9 @@ The documentation-only provenance mapping is:
 | `english-home-service-fishing-001` | `/media/home/services/fishing.webp` | 648×1152 | `1c3b9848ecb1b7eec39a668c978a3c238c6b2172d476aacb3324a8e1159d97dc` |
 
 The exact historical source URLs remain documentation-only provenance. No source URL or inherited brand name is emitted by the production homepage. Social-preview use, other page surfaces, transformation and cross-domain reuse remain unapproved for these homepage snapshots.
+
+## PR 6A service-detail media gate — 2026-07-14
+
+The service source contains 102 ordered media observations (18 covers and 84 gallery entries), representing 82 unique transformed URLs. All transformed remote paths expose inherited branding and remain provenance only; none is approved or proposed for production service pages.
+
+The owner expanded seven matching neutral local service-card rights records to the corresponding service-detail primary-image surface on 2026-07-14. Bachelor parties, afternoon tea, and morning yacht trips remain text-only. The eight blocked service owners receive no expanded media surface. Historical remote service media, event-page yacht images, and service social previews remain unapproved. See `ENGLISH_SERVICE_APPROVAL.md` and `ENGLISH_SERVICE_MEDIA_APPROVAL_PACK.md`.

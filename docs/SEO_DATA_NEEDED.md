@@ -12,6 +12,12 @@ Route ownership now consumes only the aggregate 2026-06-30 Page Indexing summary
 
 No additional route was created from the 55 known-URL total.
 
+## Implementation PR 6A service evidence status
+
+The owner approved 10 exact service/event owners and kept 8 blocked on 2026-07-14. The approval establishes cautious optional-request language, exactly three factual published-yacht selections per approved page, seven matching local primary images, and three text-only pages. It does not approve water-activity safety/operating claims, service social media, a redirect, or a consolidation. The seven occasion records remain without detail routes, and the combined engagement/wedding owner remains blocked without a redirect.
+
+The decision is recorded in `ENGLISH_SERVICE_APPROVAL.md`; implementation boundaries remain summarized in `SERVICE_APPROVAL_DECISIONS_NEEDED.md` and `ENGLISH_SERVICE_MEDIA_APPROVAL_PACK.md`. These documentation records do not change public output or reduce the need for Query × Page, links, Page Indexing issue examples, and Live URL Test evidence.
+
 ## Evidence ledger
 
 The original 2026-07-13 audit found no Search Console exports in `seo-input/`, `docs/seo-input/` or the workspace. A summary was supplied afterward and is recorded in `ENGLISH_SEARCH_CONSOLE_BASELINE.md`.
