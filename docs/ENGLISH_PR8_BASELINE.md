@@ -2,26 +2,37 @@
 
 Prepared: 2026-07-14
 
-Status: **PR 8B implementation underway; final preview measurements pending**
+Status: **PR 8B Draft preview measured; legal review gate remains active**
 
 Lighthouse is lab evidence, not field Core Web Vitals. Reference targets are LCP ≤ 2.5 seconds, field INP ≤ 200 ms, and CLS ≤ 0.1. Lighthouse TBT is recorded only as a lab responsiveness proxy and must not be reported as INP.
 
 ## Representative production pages
 
-Page class | URL | Current production status | Lighthouse Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT
+Page class | Preview path | HTTP status | Lighthouse Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT
 --- | --- | ---: | --- | --- | --- | --- | --- | --- | ---
-Homepage | `https://yachtrentaldxb.com/` | 200 | pending | pending | pending | pending | pending | pending | pending
-Yacht catalogue | `https://yachtrentaldxb.com/yachts` | 200 | pending | pending | pending | pending | pending | pending | pending
-Yacht detail | `https://yachtrentaldxb.com/yachts/50-feet-royal-majesty-dubai-yacht-rental` | 200 | pending | pending | pending | pending | pending | pending | pending
-Services hub | `https://yachtrentaldxb.com/services` | 200 | pending | pending | pending | pending | pending | pending | pending
-Service detail | `https://yachtrentaldxb.com/services/birthday-party` | 200 | pending | pending | pending | pending | pending | pending | pending
-Occasions hub | `https://yachtrentaldxb.com/occasions` | 200 | pending | pending | pending | pending | pending | pending | pending
-404 document | `https://yachtrentaldxb.com/pr8-baseline-unknown-route` | 404 | pending | pending | pending | pending | pending | pending | pending
+Homepage | `/` | 200 | 63 | 100 | 96 | 69 | 8.51 s | 0.027 | 141 ms
+Yacht catalogue | `/yachts` | 200 | 65 | 100 | 96 | 69 | 7.80 s | 0 | 50 ms
+Yacht detail | `/yachts/50-feet-royal-majesty-dubai-yacht-rental` | 200 | 65 | 100 | 96 | 69 | 10.73 s | 0 | 29 ms
+Services hub | `/services` | 200 | 72 | 100 | 96 | 69 | 7.41 s | 0 | 4 ms
+Service detail | `/services/birthday-party` | 200 | 65 | 100 | 96 | 69 | 7.85 s | 0 | 11 ms
+Occasions hub | `/occasions` | 200 | 67 | 100 | 96 | 69 | 6.45 s | 0 | 35 ms
+404 document | `/pr8-baseline-unknown-route` | 404 | not scored | axe: pass | not scored | not scored | n/a | n/a | n/a
+
+## Measurement method
+
+- Revision: PR #18 head `5fbd5695317b6fa5357b5a9dd722970526c5d9c9` on `https://deploy-preview-18--yachtrentaldxb.netlify.app`.
+- Recorded: 2026-07-14 07:16 GST.
+- Tool: Lighthouse 12.8.2, simulated mobile, 390×844 CSS pixels, device scale factor 2, Lighthouse simulated throttling.
+- Three valid performance traces were retained per 200 page and the median is reported. Traces where Lighthouse emitted `NO_LCP` were excluded rather than assigned a value.
+- The preview intentionally sends a deployment-level `noindex` directive. That preview isolation makes the Lighthouse SEO score 69 and is not evidence of a production-page metadata regression.
+- Lighthouse rejects the intentionally real HTTP 404 as a navigation failure, so the 404 is covered by the rendered axe scan and direct HTTP/HTML validation instead of a fabricated Lighthouse score.
 
 ## Current bundle evidence
 
-- Production JavaScript: `assets/index-Cb0IU8cP.js`; raw generated size 753,045 bytes.
-- Production CSS: `assets/index-Bg5D_0WS.css`; raw generated size 75,355 bytes.
+- Before-PR production JavaScript: `assets/index-Cb0IU8cP.js`; raw generated size 753,045 bytes.
+- Before-PR production CSS: `assets/index-Bg5D_0WS.css`; raw generated size 75,355 bytes.
+- PR 8B preview JavaScript: `assets/index-CIiPgMvC.js`; raw generated size 760,897 bytes (216.51 kB gzip).
+- PR 8B preview CSS: `assets/index-BjVEx15D.css`; raw generated size 76,652 bytes (12.90 kB gzip).
 - Production source maps: absent.
 - Existing non-failing build notices: large JavaScript chunk, CSS import order and server-render `useLayoutEffect` notices.
 
@@ -42,22 +53,24 @@ Network transfer sizes, image transfer, DOM size and route-level resource waterf
 
 ## Before/after record
 
-Metric | Before PR 8B | After PR 8B | Evidence
+Metric | Before PR 8B | PR 8B Draft preview | Evidence
 --- | --- | --- | ---
-Raw JavaScript | 753,045 bytes | 760,784 bytes (+7,739) | Production build output (`index-eZy9g0WJ.js`)
-Raw CSS | 75,355 bytes | 76,640 bytes (+1,285) | Production build output (`index-B23_gLnJ.css`)
-Compressed JavaScript transfer | pending | pending | DevTools/Lighthouse
-Image transfer by representative route | pending | pending | DevTools/Lighthouse
-DOM size | pending | pending | Lighthouse/DOM inspection
-Console errors | pending | pending | Browser console
-Keyboard navigation | pending | automated menu/contact checks pass; preview manual check pending | Vitest + preview checklist
-Reduced motion | pending | page, section and carousel safeguards implemented; preview emulation pending | source/test safeguard
-Mobile overflow | pending | pending | 320/360/390-pixel viewport checks
-Carousel behavior | pending | existing staggered/fullscreen component retained; preview pointer/keyboard check pending | source/test safeguard
+Raw JavaScript | 753,045 bytes | 760,897 bytes (+7,852) | Vite production build output (`index-CIiPgMvC.js`)
+Raw CSS | 75,355 bytes | 76,652 bytes (+1,297) | Vite production build output (`index-BjVEx15D.css`)
+Compressed JavaScript transfer | not recorded | 527–528 kB median by route, including transferred script resources | Lighthouse resource summary
+Image transfer by representative route | not recorded | 39 kB–1.25 MB median; yacht detail is highest | Lighthouse resource summary
+DOM size | not recorded | 274–1,136 elements median; catalogue is highest | Lighthouse DOM audit
+Console errors | not recorded | 0 on every retained trace | Lighthouse console audit
+Keyboard navigation | not recorded | automated menu, contact and carousel controls pass | Vitest rendered interaction tests
+Reduced motion | not recorded | page, section and carousel safeguards implemented | source and rendered test safeguards
+Mobile overflow | not recorded | requires final manual device/browser confirmation | retained release limitation
+Carousel behavior | not recorded | existing staggered/fullscreen component retained; controls, position announcement and failure behavior tested | source and rendered tests
 
 ## Automated accessibility result
 
-`axe-core` 4.10.3 rendered scans passed with **zero critical or serious findings** for the homepage, contact page, services index, birthday service, yacht catalogue, Royal Majesty detail and real 404 document. The color-contrast rule is excluded from the jsdom scan because jsdom does not calculate rendered color; contrast, overflow and focus visibility remain explicit Deploy Preview checks.
+`axe-core` 4.10.3 rendered scans passed with **zero critical or serious findings** for the homepage, contact page, services index, birthday service, yacht catalogue, Royal Majesty detail and real 404 document. The color-contrast rule is excluded from the jsdom scan because jsdom does not calculate rendered color. Lighthouse accessibility scores are 100 on the six measured 200 page classes after correcting footer heading order, homepage service-card accessible naming, service-selector target size and yacht-detail inline-link distinction.
+
+Direct preview validation reports all 38 sitemap owners at HTTP 200 with no redirect, `/offers` and an unknown route at real HTTP 404, no preview authority in page HTML, no analytics code and no live language alternates.
 
 The production-context Netlify build passed offline with the pinned project build command. Source maps are absent. The existing large JavaScript chunk notice remains a documented limitation; PR 8B does not claim a field Core Web Vitals improvement.
 
@@ -67,4 +80,6 @@ The production-context Netlify build passed offline with the pinned project buil
 - Analytics is owner-approved as disabled for PR 8B.
 - Contact behavior and legal principles are approved; final visible Terms and Privacy wording still requires owner review.
 - Authorized yacht and homepage/service media retain their existing recorded scopes; this document grants no new media right.
+- Simulated mobile LCP remains above the 2.5-second reference on every measured route. Remote hero/gallery delivery and the single large application bundle remain release limitations; this report makes no field Core Web Vitals claim.
+- Final physical-device overflow, rendered color-contrast and manual screen-reader checks remain release follow-ups. Automated keyboard and axe coverage is retained as the current evidence.
 - Search Console Query × Page, Links, Page Indexing examples, Core Web Vitals, sitemap evidence and six authenticated Live URL Tests remain pending.

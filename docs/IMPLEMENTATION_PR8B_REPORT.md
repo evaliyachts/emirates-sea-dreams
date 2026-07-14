@@ -2,7 +2,7 @@
 
 Prepared: 2026-07-14
 
-Status: **local implementation gates passed; Draft legal-review gate active**
+Status: **Draft PR #18 checks and preview pass; legal-review gate active**
 
 ## Scope
 
@@ -22,4 +22,8 @@ The existing Radix Dialog dependency owns mobile-menu focus and isolation. A ski
 
 Local gate: Node `v24.18.0`, npm `11.16.0`, clean `npm ci`, lint, typecheck, 95 tests, production build, `seo:check`, `media:verify`, production dependency audit, `git diff --check`, and offline Netlify production-context build all pass. Media verification covers 126 yacht images, 15 homepage images and 7 service-detail images; 3 approved service pages remain text-only. Production dependency audit reports zero vulnerabilities.
 
-Generated bundle: `index-eZy9g0WJ.js` (760,784 raw bytes; 216.50 kB gzip) and `index-B23_gLnJ.css` (76,640 raw bytes; 12.90 kB gzip). `axe-core` rendered checks report zero critical or serious violations across seven required page classes. Final commit, Deploy Preview URL and manual preview evidence remain to be recorded. The PR remains Draft until the owner approves the exact visible Terms and Privacy wording.
+Measured application revision: `5fbd5695317b6fa5357b5a9dd722970526c5d9c9`. Draft PR: https://github.com/evaliyachts/emirates-sea-dreams/pull/18. Deploy Preview: https://deploy-preview-18--yachtrentaldxb.netlify.app (measured Netlify deploy `6a55a900e3eea90008219640`). GitHub Quality and Netlify checks pass.
+
+Generated bundle: `index-CIiPgMvC.js` (760,897 raw bytes; 216.51 kB gzip) and `index-BjVEx15D.css` (76,652 raw bytes; 12.90 kB gzip). `axe-core` rendered checks report zero critical or serious violations across seven required page classes. Three-pass mobile Lighthouse medians and the remaining performance limitations are recorded in `docs/ENGLISH_PR8_BASELINE.md`. A direct preview crawl reports 38/38 sitemap owners at 200, `/offers` and an unknown route at real 404, no preview authority, no analytics and no live language alternates.
+
+The PR remains Draft until the owner approves the exact visible Terms and Privacy wording. It must not be marked Ready or merged before that explicit approval.
