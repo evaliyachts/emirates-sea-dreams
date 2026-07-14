@@ -165,7 +165,7 @@ Browser hydration checks covered the image-backed birthday owner and text-only a
 | Approved service owners | 10 | Direct 200 with route-specific initial HTML |
 | Blocked service owners | 8 | Real 404 |
 | Blocked yacht owners | 5 | Real 404 |
-| Blocked `/offers`, `/contact`, `/terms`, `/privacy` | 4 | Real 404 |
+| Blocked `/offers`, `/about`, `/faq`, `/contact`, `/terms`, `/privacy` | 6 | Real 404 |
 | Commercial candidates | 6 | Real 404 |
 | Random unknown path | 1 sampled | Real 404 |
 | `sitemap.xml` and `robots.txt` | 2 | Direct 200 |
@@ -174,7 +174,22 @@ No route in this matrix is redirected.
 
 ## Production smoke test
 
-Production deployment remains unchanged until PR #15 is ready, reviewed by its required checks and squash-merged. After the merged main build is published, this report will receive a documentation-only `[skip netlify]` evidence update recording the squash merge SHA, production deploy ID and timestamp, deployed bundle, full status matrix, sitemap/robots result, metadata/schema scan, hydration result, caching and source-map result.
+PR #15 was squash-merged as `9aa4ef963822ffba6ce282bd78c39f91524eae54`. Netlify production deploy `6a558aa9112a450008354956` was created at `2026-07-14T01:02:33.032Z` and published at `2026-07-14T01:02:51.751Z`. The custom production domain served fingerprinted bundle `index-DrDbpHMh.js`.
+
+The post-merge custom-domain smoke test passed:
+
+- all 33 published manifest owners returned direct 200 responses without `Location` headers;
+- all 19 blocked manifest owners, all six commercial candidates and a random unknown path returned real 404 responses without redirects;
+- `sitemap.xml` contained exactly 33 production-authority URLs and `robots.txt` referenced that production sitemap;
+- all ten service pages retained the approved title, description, H1, exact non-trailing-slash self-canonical, `index, follow` directive and route-specific visible content in initial HTML;
+- every service JSON-LD block parsed and contained exactly `Service` and `BreadcrumbList` ownership;
+- the 12 changed service/hub surfaces exposed 25 unique internal content-link targets, all of which returned direct 200 responses;
+- no service social image, preview authority, live language alternate, analytics or prohibited schema appeared;
+- media verification passed for 126 yacht images, 15 homepage images and seven service-detail images; three approved services remained text-only;
+- HTML, sitemap and robots retained revalidation caching, the fingerprinted bundle retained immutable caching, and the deployed bundle's `.map` URL returned 404;
+- the image-backed birthday page and text-only afternoon-tea page retained their title, H1, production canonical, booking-guide CTA and approved image decision after browser hydration, with zero console messages.
+
+This evidence update is documentation-only and uses `[skip netlify]`, so it does not replace or modify deploy `6a558aa9112a450008354956`.
 
 ## Remaining blockers before PR 7
 
@@ -185,4 +200,4 @@ Production deployment remains unchanged until PR #15 is ready, reviewed by its r
 - Business/entity facts needed for PR 7 schema ownership remain separately gated.
 - Analytics, live reciprocal language alternates, Search Console actions and the default-Netlify-host redirect remain disabled.
 
-PR 7 has not begun. Production deployment remains unchanged until the final branch, GitHub and Netlify gates pass and PR #15 is squash-merged under the approved workflow.
+PR 7 has not begun. PR 6B is merged and its production deployment and smoke test are complete.
