@@ -11,4 +11,4 @@ await writeFile(
   "utf8",
 );
 
-console.log("Generated docs/ENGLISH_ARABIC_HREFLANG_MAP.md for 33 published English routes.");
+console.log("Generated docs/ENGLISH_ARABIC_HREFLANG_MAP.md for 33 verified mappings plus five production-review-pending routes.");

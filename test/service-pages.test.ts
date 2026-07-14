@@ -64,10 +64,10 @@ describe("English PR 6B approved service owners", () => {
       .toEqual([...approvedPaths].sort());
     expect(blockedStaticRoutes.filter((route) => route.pageType === "service").map((route) => route.path).sort())
       .toEqual([...blockedPaths].sort());
-    expect(publishedStaticRoutes).toHaveLength(33);
+    expect(publishedStaticRoutes).toHaveLength(38);
 
     const sitemap = read("public/sitemap.xml");
-    expect([...sitemap.matchAll(/<loc>/g)]).toHaveLength(33);
+    expect([...sitemap.matchAll(/<loc>/g)]).toHaveLength(38);
     approvedPaths.forEach((path) => expect(sitemap).toContain(canonicalUrlForPath(path)));
     blockedPaths.forEach((path) => expect(sitemap).not.toContain(canonicalUrlForPath(path)));
   });

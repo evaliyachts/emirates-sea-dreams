@@ -2,7 +2,9 @@
 
 Prepared: 2026-07-14
 
-Status: **all six owner decisions are `pending`**
+Status: **superseded by the owner decisions dated 2026-07-14 and recorded in `ENGLISH_PR8B_OWNER_APPROVAL.md`**
+
+Historical findings below are retained as the pre-approval audit. The current decisions are: publish `/about`, `/faq`, `/contact`, `/terms` and `/privacy`; keep `/offers` blocked, remove visible links and do not redirect it. Exact visible legal wording remains a Draft-PR approval gate.
 
 This pack records the current source and production state. It does not publish a route, remove a link, change the sitemap, approve content, or choose an indexability outcome.
 
@@ -120,9 +122,9 @@ Do not publish fake discounts, expired offers, â€œbook two hours, get one free,â
 
 Route | Owner decision | Approved content reference | Approver | Approval date
 --- | --- | --- | --- | ---
-`/about` | pending | pending | pending | pending
-`/faq` | pending | pending | pending | pending
-`/contact` | pending | pending | pending | pending
-`/offers` | pending | pending | pending | pending
-`/terms` | pending | pending | pending | pending
-`/privacy` | pending | pending | pending | pending
+`/about` | publish indexable | `ENGLISH_PR8B_OWNER_APPROVAL.md` | Business owner | 2026-07-14
+`/faq` | publish indexable | `ENGLISH_PR8B_OWNER_APPROVAL.md` | Business owner | 2026-07-14
+`/contact` | publish indexable | `ENGLISH_PR8B_OWNER_APPROVAL.md` | Business owner | 2026-07-14
+`/offers` | remain blocked; remove visible links; no redirect | `ENGLISH_PR8B_OWNER_APPROVAL.md` | Business owner | 2026-07-14
+`/terms` | Draft preview; exact copy approval required | `ENGLISH_PR8B_OWNER_APPROVAL.md` | Business owner | 2026-07-14
+`/privacy` | Draft preview; exact copy approval required | `ENGLISH_PR8B_OWNER_APPROVAL.md` | Business owner | 2026-07-14

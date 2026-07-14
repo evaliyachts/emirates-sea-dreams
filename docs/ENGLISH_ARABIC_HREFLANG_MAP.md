@@ -2,7 +2,7 @@
 
 Verified: 2026-07-14
 
-This report records the exact self-canonical URLs declared by the 33 English routes currently published on `yachtrentaldxb.com` and the reviewed Arabic candidates on `yacht-dxb.com`. It is evidence for a future coordinated implementation, not live alternate-link output.
+This report records the exact self-canonical URLs reviewed for 33 English routes on `yachtrentaldxb.com` and their Arabic candidates on `yacht-dxb.com`. Five PR 8B support/legal owners are approved for preview publication but require a fresh production-side language review after release. This is evidence for a future coordinated implementation, not live alternate-link output.
 
 ## Release state
 
@@ -10,6 +10,7 @@ This report records the exact self-canonical URLs declared by the 33 English rou
 - True equivalents: 28.
 - Related but not equivalent: 5.
 - Unmapped routes: 0.
+- PR 8B routes pending production language review: 5.
 - Live `hreflang`: absent.
 - Live `x-default`: absent and not approved.
 - Reciprocal tags: not published. A true-equivalent row requires both the English and Arabic tags to ship in one coordinated future release.

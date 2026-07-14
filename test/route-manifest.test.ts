@@ -49,8 +49,8 @@ describe("English PR 2 route ownership manifest", () => {
     const manifestPaths = englishRouteManifest.map((route) => route.path);
     const publishedPaths = publishedStaticRoutes.map((route) => route.path);
 
-    expect(sitemapPaths).toHaveLength(4 + publishableYachts.length + approvedServices.length);
-    expect(new Set(sitemapPaths).size).toBe(4 + publishableYachts.length + approvedServices.length);
+    expect(sitemapPaths).toHaveLength(9 + publishableYachts.length + approvedServices.length);
+    expect(new Set(sitemapPaths).size).toBe(9 + publishableYachts.length + approvedServices.length);
     expect([...publishedPaths].sort()).toEqual([...sitemapPaths].sort());
     expect(manifestPaths).toHaveLength(52);
     expect(manifestPaths.filter((path) => path !== "/").every((path) => !path.endsWith("/"))).toBe(true);
@@ -66,14 +66,14 @@ describe("English PR 2 route ownership manifest", () => {
     expect(validateEnglishSeoOwnership()).toEqual([]);
   });
 
-  it("approves metadata only for the four PR 5 owners and ten PR 6B service owners", () => {
+  it("approves metadata for published base, support/legal, yacht-hub and service owners", () => {
     const approvedPaths = englishRouteManifest
       .filter((route) => route.metadataOwnership.status === "approved")
       .map((route) => route.path);
     expect(new Set(approvedPaths)).toEqual(new Set([
-      "/", "/yachts", "/services", "/occasions", ...approvedServices.map((service) => service.path),
+      "/", "/yachts", "/services", "/occasions", "/about", "/faq", "/contact", "/terms", "/privacy", ...approvedServices.map((service) => service.path),
     ]));
-    expect(approvedPaths).toHaveLength(14);
+    expect(approvedPaths).toHaveLength(19);
     expect(englishRouteManifest
       .filter((route) => !approvedPaths.includes(route.path))
       .every((route) => route.metadataOwnership.status === "pending")).toBe(true);
@@ -118,7 +118,7 @@ describe("English PR 2 route ownership manifest", () => {
     expect(redirectCandidates.every((redirect) => !redirect.from.includes("*"))).toBe(true);
     expect(redirectCandidates.every((redirect) => redirect.proposedTo === undefined)).toBe(true);
     const netlify = read("netlify.toml");
-    expect([...netlify.matchAll(/status = 200/g)]).toHaveLength(3 + publishableYachts.length + approvedServices.length);
+    expect([...netlify.matchAll(/status = 200/g)]).toHaveLength(8 + publishableYachts.length + approvedServices.length);
     expect(netlify).not.toMatch(/status = 30[12]/);
     expect(netlify).not.toMatch(/from = "\/\*"/);
   });
@@ -159,11 +159,13 @@ describe("English PR 2 route ownership manifest", () => {
     });
   });
 
-  it("omits unverified lastmod values in the provisional migration map", () => {
+  it("uses only the five owner-approved significant-update dates and omits every unverified lastmod", () => {
     expect(sitemapMigrationMap).toHaveLength(52);
-    expect(englishRouteManifest.every((route) => route.lastSignificantUpdate === undefined)).toBe(true);
-    expect(sitemapMigrationMap.every((entry) => entry.lastmodStatus === "omitted-unverified")).toBe(true);
-    expect(sitemapMigrationMap.every((entry) => entry.lastSignificantUpdate === undefined)).toBe(true);
+    const dated = englishRouteManifest.filter((route) => route.lastSignificantUpdate);
+    expect(dated.map((route) => route.path)).toEqual(["/about", "/faq", "/contact", "/terms", "/privacy"]);
+    expect(dated.every((route) => route.lastSignificantUpdate === "2026-07-14")).toBe(true);
+    expect(sitemapMigrationMap.filter((entry) => entry.lastmodStatus === "verified")).toHaveLength(5);
+    expect(sitemapMigrationMap.filter((entry) => entry.lastmodStatus === "omitted-unverified").every((entry) => entry.lastSignificantUpdate === undefined)).toBe(true);
   });
 
   it("derives canonicals from exact paths and rejects other authorities", () => {

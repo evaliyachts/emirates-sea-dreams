@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -18,15 +18,19 @@ const pageTransition = {
 
 const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
+  const reduceMotion = useReducedMotion();
 
   return (
     <div className="min-h-screen flex flex-col">
+      <a href="#main-content" className="fixed left-4 top-2 z-[100] -translate-y-20 rounded-lg bg-primary px-4 py-2 text-primary-foreground focus:translate-y-0">Skip to main content</a>
       <Header />
       <motion.main
+        id="main-content"
+        tabIndex={-1}
         key={location.pathname}
-        initial={pageTransition.initial}
+        initial={reduceMotion ? false : pageTransition.initial}
         animate={pageTransition.animate}
-        transition={pageTransition.transition}
+        transition={reduceMotion ? { duration: 0 } : pageTransition.transition}
         className="flex-1"
       >
         {children}

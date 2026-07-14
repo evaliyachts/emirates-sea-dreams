@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef, ReactNode } from "react";
 
 interface ParallaxSectionProps {
@@ -15,10 +15,11 @@ export const ParallaxSection = ({ children, speed = 0.3, className = "" }: Paral
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [speed * 100, -speed * 100]);
+  const reduceMotion = useReducedMotion();
 
   return (
     <div ref={ref} className={`relative overflow-hidden ${className}`}>
-      <motion.div style={{ y }}>{children}</motion.div>
+      <motion.div style={reduceMotion ? undefined : { y }}>{children}</motion.div>
     </div>
   );
 };
@@ -32,6 +33,7 @@ interface AnimatedSectionProps {
 }
 
 export const AnimatedSection = ({ children, className = "", delay = 0, direction = "up", initiallyVisible = false }: AnimatedSectionProps) => {
+  const reduceMotion = useReducedMotion();
   const initial: Record<string, number> = { opacity: 0 };
   if (direction === "up") initial.y = 40;
   if (direction === "left") initial.x = -40;
@@ -44,10 +46,10 @@ export const AnimatedSection = ({ children, className = "", delay = 0, direction
 
   return (
     <motion.div
-      initial={initiallyVisible ? false : initial}
+      initial={initiallyVisible || reduceMotion ? false : initial}
       whileInView={animate}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+      transition={{ duration: reduceMotion ? 0 : 0.7, delay: reduceMotion ? 0 : delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
       className={className}
     >
       {children}
@@ -63,14 +65,15 @@ interface StaggerContainerProps {
 }
 
 export const StaggerContainer = ({ children, className = "", staggerDelay = 0.1, initiallyVisible = false }: StaggerContainerProps) => {
+  const reduceMotion = useReducedMotion();
   return (
     <motion.div
-      initial={initiallyVisible ? false : "hidden"}
+      initial={initiallyVisible || reduceMotion ? false : "hidden"}
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: staggerDelay } },
+        visible: { transition: { staggerChildren: reduceMotion ? 0 : staggerDelay } },
       }}
       className={className}
     >

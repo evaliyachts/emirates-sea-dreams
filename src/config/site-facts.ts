@@ -12,6 +12,9 @@ export interface SiteFacts {
   previewUrl: ApprovedValue<string>;
   brandName: ApprovedValue<string>;
   alternateBrandName: ApprovedValue<string>;
+  legalEntityName: ApprovedValue<string>;
+  responsiblePerson: ApprovedValue<string>;
+  legalPublicationDate: ApprovedValue<string>;
   phoneDisplay: ApprovedValue<string>;
   phoneE164: ApprovedValue<string>;
   whatsappUrl: ApprovedValue<string>;
@@ -22,6 +25,8 @@ export interface SiteFacts {
   publicAddress: ApprovedValue<string>;
   socialProfiles: ApprovedValue<readonly string[]>;
   analyticsEnabled: ApprovedValue<boolean>;
+  logoPath: ApprovedValue<string>;
+  faviconPath: ApprovedValue<string>;
 }
 
 export const PRODUCTION_URL = "https://yachtrentaldxb.com/";
@@ -46,33 +51,59 @@ export const siteFacts: SiteFacts = {
   },
   brandName: {
     value: "Dubai Yacht",
-    status: "pending",
-    evidence: "Current source usage only; business approval is still required.",
+    status: "approved",
+    evidence: "Owner approval for English PR 8B dated 2026-07-14.",
+    approvedAt: "2026-07-14",
   },
-  alternateBrandName: { status: "pending", evidence: "No alternate English brand is approved." },
+  alternateBrandName: { status: "not-applicable", evidence: "Owner directed the alternate public brand to be omitted." },
+  legalEntityName: { status: "not-applicable", evidence: "Owner directed the legal entity name to be omitted pending separate approval." },
+  responsiblePerson: {
+    value: "Mohammed Abdullah, Operation Manager",
+    status: "approved",
+    evidence: "Owner supplied the exact responsible person for the PR 8B legal correction.",
+    approvedAt: "2026-07-14",
+  },
+  legalPublicationDate: {
+    value: "14 July 2026",
+    status: "approved",
+    evidence: "Owner authorized merge and production publication on 2026-07-14 after reviewing the complete rendered legal wording.",
+    approvedAt: "2026-07-14",
+  },
   phoneDisplay: {
-    value: "+97150 464 1020",
-    status: "pending",
-    evidence: "Current source usage only; business approval is still required.",
+    value: "+971 50 464 1020",
+    status: "approved",
+    evidence: "Owner approval for English PR 8B dated 2026-07-14.",
+    approvedAt: "2026-07-14",
   },
   phoneE164: {
     value: "+971504641020",
-    status: "pending",
-    evidence: "Derived from current source; derivation is not business approval.",
+    status: "approved",
+    evidence: "Owner approval for English PR 8B dated 2026-07-14.",
+    approvedAt: "2026-07-14",
   },
   whatsappUrl: {
     value: "https://wa.me/971504641020",
-    status: "pending",
-    evidence: "Derived from current source; business approval is still required.",
+    status: "approved",
+    evidence: "Owner approval for English PR 8B dated 2026-07-14.",
+    approvedAt: "2026-07-14",
   },
-  contactEmail: { status: "pending", evidence: "No approved contact email is recorded." },
-  departureLocation: { status: "pending", evidence: "Current marina claims are unverified." },
-  operatingHours: { status: "pending", evidence: "Current hours claims are unverified." },
-  bookingResponseHours: { status: "pending", evidence: "No response-time promise is approved." },
-  publicAddress: { status: "pending", evidence: "No visible public physical address is approved." },
-  socialProfiles: { status: "pending", evidence: "No official English social profiles are approved." },
+  contactEmail: { status: "not-applicable", evidence: "Owner directed public email to be omitted pending approval." },
+  departureLocation: {
+    value: "Departure location varies by yacht and confirmed booking. Dubai Marina may be used as a general departure reference, but it is not presented as the company’s business address or as a guaranteed departure point.",
+    status: "approved",
+    evidence: "Exact owner-approved wording for English PR 8B dated 2026-07-14.",
+    approvedAt: "2026-07-14",
+  },
+  operatingHours: { status: "not-applicable", evidence: "Owner directed operating hours to be omitted." },
+  bookingResponseHours: { status: "not-applicable", evidence: "Owner prohibited a guaranteed response time." },
+  publicAddress: { status: "not-applicable", evidence: "Owner directed public physical address to be omitted." },
+  socialProfiles: { status: "not-applicable", evidence: "Owner directed social profiles to be omitted pending approval." },
   analyticsEnabled: {
-    status: "pending",
-    evidence: "No approved analytics provider, consent policy, or measurement ID is recorded.",
+    value: false,
+    status: "approved",
+    evidence: "Owner approved analytics-disabled state for English PR 8B dated 2026-07-14.",
+    approvedAt: "2026-07-14",
   },
+  logoPath: { value: "/dubai-yachts-logo.png", status: "approved", evidence: "Owner approval dated 2026-07-14.", approvedAt: "2026-07-14" },
+  faviconPath: { value: "/favicon.png", status: "approved", evidence: "Owner approval dated 2026-07-14.", approvedAt: "2026-07-14" },
 };

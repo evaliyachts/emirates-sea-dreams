@@ -2,37 +2,32 @@ import Layout from "@/components/layout/Layout";
 import SEOHead from "@/components/shared/SEOHead";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { buildBreadcrumbSchema } from "@/lib/entity-schema";
 
 const faqGroups = [
   {
-    category: "Booking",
+    category: "Enquiries and confirmation",
     items: [
-      { q: "How do I book a yacht in Dubai?", a: "You can book via WhatsApp, phone, or our contact form. We respond within minutes and confirm availability instantly." },
-      { q: "How far in advance should I book?", a: "We recommend booking at least 48 hours in advance, especially for weekends and holidays. Last-minute bookings are possible subject to availability." },
-      { q: "Is a deposit required?", a: "Yes, a 50% deposit is required to confirm your booking. The balance is due on the day of charter." },
+      { q: "Does sending an enquiry confirm a booking?", a: "No. A website-prepared message, WhatsApp message or phone call is an enquiry only. The selected yacht, date, time, duration, guest count, price and optional requests must be explicitly confirmed in writing." },
+      { q: "How is availability checked?", a: "Availability is on request and must be confirmed for the specific yacht, date, preferred start time, requested duration and guest count." },
+      { q: "How quickly will I receive a reply?", a: "No response time is guaranteed. You may use the approved WhatsApp or phone contact channels to make an enquiry." },
     ],
   },
   {
-    category: "Pricing",
+    category: "Prices and request details",
     items: [
-      { q: "How much does yacht rental in Dubai cost?", a: "Prices start from AED 400/hour for standard yachts, AED 750/hour for luxury yachts, and AED 2,000/hour for superyachts. All prices include captain, crew, and fuel." },
-      { q: "Are there any hidden charges?", a: "No hidden fees. The price includes captain, crew, fuel, and basic amenities. Add-ons like catering and decorations are optional and priced separately." },
+      { q: "What do the published yacht prices mean?", a: "Published hourly prices and minimum durations are planning facts for that yacht record. The final written confirmation controls the actual booking and any approved optional items." },
+      { q: "Are optional services included in the hourly price?", a: "No default inclusion is promised. Decorations, catering, music, photography and other optional requests are subject to availability, supplier confirmation, separate pricing and the final written confirmation." },
+      { q: "What payment, deposit, cancellation or refund rule applies?", a: "There is no universal website rule for those items. Any applicable payment, deposit, balance, cancellation, refund or rescheduling terms must be supplied in the specific written offer or confirmation." },
     ],
   },
   {
-    category: "Onboard",
+    category: "Yacht and trip planning",
     items: [
-      { q: "Can we bring our own food and drinks?", a: "Yes! You're welcome to bring your own food and beverages. We also offer catering packages." },
-      { q: "Is music allowed on the yacht?", a: "Absolutely! All yachts have Bluetooth sound systems. For larger events, we can arrange DJ setups." },
-      { q: "Are children allowed?", a: "Yes, children of all ages are welcome. Life jackets are provided for all sizes." },
-    ],
-  },
-  {
-    category: "Weather & Policies",
-    items: [
-      { q: "What happens in bad weather?", a: "If conditions are unsafe, we offer free rescheduling or a full refund. Light rain rarely affects departures." },
-      { q: "What is the cancellation policy?", a: "Free cancellation up to 48 hours before departure. Within 48 hours, a 50% charge applies." },
-      { q: "Do I need ID?", a: "Yes, a valid passport or Emirates ID is required for all adult guests." },
+      { q: "Where does the yacht depart from?", a: "Departure location varies by yacht and confirmed booking. Dubai Marina may be used as a general departure reference, but it is not the company’s business address or a guaranteed departure point." },
+      { q: "Is a route guaranteed?", a: "No. Departure and route details are confirmed for the specific request and remain subject to yacht-specific operational conditions." },
+      { q: "How many guests can join?", a: "Each yacht page shows a published maximum guest capacity. The confirmed guest count must not exceed that capacity." },
+      { q: "What about children, identification, late arrival, weather, safety or conduct?", a: "Those requirements and consequences vary by yacht and booking. Ask for them in the final yacht-specific confirmation before relying on an arrangement." },
     ],
   },
 ];
@@ -40,32 +35,25 @@ const faqGroups = [
 const FAQ = () => (
   <Layout>
     <SEOHead
-      title="FAQ - Yacht Rental in Dubai | Dubai Yacht"
-      description="Frequently asked questions about yacht rental in Dubai. Pricing, booking, cancellation, what to bring, and everything you need to know."
+      title="Dubai Yacht Rental FAQ | Planning and Confirmation"
+      description="Answers about yacht availability, prices, capacity, departure details, optional requests and written booking confirmation in Dubai."
       path="/faq"
+      jsonLd={buildBreadcrumbSchema("/faq", [{ name: "Home", path: "/" }, { name: "FAQ", path: "/faq" }])}
     />
-
-    <div className="pt-28 pb-20">
+    <div className="pt-28 pb-20" data-support-content="faq">
       <div className="container mx-auto px-4 max-w-3xl">
         <AnimatedSection className="text-center mb-14">
-          <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-4">
-            Frequently Asked Questions
-          </h1>
-          <p className="text-muted-foreground">Everything you need to know about yacht rental in Dubai.</p>
+          <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-4">Private Yacht Rental FAQ</h1>
+          <p className="text-muted-foreground">Factual planning answers. Availability and booking details always require specific written confirmation.</p>
         </AnimatedSection>
-
         {faqGroups.map((group) => (
           <AnimatedSection key={group.category} className="mb-8">
             <h2 className="text-xl font-display font-bold text-foreground mb-4">{group.category}</h2>
             <Accordion type="single" collapsible className="space-y-3">
-              {group.items.map((faq, i) => (
-                <AccordionItem key={i} value={`${group.category}-${i}`} className="glass-card px-6 border-0">
-                  <AccordionTrigger className="text-left text-foreground font-display font-semibold hover:no-underline py-5">
-                    {faq.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-sm pb-5 leading-relaxed">
-                    {faq.a}
-                  </AccordionContent>
+              {group.items.map((faq, index) => (
+                <AccordionItem key={faq.q} value={`${group.category}-${index}`} className="glass-card px-6 border-0">
+                  <AccordionTrigger className="text-left text-foreground font-display font-semibold hover:no-underline py-5">{faq.q}</AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground text-sm pb-5 leading-relaxed">{faq.a}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>

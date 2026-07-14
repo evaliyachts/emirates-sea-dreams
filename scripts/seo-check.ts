@@ -12,6 +12,7 @@ import {
   englishArabicRouteMappings,
   generateEnglishArabicMappingReport,
   languageMappingSummary,
+  languageMappingPendingRouteIds,
   occasionDispositions,
   publishedStaticRoutes,
   routeGroups,
@@ -47,6 +48,7 @@ const publishedServiceRoutes = publishedStaticRoutes.filter((route) => route.pag
 const publishedYachtsById = new Map(publishableYachts.map((yacht) => [yacht.id, yacht]));
 const publishedServicesById = new Map(approvedServices.map((service) => [service.id, service]));
 const commercialPaths = new Set(["/", "/yachts", "/services", "/occasions"]);
+const supportPaths = new Set(["/about", "/faq", "/contact", "/terms", "/privacy"]);
 const publishedPaths = new Set(publishedStaticRoutes.map((route) => route.path));
 
 if (yachtCatalogueRegistry.length !== 24) failures.push(`Yacht inventory must contain 24 dispositions; found ${yachtCatalogueRegistry.length}.`);
@@ -330,6 +332,14 @@ for (const route of publishedStaticRoutes) {
     }
   }
 
+  if (supportPaths.has(route.path)) {
+    const ownership = route.metadataOwnership;
+    if (ownership.status !== "approved" || ownership.title !== title || ownership.description !== description || ownership.h1 !== h1) failures.push(`${route.path}: rendered support metadata/H1 must match manifest ownership.`);
+    if (!body.includes(`data-support-content="${route.id}"`)) failures.push(`${route.path}: support content boundary is missing.`);
+    if (jsonLd.length !== 1) failures.push(`${route.path}: exactly one JSON-LD graph is required.`);
+    if (schemaNodes.some((node) => !["Organization", "BreadcrumbList"].includes(String(node["@type"])))) failures.push(`${route.path}: support/legal schema exceeds approved ownership.`);
+  }
+
   if (titles.has(title)) failures.push(`${route.path}: duplicate title.`); else titles.add(title);
   if (descriptions.has(description)) failures.push(`${route.path}: duplicate description.`); else descriptions.add(description);
   if (canonicals.has(canonical)) failures.push(`${route.path}: duplicate canonical.`); else canonicals.add(canonical);
@@ -348,9 +358,15 @@ if (publicSitemap !== builtSitemap) failures.push("Built and committed sitemaps 
 const sitemapUrls = [...publicSitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
 const expectedUrls = publishedStaticRoutes.map((route) => canonicalUrlForPath(route.path));
 if (JSON.stringify(sitemapUrls) !== JSON.stringify(expectedUrls)) failures.push("Sitemap does not equal published manifest owners.");
-if (/<lastmod>/.test(publicSitemap)) failures.push("Sitemap contains unverified lastmod values.");
+const sitemapLastmods = [...publicSitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>(?:\s*<lastmod>([^<]+)<\/lastmod>)?\s*<\/url>/g)]
+  .filter((match) => match[2])
+  .map((match) => ({ url: match[1], date: match[2] }));
+const expectedLastmods = publishedStaticRoutes
+  .filter((route) => route.lastSignificantUpdate)
+  .map((route) => ({ url: canonicalUrlForPath(route.path), date: route.lastSignificantUpdate }));
+if (JSON.stringify(sitemapLastmods) !== JSON.stringify(expectedLastmods)) failures.push("Sitemap lastmod values must equal the verified manifest dates only.");
 if (sitemapUrls.length !== publishedStaticRoutes.length) failures.push(`Sitemap must equal generated indexable routes; found ${sitemapUrls.length}.`);
-if (publishedStaticRoutes.length !== 4 + publishableYachts.length + approvedServices.length) failures.push("Published output must contain four base owners, publishable yachts and owner-approved services only.");
+if (publishedStaticRoutes.length !== 9 + publishableYachts.length + approvedServices.length) failures.push("Published output must contain nine base/support owners, publishable yachts and owner-approved services only.");
 if (!blockedStaticRoutes.every((route) => !sitemapUrls.includes(canonicalUrlForPath(route.path)))) failures.push("Blocked route entered sitemap.");
 
 const robots = await read("dist/robots.txt");
@@ -358,17 +374,20 @@ if (!robots.includes(`Sitemap: ${ENGLISH_PRODUCTION_ORIGIN}/sitemap.xml`)) failu
 
 const languageReport = await read("docs/ENGLISH_ARABIC_HREFLANG_MAP.md");
 if (languageReport !== generateEnglishArabicMappingReport()) failures.push("Committed English–Arabic mapping report is stale.");
-if (languageMappingSummary.total !== publishedStaticRoutes.length || languageMappingSummary.trueEquivalents !== 28 || languageMappingSummary.relatedNotEquivalent !== 5 || languageMappingSummary.unmapped !== 0) {
-  failures.push("English–Arabic mapping summary must remain 33/28/5/0 for this verified release.");
+if (languageMappingSummary.total + languageMappingPendingRouteIds.length !== publishedStaticRoutes.length || languageMappingSummary.trueEquivalents !== 28 || languageMappingSummary.relatedNotEquivalent !== 5 || languageMappingSummary.unmapped !== 0) {
+  failures.push("Language evidence must remain 33 verified mappings plus five PR 8B production-review-pending routes.");
 }
 if (englishArabicRouteMappings.some((record) => record.xDefaultAppropriate)) failures.push("x-default remains unapproved.");
-if (siteFacts.phoneDisplay.status === "approved" || siteFacts.publicAddress.status === "approved" || siteFacts.socialProfiles.status === "approved" || siteFacts.operatingHours.status === "approved") {
-  failures.push("Unapproved business/contact facts were promoted during PR 7.");
+if (siteFacts.phoneDisplay.status !== "approved" || siteFacts.phoneE164.status !== "approved" || siteFacts.whatsappUrl.status !== "approved" || siteFacts.responsiblePerson.status !== "approved" || siteFacts.responsiblePerson.value !== "Mohammed Abdullah, Operation Manager" || siteFacts.legalPublicationDate.status !== "approved" || siteFacts.legalPublicationDate.value !== "14 July 2026" || siteFacts.analyticsEnabled.value !== false) {
+  failures.push("PR 8B approved contact and analytics-disabled facts are incomplete.");
+}
+if (siteFacts.publicAddress.status === "approved" || siteFacts.socialProfiles.status === "approved" || siteFacts.operatingHours.status === "approved") {
+  failures.push("An omitted address, social profile or operating-hours fact was promoted.");
 }
 
 const netlify = await read("netlify.toml");
 const rewriteBlocks = [...netlify.matchAll(/\[\[redirects\]\]([\s\S]*?)(?=\n\[\[|$)/g)].map((match) => match[1]);
-if (rewriteBlocks.length !== 3 + publishedYachtRoutes.length + publishedServiceRoutes.length || rewriteBlocks.some((block) => !/status = 200/.test(block))) failures.push("Exact 200 rewrites must equal the three published hubs plus generated yacht and service details.");
+if (rewriteBlocks.length !== 8 + publishedYachtRoutes.length + publishedServiceRoutes.length || rewriteBlocks.some((block) => !/status = 200/.test(block))) failures.push("Exact 200 rewrites must equal the eight inner base/support owners plus generated yacht and service details.");
 if (/status = 30[12]/.test(netlify) || /from = "\/\*"/.test(netlify)) failures.push("Redirect or wildcard fallback found.");
 if (approvedRedirects.length !== 0 || approvedCommercialConsolidations.length !== 0) failures.push("Evidence-gated approvals changed.");
 
@@ -383,6 +402,13 @@ const collectFiles = async (directory: string): Promise<string[]> => {
 };
 const distFiles = await collectFiles(resolve("dist"));
 if (distFiles.some((file) => file.endsWith(".map"))) failures.push("Production source map found.");
+const runtimeSourceFiles = (await collectFiles(resolve("src"))).filter((file) => /\.(?:ts|tsx)$/.test(file) && !file.includes("/test/"));
+const runtimeSource = (await Promise.all(runtimeSourceFiles.map((file) => readFile(file, "utf8")))).join("\n");
+const builtRuntime = (await Promise.all(distFiles.filter((file) => /\.(?:html|js)$/.test(file)).map((file) => readFile(file, "utf8")))).join("\n");
+if (/approved business recipient/i.test(builtRuntime)) failures.push("Vague legal recipient wording remains in production output.");
+if (/\bdataLayer\b|\bgtag\s*\(|googletagmanager|GTM-[A-Z0-9]+|\bfbq\s*\(|connect\.facebook\.net\/.*fbevents/i.test(`${runtimeSource}\n${builtRuntime}`)) {
+  failures.push("Analytics or advertising runtime was introduced while PR 8B analytics is disabled.");
+}
 const generatedHtml = distFiles.filter((file) => file.endsWith(".html"));
 if (generatedHtml.length !== publishedStaticRoutes.length + 1) failures.push("Unexpected generated HTML page count.");
 const generatedYachtFiles = generatedHtml.filter((file) => file.includes("/_static/yachts/") && file.endsWith(".html"));
@@ -413,4 +439,4 @@ console.log(`Service gates: ${routeGroups.services.length} manifest owners, ${ap
 console.log(`Evidence gates preserved: ${approvedRedirects.length} redirects, ${approvedCommercialConsolidations.length} consolidations, ${commercialCandidateRegistry.length} candidates, ${occasionDispositions.length} occasions.`);
 console.log(`Search Console remains aggregate evidence (${searchConsoleAggregateBaseline.knownUrls} known URLs); no Search Console action was taken.`);
 console.log(`Entity schema passed: one WebSite and minimal Organization; ContactPoint and LocalBusiness remain omitted.`);
-console.log(`Language evidence passed: ${languageMappingSummary.total} mappings (${languageMappingSummary.trueEquivalents} true equivalents, ${languageMappingSummary.relatedNotEquivalent} related, ${languageMappingSummary.unmapped} unmapped); no live alternate tags.`);
+console.log(`Language evidence passed: ${languageMappingSummary.total} verified mappings plus ${languageMappingPendingRouteIds.length} production-review-pending support/legal routes; no live alternate tags.`);

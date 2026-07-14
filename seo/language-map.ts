@@ -121,13 +121,17 @@ export const languageMappingSummary = {
   unmapped: englishArabicRouteMappings.filter((record) => !record.arabicCanonical).length,
 } as const;
 
+export const languageMappingPendingRouteIds = ["about", "faq", "contact", "terms", "privacy"] as const;
+
 export const validateEnglishArabicRouteMappings = (): string[] => {
   const failures: string[] = [];
   const publishedIds = new Set(publishedStaticRoutes.map((route) => route.id));
   const mappedIds = englishArabicRouteMappings.map((record) => record.routeId);
-  if (englishArabicRouteMappings.length !== publishedStaticRoutes.length) failures.push("Language report must cover every published English route.");
+  const pendingIds = new Set<string>(languageMappingPendingRouteIds);
+  if (englishArabicRouteMappings.length + pendingIds.size !== publishedStaticRoutes.length) failures.push("Verified and pending language records must cover every published English route.");
   if (new Set(mappedIds).size !== mappedIds.length) failures.push("Language report contains a duplicate route ID.");
-  publishedIds.forEach((id) => { if (!mappedIds.includes(id)) failures.push(`Published route is absent from language report: ${id}`); });
+  publishedIds.forEach((id) => { if (!mappedIds.includes(id) && !pendingIds.has(id)) failures.push(`Published route is absent from language evidence: ${id}`); });
+  pendingIds.forEach((id) => { if (!publishedIds.has(id) || mappedIds.includes(id)) failures.push(`Pending language route is invalid or already verified: ${id}`); });
   englishArabicRouteMappings.forEach((record) => {
     if (!record.englishCanonical.startsWith(`${ENGLISH_PRODUCTION_ORIGIN}/`)) failures.push(`${record.routeId}: invalid English authority.`);
     if (record.englishCanonical !== record.englishEvidence.declaredCanonical) failures.push(`${record.routeId}: English canonical evidence mismatch.`);
@@ -167,12 +171,13 @@ export const generateEnglishArabicMappingReport = () => {
 
   return `# English–Arabic Canonical Mapping Evidence\n\n` +
     `Verified: ${LANGUAGE_MAP_VERIFIED_AT}\n\n` +
-    `This report records the exact self-canonical URLs declared by the ${languageMappingSummary.total} English routes currently published on \`yachtrentaldxb.com\` and the reviewed Arabic candidates on \`yacht-dxb.com\`. It is evidence for a future coordinated implementation, not live alternate-link output.\n\n` +
+    `This report records the exact self-canonical URLs reviewed for ${languageMappingSummary.total} English routes on \`yachtrentaldxb.com\` and their Arabic candidates on \`yacht-dxb.com\`. Five PR 8B support/legal owners are approved for preview publication but require a fresh production-side language review after release. This is evidence for a future coordinated implementation, not live alternate-link output.\n\n` +
     `## Release state\n\n` +
     `- Published English routes reviewed: ${languageMappingSummary.total}.\n` +
     `- True equivalents: ${languageMappingSummary.trueEquivalents}.\n` +
     `- Related but not equivalent: ${languageMappingSummary.relatedNotEquivalent}.\n` +
     `- Unmapped routes: ${languageMappingSummary.unmapped}.\n` +
+    `- PR 8B routes pending production language review: ${languageMappingPendingRouteIds.length}.\n` +
     `- Live \`hreflang\`: absent.\n` +
     `- Live \`x-default\`: absent and not approved.\n` +
     `- Reciprocal tags: not published. A true-equivalent row requires both the English and Arabic tags to ship in one coordinated future release.\n\n` +

@@ -1,69 +1,68 @@
+import { Link } from "react-router-dom";
+import { Anchor, ClipboardCheck, Scale, Ship } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import SEOHead from "@/components/shared/SEOHead";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
-import { Anchor, Heart, Shield, Users } from "lucide-react";
-import { publishableYachts } from "@/data/yachts";
-import { NEUTRAL_YACHT_FALLBACK } from "@/data/media-rights";
+import { buildBreadcrumbNode, organizationReference, schemaGraph } from "@/lib/entity-schema";
 
-const values = [
-  { icon: Anchor, title: "Premium Fleet", desc: "Every yacht in our fleet is maintained to the highest standards of luxury and safety." },
-  { icon: Heart, title: "Guest-First Service", desc: "We go above and beyond to ensure every charter exceeds expectations." },
-  { icon: Shield, title: "Licensed & Insured", desc: "Full maritime licensing, insurance, and safety compliance on every voyage." },
-  { icon: Users, title: "Expert Crew", desc: "Professionally trained captains and hospitality crew with years of experience." },
+const facts = [
+  { icon: Scale, title: "Compare verified facts", text: "Compare published length, guest capacity, year, hourly price and minimum duration without inferred specifications." },
+  { icon: Ship, title: "Shortlist a private yacht", text: "Use the catalogue to identify yachts that fit the published capacity and planning budget for your request." },
+  { icon: ClipboardCheck, title: "Prepare a request", text: "Share the intended date, time, duration, guest count and optional requests for availability confirmation." },
+  { icon: Anchor, title: "Confirm operating details", text: "Departure location, route and optional services are confirmed for the selected yacht and booking." },
 ];
 
 const About = () => (
   <Layout>
     <SEOHead
-      title="About Dubai Yacht | Premium Yacht Charter Company in Dubai"
-      description="Learn about Dubai Yacht — Dubai's premier luxury yacht rental company. Our story, values, and commitment to exceptional experiences."
+      title="About Dubai Yacht | Private Yacht Comparison Service"
+      description="Learn how Dubai Yacht helps visitors compare verified yacht facts and prepare private yacht availability requests in Dubai."
       path="/about"
+      jsonLd={schemaGraph([
+        { ...organizationReference, "@type": "Organization", name: "Dubai Yacht", url: "https://yachtrentaldxb.com/" },
+        buildBreadcrumbNode("/about", [{ name: "Home", path: "/" }, { name: "About", path: "/about" }]),
+      ])}
     />
-
-    <div className="pt-28 pb-20">
-      <div className="container mx-auto px-4">
+    <div className="pt-28 pb-20" data-support-content="about">
+      <div className="container mx-auto px-4 max-w-5xl">
         <AnimatedSection className="text-center mb-14">
-          <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-4">
-            About Dubai Yacht
-          </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Dubai's premier luxury yacht rental company, delivering unforgettable experiences on the Arabian Gulf since day one.
+          <span className="liquid-pill inline-block mb-4">About</span>
+          <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-5">About Dubai Yacht</h1>
+          <p className="text-muted-foreground max-w-3xl mx-auto text-lg leading-relaxed">
+            Dubai Yacht is an online private-yacht comparison and request-planning service for Dubai. The website helps visitors compare published yacht facts, review requestable private services, and prepare an availability request.
           </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-          <AnimatedSection direction="left">
-            <div className="rounded-2xl overflow-hidden h-80">
-              <img src={publishableYachts[0]?.media[0]?.path ?? NEUTRAL_YACHT_FALLBACK} alt="Yacht catalogue placeholder" className="w-full h-full object-cover" />
-            </div>
-          </AnimatedSection>
-          <AnimatedSection direction="right" className="flex flex-col justify-center">
-            <h2 className="text-3xl font-display font-bold text-foreground mb-4">Our Story</h2>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              Founded with a passion for the sea and a commitment to luxury, Dubai Yacht has grown into one of Dubai's most trusted yacht charter companies. We believe every journey on the water should be extraordinary.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              From intimate sunset cruises to grand celebrations, our curated fleet and professional crew ensure a seamless, premium experience every time. Based in Dubai Marina, we serve guests from around the world.
-            </p>
-          </AnimatedSection>
-        </div>
-
-        <AnimatedSection className="text-center mb-10">
-          <h2 className="text-3xl font-display font-bold text-foreground mb-4">Our Values</h2>
+        <AnimatedSection className="liquid-glass-gold p-7 md:p-10 mb-12">
+          <h2 className="text-3xl font-display font-bold text-foreground mb-4">What the website provides</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            The yacht catalogue publishes evidence-cleared hourly prices, minimum durations, capacities and vessel facts. Service pages explain requests that may be discussed for a private booking. Availability and every optional item remain subject to confirmation through WhatsApp or phone.
+          </p>
         </AnimatedSection>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {values.map((v, i) => (
-            <AnimatedSection key={v.title} delay={i * 0.1}>
-              <div className="glass-card p-6 text-center h-full">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <v.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-lg font-display font-semibold text-foreground mb-2">{v.title}</h3>
-                <p className="text-sm text-muted-foreground">{v.desc}</p>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
+
+        <section aria-labelledby="planning-process" className="mb-12">
+          <h2 id="planning-process" className="text-3xl font-display font-bold text-foreground mb-7 text-center">A factual planning process</h2>
+          <div className="grid gap-5 md:grid-cols-2">
+            {facts.map(({ icon: Icon, title, text }, index) => (
+              <AnimatedSection key={title} delay={index * 0.05} className="glass-card p-6">
+                <Icon className="w-6 h-6 text-primary mb-3" aria-hidden="true" />
+                <h3 className="text-xl font-display font-semibold text-foreground mb-2">{title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
+              </AnimatedSection>
+            ))}
+          </div>
+        </section>
+
+        <AnimatedSection className="glass-card p-7">
+          <h2 className="text-2xl font-display font-bold text-foreground mb-3">What confirmation means</h2>
+          <p className="text-muted-foreground leading-relaxed mb-5">
+            An enquiry does not reserve a yacht. The yacht, date, start time, duration, guest count, price, departure details and any optional requests must appear in the final written confirmation before they can be relied on.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link to="/yachts" className="liquid-btn-gold px-5 py-3 text-primary">Compare yachts</Link>
+            <Link to="/contact" className="liquid-btn px-5 py-3 text-foreground">Prepare an enquiry</Link>
+          </div>
+        </AnimatedSection>
       </div>
     </div>
   </Layout>

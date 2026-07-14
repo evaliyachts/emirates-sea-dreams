@@ -42,10 +42,10 @@ describe("PR 5 commercial decision owners", () => {
     )).toBe(true);
     expect(approvedRedirects).toHaveLength(0);
     expect(approvedCommercialConsolidations).toHaveLength(0);
-    expect(publishedStaticRoutes).toHaveLength(33);
+    expect(publishedStaticRoutes).toHaveLength(38);
 
     const sitemap = read("public/sitemap.xml");
-    expect([...sitemap.matchAll(/<loc>/g)]).toHaveLength(33);
+    expect([...sitemap.matchAll(/<loc>/g)]).toHaveLength(38);
     commercialCandidateRegistry.forEach((candidate) => expect(sitemap).not.toContain(candidate.path));
   });
 
@@ -149,7 +149,7 @@ describe("PR 5 commercial decision owners", () => {
     const directory = page.document.querySelector('[aria-label="Sitemap"]')!;
     const publishedPaths = new Set(publishedStaticRoutes.map((route) => route.path));
     const directoryLinks = [...directory.querySelectorAll<HTMLAnchorElement>("a[href]")];
-    expect(directoryLinks).toHaveLength(4 + publishableYachts.length + approvedServices.length);
+    expect(directoryLinks).toHaveLength(9 + publishableYachts.length + approvedServices.length);
     directoryLinks.forEach((link) => expect(publishedPaths.has(link.getAttribute("href")!)).toBe(true));
 
     const footerText = plainText(page.document.querySelector("footer")!);

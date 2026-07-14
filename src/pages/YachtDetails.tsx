@@ -25,7 +25,6 @@ const YachtDetails = () => {
   }
 
   const { path, title, description, socialImage, jsonLd } = buildYachtSeo(yacht);
-  const images = yacht.media.map((media) => media.path);
   const relatedYachts = publishableYachts.filter((candidate) => candidate.id !== yacht.id).slice(0, 3);
   const details = [
     { icon: Ruler, label: "Length", value: `${yacht.lengthFt} ft` },
@@ -45,7 +44,7 @@ const YachtDetails = () => {
           <h1 className="text-3xl md:text-5xl font-display font-bold text-foreground mb-2">{yacht.name}</h1>
           <p className="text-primary font-display text-xl mb-8">AED {yacht.pricePerHour.toLocaleString()} per hour</p>
 
-          <StaggerImageCarousel images={images} altPrefix={yacht.name} fallbackSrc={NEUTRAL_YACHT_FALLBACK} />
+          <StaggerImageCarousel images={yacht.media} altPrefix={yacht.name} fallbackSrc={NEUTRAL_YACHT_FALLBACK} />
 
           <AnimatedSection className="max-w-4xl mx-auto mt-12 space-y-10">
             <section aria-labelledby="verified-facts-heading">
@@ -84,7 +83,7 @@ const YachtDetails = () => {
               <ol className="list-decimal pl-6 text-muted-foreground space-y-2">
                 <li>Review the verified specifications and hourly price.</li>
                 <li>Choose a requested duration of at least {yacht.minimumDuration} hours and a group size no greater than {yacht.guestCapacity}.</li>
-                <li>Use an approved booking channel when one is published. No unverified contact action is shown on this page.</li>
+                <li><Link to="/contact" className="text-primary underline underline-offset-4">Prepare an enquiry</Link> for WhatsApp or use the approved phone channel. An enquiry is not a confirmed booking.</li>
               </ol>
             </section>
             {relatedYachts.length > 0 && (

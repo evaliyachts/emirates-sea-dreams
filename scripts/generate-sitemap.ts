@@ -5,7 +5,7 @@ import { canonicalUrlForPath, publishedStaticRoutes } from "../seo/index";
 
 export const generateSitemapXml = () => {
   const urls = publishedStaticRoutes.map(
-    (route) => `  <url>\n    <loc>${canonicalUrlForPath(route.path)}</loc>\n  </url>`,
+    (route) => `  <url>\n    <loc>${canonicalUrlForPath(route.path)}</loc>${route.lastSignificantUpdate ? `\n    <lastmod>${route.lastSignificantUpdate}</lastmod>` : ""}\n  </url>`,
   );
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',

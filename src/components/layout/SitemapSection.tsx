@@ -32,6 +32,11 @@ const SitemapSection = () => {
               <li><Link to="/yachts" className="text-muted-foreground hover:text-primary transition-colors">Compare verified yachts and prices</Link></li>
               <li><Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">Optional service planning</Link></li>
               <li><Link to="/occasions" className="text-muted-foreground hover:text-primary transition-colors">Private occasion chooser</Link></li>
+              <li><Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">About Dubai Yacht</Link></li>
+              <li><Link to="/faq" className="text-muted-foreground hover:text-primary transition-colors">Yacht rental FAQ</Link></li>
+              <li><Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors">Prepare an enquiry</Link></li>
+              <li><Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors">Website and request terms</Link></li>
+              <li><Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">Privacy notice</Link></li>
             </ul>
           </div>
 

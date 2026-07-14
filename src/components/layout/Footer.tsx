@@ -19,17 +19,17 @@ const Footer = () => (
             Published yacht facts and planning guidance for private yacht requests in Dubai. Availability and optional services require confirmation.
           </p>
           <div className="flex gap-3">
-            <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="p-2 liquid-btn rounded-xl text-green-400">
+            <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" aria-label="Contact Dubai Yacht on WhatsApp" className="p-2 liquid-btn rounded-xl text-green-400">
               <MessageCircle className="w-4 h-4" />
             </a>
-            <a href={getPhoneLink()} className="p-2 liquid-btn-gold rounded-xl text-primary">
+            <a href={getPhoneLink()} aria-label="Call Dubai Yacht" className="p-2 liquid-btn-gold rounded-xl text-primary">
               <Phone className="w-4 h-4" />
             </a>
           </div>
         </div>
 
         <div>
-          <h4 className="font-display font-semibold text-foreground mb-4">Quick Links</h4>
+          <h2 className="font-display font-semibold text-foreground mb-4">Quick Links</h2>
           <nav className="flex flex-col gap-2">
             {NAV_LINKS.map((link) => (
               <Link key={link.path} to={link.path} className="text-sm text-muted-foreground hover:text-primary transition-colors">{link.label}</Link>
@@ -38,7 +38,7 @@ const Footer = () => (
         </div>
 
         <div>
-          <h4 className="font-display font-semibold text-foreground mb-4">Published Guides</h4>
+          <h2 className="font-display font-semibold text-foreground mb-4">Published Guides</h2>
           <nav className="flex flex-col gap-2 text-sm">
             <Link to="/yachts" className="text-muted-foreground hover:text-primary transition-colors">Compare verified yachts and prices</Link>
             <Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">Review optional service categories</Link>
@@ -47,7 +47,7 @@ const Footer = () => (
         </div>
 
         <div>
-          <h4 className="font-display font-semibold text-foreground mb-4">Before You Request</h4>
+          <h2 className="font-display font-semibold text-foreground mb-4">Before You Request</h2>
           <div className="flex items-start gap-2 text-sm text-muted-foreground">
             <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" aria-hidden="true" />
             <p>Prepare your preferred date, duration, guest count, yacht shortlist and any optional requests. Confirm availability and operating details before relying on them.</p>

@@ -2,7 +2,9 @@
 
 Prepared: 2026-07-14
 
-Status: **owner approval required; every unresolved decision is `pending`**
+Status: **superseded in part by `ENGLISH_PR8B_OWNER_APPROVAL.md` dated 2026-07-14**
+
+This pre-approval question pack remains historical evidence. The owner has now decided the brand, phone, WhatsApp, departure wording, intentional omissions, logo/favicon, analytics-disabled state and support/legal route outcomes, and has identified **Mohammed Abdullah, Operation Manager** as the responsible person for the website and enquiry information. Exact visible Terms and Privacy wording remains pending commit-specific approval.
 
 Scope: `https://yachtrentaldxb.com/` only. Repository values below are observations of the current implementation, not business approval. Nothing in this pack authorizes a visible-content, metadata, schema, contact, analytics, route, sitemap, redirect, language-alternate, or production change.
 

@@ -40,12 +40,12 @@ const YachtCard = ({ yacht, index = 0 }: YachtCardProps) => {
       </div>
       <div className="p-5">
         <h2 className="text-xl font-display font-semibold text-foreground mb-3">{yacht.name}</h2>
-        <dl className="grid grid-cols-2 gap-3 text-sm text-muted-foreground mb-5">
-          <div className="flex items-center gap-2"><Ruler className="w-4 h-4" /><dt className="sr-only">Length</dt><dd>{yacht.lengthFt} ft</dd></div>
-          <div className="flex items-center gap-2"><Users className="w-4 h-4" /><dt className="sr-only">Guest capacity</dt><dd>{yacht.guestCapacity} guests</dd></div>
-          <div className="flex items-center gap-2"><CalendarDays className="w-4 h-4" /><dt className="sr-only">Year built</dt><dd>{yacht.yearBuilt}</dd></div>
-          <div className="flex items-center gap-2"><Clock className="w-4 h-4" /><dt className="sr-only">Minimum duration</dt><dd>{yacht.minimumDuration} hours</dd></div>
-        </dl>
+        <ul aria-label={`${yacht.name} summary`} className="grid grid-cols-2 gap-3 text-sm text-muted-foreground mb-5">
+          <li className="flex items-center gap-2"><Ruler className="w-4 h-4" aria-hidden="true" /><span><span className="sr-only">Length: </span>{yacht.lengthFt} ft</span></li>
+          <li className="flex items-center gap-2"><Users className="w-4 h-4" aria-hidden="true" /><span><span className="sr-only">Guest capacity: </span>{yacht.guestCapacity} guests</span></li>
+          <li className="flex items-center gap-2"><CalendarDays className="w-4 h-4" aria-hidden="true" /><span><span className="sr-only">Year built: </span>{yacht.yearBuilt}</span></li>
+          <li className="flex items-center gap-2"><Clock className="w-4 h-4" aria-hidden="true" /><span><span className="sr-only">Minimum duration: </span>{yacht.minimumDuration} hours</span></li>
+        </ul>
         <div className="flex items-center justify-between gap-4">
           <p className="text-primary font-display text-lg font-semibold">
             AED {yacht.pricePerHour.toLocaleString()}<span className="text-xs text-muted-foreground font-body">/hour</span>
