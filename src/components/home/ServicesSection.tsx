@@ -139,7 +139,6 @@ const ServicesSection = () => {
                   <Link
                     to="/services"
                     tabIndex={isActive ? 0 : -1}
-                    aria-label={`${service.title}, planning image ${index + 1} of ${SERVICES.length}`}
                     className="group relative block h-full w-full"
                   >
                     <img
@@ -165,7 +164,7 @@ const ServicesSection = () => {
           </div>
         </div>
 
-        <div className="flex justify-center gap-1.5 pb-8">
+        <div className="mx-auto flex max-w-xl flex-wrap justify-center pb-8">
           {SERVICES.map((service, index) => (
             <button
               key={service.image.id}
@@ -173,11 +172,16 @@ const ServicesSection = () => {
               onClick={() => setActive(index)}
               aria-label={`Show planning image ${index + 1} of ${SERVICES.length}: ${service.title}`}
               aria-current={index === active ? "true" : undefined}
-              className={cn(
-                "h-1.5 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4",
-                index === active ? "w-6 bg-primary" : "w-1.5 bg-foreground/30",
-              )}
-            />
+              className="group flex h-11 w-11 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            >
+              <span
+                aria-hidden="true"
+                className={cn(
+                  "h-1.5 rounded-full transition-all group-hover:bg-primary/70",
+                  index === active ? "w-6 bg-primary" : "w-1.5 bg-foreground/30",
+                )}
+              />
+            </button>
           ))}
         </div>
       </div>
