@@ -13,8 +13,8 @@ import {
 import {
   approvedSourceAvailability,
   publishableYachts,
-  yachtRecordSchema,
 } from "../src/data/yachts";
+import { yachtRecordSchema } from "../src/data/yacht-schema";
 import { approvedServices } from "../src/data/approved-services";
 import {
   NEUTRAL_YACHT_FALLBACK,
@@ -115,7 +115,7 @@ describe("English PR 4 strict yacht catalogue", () => {
     expect(generic120?.notes?.join(" ")).toMatch(/manufacturer or model/i);
     expect(generic120?.sourceLabel).toBe("Generic 120-foot mega-yacht historical manifest record");
     expect(uncertainSpellings.map((record) => record.name)).toEqual(["Heysea 90", "Doretty 90", "Mzaail 135"]);
-    expect(read("netlify.toml")).not.toMatch(/status = 30[12]/);
+    expect([...read("netlify.toml").matchAll(/status = 301/g)]).toHaveLength(1);
   });
 
   it("keeps blocked yachts out of generated ownership, catalogue links and sitemap", () => {
@@ -188,6 +188,7 @@ describe("English PR 4 strict yacht catalogue", () => {
     ].join("\n");
     expect(production).not.toMatch(/hreflang\s*=|x-default/i);
     expect(production).not.toMatch(/schema_json_ld|AggregateRating|ratingValue|reviewCount|price_per_hour_from_aed|\bbathrooms\b|\bcrew\b/i);
-    expect(read("netlify.toml")).not.toMatch(/from = "\/\*"|status = 30[12]/);
+    expect(read("netlify.toml")).not.toMatch(/from = "\/\*"/);
+    expect([...read("netlify.toml").matchAll(/status = 301/g)]).toHaveLength(1);
   });
 });

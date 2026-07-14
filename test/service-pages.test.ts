@@ -3,10 +3,8 @@ import { resolve } from "node:path";
 import { JSDOM } from "jsdom";
 import { describe, expect, it } from "vitest";
 import { renderStaticRoute } from "../src/entry-server";
-import {
-  approvedServiceRecordSchema,
-  approvedServices,
-} from "../src/data/approved-services";
+import { approvedServices } from "../src/data/approved-services";
+import { approvedServiceRecordSchema } from "../src/data/approved-service-schema";
 import { mediaRightsRegistry } from "../src/data/media-rights";
 import { publishableYachts } from "../src/data/yachts";
 import { verifyProductionServiceMedia } from "../scripts/media-verify";
@@ -232,8 +230,8 @@ describe("English PR 6B approved service owners", () => {
       expect(rights.approvedSurfaces).toContain(`Service detail primary image: ${service.path}`);
       expect(rights.socialPreviewApproved).toBe(false);
       const image = render(service.path).document.querySelector<HTMLImageElement>(`[data-service-content] img[src="${service.media!.path}"]`)!;
-      expect(image.getAttribute("loading")).toBe("eager");
-      expect(image.getAttribute("fetchpriority")).toBe("high");
+      expect(image.getAttribute("loading")).toBe("lazy");
+      expect(image.hasAttribute("fetchpriority")).toBe(false);
       expect(image.getAttribute("width")).toBe(`${service.media!.width}`);
       expect(image.getAttribute("height")).toBe(`${service.media!.height}`);
       expect(image.getAttribute("alt")).toBe(service.media!.alt);
@@ -258,7 +256,8 @@ describe("English PR 6B approved service owners", () => {
     });
     expect(approvedRedirects).toHaveLength(0);
     expect(approvedCommercialConsolidations).toHaveLength(0);
-    expect(netlify).not.toMatch(/status = 30[12]|from = "\/\*"/);
+    expect([...netlify.matchAll(/status = 301/g)]).toHaveLength(1);
+    expect(netlify).not.toMatch(/from = "\/\*"/);
   });
 
   it("removes the inherited service feed from runtime use without changing later-phase owners", () => {

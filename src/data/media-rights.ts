@@ -1,6 +1,9 @@
 import { z } from "zod";
 import { approvedYachtMedia } from "./approved-yacht-media";
 import { HOMEPAGE_MEDIA } from "./home-media";
+import { NEUTRAL_YACHT_FALLBACK, NEUTRAL_YACHT_FALLBACK_RIGHTS_ID } from "./media-constants";
+
+export { NEUTRAL_YACHT_FALLBACK, NEUTRAL_YACHT_FALLBACK_RIGHTS_ID } from "./media-constants";
 
 export const mediaRightsRecordSchema = z.object({
   id: z.string().min(1),
@@ -19,9 +22,6 @@ export const mediaRightsRecordSchema = z.object({
 }).strict();
 
 export type MediaRightsRecord = z.infer<typeof mediaRightsRecordSchema>;
-
-export const NEUTRAL_YACHT_FALLBACK = "/media/yacht-neutral-fallback.svg";
-export const NEUTRAL_YACHT_FALLBACK_RIGHTS_ID = "english-neutral-yacht-fallback-001";
 
 const approvedRemoteMediaRights: MediaRightsRecord[] = approvedYachtMedia.map((media) =>
   mediaRightsRecordSchema.parse({

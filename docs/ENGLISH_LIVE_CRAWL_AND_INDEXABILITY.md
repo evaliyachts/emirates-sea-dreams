@@ -211,3 +211,11 @@ The seven occasion records still create no detail route. Five yacht owners, `/of
 PR 7 leaves the publication inventory unchanged at 33 direct static owners and 33 sitemap URLs. It centralizes one homepage WebSite and minimal Organization identity, page-appropriate Service/Offer/Breadcrumb ownership, and exact published breadcrumb targets without activating any blocked route or redirect.
 
 The live bilingual review records 28 true equivalents and five related/non-equivalent pairs across the 33 published owners. It publishes no `hreflang` or `x-default`; reciprocal implementation and Search Console Live Tests remain future gates. Detailed entity and mapping evidence belongs in `IMPLEMENTATION_PR7_REPORT.md` and `ENGLISH_ARABIC_HREFLANG_MAP.md`.
+
+## PR 9 final crawl and canonical-host update — 2026-07-14
+
+The historical client-only/51×404 finding above remains the audit baseline, not the current release state. PR 9 preserves the final 52-record manifest and produces 38 direct static canonical owners: nine core/support pages, 19 yachts and ten services. The generated sitemap contains exactly those 38 direct owners. The remaining 14 manifest records, `/offers`, all six commercial candidates and unknown or malformed examples retain real 404 responses.
+
+The production-context Deploy Preview crawl validates unique route metadata and H1, exact self-canonical, indexable robots, route-specific initial text and valid JSON-LD across all 38 pages; it also checks internal links, sitemap/robots authority and 23 blocked or unknown requests. It reports no redirect, broken internal link, blocked-owner link, preview authority, Arabic canonical, live alternate tag or source map.
+
+PR 9 adds only the exact default-host cutover rule from `https://yachtrentaldxb.netlify.app/*` to `https://yachtrentaldxb.com/:splat`. It creates no route redirect or consolidation, does not match Deploy Preview or branch-deploy hostnames, and leaves canonical `/offers` as a real 404. Path/query preservation and the one-hop production result are recorded after the merged deployment in `IMPLEMENTATION_PR9_REPORT.md`.

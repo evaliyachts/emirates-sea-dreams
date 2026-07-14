@@ -112,6 +112,23 @@ export const englishArabicRouteMappings: readonly EnglishArabicRouteMapping[] = 
   buildMapping({ routeId: "service-morning-trip", arabicPath: "/رحلة-يخت-صباحية-في-دبي/" }),
   buildMapping({ routeId: "service-engagement", arabicPath: "/يخت-لحفلة-خطوبة-في-دبي/" }),
   buildMapping({ routeId: "service-wedding", arabicPath: "/حفلة-زفاف-على-يخت-في-دبي/" }),
+  buildMapping({ routeId: "about", arabicPath: "/about/" }),
+  buildMapping({ routeId: "faq", arabicPath: "/الأسئلة-الشائعة/" }),
+  buildMapping({ routeId: "contact", arabicPath: "/contact/" }),
+  buildMapping({
+    routeId: "terms",
+    arabicPath: "/terms/",
+    status: "related-not-equivalent",
+    samePrimaryIntent: true,
+    blockers: ["The English and Arabic legal texts have separate approved wording, responsible-party disclosures and effective dates; legal equivalence requires coordinated owner/legal review."],
+  }),
+  buildMapping({
+    routeId: "privacy",
+    arabicPath: "/privacy/",
+    status: "related-not-equivalent",
+    samePrimaryIntent: true,
+    blockers: ["The English notice identifies an approved controller and provider/data categories that are not equivalent to the older Arabic notice; coordinated legal revision is required."],
+  }),
 ];
 
 export const languageMappingSummary = {
@@ -121,7 +138,7 @@ export const languageMappingSummary = {
   unmapped: englishArabicRouteMappings.filter((record) => !record.arabicCanonical).length,
 } as const;
 
-export const languageMappingPendingRouteIds = ["about", "faq", "contact", "terms", "privacy"] as const;
+export const languageMappingPendingRouteIds = [] as const;
 
 export const validateEnglishArabicRouteMappings = (): string[] => {
   const failures: string[] = [];
@@ -171,18 +188,18 @@ export const generateEnglishArabicMappingReport = () => {
 
   return `# English–Arabic Canonical Mapping Evidence\n\n` +
     `Verified: ${LANGUAGE_MAP_VERIFIED_AT}\n\n` +
-    `This report records the exact self-canonical URLs reviewed for ${languageMappingSummary.total} English routes on \`yachtrentaldxb.com\` and their Arabic candidates on \`yacht-dxb.com\`. Five PR 8B support/legal owners are approved for preview publication but require a fresh production-side language review after release. This is evidence for a future coordinated implementation, not live alternate-link output.\n\n` +
+    `This report records the exact self-canonical URLs reviewed for all ${languageMappingSummary.total} published English routes on \`yachtrentaldxb.com\` and their Arabic candidates on \`yacht-dxb.com\`. The five PR 8B support/legal owners received a fresh production-side review in PR 9. This is evidence for a future coordinated implementation, not live alternate-link output.\n\n` +
     `## Release state\n\n` +
     `- Published English routes reviewed: ${languageMappingSummary.total}.\n` +
     `- True equivalents: ${languageMappingSummary.trueEquivalents}.\n` +
     `- Related but not equivalent: ${languageMappingSummary.relatedNotEquivalent}.\n` +
     `- Unmapped routes: ${languageMappingSummary.unmapped}.\n` +
-    `- PR 8B routes pending production language review: ${languageMappingPendingRouteIds.length}.\n` +
+    `- Routes pending production language review: ${languageMappingPendingRouteIds.length}.\n` +
     `- Live \`hreflang\`: absent.\n` +
     `- Live \`x-default\`: absent and not approved.\n` +
     `- Reciprocal tags: not published. A true-equivalent row requires both the English and Arabic tags to ship in one coordinated future release.\n\n` +
     `## Evidence method\n\n` +
-    `On ${LANGUAGE_MAP_VERIFIED_AT}, both sides of every row were requested directly. The recorded pages returned HTTP 200, declared \`index, follow\`, and self-canonicalized to the exact URLs below. Arabic membership was also compared with the live Arabic sitemap. Equivalence was accepted only when page intent and visible factual identity aligned; a price, identity, or taxonomy conflict keeps a row out of the true-equivalent set. Exact URL form is preserved: English inner canonicals have no trailing slash, while Arabic canonicals are encoded HTTPS URLs with a trailing slash.\n\n` +
+    `On ${LANGUAGE_MAP_VERIFIED_AT}, both sides of every row were requested directly. The recorded pages returned HTTP 200, declared \`index, follow\`, and self-canonicalized to the exact URLs below. The Arabic FAQ candidate was followed to its single canonical owner before review. Arabic membership was also compared with the live Arabic sitemap. Equivalence was accepted only when page intent and visible factual identity aligned; a price, identity, taxonomy or legal-copy conflict keeps a row out of the true-equivalent set. Exact URL form is preserved: English inner canonicals have no trailing slash, while Arabic canonicals are encoded HTTPS URLs with a trailing slash.\n\n` +
     `This live review supersedes older candidate-only mapping status for the currently published English set, but it does not rewrite the historical audit or authorize a deployment. Search Console Live URL Tests and reciprocal implementation approval remain separate release gates.\n\n` +
     `## Mapping table\n\n` +
     `English canonical | Arabic canonical | Equivalence | English reciprocal tag | Arabic reciprocal tag | x-default | Blocker or release condition\n` +
@@ -192,5 +209,6 @@ export const generateEnglishArabicMappingReport = () => {
     `- \`/occasions\` is a seven-theme English chooser; the reviewed Arabic page is a focused yacht-for-occasions commercial owner.\n` +
     `- Azimut 42, Majesty 44 and Oryx 50 publish conflicting hourly prices across the two sites.\n` +
     `- The English Heysea 90 and Arabic هايغان 90 public identities require owner verification.\n` +
+    `- The Terms and Privacy pages remain related but non-equivalent because the separately approved legal texts differ in responsible-party disclosure, effective date and material detail.\n` +
     `- No row in this section may emit reciprocal alternate tags until its conflict is resolved and the mapping is reverified.\n`;
 };

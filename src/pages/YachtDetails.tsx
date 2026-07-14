@@ -4,7 +4,8 @@ import Layout from "@/components/layout/Layout";
 import SEOHead from "@/components/shared/SEOHead";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
 import { StaggerImageCarousel } from "@/components/ui/stagger-image-carousel";
-import { NEUTRAL_YACHT_FALLBACK } from "@/data/media-rights";
+import { getInitialCarouselImage } from "@/lib/carousel-media";
+import { NEUTRAL_YACHT_FALLBACK } from "@/data/media-constants";
 import { getPublishableYachtBySlug, publishableYachts, yachtPath } from "@/data/yachts";
 import { buildYachtSeo } from "@/lib/yacht-seo";
 
@@ -25,6 +26,7 @@ const YachtDetails = () => {
   }
 
   const { path, title, description, socialImage, jsonLd } = buildYachtSeo(yacht);
+  const initialCarouselImage = getInitialCarouselImage(yacht.media);
   const relatedYachts = publishableYachts.filter((candidate) => candidate.id !== yacht.id).slice(0, 3);
   const details = [
     { icon: Ruler, label: "Length", value: `${yacht.lengthFt} ft` },
@@ -35,7 +37,14 @@ const YachtDetails = () => {
   ];
   return (
     <Layout>
-      <SEOHead title={title} description={description} path={path} jsonLd={jsonLd} socialImage={socialImage} />
+      <SEOHead
+        title={title}
+        description={description}
+        path={path}
+        jsonLd={jsonLd}
+        socialImage={socialImage}
+        preloadImages={initialCarouselImage ? [{ url: initialCarouselImage.path, referrerPolicy: "no-referrer" }] : []}
+      />
       <main className="pt-28 pb-16">
         <div className="container mx-auto px-4">
           <Link to="/yachts" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6">

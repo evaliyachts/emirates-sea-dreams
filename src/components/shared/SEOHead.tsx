@@ -12,9 +12,15 @@ interface SEOHeadProps {
     width: number;
     height: number;
   };
+  preloadImages?: readonly {
+    url: string;
+    media?: string;
+    type?: string;
+    referrerPolicy?: "no-referrer";
+  }[];
 }
 
-const SEOHead = ({ title, description, path, jsonLd, socialImage }: SEOHeadProps) => (
+const SEOHead = ({ title, description, path, jsonLd, socialImage, preloadImages = [] }: SEOHeadProps) => (
   <Helmet>
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -28,6 +34,18 @@ const SEOHead = ({ title, description, path, jsonLd, socialImage }: SEOHeadProps
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    {preloadImages.map((image) => (
+      <link
+        key={`${image.url}-${image.media ?? "all"}`}
+        rel="preload"
+        as="image"
+        href={image.url}
+        media={image.media}
+        type={image.type}
+        referrerPolicy={image.referrerPolicy}
+        {...{ fetchpriority: "high" }}
+      />
+    ))}
     {socialImage && <meta property="og:image" content={socialImage.url} />}
     {socialImage && <meta property="og:image:alt" content={socialImage.alt} />}
     {socialImage && <meta property="og:image:width" content={`${socialImage.width}`} />}

@@ -2,6 +2,7 @@ import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { publishedStaticRoutes } from "../seo/index";
 import { generateSitemapXml } from "./generate-sitemap";
+import { validateProductionData } from "./validate-production-data";
 
 interface RenderResult { html: string; head: string }
 interface ServerModule { renderStaticRoute(url: string, forceNotFound?: boolean): RenderResult }
@@ -10,6 +11,7 @@ const root = resolve(".");
 const dist = resolve(root, "dist");
 const serverOutput = resolve(root, ".static-ssr/entry-server.js");
 const template = await readFile(resolve(dist, "index.html"), "utf8");
+validateProductionData();
 const { renderStaticRoute } = (await import(serverOutput)) as ServerModule;
 
 export const assembleStaticDocument = (

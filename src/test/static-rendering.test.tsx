@@ -39,7 +39,7 @@ describe("shared client and static route tree", () => {
 
   it("keeps the shared route tree operational for client rendering", () => {
     render(
-      <AppProviders queryClient={createAppQueryClient()}>
+      <AppProviders>
         <MemoryRouter initialEntries={["/services"]}>
           <AppRoutes />
         </MemoryRouter>

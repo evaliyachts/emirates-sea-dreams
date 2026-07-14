@@ -111,3 +111,21 @@ Core Web Vitals report | Pending | Mobile and desktop groups with affected URLs 
 Sitemap report | Pending | Submitted sitemap URL, last read, status, discovered pages and any errors.
 
 Business, support-route, legal, analytics and accessibility/performance decisions are itemized in `ENGLISH_FINAL_BUSINESS_APPROVAL_PACK.md`, `ENGLISH_SUPPORT_ROUTE_APPROVAL_PACK.md`, `ENGLISH_LEGAL_APPROVAL_PACK.md`, `ENGLISH_ANALYTICS_APPROVAL.md` and `ENGLISH_PR8_BASELINE.md`. Every unresolved owner decision remains pending.
+
+## PR 9 final owner evidence ledger
+
+The published inventory is now 38 routes: nine core/support owners, 19 yacht details and ten service details. Fourteen manifest records, `/offers` and six historical commercial candidates remain blocked. The release changes no route ownership, commercial consolidation or Search Console decision.
+
+The required authenticated sample is now nine Live URL Tests covering homepage, both hubs and representative details, occasions, contact and both legal pages. After those pass, submit the 38-URL production sitemap and request indexing only for the six representative URLs specified in `ENGLISH_SEARCH_CONSOLE_LAUNCH.md`.
+
+Still required and not supplied to Codex:
+
+- nine authenticated URL Inspection Live Test records;
+- sitemap submission/read/status evidence;
+- Performance Queries, Performance Pages and Query × Page exports;
+- Links report;
+- Page Indexing report with issue-example URLs;
+- mobile and desktop Core Web Vitals groups;
+- records of the six representative indexing requests.
+
+For each artifact preserve the property type, report/filter, date range, export timestamp, filename and redactions. Aggregate property impressions still do not authorize redirect or consolidation decisions. Analytics and live language alternates remain disabled, and no Search Console action was taken in PR 9.

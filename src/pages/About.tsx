@@ -25,7 +25,7 @@ const About = () => (
     />
     <div className="pt-28 pb-20" data-support-content="about">
       <div className="container mx-auto px-4 max-w-5xl">
-        <AnimatedSection className="text-center mb-14">
+        <AnimatedSection initiallyVisible className="text-center mb-14">
           <span className="liquid-pill inline-block mb-4">About</span>
           <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-5">About Dubai Yacht</h1>
           <p className="text-muted-foreground max-w-3xl mx-auto text-lg leading-relaxed">

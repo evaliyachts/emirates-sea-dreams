@@ -22,7 +22,8 @@
     "test:watch": "vitest",
     "seo:check": "tsx scripts/seo-check.ts",
     "seo:language-report": "tsx scripts/generate-language-map-report.ts",
-    "media:verify": "tsx scripts/media-verify.ts"
+    "media:verify": "tsx scripts/media-verify.ts",
+    "qa:crawl": "tsx scripts/qa-crawl.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

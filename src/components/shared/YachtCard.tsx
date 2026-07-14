@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { CalendarDays, Clock, Ruler, Users } from "lucide-react";
 import type { YachtRecord } from "@/data/yachts";
 import { yachtPath } from "@/data/yachts";
-import { NEUTRAL_YACHT_FALLBACK } from "@/data/media-rights";
+import { NEUTRAL_YACHT_FALLBACK } from "@/data/media-constants";
 
 interface YachtCardProps {
   yacht: YachtRecord;
