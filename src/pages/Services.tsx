@@ -3,6 +3,7 @@ import { CircleHelp } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { CommercialHero, FaqSection, Section, YachtFactLinks } from "@/components/commercial/DecisionSections";
 import SEOHead from "@/components/shared/SEOHead";
+import { approvedServices } from "@/data/approved-services";
 import { publishedYachtsById } from "@/lib/published-fleet";
 
 const comparisonYachts = publishedYachtsById("yacht-azimut-42", "yacht-majesty-56", "yacht-majesty-88");
@@ -40,8 +41,8 @@ const serviceFaqs = [
     answer: "No fixed route is published on this hub. Route and operating details depend on the confirmed request and must not be inferred from photographs or category names.",
   },
   {
-    question: "Why are there no links to individual service pages?",
-    answer: "The 18 historical service routes remain unpublished while service-specific capability and facts are verified. This hub helps prepare a request without turning blocked routes into placeholders.",
+    question: "Which individual service pages are currently published?",
+    answer: "Ten owner-approved private celebration, experience and hospitality pages are linked from this hub. Eight historical service owners remain blocked because their capability or operating facts are not approved.",
   },
   {
     question: "Should I choose a yacht before discussing optional services?",
@@ -78,6 +79,26 @@ const Services = () => (
             <h3 className="mt-4 text-xl font-semibold text-foreground">{category.title}</h3>
             <p className="mt-3 leading-7 text-muted-foreground">{category.copy}</p>
           </article>
+        ))}
+      </div>
+    </Section>
+
+    <Section title="Ten approved service requests">
+      <p className="mb-6 max-w-4xl leading-7 text-muted-foreground">
+        Each page below describes a requestable private-yacht service with its own planning questions and factual yacht comparisons. Availability remains on request and subject to confirmation, and no page assumes an optional item or supplier.
+      </p>
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {approvedServices.map((service) => (
+          <Link
+            key={service.id}
+            to={service.path}
+            data-approved-service-link
+            className="liquid-glass block p-6 transition-colors hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">{service.category.replace("-", " ")}</p>
+            <h3 className="mt-3 text-xl font-semibold text-foreground">{service.name}</h3>
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">On request and subject to confirmation.</p>
+          </Link>
         ))}
       </div>
     </Section>

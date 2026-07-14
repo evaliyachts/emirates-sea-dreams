@@ -21,6 +21,66 @@ status = 200
 force = true
 
 [[redirects]]
+from = "/services/birthday-party"
+to = "/_static/services/birthday-party.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/services/marriage-proposal-party"
+to = "/_static/services/marriage-proposal-party.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/services/wedding-anniversary-parties"
+to = "/_static/services/wedding-anniversary-parties.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/services/engagement-parties"
+to = "/_static/services/engagement-parties.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/services/wedding-parties"
+to = "/_static/services/wedding-parties.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/services/graduation-parties"
+to = "/_static/services/graduation-parties.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/services/bachelor-parties"
+to = "/_static/services/bachelor-parties.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/services/afternoon-tea-trip"
+to = "/_static/services/afternoon-tea-trip.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/services/morning-yacht-trips"
+to = "/_static/services/morning-yacht-trips.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/services/barbecue-on-the-yacht"
+to = "/_static/services/barbecue-on-the-yacht.html"
+status = 200
+force = true
+
+[[redirects]]
 from = "/occasions"
 to = "/_static/occasions.html"
 status = 200
@@ -157,6 +217,11 @@ Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
 for = "/services"
+[headers.values]
+Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+for = "/services/*"
 [headers.values]
 Cache-Control = "public, max-age=0, must-revalidate"
 

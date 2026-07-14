@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { approvedServices } from "@/data/approved-services";
 import { publishableYachts, yachtPath } from "@/data/yachts";
 
 /**
@@ -17,7 +18,7 @@ const SitemapSection = () => {
         </h2>
         <p className="text-sm text-muted-foreground mb-8 max-w-3xl">
           Use these links to reach the current indexable commercial owners and
-          every published yacht record. Unpublished routes are not listed.
+          every published yacht record and approved service owner. Unpublished routes are not listed.
         </p>
 
         <div className="grid gap-8 text-sm md:grid-cols-3">
@@ -34,8 +35,24 @@ const SitemapSection = () => {
             </ul>
           </div>
 
+          {/* Approved services */}
+          <div>
+            <h3 className="font-display font-semibold text-foreground mb-3">
+              Approved Services ({approvedServices.length})
+            </h3>
+            <ul className="space-y-2">
+              {approvedServices.map((service) => (
+                <li key={service.id}>
+                  <Link to={service.path} className="text-muted-foreground hover:text-primary transition-colors">
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Yachts */}
-          <div className="md:col-span-2">
+          <div>
             <h3 className="font-display font-semibold text-foreground mb-3">
               Verified Yacht Records ({publishableYachts.length})
             </h3>

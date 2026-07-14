@@ -128,3 +128,9 @@ The historical 55-foot branded path and combined service overlap remain candidat
 ## PR 4B yacht publication result
 
 Owner-approved facts and technically verified media clear 19 existing yacht manifest owners for exact non-trailing-slash static publication. Five yacht owners remain direct 404s and outside the sitemap. No path was renamed, no new slug was created, and approved redirects and commercial consolidations remain **zero**. The generated sitemap now contains the four base owners plus the 19 published yacht details.
+
+## PR 6B approved-service publication result
+
+Ten exact historical non-trailing-slash service owners are approved for static publication without renaming or consolidation. Eight service owners remain direct 404s and outside the sitemap, including the combined engagement/wedding overlap candidate. The generated sitemap expands from 23 to 33 owners while the route manifest remains 52 records.
+
+No service owner redirects to another service, no occasion detail is created, and no commercial candidate is activated. Approved redirects and approved commercial consolidations remain **zero**. Query × Page and Links evidence is still required before either the combined-service candidate or the historical branded yacht path may advance.

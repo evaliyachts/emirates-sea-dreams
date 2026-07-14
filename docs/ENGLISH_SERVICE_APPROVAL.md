@@ -6,6 +6,8 @@ Production authority: `https://yachtrentaldxb.com/`
 
 Approver: business owner
 
+Implementation status: PR 6B connects only the ten approved owners to static output. It preserves all eight blocked owners, seven occasion no-route decisions, zero redirects and zero consolidations.
+
 ## Approved service owners
 
 The owner approves these ten existing manifest paths as requestable private-yacht service/event pages:

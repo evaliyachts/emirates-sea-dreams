@@ -12,11 +12,11 @@ Route ownership now consumes only the aggregate 2026-06-30 Page Indexing summary
 
 No additional route was created from the 55 known-URL total.
 
-## Implementation PR 6A service evidence status
+## Implementation PR 6B service evidence status
 
 The owner approved 10 exact service/event owners and kept 8 blocked on 2026-07-14. The approval establishes cautious optional-request language, exactly three factual published-yacht selections per approved page, seven matching local primary images, and three text-only pages. It does not approve water-activity safety/operating claims, service social media, a redirect, or a consolidation. The seven occasion records remain without detail routes, and the combined engagement/wedding owner remains blocked without a redirect.
 
-The decision is recorded in `ENGLISH_SERVICE_APPROVAL.md`; implementation boundaries remain summarized in `SERVICE_APPROVAL_DECISIONS_NEEDED.md` and `ENGLISH_SERVICE_MEDIA_APPROVAL_PACK.md`. These documentation records do not change public output or reduce the need for Query × Page, links, Page Indexing issue examples, and Live URL Test evidence.
+The decision is recorded in `ENGLISH_SERVICE_APPROVAL.md`; PR 6B publishes only those ten owners. Implementation boundaries remain summarized in `SERVICE_APPROVAL_DECISIONS_NEEDED.md` and `ENGLISH_SERVICE_MEDIA_APPROVAL_PACK.md`. Query × Page, links, Page Indexing issue examples, and Live URL Test evidence remain required for future redirect, consolidation and broader release decisions.
 
 ## Evidence ledger
 
@@ -67,13 +67,15 @@ Store exports under `docs/seo-input/` with export date and property name. Redact
 - Prior URL list beyond the current sitemap.
 - Current ranking export if available; do not scrape Google results.
 
-## Publication gates after PR 3
+## Publication gates after PR 6B
 
-The homepage and three hub routes can be statically published without resolving later record-level claims. Restoring the other 48 manifest records still requires the phase-specific evidence already listed above. In particular, yacht facts/media rights, service capabilities, legal approval, business facts, and Query × Page/links evidence remain unresolved; aggregate Search Console counts do not approve a route or redirect.
+The homepage, three hubs, 19 yacht details and ten approved service details are publication owners, for a total of 33. The remaining 19 manifest records stay blocked: five yachts, eight services, offers, about, FAQ, contact, terms and privacy. Legal approval, business facts and route-specific capability remain necessary for those owners; aggregate Search Console counts do not approve a route or redirect.
 
 ## Yacht evidence remaining after PR 4
 
-The strict catalogue now records all 24 source identities, but none is publishable. For each yacht, provide an authoritative record and dated approval for:
+The strict catalogue records all 24 source identities and currently publishes 19 evidence-cleared owners. The five blocked manifest owners still require the exact missing route/fact decisions documented in `IMPLEMENTATION_PR4B_REPORT.md`.
+
+Depending on the blocked owner, remaining evidence may include:
 
 - exact English public name and manufacturer/model spelling;
 - length, guest capacity, build year, AED hourly price and price effective date;
@@ -81,8 +83,8 @@ The strict catalogue now records all 24 source identities, but none is publishab
 - English-domain media rights by exact asset and surface, including social preview/transformation/rehosting scope where applicable;
 - the approver and approval date.
 
-Separately resolve the Dynasty 151-route/150-source conflict, the Heysea/Doretty/Mzaail spellings, the generic 120-foot identity, and ownership/history for the branded 55-foot path. Query × Page and Links evidence is still required before a replacement owner or redirect can be approved. The neutral fallback does not satisfy missing yacht facts and must not be used to create a placeholder 200 page.
+Separately resolve the Dynasty 151-route/150-source conflict, missing source-to-manifest mappings, the generic 120-foot identity, and ownership/history for the branded 55-foot path. The approved Heysea, Doretty and Mzaail source spellings remain published with their documented uncertainty. Query × Page and Links evidence is still required before a replacement owner or redirect can be approved. The neutral fallback does not satisfy missing yacht facts and must not be used to create a placeholder 200 page.
 
 ## Evidence remaining after PR 5
 
-The four published commercial/hub owners now provide evidence-safe decision content, but no historical commercial candidate was activated. Query × Page, Links and issue-URL evidence is still required before deciding whether any candidate deserves separate ownership or whether a current route should consolidate. PR 6 additionally requires service-specific business capability, optional-versus-included terms, safety/operational constraints, and suitable-yacht evidence for each event owner. Global phone, WhatsApp, brand, departure, hours and legal values remain pending unless separately approved.
+The four published commercial/hub owners now provide evidence-safe decision content, but no historical commercial candidate was activated. Query × Page, Links and issue-URL evidence is still required before deciding whether any candidate deserves separate ownership or whether a current route should consolidate. PR 6B resolves the ten approved service owners only; the eight blocked service records still need separate capability and operational approval. Global phone, WhatsApp, brand, departure, hours and legal values remain pending unless separately approved.

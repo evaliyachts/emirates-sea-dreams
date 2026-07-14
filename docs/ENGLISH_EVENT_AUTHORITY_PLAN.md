@@ -1,5 +1,11 @@
 # English Event Authority Plan
 
+## Implementation PR 6B publication status
+
+PR 6B publishes only the ten exact owners approved in `ENGLISH_SERVICE_APPROVAL.md`. Each has a strict record, unique route-owned metadata and body copy, exactly three factual published-yacht links, and `Service` plus `BreadcrumbList` schema. Seven pages use one exact matching local primary image; bachelor parties, afternoon tea and morning trips are text-only. Service social images remain absent.
+
+The other eight service owners remain blocked, generate no HTML, have no Netlify rewrite and remain outside the sitemap. The seven occasion records still create no detail route. Approved redirects and consolidations remain zero.
+
 ## Implementation PR 6A approval-pack status
 
 PR 6A documents the exact capability, optional-extra, safety, yacht-selection, occasion, and media decisions required before an event owner can publish. The owner approved 10 exact service owners and kept 8 blocked on 2026-07-14. Seven matching local primary-image surfaces are approved and three approved pages remain text-only. The seven occasions remain without detail routes, and the combined engagement/wedding route remains preserved without redirect pending Query × Page and links evidence.
@@ -10,7 +16,7 @@ See `ENGLISH_SERVICE_APPROVAL.md`, `ENGLISH_SERVICE_FACT_APPROVAL_PACK.md`, `ENG
 
 All 18 current service/event paths are represented in the typed manifest. The 2026-07-14 owner decision approves ten exact current owners for evidence-bounded publication in PR 6B and keeps eight exact owners blocked. All seven source occasions retain typed dispositions without creating detail routes. The combined engagement/wedding route remains an evidence-gated redirect candidate with no approved destination or redirect. No `Event` schema is planned.
 
-Current event authority consists of `/services`, `/occasions`, 18 service detail records and seven occasion records without detail routes. Every current live event/hub URL except the homepage returns `404` directly. All keep/merge/create decisions below are provisional until Search Console and factual approval are available.
+Current event authority consists of `/services`, `/occasions`, 18 service detail records and seven occasion records without detail routes. The two hubs and ten approved service details are publication owners; the eight unapproved details remain blocked. Search Console Query × Page and links evidence is still required before a redirect or consolidation decision.
 
 ## Proposed taxonomy and hub
 

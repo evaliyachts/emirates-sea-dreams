@@ -15,6 +15,7 @@ import {
   publishableYachts,
   yachtRecordSchema,
 } from "../src/data/yachts";
+import { approvedServices } from "../src/data/approved-services";
 import {
   NEUTRAL_YACHT_FALLBACK,
   NEUTRAL_YACHT_FALLBACK_RIGHTS_ID,
@@ -128,7 +129,7 @@ describe("English PR 4 strict yacht catalogue", () => {
     blockedYachts.forEach((record) => expect(sitemap).not.toContain(`/yachts/${record.historicalSlug}`));
     publishableYachts.forEach((record) => expect(sitemap).toContain(`/yachts/${record.slug}`));
     expect([...sitemap.matchAll(/<loc>/g)]).toHaveLength(publishedStaticRoutes.length);
-    expect(publishedStaticRoutes).toHaveLength(4 + publishableYachts.length);
+    expect(publishedStaticRoutes).toHaveLength(4 + publishableYachts.length + approvedServices.length);
     expect(sitemap).not.toContain("<lastmod>");
   });
 

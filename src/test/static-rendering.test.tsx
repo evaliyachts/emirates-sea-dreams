@@ -13,6 +13,7 @@ describe("shared client and static route tree", () => {
     ["/yachts", "Compare Yachts for Rent in Dubai"],
     ["/services", "Plan Optional Services"],
     ["/occasions", "Choose a Private Yacht Occasion"],
+    ["/services/birthday-party", "Plan a Private Birthday Yacht Celebration"],
   ])("renders %s with route-specific initial HTML", (path, heading) => {
     const result = renderStaticRoute(path);
     expect(result.html).toContain("<h1");
