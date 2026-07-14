@@ -130,7 +130,32 @@ The required local gate is:
 - `git diff --check`;
 - Netlify production-context build and Deploy Preview.
 
-The final branch gate, GitHub Quality run, Netlify deploy ID, bundle filename, deployed route crawl, metadata/schema validation, browser hydration result and source-map probe are recorded after the correction head completes remote validation.
+### Validated application head
+
+Application-bearing head `362d225ff7a1e356ac453e128ea53a2d258fcb37` passed the complete gate on 2026-07-14. The report update that records this evidence changes documentation only and does not alter the validated runtime output.
+
+| Check | Result |
+| --- | --- |
+| Runtime | Node `v24.18.0`; npm `11.16.0` |
+| Clean install | `npm ci` passed |
+| Lint | passed |
+| Typecheck | passed |
+| Tests | 11 files, 68 tests passed |
+| Production build | 33 indexable routes plus `404.html`; bundle `index-DrDbpHMh.js` |
+| SEO check | passed with 52 manifest records, 33 published owners and 19 blocked owners |
+| Media verification | 126 yacht images, 15 homepage images and seven matching service-detail images passed; three approved services remain text-only |
+| Production dependency audit | zero vulnerabilities |
+| Diff check | passed |
+| Netlify production-context build | `npx netlify build --offline --context production` passed |
+| Production source maps | none generated |
+| GitHub Quality | [run 29297288047](https://github.com/evaliyachts/emirates-sea-dreams/actions/runs/29297288047), passed |
+| Netlify Deploy Preview | [deploy `6a558948ebc2080008b65e2c`](https://deploy-preview-15--yachtrentaldxb.netlify.app), passed |
+
+The Deploy Preview crawl returned direct 200 responses with no `Location` header for all 33 published owners. All 19 blocked manifest owners, all six commercial candidates and a random unknown path returned real 404 responses. `sitemap.xml` contained exactly the 33 published production canonicals, and `robots.txt` referenced the production sitemap.
+
+All ten service pages retained their manifest-owned title, description, H1, self-canonical and `index, follow` metadata in initial HTML. Their JSON-LD parsed successfully and contained exactly `Service` and `BreadcrumbList`; no service social image, language alternate, analytics or prohibited schema was present. HTML, sitemap and robots used revalidation caching, the fingerprinted bundle used immutable caching, and the deployed bundle's `.map` URL returned 404.
+
+Browser hydration checks covered the image-backed birthday owner and text-only afternoon-tea owner. Both retained the expected title, H1, production canonical and booking-guide CTA after hydration; the birthday page retained one approved local image, the afternoon-tea page retained zero service images, and both produced zero browser console messages.
 
 ## Status-code matrix
 
