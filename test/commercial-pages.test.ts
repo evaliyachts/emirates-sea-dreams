@@ -4,6 +4,7 @@ import { JSDOM } from "jsdom";
 import { describe, expect, it } from "vitest";
 import { renderStaticRoute } from "../src/entry-server";
 import { publishableYachts } from "../src/data/yachts";
+import { approvedServices } from "../src/data/approved-services";
 import { publishedFleetSummary } from "../src/lib/published-fleet";
 import {
   HOMEPAGE_FEATURED_YACHT_LIMIT,
@@ -41,10 +42,10 @@ describe("PR 5 commercial decision owners", () => {
     )).toBe(true);
     expect(approvedRedirects).toHaveLength(0);
     expect(approvedCommercialConsolidations).toHaveLength(0);
-    expect(publishedStaticRoutes).toHaveLength(23);
+    expect(publishedStaticRoutes).toHaveLength(33);
 
     const sitemap = read("public/sitemap.xml");
-    expect([...sitemap.matchAll(/<loc>/g)]).toHaveLength(23);
+    expect([...sitemap.matchAll(/<loc>/g)]).toHaveLength(33);
     commercialCandidateRegistry.forEach((candidate) => expect(sitemap).not.toContain(candidate.path));
   });
 
@@ -114,14 +115,16 @@ describe("PR 5 commercial decision owners", () => {
     publishableYachts.forEach((yacht) => expect(yachtLinks).toContain(`/yachts/${yacht.slug}`));
   });
 
-  it("keeps five service categories and seven occasion dispositions hub-only", () => {
+  it("keeps five planning categories, links ten approved services and creates no occasion routes", () => {
     const services = render("/services").content;
     const occasions = render("/occasions").content;
     expect(services.querySelectorAll("[data-service-category]")).toHaveLength(5);
     expect(occasions.querySelectorAll("[data-occasion-theme]")).toHaveLength(7);
     expect(occasionDispositions).toHaveLength(7);
     expect(occasionDispositions.every((occasion) => !occasion.pageCreationApproved)).toBe(true);
-    expect([...services.querySelectorAll('a[href^="/services/"]')]).toHaveLength(0);
+    expect([...services.querySelectorAll('[data-approved-service-link]')]).toHaveLength(10);
+    expect(new Set([...services.querySelectorAll<HTMLAnchorElement>('[data-approved-service-link]')]
+      .map((link) => link.getAttribute("href")))).toEqual(new Set(approvedServices.map((service) => service.path)));
     expect([...occasions.querySelectorAll('a[href^="/occasions/"]')]).toHaveLength(0);
   });
 
@@ -146,7 +149,7 @@ describe("PR 5 commercial decision owners", () => {
     const directory = page.document.querySelector('[aria-label="Sitemap"]')!;
     const publishedPaths = new Set(publishedStaticRoutes.map((route) => route.path));
     const directoryLinks = [...directory.querySelectorAll<HTMLAnchorElement>("a[href]")];
-    expect(directoryLinks).toHaveLength(4 + publishableYachts.length);
+    expect(directoryLinks).toHaveLength(4 + publishableYachts.length + approvedServices.length);
     directoryLinks.forEach((link) => expect(publishedPaths.has(link.getAttribute("href")!)).toBe(true));
 
     const footerText = plainText(page.document.querySelector("footer")!);

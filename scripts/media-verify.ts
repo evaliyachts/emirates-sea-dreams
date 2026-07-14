@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import { extname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { HOMEPAGE_MEDIA, type HomepageMediaRecord } from "../src/data/home-media";
+import { approvedServices, type ApprovedServiceMedia } from "../src/data/approved-services";
 import { mediaRightsRegistry, NEUTRAL_YACHT_FALLBACK } from "../src/data/media-rights";
 import { publishableYachts, type YachtMediaRecord } from "../src/data/yachts";
 
@@ -176,6 +177,26 @@ export const verifyHomepageMediaRecord = async (media: HomepageMediaRecord) => {
   return result;
 };
 
+export const verifyServiceMediaRecord = async (media: ApprovedServiceMedia, servicePath: string) => {
+  const rights = mediaRightsRegistry.find((record) => record.id === media.rightsRecordId);
+  if (
+    !rights ||
+    rights.status !== "approved" ||
+    rights.productionPath !== media.path ||
+    !rights.approvedHosts.includes("yachtrentaldxb.com") ||
+    !rights.approvedSurfaces.includes(`Service detail primary image: ${servicePath}`) ||
+    rights.socialPreviewApproved
+  ) {
+    throw new Error(`${servicePath}: service image lacks its exact approved visible-only rights scope.`);
+  }
+  if (/^https?:\/\//.test(media.path)) throw new Error(`${servicePath}: remote service media is prohibited.`);
+  const result = await verifyLocalImage(media.path);
+  if (result.width !== media.width || result.height !== media.height) {
+    throw new Error(`${media.path}: declared ${media.width}x${media.height}, decoded ${result.width}x${result.height}.`);
+  }
+  return result;
+};
+
 export const verifyProductionHomepageMedia = async () => {
   const paths = HOMEPAGE_MEDIA.map((record) => record.path);
   const rightsIds = HOMEPAGE_MEDIA.map((record) => record.rightsRecordId);
@@ -201,10 +222,18 @@ export const verifyProductionYachtMedia = async () => {
   return { yachtCount: publishableYachts.length, imageCount: media.length };
 };
 
+export const verifyProductionServiceMedia = async () => {
+  const records = approvedServices.flatMap((service) => service.media ? [{ service, media: service.media }] : []);
+  if (records.length !== 7) throw new Error(`Expected seven approved service-detail images; found ${records.length}.`);
+  await Promise.all(records.map(({ service, media }) => verifyServiceMediaRecord(media, service.path)));
+  return { serviceCount: approvedServices.length, imageCount: records.length, textOnlyCount: approvedServices.length - records.length };
+};
+
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
-  const [yachts, homepage] = await Promise.all([
+  const [yachts, homepage, services] = await Promise.all([
     verifyProductionYachtMedia(),
     verifyProductionHomepageMedia(),
+    verifyProductionServiceMedia(),
   ]);
-  console.log(`Media verification passed: ${yachts.imageCount} production yacht images across ${yachts.yachtCount} publishable yachts; ${homepage.imageCount} approved local homepage images; neutral fallback decoded successfully.`);
+  console.log(`Media verification passed: ${yachts.imageCount} production yacht images across ${yachts.yachtCount} publishable yachts; ${homepage.imageCount} approved local homepage images; ${services.imageCount} matching service-detail images across ${services.serviceCount} approved services (${services.textOnlyCount} text-only); neutral fallback decoded successfully.`);
 }

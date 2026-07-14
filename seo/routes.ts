@@ -1,4 +1,5 @@
 import type { EnglishRouteRecord, MetadataOwnership, PageType, RouteEvidence, SchemaOwner } from "./contracts";
+import { approvedServiceIds, getApprovedServiceById } from "../src/data/approved-services";
 
 const sitemapEvidence: RouteEvidence = {
   source: "sitemap",
@@ -22,6 +23,12 @@ const aggregateSearchConsoleEvidence: RouteEvidence = {
   source: "search-console-summary",
   confidence: "historical",
   reference: "docs/ENGLISH_SEARCH_CONSOLE_BASELINE.md (All known pages, 2026-06-30)",
+};
+
+const serviceOwnerApprovalEvidence: RouteEvidence = {
+  source: "business-approval",
+  confidence: "confirmed",
+  reference: "docs/ENGLISH_SERVICE_APPROVAL.md (owner decision, 2026-07-14)",
 };
 
 const missingOwnershipEvidence = [
@@ -294,16 +301,44 @@ const serviceRoutes = serviceInputs.map((input): EnglishRouteRecord => {
     verificationRequired: ["Business capability", "Optional-versus-included terms", "Service-specific facts"],
   });
 
+  if (approvedServiceIds.has(input.id)) {
+    const service = getApprovedServiceById(input.id);
+    if (!service || service.path !== input.path) {
+      throw new Error(`Approved service contract does not match manifest ownership: ${input.id}`);
+    }
+    return {
+      ...route,
+      decision: "enrich",
+      decisionStatus: "approved",
+      pr3RenderingEligibility: "eligible",
+      metadataOwnership: {
+        status: "approved",
+        title: service.metadata.title,
+        description: service.metadata.description,
+        h1: service.metadata.h1,
+        note: "PR 6B publishes only the owner-approved service record and preserves all request-time confirmation limits.",
+      },
+      evidence: [...route.evidence, serviceOwnerApprovalEvidence],
+      verificationRequired: [],
+      notes: [...route.notes, "Owner-approved for evidence-bounded static publication in PR 6B."],
+    };
+  }
+
   if (input.id === "service-engagement-wedding-combined") {
     return {
       ...route,
       decision: "redirect-candidate",
+      decisionStatus: "blocked",
       possibleFutureConsolidation: true,
       missingEvidence: [...route.missingEvidence, "Intent-overlap review for combined and dedicated service routes"],
     };
   }
 
-  return route;
+  return {
+    ...route,
+    decisionStatus: "blocked",
+    notes: [...route.notes, "Owner explicitly kept this service owner blocked for PR 6B."],
+  };
 });
 
 export const englishRouteManifest: readonly EnglishRouteRecord[] = [

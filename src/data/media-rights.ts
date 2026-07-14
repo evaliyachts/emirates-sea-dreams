@@ -48,15 +48,32 @@ const approvedRemoteMediaRights: MediaRightsRecord[] = approvedYachtMedia.map((m
   }),
 );
 
+const approvedServiceDetailSurfaceByRightsId: Readonly<Record<string, string>> = {
+  "english-home-service-birthday-001": "/services/birthday-party",
+  "english-home-service-proposal-001": "/services/marriage-proposal-party",
+  "english-home-service-anniversary-001": "/services/wedding-anniversary-parties",
+  "english-home-service-engagement-001": "/services/engagement-parties",
+  "english-home-service-wedding-001": "/services/wedding-parties",
+  "english-home-service-graduation-001": "/services/graduation-parties",
+  "english-home-service-barbecue-001": "/services/barbecue-on-the-yacht",
+};
+
 const approvedHomepageMediaRights: MediaRightsRecord[] = HOMEPAGE_MEDIA.map((media) =>
   mediaRightsRecordSchema.parse({
     id: media.rightsRecordId,
     productionPath: media.path,
     originalSource: "Exact prior homepage asset imported as a neutral local static snapshot.",
     owner: "Business owner approval for yachtrentaldxb.com",
-    evidence: "Owner approved reuse of the prior desktop/mobile hero covers and service-card imagery on 2026-07-14.",
+    evidence: approvedServiceDetailSurfaceByRightsId[media.rightsRecordId]
+      ? "Owner approved reuse on the homepage and the exact matching service-detail primary-image surface on 2026-07-14."
+      : "Owner approved reuse of the prior desktop/mobile hero covers and service-card imagery on 2026-07-14.",
     approvedHosts: ["yachtrentaldxb.com"],
-    approvedSurfaces: [media.surface === "service-card" ? "Homepage service-card imagery" : "Homepage hero cover"],
+    approvedSurfaces: [
+      media.surface === "service-card" ? "Homepage service-card imagery" : "Homepage hero cover",
+      ...(approvedServiceDetailSurfaceByRightsId[media.rightsRecordId]
+        ? [`Service detail primary image: ${approvedServiceDetailSurfaceByRightsId[media.rightsRecordId]}`]
+        : []),
+    ],
     arabicProjectReuseApproved: false,
     socialPreviewApproved: false,
     netlifyImageCdnTransformationApproved: false,

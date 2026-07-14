@@ -1,164 +1,178 @@
-import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { motion } from "framer-motion";
+import { ArrowLeft, CheckCircle2, ClipboardCheck, Coins } from "lucide-react";
 import Layout from "@/components/layout/Layout";
+import {
+  CommercialHero,
+  FaqSection,
+  Section,
+  YachtFactLinks,
+} from "@/components/commercial/DecisionSections";
 import SEOHead from "@/components/shared/SEOHead";
-import { AnimatedSection } from "@/components/shared/AnimatedSection";
-import { getServiceBySlug, services } from "@/data/services";
-import { PLACEHOLDER_IMAGE, getWhatsAppLink, getPhoneLink } from "@/lib/constants";
-import { ArrowLeft, MessageCircle, Phone, ChevronRight } from "lucide-react";
+import { getApprovedServiceById, getApprovedServiceBySlug } from "@/data/approved-services";
+import { publishedYachtsById } from "@/lib/published-fleet";
+import { canonicalUrlForPath } from "../../seo/authorities";
 import NotFound from "./NotFound";
+
+const categoryLabel = {
+  celebration: "Private celebration",
+  "private-experience": "Private experience",
+  hospitality: "Private hospitality request",
+} as const;
 
 const ServiceDetails = () => {
   const { slug } = useParams<{ slug: string }>();
-  const service = slug ? getServiceBySlug(slug) : undefined;
-  const [activeImg, setActiveImg] = useState(0);
-
+  const service = getApprovedServiceBySlug(slug);
   if (!service) return <NotFound />;
 
-  const gallery = service.gallery.length > 0 ? service.gallery : [service.cover_image];
-  const related = services.filter((s) => s.category === service.category && s.slug !== service.slug).slice(0, 3);
+  const yachts = publishedYachtsById(...service.yachtIds);
+  const related = service.relatedServiceIds.map((id) => {
+    const record = getApprovedServiceById(id);
+    if (!record) throw new Error(`${service.path}: missing related approved service ${id}`);
+    return record;
+  });
+  const canonical = canonicalUrlForPath(service.path);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        name: service.name,
+        serviceType: "Private yacht service request in Dubai",
+        description: service.metadata.description,
+        url: canonical,
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://yachtrentaldxb.com/" },
+          { "@type": "ListItem", position: 2, name: "Services", item: "https://yachtrentaldxb.com/services" },
+          { "@type": "ListItem", position: 3, name: service.name, item: canonical },
+        ],
+      },
+    ],
+  };
 
   return (
     <Layout>
       <SEOHead
-        title={`${service.title} - Yacht Service in Dubai | Dubai Yacht`}
-        description={service.description.slice(0, 155)}
-        path={`/services/${service.slug}`}
+        title={service.metadata.title}
+        description={service.metadata.description}
+        path={service.path}
+        jsonLd={jsonLd}
       />
-
-      <div className="pt-28 pb-20">
-        <div className="container mx-auto px-4">
-          <AnimatedSection className="mb-6">
-            <nav className="flex items-center gap-2 text-sm text-muted-foreground" aria-label="Breadcrumb">
-              <Link to="/" className="hover:text-foreground">Home</Link>
-              <ChevronRight className="w-3.5 h-3.5" />
-              <Link to="/services" className="hover:text-foreground">Services</Link>
-              <ChevronRight className="w-3.5 h-3.5" />
-              <span className="text-foreground">{service.title}</span>
-            </nav>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-            <AnimatedSection>
-              <div className="liquid-glass overflow-hidden">
-                <div className="relative h-[420px]">
-                  <motion.img
-                    key={activeImg}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.4 }}
-                    src={gallery[activeImg]}
-                    alt={`${service.title} on a Dubai Yacht charter`}
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = PLACEHOLDER_IMAGE;
-                    }}
-                  />
-                  <span className="absolute top-4 left-4 liquid-pill capitalize">
-                    {service.category}
-                  </span>
-                </div>
-              </div>
-              {gallery.length > 1 && (
-                <div className="grid grid-cols-5 gap-2 mt-3">
-                  {gallery.map((img, i) => (
-                    <button
-                      key={img + i}
-                      onClick={() => setActiveImg(i)}
-                      className={`relative h-16 rounded-lg overflow-hidden border transition-all ${
-                        i === activeImg ? "border-primary scale-95" : "border-transparent opacity-70 hover:opacity-100"
-                      }`}
-                      aria-label={`View image ${i + 1}`}
-                    >
-                      <img
-                        src={img}
-                        alt=""
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = PLACEHOLDER_IMAGE;
-                        }}
-                      />
-                    </button>
-                  ))}
-                </div>
-              )}
-            </AnimatedSection>
-
-            <AnimatedSection>
-              <span className="liquid-pill inline-block capitalize">{service.category}</span>
-              <h1 className="text-3xl md:text-5xl font-display font-bold text-foreground mt-4 mb-4">
-                {service.title}
-              </h1>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                {service.description}
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href={getWhatsAppLink(`Hi Dubai Yacht, I'm interested in the ${service.title} service. Please share details.`)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 liquid-btn text-green-400 font-medium"
-                >
-                  <MessageCircle className="w-4 h-4" /> WhatsApp Inquiry
-                </a>
-                <a
-                  href={getPhoneLink()}
-                  className="inline-flex items-center gap-2 px-6 py-3 liquid-btn-gold text-primary font-medium"
-                >
-                  <Phone className="w-4 h-4" /> Call Now
-                </a>
-                <Link
-                  to="/services"
-                  className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-muted-foreground hover:text-foreground"
-                >
-                  <ArrowLeft className="w-4 h-4" /> All services
-                </Link>
-              </div>
-            </AnimatedSection>
+      <div data-service-content data-service-id={service.id}>
+        <CommercialHero
+          eyebrow={categoryLabel[service.category]}
+          title={service.metadata.h1}
+          introduction={service.introduction}
+          directAnswer={service.directAnswer}
+        >
+          <div className="mt-8 flex flex-wrap gap-4">
+            <a href="#yacht-comparison" className="liquid-btn-primary px-6 py-3">Compare three yacht records</a>
+            <Link to="/services" className="liquid-btn px-6 py-3 text-foreground">All approved services</Link>
           </div>
+        </CommercialHero>
 
-          {related.length > 0 && (
-            <section className="mt-16">
-              <AnimatedSection className="mb-6">
-                <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground">
-                  You may also like
-                </h2>
-              </AnimatedSection>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {related.map((s) => (
-                  <Link
-                    key={s.slug}
-                    to={`/services/${s.slug}`}
-                    className="liquid-glass overflow-hidden group block"
-                  >
-                    <div className="relative h-48 overflow-hidden">
-                      <img
-                        src={s.cover_image}
-                        alt={`${s.title} - yacht service in Dubai`}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = PLACEHOLDER_IMAGE;
-                        }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                    </div>
-                    <div className="p-5">
-                      <h3 className="text-lg font-display font-semibold text-foreground">
-                        {s.title}
-                      </h3>
-                    </div>
-                  </Link>
-                ))}
+        {service.media && (
+          <section aria-label={`${service.name} planning image`} className="pb-8">
+            <div className="container mx-auto px-4">
+              <figure className="liquid-glass mx-auto max-w-5xl overflow-hidden">
+                <img
+                  src={service.media.path}
+                  alt={service.media.alt}
+                  width={service.media.width}
+                  height={service.media.height}
+                  loading="eager"
+                  decoding="async"
+                  {...{ fetchpriority: "high" }}
+                  className="max-h-[620px] w-full object-cover"
+                />
+                <figcaption className="px-5 py-4 text-sm leading-6 text-muted-foreground">
+                  Neutral category image. It does not establish an optional item, supplier, route or vessel feature.
+                </figcaption>
+              </figure>
+            </div>
+          </section>
+        )}
+
+        <Section title="Availability and optional-request boundary">
+          <div className="liquid-glass-gold max-w-4xl p-7">
+            <div className="flex items-start gap-4">
+              <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" aria-hidden="true" />
+              <div>
+                <p className="font-semibold text-foreground">Availability: {service.availability}.</p>
+                <p className="mt-3 leading-7 text-muted-foreground">{service.optionalRequestBoundary}</p>
               </div>
-            </section>
-          )}
+            </div>
+          </div>
+        </Section>
+
+        {service.sections.map((section) => (
+          <Section key={section.heading} title={section.heading}>
+            <div className="liquid-glass max-w-4xl space-y-4 p-7">
+              {section.paragraphs.map((paragraph) => (
+                <p key={paragraph} className="leading-7 text-muted-foreground">{paragraph}</p>
+              ))}
+            </div>
+          </Section>
+        ))}
+
+        <Section title={`How to prepare this ${service.name.toLowerCase()} request`}>
+          <ol className="grid gap-5 md:grid-cols-2">
+            {service.bookingSteps.map((step, index) => (
+              <li key={step} className="liquid-glass p-6">
+                <div className="flex items-start gap-4">
+                  <span className="liquid-icon flex h-10 w-10 shrink-0 items-center justify-center font-semibold text-primary">{index + 1}</span>
+                  <p className="leading-7 text-muted-foreground">{step}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </Section>
+
+        <Section title="What can affect the final request price">
+          <div className="grid gap-5 md:grid-cols-2">
+            {service.priceFactors.map((factor) => (
+              <article key={factor} className="liquid-glass p-6">
+                <Coins className="h-6 w-6 text-primary" aria-hidden="true" />
+                <p className="mt-4 leading-7 text-muted-foreground">{factor}</p>
+              </article>
+            ))}
+          </div>
+          <p className="mt-6 max-w-4xl leading-7 text-muted-foreground">
+            This page publishes no fixed service package or optional-extra price. The verified yacht rates below are vessel facts; any accepted supplier or setup request requires separate written pricing.
+          </p>
+        </Section>
+
+        <div id="yacht-comparison">
+          <YachtFactLinks title="Three published yachts for a factual comparison" yachts={yachts} note={service.yachtSelectionNote} />
         </div>
+
+        <Section title="Related approved private-yacht requests">
+          <div className="grid gap-4 md:grid-cols-3">
+            {related.map((item) => (
+              <Link
+                key={item.id}
+                to={item.path}
+                className="liquid-glass block p-6 transition-colors hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              >
+                <ClipboardCheck className="h-6 w-6 text-primary" aria-hidden="true" />
+                <h3 className="mt-4 text-xl font-semibold text-foreground">{item.name}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">On request and subject to confirmation.</p>
+              </Link>
+            ))}
+          </div>
+        </Section>
+
+        <FaqSection title={`${service.name} planning questions`} faqs={service.faqs} />
+
+        <Section title="Continue with published planning pages">
+          <div className="flex flex-wrap gap-4">
+            <Link to="/services" className="liquid-btn-primary px-6 py-3"><ArrowLeft className="mr-2 inline h-4 w-4" />Approved services</Link>
+            <Link to="/yachts" className="liquid-btn px-6 py-3 text-foreground">Compare all published yachts</Link>
+            <Link to="/occasions" className="liquid-btn px-6 py-3 text-foreground">Browse occasion themes</Link>
+          </div>
+        </Section>
       </div>
     </Layout>
   );

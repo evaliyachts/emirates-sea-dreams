@@ -144,3 +144,5 @@ The exact historical source URLs remain documentation-only provenance. No source
 The service source contains 102 ordered media observations (18 covers and 84 gallery entries), representing 82 unique transformed URLs. All transformed remote paths expose inherited branding and remain provenance only; none is approved or proposed for production service pages.
 
 The owner expanded seven matching neutral local service-card rights records to the corresponding service-detail primary-image surface on 2026-07-14. Bachelor parties, afternoon tea, and morning yacht trips remain text-only. The eight blocked service owners receive no expanded media surface. Historical remote service media, event-page yacht images, and service social previews remain unapproved. See `ENGLISH_SERVICE_APPROVAL.md` and `ENGLISH_SERVICE_MEDIA_APPROVAL_PACK.md`.
+
+PR 6B records those seven surface expansions in `src/data/media-rights.ts` and verifies the exact local file, declared dimensions, rights ID and matching service path through `media:verify`. No file is copied, transformed or rehosted, and no service page emits an Open Graph or Twitter image.

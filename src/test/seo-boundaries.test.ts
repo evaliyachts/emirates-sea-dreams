@@ -3,16 +3,19 @@ import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { englishRouteManifest, publishedStaticRoutes } from "../../seo/index";
 import { publishableYachts } from "../data/yachts";
+import { approvedServices } from "../data/approved-services";
 
 const read = (path: string) => readFileSync(resolve(path), "utf8");
 
 describe("static SEO and HTTP boundaries", () => {
-  it("publishes the four base owners plus the evidence-cleared yacht owners", () => {
+  it("publishes the four base owners plus evidence-cleared yacht and service owners", () => {
     expect(englishRouteManifest).toHaveLength(52);
-    const expectedPaths = [
-      "/", "/yachts", "/services", "/occasions",
-      ...publishableYachts.map((yacht) => `/yachts/${yacht.slug}`),
-    ];
+    const base = new Set(["/", "/yachts", "/services", "/occasions"]);
+    const yachts = new Set(publishableYachts.map((yacht) => `/yachts/${yacht.slug}`));
+    const services = new Set(approvedServices.map((service) => service.path));
+    const expectedPaths = englishRouteManifest
+      .map((route) => route.path)
+      .filter((path) => base.has(path) || yachts.has(path) || services.has(path));
     expect(publishedStaticRoutes.map((route) => route.path)).toEqual(expectedPaths);
     const locations = [...read("public/sitemap.xml").matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
     expect(locations).toEqual(expectedPaths.map((path) => `https://yachtrentaldxb.com${path === "/" ? "/" : path}`));
@@ -30,7 +33,7 @@ describe("static SEO and HTTP boundaries", () => {
 
   it("uses only exact 200 rewrites and no catch-all or redirect", () => {
     const config = read("netlify.toml");
-    expect([...config.matchAll(/status = 200/g)]).toHaveLength(3 + publishableYachts.length);
+    expect([...config.matchAll(/status = 200/g)]).toHaveLength(3 + publishableYachts.length + approvedServices.length);
     expect(config).not.toMatch(/status = 30[12]/);
     expect(config).not.toMatch(/from = "\/\*"/);
   });
