@@ -68,3 +68,14 @@ Detailed yacht and event pages remain unpublished and cannot replace the later r
 No yacht detail route passed the record-level fact and English media-rights publication gates in PR 4. The required representative yacht Live URL Test therefore remains blocked; `/yachts` is a catalogue/hub test candidate, not a substitute for a published yacht detail page.
 
 No Search Console Live Test, sitemap submission, Validate Fix action, or result was performed or fabricated by Codex. The four-test evidence gate remains open.
+
+## PR 7 representative Live Test candidates — 2026-07-14
+
+PR 7 verifies ordinary live HTTP, self-canonical and indexability evidence for all 33 published English pages, but that evidence does not replace Search Console. The four owner-authorized Live URL Tests remain pending with these now-published candidates:
+
+- homepage: `https://yachtrentaldxb.com/`;
+- commercial: `https://yachtrentaldxb.com/yachts`;
+- yacht detail: `https://yachtrentaldxb.com/yachts/50-feet-royal-majesty-dubai-yacht-rental`;
+- event detail: `https://yachtrentaldxb.com/services/birthday-party`.
+
+Record Google-reported accessibility, rendered resources, user canonical, Google-selected canonical and indexability. No Search Console action was taken in PR 7.

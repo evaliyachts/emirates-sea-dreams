@@ -5,6 +5,7 @@ import SEOHead from "@/components/shared/SEOHead";
 import YachtCard from "@/components/shared/YachtCard";
 import { publishableYachts } from "@/data/yachts";
 import { formatAed, publishedFleetSummary } from "@/lib/published-fleet";
+import { buildBreadcrumbSchema } from "@/lib/entity-schema";
 
 const catalogueFaqs = [
   {
@@ -31,6 +32,10 @@ const Yachts = () => (
       title="Yachts for Rent in Dubai | Compare 19 Verified Records"
       description="Compare 19 published Dubai yacht records by capacity, hourly price, minimum duration, length and verified vessel facts."
       path="/yachts"
+      jsonLd={buildBreadcrumbSchema("/yachts", [
+        { name: "Home", path: "/" },
+        { name: "Yachts", path: "/yachts" },
+      ])}
     />
     <div data-commercial-content>
 

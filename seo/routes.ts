@@ -91,12 +91,12 @@ const homeRoute: EnglishRouteRecord = {
   secondaryIntents: ["private yacht hire terminology", "fleet and booking journey overview"],
   metadataOwnership: {
     status: "approved",
-    title: "Private Yacht Rental Dubai | Compare Verified Yachts",
+    title: "Private Yacht Rental Dubai | Dubai Yacht",
     description: "Compare 19 verified private yachts in Dubai by hourly price, guest capacity and minimum duration, then prepare a factual rental request.",
-    h1: "Private Yacht Rental in Dubai, Compared with Verified Facts",
+    h1: "Dubai Yacht: Private Yacht Rental in Dubai, Compared with Verified Facts",
     note: "PR 5 assigns broad private-rental ownership to the homepage without activating a synonym candidate route.",
   },
-  schemaOwnership: ["WebSite", "Organization", "ContactPoint"],
+  schemaOwnership: ["WebSite", "Organization"],
   evidence: [sitemapEvidence, repositoryEvidence, aggregateSearchConsoleEvidence],
   verificationRequired: ["Business facts before content enrichment"],
   missingEvidence: ["Search Console Query × Page export", "Search Console Links report"],
@@ -112,7 +112,7 @@ const staticRoutes: EnglishRouteRecord[] = [
     pageType: "yacht-index",
     primaryIntent: "compare the current private yacht catalogue",
     secondaryIntents: ["yachts for rent comparison"],
-    schemaOwnership: ["Organization", "ContactPoint", "BreadcrumbList"],
+    schemaOwnership: ["BreadcrumbList"],
     verificationRequired: ["Verified fleet contract and authorized media"],
     renderingEligible: true,
     metadataOwnership: {
@@ -139,7 +139,7 @@ const staticRoutes: EnglishRouteRecord[] = [
     path: "/services",
     pageType: "service-index",
     primaryIntent: "choose a private yacht service or event type",
-    schemaOwnership: ["Organization", "ContactPoint", "BreadcrumbList"],
+    schemaOwnership: ["BreadcrumbList"],
     verificationRequired: ["Service capability and optional-extra verification"],
     renderingEligible: true,
     metadataOwnership: {
@@ -155,7 +155,7 @@ const staticRoutes: EnglishRouteRecord[] = [
     path: "/occasions",
     pageType: "occasion-index",
     primaryIntent: "browse yacht occasions without creating duplicate detail pages",
-    schemaOwnership: ["Organization", "ContactPoint", "BreadcrumbList"],
+    schemaOwnership: ["BreadcrumbList"],
     verificationRequired: ["Occasion capability and hub-role approval"],
     renderingEligible: true,
     metadataOwnership: {
@@ -189,7 +189,7 @@ const staticRoutes: EnglishRouteRecord[] = [
     pageType: "support",
     primaryIntent: "submit a private yacht rental enquiry",
     secondaryIntents: ["booking contact endpoint"],
-    schemaOwnership: ["Organization", "ContactPoint", "BreadcrumbList"],
+    schemaOwnership: ["BreadcrumbList"],
     verificationRequired: ["Approved phone, WhatsApp, location, hours, and response process"],
   }),
   preservedRoute({
@@ -251,7 +251,7 @@ const yachtRoutes = yachtInputs.map((input): EnglishRouteRecord => {
   const route = preservedRoute({
     ...input,
     pageType: "yacht",
-    schemaOwnership: ["Service", "BreadcrumbList"],
+    schemaOwnership: ["Service", "Offer", "BreadcrumbList"],
     verificationRequired: ["Strict yacht facts contract", "Media-rights approval", "Visible Offer verification"],
   });
 

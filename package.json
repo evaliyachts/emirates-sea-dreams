@@ -21,6 +21,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "seo:check": "tsx scripts/seo-check.ts",
+    "seo:language-report": "tsx scripts/generate-language-map-report.ts",
     "media:verify": "tsx scripts/media-verify.ts"
   },
   "dependencies": {

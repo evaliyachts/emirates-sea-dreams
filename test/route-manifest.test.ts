@@ -125,7 +125,7 @@ describe("English PR 2 route ownership manifest", () => {
 
   it("keeps inherited branding out of proposed ownership copy and limits planned schema", () => {
     const historicalYacht = englishRouteManifest.find((route) => route.id === "yacht-55ft-historical-brand-path");
-    const allowedSchema = new Set(["WebSite", "Organization", "ContactPoint", "Service", "BreadcrumbList"]);
+    const allowedSchema = new Set(["WebSite", "Organization", "ContactPoint", "Service", "Offer", "BreadcrumbList"]);
 
     expect(historicalYacht?.path).toBe("/yachts/evali-yacht-55ft-yacht-rental-dubai");
     expect(historicalYacht?.primaryIntent).not.toMatch(/evali/i);

@@ -4,6 +4,7 @@ import Layout from "@/components/layout/Layout";
 import { CommercialHero, FaqSection, Section, YachtFactLinks } from "@/components/commercial/DecisionSections";
 import SEOHead from "@/components/shared/SEOHead";
 import { publishedYachtsById } from "@/lib/published-fleet";
+import { buildBreadcrumbSchema } from "@/lib/entity-schema";
 
 const comparisonYachts = publishedYachtsById("yacht-royal-majesty-50", "yacht-sunseeker-90", "yacht-ocean-dream-143");
 
@@ -42,6 +43,10 @@ const Occasions = () => (
       title="Private Yacht Occasions in Dubai | Planning Guide"
       description="Compare seven private-yacht occasion themes, the decisions to prepare and verified yacht facts without assuming packages, routes or inclusions."
       path="/occasions"
+      jsonLd={buildBreadcrumbSchema("/occasions", [
+        { name: "Home", path: "/" },
+        { name: "Occasions", path: "/occasions" },
+      ])}
     />
     <div data-commercial-content>
 

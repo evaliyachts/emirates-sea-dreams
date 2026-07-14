@@ -26,7 +26,15 @@ export type SchemaOwner =
   | "Organization"
   | "ContactPoint"
   | "Service"
+  | "Offer"
   | "BreadcrumbList";
+
+export type LanguageEquivalenceStatus =
+  | "true-equivalent"
+  | "related-not-equivalent"
+  | "no-equivalent"
+  | "arabic-page-absent"
+  | "english-page-not-ready";
 
 export type EvidenceSource =
   | "sitemap"
@@ -124,4 +132,26 @@ export interface OccasionDisposition {
   evidenceStatus: EvidenceConfidence;
   pageCreationApproved: false;
   notes: string[];
+}
+
+export interface LiveLanguagePageEvidence {
+  httpStatus: 200;
+  indexable: true;
+  declaredCanonical: string;
+  verifiedAt: IsoDate;
+  evidenceReference: string;
+}
+
+export interface EnglishArabicRouteMapping {
+  routeId: string;
+  englishCanonical: string;
+  arabicCanonical?: string;
+  equivalenceStatus: LanguageEquivalenceStatus;
+  samePrimaryIntent: boolean;
+  englishEvidence: LiveLanguagePageEvidence;
+  arabicEvidence?: LiveLanguagePageEvidence;
+  reciprocalEnglishTagRequired: boolean;
+  reciprocalArabicTagRequired: boolean;
+  xDefaultAppropriate: false;
+  blockers: string[];
 }

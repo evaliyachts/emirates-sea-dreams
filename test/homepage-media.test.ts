@@ -86,7 +86,7 @@ describe("approved homepage media restoration", () => {
       [...section.querySelectorAll<HTMLImageElement | HTMLSourceElement>("img, source")]
         .map((media) => media.getAttribute("src") ?? media.getAttribute("srcset") ?? ""),
     );
-    expect(rendered.head).toMatch(/<title[^>]*>Private Yacht Rental Dubai \| Compare Verified Yachts<\/title>/);
+    expect(rendered.head).toMatch(/<title[^>]*>Private Yacht Rental Dubai \| Dubai Yacht<\/title>/);
     expect(rendered.head).toContain('rel="canonical" href="https://yachtrentaldxb.com/"');
     expect(rendered.head).not.toMatch(/hreflang|x-default|name="keywords"/i);
     expect(restoredMediaUrls.every((url) => url.startsWith("/media/home/"))).toBe(true);

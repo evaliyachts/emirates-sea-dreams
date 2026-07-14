@@ -11,6 +11,7 @@ import SEOHead from "@/components/shared/SEOHead";
 import { getApprovedServiceById, getApprovedServiceBySlug } from "@/data/approved-services";
 import { publishedYachtsById } from "@/lib/published-fleet";
 import { canonicalUrlForPath } from "../../seo/authorities";
+import { buildBreadcrumbNode, organizationReference, schemaGraph } from "@/lib/entity-schema";
 import NotFound from "./NotFound";
 
 const categoryLabel = {
@@ -31,26 +32,22 @@ const ServiceDetails = () => {
     return record;
   });
   const canonical = canonicalUrlForPath(service.path);
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Service",
-        name: service.name,
-        serviceType: "Private yacht service request in Dubai",
-        description: service.metadata.description,
-        url: canonical,
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://yachtrentaldxb.com/" },
-          { "@type": "ListItem", position: 2, name: "Services", item: "https://yachtrentaldxb.com/services" },
-          { "@type": "ListItem", position: 3, name: service.name, item: canonical },
-        ],
-      },
-    ],
-  };
+  const jsonLd = schemaGraph([
+    {
+      "@type": "Service",
+      "@id": `${canonical}#service`,
+      name: service.name,
+      serviceType: "Private yacht service request in Dubai",
+      description: service.metadata.description,
+      url: canonical,
+      provider: organizationReference,
+    },
+    buildBreadcrumbNode(service.path, [
+      { name: "Home", path: "/" },
+      { name: "Services", path: "/services" },
+      { name: service.name, path: service.path },
+    ]),
+  ]);
 
   return (
     <Layout>

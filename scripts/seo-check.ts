@@ -9,18 +9,29 @@ import {
   canonicalUrlForPath,
   commercialCandidateRegistry,
   englishRouteManifest,
+  englishArabicRouteMappings,
+  generateEnglishArabicMappingReport,
+  languageMappingSummary,
   occasionDispositions,
   publishedStaticRoutes,
   routeGroups,
   searchConsoleAggregateBaseline,
   validateEnglishSeoOwnership,
+  validateEnglishArabicRouteMappings,
   yachtCatalogueRegistry,
 } from "../seo/index";
 import { mediaRightsRegistry } from "../src/data/media-rights";
 import { approvedServices } from "../src/data/approved-services";
 import { publishableYachts } from "../src/data/yachts";
+import { siteFacts } from "../src/config/site-facts";
+import { BRAND_NAME } from "../src/lib/constants";
+import {
+  ORGANIZATION_ENTITY_ID,
+  RESERVED_CONTACT_POINT_ENTITY_ID,
+  WEBSITE_ENTITY_ID,
+} from "../src/lib/entity-schema";
 
-const failures = validateEnglishSeoOwnership();
+const failures = [...validateEnglishSeoOwnership(), ...validateEnglishArabicRouteMappings()];
 const read = (path: string) => readFile(resolve(path), "utf8");
 const escape = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const routeFile = (path: string) => path === "/" ? "dist/index.html" : `dist/_static${path}.html`;
@@ -68,6 +79,7 @@ for (const route of publishedStaticRoutes) {
   const robots = matchAttr(head, "meta", "name", "robots", "content") ?? "";
   const canonical = matchAttr(head, "link", "rel", "canonical", "href") ?? "";
   const ogUrl = matchAttr(head, "meta", "property", "og:url", "content") ?? "";
+  const ogSiteName = matchAttr(head, "meta", "property", "og:site_name", "content") ?? "";
   const ogTitle = matchAttr(head, "meta", "property", "og:title", "content") ?? "";
   const ogDescription = matchAttr(head, "meta", "property", "og:description", "content") ?? "";
   const twitterTitle = matchAttr(head, "meta", "name", "twitter:title", "content") ?? "";
@@ -96,6 +108,7 @@ for (const route of publishedStaticRoutes) {
   if (ogTitle !== title || twitterTitle !== title || ogDescription !== description || twitterDescription !== description) {
     failures.push(`${route.path}: social metadata does not match title/description.`);
   }
+  if (ogSiteName !== BRAND_NAME) failures.push(`${route.path}: og:site_name must use the visible Dubai Yacht brand.`);
   if ((ogImage && !/^https:\/\//.test(ogImage)) || (twitterImage && !/^https:\/\//.test(twitterImage))) {
     failures.push(`${route.path}: social image URLs must be absolute HTTPS URLs.`);
   }
@@ -134,17 +147,77 @@ for (const route of publishedStaticRoutes) {
   }
 
   const jsonLd = [...html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
+  const schemaNodes: Array<Record<string, unknown>> = [];
   jsonLd.forEach((block, index) => {
     try {
-      const parsed = JSON.parse(block[1]);
+      const parsed = JSON.parse(block[1]) as Record<string, unknown>;
       const value = JSON.stringify(parsed);
       if (/LocalBusiness|Product|AggregateRating|Review|Event|FAQPage/.test(value)) {
         failures.push(`${route.path}: prohibited schema type in JSON-LD block ${index + 1}.`);
+      }
+      if (/"(?:address|geo|sameAs|openingHours|telephone|contactType|ratingValue|reviewCount)"\s*:/.test(value)) {
+        failures.push(`${route.path}: unapproved entity, contact, location or rating fact in JSON-LD block ${index + 1}.`);
+      }
+      const nodes = Array.isArray(parsed["@graph"])
+        ? parsed["@graph"].filter((node): node is Record<string, unknown> => Boolean(node && typeof node === "object"))
+        : [parsed];
+      schemaNodes.push(...nodes);
+      for (const node of nodes) {
+        const id = node["@id"];
+        if (typeof id === "string" && !id.startsWith(`${ENGLISH_PRODUCTION_ORIGIN}/`)) {
+          failures.push(`${route.path}: schema @id uses an invalid authority.`);
+        }
       }
     } catch {
       failures.push(`${route.path}: invalid JSON-LD block ${index + 1}.`);
     }
   });
+
+  const breadcrumb = schemaNodes.find((node) => node["@type"] === "BreadcrumbList");
+  if (route.path === "/") {
+    const websiteNodes = schemaNodes.filter((node) => node["@type"] === "WebSite");
+    const organizationNodes = schemaNodes.filter((node) => node["@type"] === "Organization");
+    if (jsonLd.length !== 1 || schemaNodes.length !== 2 || websiteNodes.length !== 1 || organizationNodes.length !== 1) {
+      failures.push("/: homepage schema must contain exactly one WebSite and one Organization in one graph.");
+    }
+    const website = websiteNodes[0];
+    const organization = organizationNodes[0];
+    if (website?.["@id"] !== WEBSITE_ENTITY_ID || website?.name !== BRAND_NAME || website?.url !== `${ENGLISH_PRODUCTION_ORIGIN}/`) {
+      failures.push("/: WebSite identity does not match the stable English site owner.");
+    }
+    if (JSON.stringify(website?.publisher) !== JSON.stringify({ "@id": ORGANIZATION_ENTITY_ID })) {
+      failures.push("/: WebSite publisher must reference the stable Organization owner.");
+    }
+    if (organization?.["@id"] !== ORGANIZATION_ENTITY_ID || organization?.name !== BRAND_NAME || organization?.url !== `${ENGLISH_PRODUCTION_ORIGIN}/`) {
+      failures.push("/: Organization identity must remain minimal and match the visible brand.");
+    }
+    if ("alternateName" in (website ?? {}) || !title.includes(BRAND_NAME) || !h1.includes(BRAND_NAME)) {
+      failures.push("/: site-name signals must use Dubai Yacht without an unapproved alternate name.");
+    }
+    if ((visible.match(/Dubai Yacht/g) ?? []).length < 2) failures.push("/: visible header/footer brand signals are inconsistent.");
+  } else {
+    if (!breadcrumb) failures.push(`${route.path}: published inner route requires BreadcrumbList ownership.`);
+    if (breadcrumb?.["@id"] !== `${expectedCanonical}#breadcrumb`) failures.push(`${route.path}: BreadcrumbList has an unstable @id.`);
+    const items = Array.isArray(breadcrumb?.itemListElement)
+      ? breadcrumb.itemListElement.filter((item): item is Record<string, unknown> => Boolean(item && typeof item === "object"))
+      : [];
+    if (!items.length || items.at(-1)?.item !== expectedCanonical) failures.push(`${route.path}: breadcrumb current item must equal the canonical URL.`);
+    items.forEach((item, index) => {
+      const itemUrl = item.item;
+      if (item.position !== index + 1 || typeof item.name !== "string" || !item.name || typeof itemUrl !== "string") {
+        failures.push(`${route.path}: breadcrumb positions, names and URLs must be complete.`);
+        return;
+      }
+      const target = new URL(itemUrl);
+      if (target.origin !== ENGLISH_PRODUCTION_ORIGIN || !publishedPaths.has(target.pathname)) {
+        failures.push(`${route.path}: breadcrumb points to an unpublished owner ${itemUrl}.`);
+      }
+    });
+  }
+
+  if (schemaNodes.some((node) => node["@type"] === "ContactPoint" || node["@id"] === RESERVED_CONTACT_POINT_ENTITY_ID)) {
+    failures.push(`${route.path}: ContactPoint remains pending and must not be emitted.`);
+  }
 
   if (route.pageType === "yacht") {
     const yacht = publishedYachtsById.get(route.id);
@@ -174,6 +247,9 @@ for (const route of publishedStaticRoutes) {
         const breadcrumb = graph.find((node) => node["@type"] === "BreadcrumbList");
         const offer = service?.offers as Record<string, unknown> | undefined;
         if (!service || !breadcrumb || graph.length !== 2) failures.push(`${route.path}: yacht schema must contain only Service and BreadcrumbList owners.`);
+        if (service?.["@id"] !== `${expectedCanonical}#service` || JSON.stringify(service?.provider) !== JSON.stringify({ "@id": ORGANIZATION_ENTITY_ID })) {
+          failures.push(`${route.path}: yacht Service must use stable ownership and provider references.`);
+        }
         if (offer?.["@type"] !== "Offer" || offer.price !== yacht.pricePerHour || offer.priceCurrency !== "AED" || offer.url !== expectedCanonical) {
           failures.push(`${route.path}: Offer does not match visible price and canonical ownership.`);
         }
@@ -244,6 +320,9 @@ for (const route of publishedStaticRoutes) {
         const breadcrumb = graph.find((node) => node["@type"] === "BreadcrumbList");
         if (!serviceNode || !breadcrumb || graph.length !== 2) failures.push(`${route.path}: service schema must contain only Service and BreadcrumbList owners.`);
         if (serviceNode?.name !== service.name || serviceNode.url !== expectedCanonical) failures.push(`${route.path}: Service schema lacks visible-name/canonical parity.`);
+        if (serviceNode?.["@id"] !== `${expectedCanonical}#service` || JSON.stringify(serviceNode?.provider) !== JSON.stringify({ "@id": ORGANIZATION_ENTITY_ID })) {
+          failures.push(`${route.path}: Service must use stable ownership and provider references.`);
+        }
       }
       if (/\bincluded\b|\ball-inclusive\b|\bguaranteed\b|\bfree\b|fixed route|fixed duration|instant confirmation|wild party|open bar|fireworks/i.test(serviceVisible)) {
         failures.push(`${route.path}: prohibited service promise or positioning appears in visible content.`);
@@ -276,6 +355,16 @@ if (!blockedStaticRoutes.every((route) => !sitemapUrls.includes(canonicalUrlForP
 
 const robots = await read("dist/robots.txt");
 if (!robots.includes(`Sitemap: ${ENGLISH_PRODUCTION_ORIGIN}/sitemap.xml`)) failures.push("robots.txt has the wrong sitemap authority.");
+
+const languageReport = await read("docs/ENGLISH_ARABIC_HREFLANG_MAP.md");
+if (languageReport !== generateEnglishArabicMappingReport()) failures.push("Committed English–Arabic mapping report is stale.");
+if (languageMappingSummary.total !== publishedStaticRoutes.length || languageMappingSummary.trueEquivalents !== 28 || languageMappingSummary.relatedNotEquivalent !== 5 || languageMappingSummary.unmapped !== 0) {
+  failures.push("English–Arabic mapping summary must remain 33/28/5/0 for this verified release.");
+}
+if (englishArabicRouteMappings.some((record) => record.xDefaultAppropriate)) failures.push("x-default remains unapproved.");
+if (siteFacts.phoneDisplay.status === "approved" || siteFacts.publicAddress.status === "approved" || siteFacts.socialProfiles.status === "approved" || siteFacts.operatingHours.status === "approved") {
+  failures.push("Unapproved business/contact facts were promoted during PR 7.");
+}
 
 const netlify = await read("netlify.toml");
 const rewriteBlocks = [...netlify.matchAll(/\[\[redirects\]\]([\s\S]*?)(?=\n\[\[|$)/g)].map((match) => match[1]);
@@ -323,3 +412,5 @@ console.log(`Yacht gates: ${yachtCatalogueRegistry.length} source records, ${pub
 console.log(`Service gates: ${routeGroups.services.length} manifest owners, ${approvedServices.length} approved and generated, ${routeGroups.services.length - approvedServices.length} blocked.`);
 console.log(`Evidence gates preserved: ${approvedRedirects.length} redirects, ${approvedCommercialConsolidations.length} consolidations, ${commercialCandidateRegistry.length} candidates, ${occasionDispositions.length} occasions.`);
 console.log(`Search Console remains aggregate evidence (${searchConsoleAggregateBaseline.knownUrls} known URLs); no Search Console action was taken.`);
+console.log(`Entity schema passed: one WebSite and minimal Organization; ContactPoint and LocalBusiness remain omitted.`);
+console.log(`Language evidence passed: ${languageMappingSummary.total} mappings (${languageMappingSummary.trueEquivalents} true equivalents, ${languageMappingSummary.relatedNotEquivalent} related, ${languageMappingSummary.unmapped} unmapped); no live alternate tags.`);

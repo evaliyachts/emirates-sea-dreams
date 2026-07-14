@@ -39,7 +39,7 @@ describe("homepage commercial owner", () => {
     );
 
     await waitFor(() => {
-      expect(document.title).toBe("Private Yacht Rental Dubai | Compare Verified Yachts");
+      expect(document.title).toBe("Private Yacht Rental Dubai | Dubai Yacht");
     });
 
     expect(document.querySelector('meta[name="description"]')?.getAttribute("content")).toContain(
