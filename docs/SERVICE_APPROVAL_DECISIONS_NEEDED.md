@@ -7,31 +7,29 @@ Production authority: `https://yachtrentaldxb.com/`
 ## Current gate
 
 - Historical service/event manifest owners: **18**
-- Approved service capabilities: **0**
+- Approved service capabilities: **10**
+- Service owners kept blocked: **8**
 - Published service/event details: **0**
-- Approved service-detail media rights: **0**
+- Approved matching service-detail primary images: **7**
 - Occasion records without detail routes: **7**
 - Approved new occasion routes: **0**
 - Approved redirects: **0**
 - Approved commercial consolidations: **0**
 - Published sitemap URLs: **23**
 
-PR 6 implementation must remain blocked until the decisions below are recorded. Aggregate Search Console data does not approve a route, redirect, or consolidation.
+The owner recorded the ten approved and eight blocked paths on 2026-07-14 in `ENGLISH_SERVICE_APPROVAL.md`. PR 6B may implement only that decision. Aggregate Search Console data still does not approve a redirect or consolidation.
 
-## Required owner decisions
+## Resolved owner decisions
 
-1. Approve or reject current request capability for each of the 18 service source IDs.
-2. Approve the public name and category for every service that may publish.
-3. Confirm whether availability is always presented as on request and reconfirmed during booking.
-4. Approve exact optional extras and confirm whether separate pricing is the safe default.
-5. Supply water-activity provider, qualification, safety, permit, weather, equipment, and operating facts—or keep those pages blocked.
-6. Supply hospitality/menu/dietary/supplier facts—or keep those claims absent.
-7. Approve exactly three current publishable yacht IDs per service, or authorize text-only factual links without suitability claims.
-8. Decide whether `/services/food-menu` is an indexable owner, a supporting non-indexable utility, or blocked.
-9. Keep `/services/engagement-and-wedding-parties` preserved without redirect until Query × Page and links evidence is reviewed; approve a distinct role only if one exists.
-10. Confirm the seven occasion dispositions without creating new routes automatically.
-11. Approve business display name, phone, WhatsApp/default message, and any visible contact action separately in `ENGLISH_BUSINESS_FACTS.md`.
-12. Approve the media choices in `ENGLISH_SERVICE_MEDIA_APPROVAL_PACK.md`.
+1. Ten exact paths are approved; eight exact paths remain blocked.
+2. Availability wording is “on request and subject to confirmation.”
+3. No inclusion is assumed; enumerated extras remain optional, supplier-confirmed, and separately priced.
+4. Water-activity, swimming, fishing, gender-reveal, combined engagement/wedding, and food-menu owners remain blocked.
+5. Hospitality pages use no fixed menu, supplier, cooking, meal, timing, route, or price promise.
+6. Each approved page may select exactly three published yacht records using only verified facts and cautious request fit.
+7. Seven matching local images are approved for service-detail primary use; three pages remain text-only; service social images are absent.
+8. The seven occasion dispositions create no new routes.
+9. Business contact facts remain outside PR 6B; blocked `/contact` is not linked as a canonical owner.
 
 ## Decisions that remain prohibited without evidence
 
@@ -57,4 +55,4 @@ PR 6 implementation must remain blocked until the decisions below are recorded. 
 
 ## Next implementation step after approval
 
-PR 6B may create a strict service contract and publish only approved owners. It must generate route-specific initial HTML, unique metadata and content, Service/BreadcrumbList schema only, truthful optional wording, canonical internal links, and approved yacht selections. Unapproved owners remain blocked and absent from the sitemap. No redirect is created from aggregate evidence.
+PR 6B may create a strict service contract and publish only the ten approved owners. It must generate route-specific initial HTML, unique metadata and content, Service/BreadcrumbList schema only, truthful optional wording, canonical internal links, and exactly three factual yacht selections. The eight unapproved owners remain blocked and absent from the sitemap. No redirect is created from aggregate evidence.

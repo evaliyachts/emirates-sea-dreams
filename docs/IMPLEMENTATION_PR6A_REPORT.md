@@ -10,7 +10,7 @@ Head commit: recorded by the pull request after final documentation review
 
 ## Scope
 
-PR 6A is documentation only. It prepares the service fact, capability, yacht-selection, occasion, and media decisions needed before PR 6B may publish any event/service detail owner.
+PR 6A is documentation only. It prepares and records the service fact, capability, yacht-selection, occasion, and media decisions that authorize PR 6B.
 
 No application, package, lockfile, configuration, route, static rendering, sitemap, robots, redirect, metadata, schema, yacht, service source data, legal copy, analytics, hreflang, media file, or production behavior changes in this pull request.
 
@@ -20,13 +20,13 @@ No application, package, lockfile, configuration, route, static rendering, sitem
 - 7 occasion dispositions with no detail routes.
 - 102 historical service-media observations: 18 covers plus 84 gallery entries.
 - 82 unique transformed remote service URLs, all on inherited branded paths and ineligible for production.
-- 13 existing neutral local homepage service images whose current rights scope does not include service details.
+- 13 existing neutral local homepage service images evaluated for possible surface expansion; seven exact matching surfaces are now approved.
 - 5 service owners without a matching neutral local primary-image candidate.
 - 19 currently publishable yachts, but no approved event-page yacht-image surface and no approved service-suitability mapping.
 
 ## Decision result
 
-Approved service capabilities remain **0**. Approved service redirects remain **0**. Approved consolidations remain **0**. Approved occasion detail routes remain **0**. The combined engagement/wedding owner remains preserved and blocked pending Query × Page, links, intent, and owner-capability evidence.
+The owner approved **10** exact service owners and kept **8** exact service owners blocked on 2026-07-14. Seven matching local primary-image surfaces are approved; three approved pages remain text-only. Approved service redirects remain **0**. Approved consolidations remain **0**. Approved occasion detail routes remain **0**. The combined engagement/wedding owner remains preserved and blocked pending Query × Page and links evidence.
 
 ## Publication result
 
@@ -61,4 +61,4 @@ The local gate ran on Node `v24.18.0` and npm `11.16.0`:
 
 The generated client assets remain `index-D-VtTJ19.js` and `index-CfhWdbjg.css`, matching the main-branch application build. `public/sitemap.xml`, `public/robots.txt`, `netlify.toml`, the route manifest, application code, package metadata, and all runtime data are unchanged. GitHub and Netlify results will be reported in the pull-request description.
 
-PR 6B must not begin until the owner reviews and answers the approval packs.
+The owner answered the approval packs on 2026-07-14. PR 6B may begin only from the exact decisions in `ENGLISH_SERVICE_APPROVAL.md`.

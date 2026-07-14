@@ -4,7 +4,13 @@ Prepared: 2026-07-14
 
 Production authority: `https://yachtrentaldxb.com/`
 
-Status: **owner decisions pending; no service detail is approved for publication**
+Status: **owner decision recorded for PR 6B: 10 approved owners and 8 blocked owners**
+
+## Owner decision — 2026-07-14
+
+The owner approved ten exact service paths for evidence-bounded publication and kept eight paths blocked. The complete decision, optional-extra rules, hospitality limits, yacht-selection authorization, schema restrictions, and unchanged 404 set are recorded in `ENGLISH_SERVICE_APPROVAL.md`.
+
+PR 6A still changes no public output. PR 6B may publish only the ten approved paths and must preserve every recorded limitation.
 
 ## Purpose and boundary
 
@@ -56,7 +62,7 @@ Unknown fields must be rejected. The inherited `description`, source category, g
 
 ## Global publication decisions required
 
-Owner approval must explicitly answer these questions:
+The 2026-07-14 approval resolves these questions for the ten approved paths as recorded in `ENGLISH_SERVICE_APPROVAL.md`. The list remains the audit checklist for implementation:
 
 1. Which of the 18 services are currently requestable through `yachtrentaldxb.com`?
 2. For each requestable service, is fulfillment direct, third-party, or intentionally undisclosed?

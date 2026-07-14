@@ -4,7 +4,11 @@ Prepared: 2026-07-14
 
 Production authority: `https://yachtrentaldxb.com/`
 
-Status: **service-detail media rights pending**
+Status: **seven matching neutral local primary images approved for PR 6B; three approved pages remain text-only**
+
+## Owner decision — 2026-07-14
+
+The owner prohibited all historical transformed remote service images and inherited branded service media. Seven existing neutral local snapshots may be reused only as the matching service-detail page's primary visible image. Bachelor parties, afternoon tea, and morning yacht trips remain text-only. Service social-preview images are not approved. Exact mappings are recorded in `ENGLISH_SERVICE_APPROVAL.md`.
 
 ## Current source observations
 
@@ -18,24 +22,24 @@ Thirteen exact image snapshots already exist under neutral local homepage paths.
 
 | Service path | Remote observations (cover + gallery) | Existing neutral local candidate | Rights ID | Current scope | Proposed additional scope |
 | --- | ---: | --- | --- | --- | --- |
-| `/services/banana-boat-ride` | 5 (4 unique) | `/media/home/services/banana-boat.webp` | `english-home-service-banana-boat-001` | Homepage service card only | Matching service-detail primary image — pending |
-| `/services/swimming` | 8 (8 unique) | `/media/home/services/swimming.webp` | `english-home-service-swimming-001` | Homepage service card only | Matching service-detail primary image — pending |
-| `/services/barbecue-on-the-yacht` | 6 (5 unique) | `/media/home/services/barbecue.webp` | `english-home-service-barbecue-001` | Homepage service card only | Matching service-detail primary image — pending |
-| `/services/fishing` | 5 (4 unique) | `/media/home/services/fishing.webp` | `english-home-service-fishing-001` | Homepage service card only | Matching service-detail primary image — pending |
-| `/services/birthday-party` | 5 (4 unique) | `/media/home/services/birthday-party.webp` | `english-home-service-birthday-001` | Homepage service card only | Matching service-detail primary image — pending |
-| `/services/graduation-parties` | 5 (4 unique) | `/media/home/services/graduation-party.webp` | `english-home-service-graduation-001` | Homepage service card only | Matching service-detail primary image — pending |
-| `/services/wedding-anniversary-parties` | 6 (5 unique) | `/media/home/services/wedding-anniversary.webp` | `english-home-service-anniversary-001` | Homepage service card only | Matching service-detail primary image — pending |
+| `/services/banana-boat-ride` | 5 (4 unique) | `/media/home/services/banana-boat.webp` | `english-home-service-banana-boat-001` | Homepage service card only | Blocked service owner; no expanded use |
+| `/services/swimming` | 8 (8 unique) | `/media/home/services/swimming.webp` | `english-home-service-swimming-001` | Homepage service card only | Blocked service owner; no expanded use |
+| `/services/barbecue-on-the-yacht` | 6 (5 unique) | `/media/home/services/barbecue.webp` | `english-home-service-barbecue-001` | Homepage service card plus matching service-detail primary | Approved |
+| `/services/fishing` | 5 (4 unique) | `/media/home/services/fishing.webp` | `english-home-service-fishing-001` | Homepage service card only | Blocked service owner; no expanded use |
+| `/services/birthday-party` | 5 (4 unique) | `/media/home/services/birthday-party.webp` | `english-home-service-birthday-001` | Homepage service card plus matching service-detail primary | Approved |
+| `/services/graduation-parties` | 5 (4 unique) | `/media/home/services/graduation-party.webp` | `english-home-service-graduation-001` | Homepage service card plus matching service-detail primary | Approved |
+| `/services/wedding-anniversary-parties` | 6 (5 unique) | `/media/home/services/wedding-anniversary.webp` | `english-home-service-anniversary-001` | Homepage service card plus matching service-detail primary | Approved |
 | `/services/bachelor-parties` | 5 (4 unique) | None | — | None | Publish text-only or provide approved neutral media |
-| `/services/marriage-proposal-party` | 5 (4 unique) | `/media/home/services/marriage-proposal.webp` | `english-home-service-proposal-001` | Homepage service card only | Matching service-detail primary image — pending |
+| `/services/marriage-proposal-party` | 5 (4 unique) | `/media/home/services/marriage-proposal.webp` | `english-home-service-proposal-001` | Homepage service card plus matching service-detail primary | Approved |
 | `/services/gender-reveal-party` | 5 (4 unique) | None | — | None | Publish text-only or provide approved neutral media |
 | `/services/engagement-and-wedding-parties` | 5 (4 unique) | None assigned to this combined owner | — | None | Keep blocked or provide owner-specific approved media |
-| `/services/food-menu` | 10 (10 unique) | `/media/home/services/food-menu.webp` | `english-home-service-food-001` | Homepage service card only | Matching service-detail primary image — pending |
-| `/services/donut-ride` | 5 (4 unique) | `/media/home/services/donut-ride.webp` | `english-home-service-donut-ride-001` | Homepage service card only | Matching service-detail primary image — pending |
-| `/services/jet-ski` | 7 (6 unique) | `/media/home/services/jet-ski.jpg` | `english-home-service-jet-ski-001` | Homepage service card only | Matching service-detail primary image — pending |
+| `/services/food-menu` | 10 (10 unique) | `/media/home/services/food-menu.webp` | `english-home-service-food-001` | Homepage service card only | Blocked service owner; no expanded use |
+| `/services/donut-ride` | 5 (4 unique) | `/media/home/services/donut-ride.webp` | `english-home-service-donut-ride-001` | Homepage service card only | Blocked service owner; no expanded use |
+| `/services/jet-ski` | 7 (6 unique) | `/media/home/services/jet-ski.jpg` | `english-home-service-jet-ski-001` | Homepage service card only | Blocked service owner; no expanded use |
 | `/services/afternoon-tea-trip` | 5 (4 unique) | None | — | None | Publish text-only or provide approved neutral media |
 | `/services/morning-yacht-trips` | 5 (4 unique) | None | — | None | Publish text-only or provide approved neutral media |
-| `/services/engagement-parties` | 5 (4 unique) | `/media/home/services/engagement-party.webp` | `english-home-service-engagement-001` | Homepage service card only | Matching service-detail primary image — pending |
-| `/services/wedding-parties` | 5 (4 unique) | `/media/home/services/wedding-party.webp` | `english-home-service-wedding-001` | Homepage service card only | Matching service-detail primary image — pending |
+| `/services/engagement-parties` | 5 (4 unique) | `/media/home/services/engagement-party.webp` | `english-home-service-engagement-001` | Homepage service card plus matching service-detail primary | Approved |
+| `/services/wedding-parties` | 5 (4 unique) | `/media/home/services/wedding-party.webp` | `english-home-service-wedding-001` | Homepage service card plus matching service-detail primary | Approved |
 
 The thirteen local candidates already have recorded dimensions and SHA-256 values in `ENGLISH_MEDIA_RIGHTS.md` and typed rights records in `src/data/media-rights.ts`. PR 6A does not change those records.
 
