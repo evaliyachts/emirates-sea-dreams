@@ -27,8 +27,36 @@ describe("PR 8B support, legal and contact publication", () => {
       expect(rendered.head).toContain('"@type":"BreadcrumbList"');
       expect(rendered.head).not.toMatch(/FAQPage|LocalBusiness|Product|Event|Review|AggregateRating/);
     }
-    expect(renderStaticRoute("/terms").html).toContain("does not process payments");
-    expect(renderStaticRoute("/privacy").html).toContain("Analytics and advertising tracking are disabled");
+    const terms = renderStaticRoute("/terms").html;
+    const privacy = renderStaticRoute("/privacy").html;
+    const legalText = `${terms}\n${privacy}`.replaceAll("<!-- -->", "");
+    expect(terms).toContain("Mohammed Abdullah, Operation Manager");
+    expect(terms).toContain("Dubai Yacht is the public brand");
+    expect(terms).toContain("responsible contracting party");
+    expect(terms).toContain("It does not exclude mandatory consumer rights or excuse inaccurate or misleading website information.");
+    expect(terms).toContain("Any material third-party terms that apply to an optional item should be disclosed or made available before that item is confirmed.");
+    expect(terms).toContain("Nothing in these terms excludes or limits any right or liability that cannot lawfully be excluded or limited.");
+    expect(terms).toContain("does not process payments");
+    expect(privacy).toContain("Mohammed Abdullah, Operation Manager");
+    expect(privacy).not.toContain("approved business recipient");
+    for (const category of ["WhatsApp or telephone identifier", "Requested date and start time", "Requested duration", "Guest count", "Yacht interest", "Occasion or optional-service requests", "Notes and communication history", "IP address", "Browser and device information", "Requested resource or page", "Timestamp and security-log information"]) {
+      expect(privacy).toContain(category);
+    }
+    expect(privacy).toContain("Information is processed only where permitted by applicable law");
+    for (const right of ["Access to and a copy", "Correction of inaccurate", "Deletion of information", "Restriction or cessation", "Transfer or portability", "Withdrawal of consent", "competent UAE authority"]) {
+      expect(privacy).toContain(right);
+    }
+    expect(privacy).toContain("Identity or request details may need to be confirmed");
+    expect(privacy).toContain("Information should be deleted or anonymised when it is no longer required for those purposes.");
+    for (const provider of ["WhatsApp/Meta", "telephone-network provider", "Netlify", "approved production image hosts", "yacht providers", "approved optional-service providers"]) {
+      expect(privacy).toContain(provider);
+    }
+    expect(privacy).toContain("Cross-border processing remains subject to applicable legal requirements and relevant provider arrangements.");
+    expect(privacy).toContain("Analytics and advertising tracking are disabled in this release");
+    expect(privacy).toContain("does not set other browser cookies or local storage in this release");
+    expect(privacy).toContain("Reasonable technical and organisational measures are used to protect information");
+    expect(legalText.match(/Effective date: Pending production publication/g)).toHaveLength(2);
+    expect(legalText).not.toContain("Effective date: 14 July 2026");
   });
 
   it("prepares WhatsApp successfully without asking for identity fields", async () => {

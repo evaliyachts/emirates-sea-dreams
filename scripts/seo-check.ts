@@ -378,7 +378,7 @@ if (languageMappingSummary.total + languageMappingPendingRouteIds.length !== pub
   failures.push("Language evidence must remain 33 verified mappings plus five PR 8B production-review-pending routes.");
 }
 if (englishArabicRouteMappings.some((record) => record.xDefaultAppropriate)) failures.push("x-default remains unapproved.");
-if (siteFacts.phoneDisplay.status !== "approved" || siteFacts.phoneE164.status !== "approved" || siteFacts.whatsappUrl.status !== "approved" || siteFacts.analyticsEnabled.value !== false) {
+if (siteFacts.phoneDisplay.status !== "approved" || siteFacts.phoneE164.status !== "approved" || siteFacts.whatsappUrl.status !== "approved" || siteFacts.responsiblePerson.status !== "approved" || siteFacts.responsiblePerson.value !== "Mohammed Abdullah, Operation Manager" || siteFacts.analyticsEnabled.value !== false) {
   failures.push("PR 8B approved contact and analytics-disabled facts are incomplete.");
 }
 if (siteFacts.publicAddress.status === "approved" || siteFacts.socialProfiles.status === "approved" || siteFacts.operatingHours.status === "approved") {
@@ -405,6 +405,7 @@ if (distFiles.some((file) => file.endsWith(".map"))) failures.push("Production s
 const runtimeSourceFiles = (await collectFiles(resolve("src"))).filter((file) => /\.(?:ts|tsx)$/.test(file) && !file.includes("/test/"));
 const runtimeSource = (await Promise.all(runtimeSourceFiles.map((file) => readFile(file, "utf8")))).join("\n");
 const builtRuntime = (await Promise.all(distFiles.filter((file) => /\.(?:html|js)$/.test(file)).map((file) => readFile(file, "utf8")))).join("\n");
+if (/approved business recipient/i.test(builtRuntime)) failures.push("Vague legal recipient wording remains in production output.");
 if (/\bdataLayer\b|\bgtag\s*\(|googletagmanager|GTM-[A-Z0-9]+|\bfbq\s*\(|connect\.facebook\.net\/.*fbevents/i.test(`${runtimeSource}\n${builtRuntime}`)) {
   failures.push("Analytics or advertising runtime was introduced while PR 8B analytics is disabled.");
 }

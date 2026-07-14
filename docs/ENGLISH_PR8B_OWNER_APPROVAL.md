@@ -6,7 +6,13 @@ Domain: `https://yachtrentaldxb.com/`
 
 The approved public brand is **Dubai Yacht**. The approved phone is **+971 50 464 1020** (`+971504641020`) and the approved WhatsApp base URL is `https://wa.me/971504641020`.
 
-The alternate brand, legal entity name, email, physical address, operating hours, response-time promise and social profiles are intentionally omitted. The existing logo and favicon are approved.
+The alternate brand, separate legal entity name, email, physical address, operating hours, response-time promise and social profiles are intentionally omitted. The existing logo and favicon are approved.
+
+## Responsible person and legal correction
+
+The owner subsequently supplied the exact responsible person as **Mohammed Abdullah, Operation Manager**. This person is approved for visible identification as the operator of the English website and the controller or responsible business recipient for enquiry information. This approval does not create or infer a separate licensed legal-entity name.
+
+The Terms corrections requested on 2026-07-14 are conditionally approved subject to final rendered review. The Privacy Notice remains unapproved until the requested transparency corrections and final rendered review are complete. The actual production publication date remains pending and must not be inferred from the Draft preview date.
 
 The only approved departure wording is:
 
@@ -23,6 +29,6 @@ The only approved departure wording is:
 
 ## Legal review gate
 
-The owner approved the Terms and Privacy principles but requires explicit approval of the exact final visible copy. PR 8B must remain **Draft** and must not merge until that approval is recorded against the final commit.
+The owner approved the Terms principles conditionally after specified edits and required blocking Privacy transparency edits. Both complete rendered documents still require explicit final approval. PR 8B must remain **Draft** and must not merge until that approval is recorded against the final commit and the actual production publication date is supplied.
 
 Source of record: owner instruction supplied to Codex on 2026-07-14.

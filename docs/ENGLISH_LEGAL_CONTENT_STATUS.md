@@ -1,12 +1,12 @@
 # English Legal Content Status
 
-Status: **principles approved for Draft preview; exact visible Terms and Privacy wording remains an owner-review gate**
+Status: **requested legal corrections implemented for Draft review; Privacy and complete rendered wording remain an owner-review gate**
 
-Owner decision dated 2026-07-14 is recorded in `ENGLISH_PR8B_OWNER_APPROVAL.md`. PR 8B must not be marked Ready or merged before commit-specific approval of the exact visible copy.
+Owner decisions dated 2026-07-14 are recorded in `ENGLISH_PR8B_OWNER_APPROVAL.md`. **Mohammed Abdullah, Operation Manager** is the approved responsible person for the website and enquiry information. A separate legal entity remains omitted. PR 8B must not be marked Ready or merged before commit-specific approval of the exact visible copy and confirmation of the actual production publication date.
 
-## Existing Terms claims requiring legal/business review
+## Historical Terms claims removed from the Draft
 
-The current `/terms` component states:
+The pre-PR-8B `/terms` component stated:
 
 - 50% deposit required;
 - balance due on charter day;
@@ -17,19 +17,21 @@ The current `/terms` component states:
 - full maritime insurance;
 - guest liability language and ID requirements.
 
-These are operational and legal promises, not SEO copy. Repository presence is not evidence that they are current or approved. Do not copy the Arabic legal text or automatically translate it. Obtain English business/legal approval before PR 3 makes this route indexable.
+These operational and legal promises were removed. Repository history is not evidence that they are current or approved, and they must not be reintroduced.
 
-## Existing Privacy claims requiring review
+## Historical Privacy claims replaced in the Draft
 
-The current `/privacy` component says the site collects name, email, phone and charter preferences; uses data solely for booking; does not sell or share data; implements security measures; and accepts privacy questions via WhatsApp/contact form.
+The pre-PR-8B `/privacy` component said the site collected name, email, phone and charter preferences; used data solely for booking; did not sell or share data; implemented security measures; and accepted privacy questions via WhatsApp/contact form.
 
-The contact form currently collects name, phone, date, time, guests, duration, yacht, occasion and message, then prepares WhatsApp text. The approved privacy copy must describe actual processing, third parties, retention, rights, security limits, cookies/analytics state and contact identity accurately.
+The current browser-only contact form collects no name, phone or email and prepares WhatsApp text without submitting data to a site backend. The corrected Draft Privacy Notice describes the approved responsible person, actual form behavior, third parties, retention criteria, rights, security limitations and disabled analytics state. It remains unapproved pending final rendered review and operational confirmation.
 
 ## Required approvals
 
 - Approved English Terms publication copy and effective date.
 - Approved English Privacy publication copy and effective date.
-- Legal/business identity responsible for the website and data.
+- Commit-specific final approval of the complete rendered Terms and Privacy wording.
+- Confirmation that the stated retention and security wording matches actual operations and safeguards.
+- Actual production publication date.
 - Actual booking, payment, deposit, cancellation, weather and refund workflow.
 - Whether online payment is performed by the website.
 - Actual processors/recipients, including WhatsApp/Meta and Netlify.

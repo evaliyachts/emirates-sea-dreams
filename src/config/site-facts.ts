@@ -13,6 +13,8 @@ export interface SiteFacts {
   brandName: ApprovedValue<string>;
   alternateBrandName: ApprovedValue<string>;
   legalEntityName: ApprovedValue<string>;
+  responsiblePerson: ApprovedValue<string>;
+  legalPublicationDate: ApprovedValue<string>;
   phoneDisplay: ApprovedValue<string>;
   phoneE164: ApprovedValue<string>;
   whatsappUrl: ApprovedValue<string>;
@@ -55,6 +57,16 @@ export const siteFacts: SiteFacts = {
   },
   alternateBrandName: { status: "not-applicable", evidence: "Owner directed the alternate public brand to be omitted." },
   legalEntityName: { status: "not-applicable", evidence: "Owner directed the legal entity name to be omitted pending separate approval." },
+  responsiblePerson: {
+    value: "Mohammed Abdullah, Operation Manager",
+    status: "approved",
+    evidence: "Owner supplied the exact responsible person for the PR 8B legal correction.",
+    approvedAt: "2026-07-14",
+  },
+  legalPublicationDate: {
+    status: "pending",
+    evidence: "Must be set to the actual production publication date; the Draft preview date is not approval.",
+  },
   phoneDisplay: {
     value: "+971 50 464 1020",
     status: "approved",

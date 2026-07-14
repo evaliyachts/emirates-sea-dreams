@@ -27,3 +27,9 @@ Measured application revision: `5fbd5695317b6fa5357b5a9dd722970526c5d9c9`. Draft
 Generated bundle: `index-CIiPgMvC.js` (760,897 raw bytes; 216.51 kB gzip) and `index-BjVEx15D.css` (76,652 raw bytes; 12.90 kB gzip). `axe-core` rendered checks report zero critical or serious violations across seven required page classes. Three-pass mobile Lighthouse medians and the remaining performance limitations are recorded in `docs/ENGLISH_PR8_BASELINE.md`. A direct preview crawl reports 38/38 sitemap owners at 200, `/offers` and an unknown route at real 404, no preview authority, no analytics and no live language alternates.
 
 The PR remains Draft until the owner approves the exact visible Terms and Privacy wording. It must not be marked Ready or merged before that explicit approval.
+
+## Legal correction review
+
+The owner supplied **Mohammed Abdullah, Operation Manager** as the exact responsible person. The Draft Terms now identify Dubai Yacht as the public brand and request-planning service, distinguish the yacht/service provider and contracting party, and contain the requested consumer-rights, third-party-terms and liability wording. The Draft Privacy Notice now identifies the responsible person, lists data categories, processing grounds, provider categories, international-processing qualification, purpose-based retention, privacy rights, tracking/storage behavior and proportionate security wording.
+
+The visible Draft effective-date field says **Pending production publication** because no production publication has occurred and the owner prohibited using the preview date as the effective date. Privacy and the complete rendered legal copy remain unapproved. The PR stays Draft.

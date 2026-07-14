@@ -2,7 +2,7 @@
 
 Prepared: 2026-07-14
 
-Status: **principles approved on 2026-07-14; exact Draft preview wording remains pending owner approval**
+Status: **Terms conditionally approved after requested edits; corrected Privacy and both complete rendered documents remain pending final owner approval**
 
 The historical decision inventory below is retained for traceability. The current principles and hard legal-review gate are recorded in `ENGLISH_PR8B_OWNER_APPROVAL.md`.
 
@@ -33,7 +33,7 @@ Third-party suppliers | Define status and responsibility for catering, decoratio
 Liability | Supply approved limitations and exclusions; do not claim insurance or invent limits. | pending
 Applicable law | Supply the exact governing law and jurisdiction. | pending
 Dispute resolution | Supply complaint, escalation and forum/process wording. | pending
-Contact details | Supply approved responsible entity and legal-contact channel. | pending
+Contact details | Supply approved responsible entity and legal-contact channel. | Mohammed Abdullah, Operation Manager; approved WhatsApp/phone channel
 Effective/publication date | Supply the approved date for the exact final copy. | pending
 
 ## Privacy decisions
@@ -55,7 +55,7 @@ Retention | Supply accurate retention criteria/periods; do not invent a period. 
 User rights | Supply applicable rights and a verified request process. | pending
 Security wording | Supply proportionate wording; do not guarantee security. | pending
 Child data | Define age/guardian handling and whether the site intentionally collects child data. | pending
-Contact channel | Supply the responsible entity and approved privacy-contact method. | pending
+Contact channel | Supply the responsible entity and approved privacy-contact method. | Mohammed Abdullah, Operation Manager; approved WhatsApp channel
 Effective/publication date | Supply the approved date for the exact final copy. | pending
 
 ## Publication gate
@@ -73,10 +73,12 @@ Do not invent cancellation windows, deposit percentages, refund guarantees, insu
 
 ## Approval record
 
-- Terms copy: pending
+- Terms copy: conditionally approved after the 2026-07-14 requested edits; complete rendered copy still pending final approval
 - Terms approver/date: pending
-- Privacy copy: pending
+- Privacy copy: blocking transparency edits supplied; complete rendered copy remains unapproved pending final review
 - Privacy approver/date: pending
-- Responsible entity: pending
-- Legal/privacy contact: pending
+- Responsible person: Mohammed Abdullah, Operation Manager — owner approved 2026-07-14
+- Separate legal entity: omitted; not approved
+- Legal/privacy contact: approved WhatsApp/phone channels
+- Effective/publication date: pending actual production publication date
 - Publication authorization: pending
