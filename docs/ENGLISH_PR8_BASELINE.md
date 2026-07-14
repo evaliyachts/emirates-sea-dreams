@@ -83,3 +83,11 @@ The production-context Netlify build passed offline with the pinned project buil
 - Simulated mobile LCP remains above the 2.5-second reference on every measured route. Remote hero/gallery delivery and the single large application bundle remain release limitations; this report makes no field Core Web Vitals claim.
 - Final physical-device overflow, rendered color-contrast and manual screen-reader checks remain release follow-ups. Automated keyboard and axe coverage is retained as the current evidence.
 - Search Console Query × Page, Links, Page Indexing examples, Core Web Vitals, sitemap evidence and six authenticated Live URL Tests remain pending.
+
+## PR 9 final performance comparison — 2026-07-14
+
+PR 9 reran three sequential Lighthouse 12.8.2 simulated-mobile traces across ten production-context preview page classes. The comparable median LCP changes are: homepage 8.51→5.24 seconds, catalogue 7.80→7.26, Royal Majesty detail 10.73→9.10, services 7.41→5.19, birthday service 7.85→5.01 and occasions 6.45→6.74. Occasions is explicitly retained as a 0.29-second lab regression. About, Contact, Terms and Privacy had no three-run PR 8B median and therefore receive no invented before value.
+
+The measured homepage LCP is text, so its decorative hero is eager but no longer preloaded or assigned high fetch priority. Royal Majesty’s centre WebP is the only image LCP in the representative set; it remains parser-discoverable, preloaded, eager, high-priority and dimensioned, while its surrounding cards remain lazy. Google font CSS is non-render-blocking with optional display, and the retained final traces have zero layout shift.
+
+The production JavaScript output falls from 765,558 to 593,274 raw bytes (22.5%) and from 216.51 to 168.72 kB gzip (22.1%). CSS is 76,500 raw bytes/12.81 kB gzip. Source maps remain absent. All final LCP medians are still above 2.5 seconds; the remote yacht source size, simulated TTFB/render delay and remaining single application chunk are documented release limitations, not field Core Web Vitals claims. Full elements, waterfall timings, transfer exclusions and browser evidence are in `IMPLEMENTATION_PR9_REPORT.md`.

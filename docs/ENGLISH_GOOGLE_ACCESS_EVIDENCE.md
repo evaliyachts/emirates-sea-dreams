@@ -96,3 +96,19 @@ No authenticated Search Console export, screenshot or Live URL Test was supplied
 - sitemap report.
 
 For every artifact record the property, report/filter, date range, export date, evidence filename and any redaction. A pending field must not be marked received from an ordinary crawl or source-code check.
+
+## PR 9 Search Console launch gate — 2026-07-14
+
+Ordinary PR 9 preview and production crawls verify public HTTP access, renderable static HTML, canonical metadata and required assets, but they still do not substitute for authenticated Google evidence. The final owner runbook expands the live sample to nine URLs:
+
+- homepage;
+- yacht catalogue and Royal Majesty yacht detail;
+- services hub and birthday service detail;
+- occasions hub;
+- contact;
+- Terms;
+- Privacy.
+
+For every URL, retain Google accessibility, indexing permission, user-declared and Google-selected canonical, rendered screenshot, blocked-resource list, crawl result and evidence date. Only after those representative tests pass should the owner submit the production sitemap and request indexing for the small six-URL representative set in `ENGLISH_SEARCH_CONSOLE_LAUNCH.md`.
+
+The Netlify exact-host redirect is not evidence that Google selected the canonical. WAF/CDN/hosting and blocked-resource review remains required if any Live Test fails. Codex performed no URL Inspection, sitemap submission, indexing request or Validate Fix action.
