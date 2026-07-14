@@ -31,6 +31,35 @@ const serviceOwnerApprovalEvidence: RouteEvidence = {
   reference: "docs/ENGLISH_SERVICE_APPROVAL.md (owner decision, 2026-07-14)",
 };
 
+const pr8bOwnerApprovalEvidence: RouteEvidence = {
+  source: "business-approval",
+  confidence: "confirmed",
+  reference: "docs/ENGLISH_PR8B_OWNER_APPROVAL.md (owner decision, 2026-07-14)",
+};
+
+const approvedSupportRoute = (
+  input: PreservedRouteInput & { title: string; description: string; h1: string },
+): EnglishRouteRecord => {
+  const { title, description, h1, ...routeInput } = input;
+  const route = preservedRoute({ ...routeInput, renderingEligible: true });
+  return {
+    ...route,
+    decision: "enrich",
+    decisionStatus: "approved",
+    pr3RenderingEligibility: "eligible",
+    metadataOwnership: {
+      status: "approved",
+      title,
+      description,
+      h1,
+      note: "Owner-approved support/legal owner prepared in PR 8B; final visible legal wording remains subject to the PR legal-review gate.",
+    },
+    evidence: [...route.evidence, pr8bOwnerApprovalEvidence],
+    verificationRequired: [],
+    lastSignificantUpdate: "2026-07-14",
+  };
+};
+
 const missingOwnershipEvidence = [
   "Search Console Query × Page export",
   "Search Console Links report",
@@ -167,48 +196,63 @@ const staticRoutes: EnglishRouteRecord[] = [
     },
     notes: ["Seven source occasions remain hub-only dispositions in this phase."],
   }),
-  preservedRoute({
+  approvedSupportRoute({
     id: "about",
     path: "/about",
     pageType: "support",
     primaryIntent: "understand the yacht service provider",
     schemaOwnership: ["Organization", "BreadcrumbList"],
-    verificationRequired: ["Approved brand, entity, licensing, and operational facts"],
+    verificationRequired: [],
+    title: "About Dubai Yacht | Private Yacht Comparison Service",
+    description: "Learn how Dubai Yacht helps visitors compare verified yacht facts and prepare private yacht availability requests in Dubai.",
+    h1: "About Dubai Yacht",
   }),
-  preservedRoute({
+  approvedSupportRoute({
     id: "faq",
     path: "/faq",
     pageType: "support",
     primaryIntent: "resolve common yacht rental planning questions",
     schemaOwnership: ["BreadcrumbList"],
-    verificationRequired: ["Approved factual answers and removal of fixed promises"],
+    verificationRequired: [],
+    title: "Dubai Yacht Rental FAQ | Planning and Confirmation",
+    description: "Answers about yacht availability, prices, capacity, departure details, optional requests and written booking confirmation in Dubai.",
+    h1: "Private Yacht Rental FAQ",
   }),
-  preservedRoute({
+  approvedSupportRoute({
     id: "contact",
     path: "/contact",
     pageType: "support",
     primaryIntent: "submit a private yacht rental enquiry",
     secondaryIntents: ["booking contact endpoint"],
     schemaOwnership: ["BreadcrumbList"],
-    verificationRequired: ["Approved phone, WhatsApp, location, hours, and response process"],
+    verificationRequired: [],
+    title: "Contact Dubai Yacht | Prepare a Yacht Enquiry",
+    description: "Prepare a private yacht enquiry for WhatsApp or call Dubai Yacht using the approved contact number. An enquiry is not a confirmed booking.",
+    h1: "Prepare a Private Yacht Enquiry",
   }),
-  preservedRoute({
+  approvedSupportRoute({
     id: "terms",
     path: "/terms",
     pageType: "legal",
     primaryIntent: "review approved yacht service terms",
     schemaOwnership: ["BreadcrumbList"],
-    verificationRequired: ["Business-approved Terms copy"],
-    notes: ["Current legal promises are not approved for static publication."],
+    verificationRequired: [],
+    title: "Website and Yacht Request Terms | Dubai Yacht",
+    description: "Read the website and yacht-request terms covering enquiries, written confirmation, prices, payments, changes, capacity and supplier requests.",
+    h1: "Website and Yacht Request Terms",
+    notes: ["Draft visible wording requires final owner approval before this PR may leave Draft status."],
   }),
-  preservedRoute({
+  approvedSupportRoute({
     id: "privacy",
     path: "/privacy",
     pageType: "legal",
     primaryIntent: "review approved website privacy practices",
     schemaOwnership: ["BreadcrumbList"],
-    verificationRequired: ["Business-approved Privacy copy and analytics state"],
-    notes: ["Current privacy copy is not approved for static publication."],
+    verificationRequired: [],
+    title: "Privacy Notice | Dubai Yacht",
+    description: "How Dubai Yacht handles browser-prepared enquiries, WhatsApp and phone communications, hosting logs, media requests and privacy requests.",
+    h1: "Privacy Notice",
+    notes: ["Draft visible wording requires final owner approval before this PR may leave Draft status."],
   }),
 ];
 

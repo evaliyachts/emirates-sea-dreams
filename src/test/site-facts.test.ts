@@ -16,13 +16,15 @@ describe("site fact approvals", () => {
     expect(PREVIEW_URL).toBe("https://yachtrentaldxb.netlify.app/");
   });
 
-  it("does not treat source values with pending status as approved", () => {
+  it("exposes only owner-approved brand and contact values", () => {
     expect(siteFacts.brandName.value).toBe("Dubai Yacht");
-    expect(siteFacts.brandName.status).toBe("pending");
-    expect(isApprovedValue(siteFacts.brandName)).toBe(false);
-    expect(getApprovedValue(siteFacts.brandName)).toBeUndefined();
-    expect(getApprovedValue(siteFacts.phoneDisplay)).toBeUndefined();
-    expect(getApprovedValue(siteFacts.analyticsEnabled)).toBeUndefined();
+    expect(siteFacts.brandName.status).toBe("approved");
+    expect(isApprovedValue(siteFacts.brandName)).toBe(true);
+    expect(getApprovedValue(siteFacts.brandName)).toBe("Dubai Yacht");
+    expect(getApprovedValue(siteFacts.phoneDisplay)).toBe("+971 50 464 1020");
+    expect(getApprovedValue(siteFacts.analyticsEnabled)).toBe(false);
+    expect(siteFacts.publicAddress.status).toBe("not-applicable");
+    expect(siteFacts.operatingHours.status).toBe("not-applicable");
   });
 
   it("requires both approved status and a defined value", () => {

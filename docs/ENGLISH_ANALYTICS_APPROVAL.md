@@ -2,7 +2,9 @@
 
 Prepared: 2026-07-14
 
-Status: **analytics is technically disabled; owner approval remains `pending`**
+Status: **owner-approved disabled for PR 8B**
+
+No GA4, GTM, `dataLayer`, `gtag`, Meta Pixel, advertising tags, consent mode, analytics cookies or conversion events are approved.
 
 No runtime `dataLayer`, `gtag`, Google Analytics measurement ID or Google Tag Manager container is present. This document does not enable tracking.
 

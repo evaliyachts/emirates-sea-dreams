@@ -87,6 +87,36 @@ status = 200
 force = true
 
 [[redirects]]
+from = "/about"
+to = "/_static/about.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/faq"
+to = "/_static/faq.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/contact"
+to = "/_static/contact.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/terms"
+to = "/_static/terms.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/privacy"
+to = "/_static/privacy.html"
+status = 200
+force = true
+
+[[redirects]]
 from = "/yachts/50-feet-royal-majesty-dubai-yacht-rental"
 to = "/_static/yachts/50-feet-royal-majesty-dubai-yacht-rental.html"
 status = 200
@@ -227,6 +257,31 @@ Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
 for = "/occasions"
+[headers.values]
+Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+for = "/about"
+[headers.values]
+Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+for = "/faq"
+[headers.values]
+Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+for = "/contact"
+[headers.values]
+Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+for = "/terms"
+[headers.values]
+Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+for = "/privacy"
 [headers.values]
 Cache-Control = "public, max-age=0, must-revalidate"
 

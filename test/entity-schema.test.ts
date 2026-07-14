@@ -114,9 +114,9 @@ describe("English PR 7 entity schema ownership", () => {
   });
 
   it("omits unapproved contact, location, rating and rich-result claims everywhere", () => {
-    expect(siteFacts.brandName.status).toBe("pending");
-    expect(siteFacts.phoneDisplay.status).toBe("pending");
-    expect(siteFacts.publicAddress.status).toBe("pending");
+    expect(siteFacts.brandName.status).toBe("approved");
+    expect(siteFacts.phoneDisplay.status).toBe("approved");
+    expect(siteFacts.publicAddress.status).toBe("not-applicable");
     for (const route of publishedStaticRoutes) {
       const page = renderSchema(route.path);
       const value = JSON.stringify(page.blocks);

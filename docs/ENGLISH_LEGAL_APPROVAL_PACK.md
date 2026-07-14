@@ -2,7 +2,9 @@
 
 Prepared: 2026-07-14
 
-Status: **no English Terms or Privacy content is approved; every legal decision is `pending`**
+Status: **principles approved on 2026-07-14; exact Draft preview wording remains pending owner approval**
+
+The historical decision inventory below is retained for traceability. The current principles and hard legal-review gate are recorded in `ENGLISH_PR8B_OWNER_APPROVAL.md`.
 
 This document is a decision ledger, not legal advice or publication copy. Do not translate Arabic legal text, copy another domain’s terms, or infer a policy from the current components.
 

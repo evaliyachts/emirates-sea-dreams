@@ -5,17 +5,20 @@ import {
   englishArabicRouteMappings,
   generateEnglishArabicMappingReport,
   languageMappingSummary,
+  languageMappingPendingRouteIds,
   publishedStaticRoutes,
   validateEnglishArabicRouteMappings,
 } from "../seo";
 
 describe("English PR 7 bilingual evidence report", () => {
-  it("covers all 33 published English owners with the audited 28/5/0 result", () => {
+  it("preserves 33 live-reviewed mappings and records five new production-review-pending owners", () => {
     expect(englishArabicRouteMappings).toHaveLength(33);
     expect(new Set(englishArabicRouteMappings.map((record) => record.routeId))).toEqual(
-      new Set(publishedStaticRoutes.map((route) => route.id)),
+      new Set(publishedStaticRoutes.filter((route) => !languageMappingPendingRouteIds.includes(route.id as typeof languageMappingPendingRouteIds[number])).map((route) => route.id)),
     );
     expect(languageMappingSummary).toEqual({ total: 33, trueEquivalents: 28, relatedNotEquivalent: 5, unmapped: 0 });
+    expect(languageMappingPendingRouteIds).toEqual(["about", "faq", "contact", "terms", "privacy"]);
+    expect(englishArabicRouteMappings.length + languageMappingPendingRouteIds.length).toBe(publishedStaticRoutes.length);
     expect(validateEnglishArabicRouteMappings()).toEqual([]);
   });
 

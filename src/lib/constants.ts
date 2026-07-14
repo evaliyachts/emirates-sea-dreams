@@ -1,21 +1,27 @@
-export const BRAND_NAME = "Dubai Yacht";
+import { getApprovedValue, siteFacts } from "@/config/site-facts";
+
+const requireApproved = <T>(value: T | undefined, label: string): T => {
+  if (value === undefined) throw new Error(`${label} is not approved.`);
+  return value;
+};
+
+export const BRAND_NAME = requireApproved(getApprovedValue(siteFacts.brandName), "Brand name");
 export const DOMAIN = "https://yachtrentaldxb.com";
-export const PHONE_NUMBER = "+97150 464 1020";
-export const WHATSAPP_NUMBER = PHONE_NUMBER;
+export const PHONE_NUMBER = requireApproved(getApprovedValue(siteFacts.phoneDisplay), "Display phone");
+export const PHONE_E164 = requireApproved(getApprovedValue(siteFacts.phoneE164), "E.164 phone");
+export const WHATSAPP_URL = requireApproved(getApprovedValue(siteFacts.whatsappUrl), "WhatsApp URL");
 export const PLACEHOLDER_IMAGE = "/placeholder.svg";
 
 export const getWhatsAppLink = (message?: string) => {
-  const defaultMsg = `Hi Dubai Yacht, I want to book a yacht in Dubai. Date: __, Hours: __, Guests: __, Budget: __`;
-  const cleanNumber = WHATSAPP_NUMBER.replace(/[+\s]/g, '');
-  return `https://wa.me/${cleanNumber}?text=${encodeURIComponent(message || defaultMsg)}`;
+  const defaultMsg = "Hello Dubai Yacht, I would like to enquire about a private yacht in Dubai.";
+  return `${WHATSAPP_URL}?text=${encodeURIComponent(message || defaultMsg)}`;
 };
 
-export const getPhoneLink = () => `tel:${PHONE_NUMBER}`;
+export const getPhoneLink = () => `tel:${PHONE_E164}`;
 
 export const NAV_LINKS = [
   { label: "Home", path: "/" },
   { label: "Yachts", path: "/yachts" },
-  { label: "Offers", path: "/offers" },
   { label: "Services", path: "/services" },
   { label: "Occasions", path: "/occasions" },
   { label: "About", path: "/about" },

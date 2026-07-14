@@ -129,8 +129,8 @@ describe("English PR 4 strict yacht catalogue", () => {
     blockedYachts.forEach((record) => expect(sitemap).not.toContain(`/yachts/${record.historicalSlug}`));
     publishableYachts.forEach((record) => expect(sitemap).toContain(`/yachts/${record.slug}`));
     expect([...sitemap.matchAll(/<loc>/g)]).toHaveLength(publishedStaticRoutes.length);
-    expect(publishedStaticRoutes).toHaveLength(4 + publishableYachts.length + approvedServices.length);
-    expect(sitemap).not.toContain("<lastmod>");
+    expect(publishedStaticRoutes).toHaveLength(9 + publishableYachts.length + approvedServices.length);
+    expect([...sitemap.matchAll(/<lastmod>2026-07-14<\/lastmod>/g)]).toHaveLength(5);
   });
 
   it("builds visible-fact-aligned Service, Offer and BreadcrumbList ownership", () => {

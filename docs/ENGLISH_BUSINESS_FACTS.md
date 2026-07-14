@@ -1,5 +1,7 @@
 # English Business Facts Approval Register
 
+> PR 8B update (2026-07-14): the owner approved `Dubai Yacht`, phone `+971 50 464 1020`, E.164 `+971504641020`, WhatsApp `https://wa.me/971504641020`, the existing logo/favicon and the exact variable-departure wording in `ENGLISH_PR8B_OWNER_APPROVAL.md`. Email, address, hours, response promise, social profiles, alternate brand and legal entity remain omitted.
+
 Repository evidence is not business approval. Values below must be explicitly confirmed before they enter a central production contract or structured data. Arabic constants must not be copied automatically.
 
 ## Implementation PR 1 status

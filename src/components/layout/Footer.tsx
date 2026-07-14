@@ -19,10 +19,10 @@ const Footer = () => (
             Published yacht facts and planning guidance for private yacht requests in Dubai. Availability and optional services require confirmation.
           </p>
           <div className="flex gap-3">
-            <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="p-2 liquid-btn rounded-xl text-green-400">
+            <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" aria-label="Contact Dubai Yacht on WhatsApp" className="p-2 liquid-btn rounded-xl text-green-400">
               <MessageCircle className="w-4 h-4" />
             </a>
-            <a href={getPhoneLink()} className="p-2 liquid-btn-gold rounded-xl text-primary">
+            <a href={getPhoneLink()} aria-label="Call Dubai Yacht" className="p-2 liquid-btn-gold rounded-xl text-primary">
               <Phone className="w-4 h-4" />
             </a>
           </div>

@@ -1,6 +1,8 @@
 # English Legal Content Status
 
-Status: **not approved for production reliance**
+Status: **principles approved for Draft preview; exact visible Terms and Privacy wording remains an owner-review gate**
+
+Owner decision dated 2026-07-14 is recorded in `ENGLISH_PR8B_OWNER_APPROVAL.md`. PR 8B must not be marked Ready or merged before commit-specific approval of the exact visible copy.
 
 ## Existing Terms claims requiring legal/business review
 

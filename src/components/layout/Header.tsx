@@ -1,122 +1,59 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, MessageCircle } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { Menu, Phone, MessageCircle, X } from "lucide-react";
+import * as Dialog from "@radix-ui/react-dialog";
 import { NAV_LINKS, BRAND_NAME, getWhatsAppLink, getPhoneLink } from "@/lib/constants";
-
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  useEffect(() => setIsOpen(false), [location.pathname]);
 
-  useEffect(() => setIsOpen(false), [location]);
+  const navLink = (link: (typeof NAV_LINKS)[number], mobile = false) => (
+    <Link
+      key={link.path}
+      to={link.path}
+      aria-current={location.pathname === link.path ? "page" : undefined}
+      onClick={() => setIsOpen(false)}
+      className={`${mobile ? "block px-4 py-3 text-lg font-display rounded-2xl" : "px-4 py-2 text-sm font-medium rounded-xl"} transition-all ${location.pathname === link.path ? "text-primary liquid-glass-gold" : "text-muted-foreground hover:text-foreground hover:bg-secondary/30"}`}
+    >{link.label}</Link>
+  );
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "liquid-header py-3" : "bg-transparent py-5"
-      }`}
-    >
+    <motion.header initial={reduceMotion ? false : { y: -100 }} animate={{ y: 0 }} transition={{ duration: reduceMotion ? 0 : 0.6 }} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "liquid-header py-3" : "bg-transparent py-5"}`}>
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center group">
-          <img
-            src="/dubai-yachts-logo.png"
-            alt={BRAND_NAME}
-            className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
-          />
-        </Link>
-
-        <nav className="hidden lg:flex items-center gap-1">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 ${
-                location.pathname === link.path
-                  ? "text-primary liquid-btn-gold"
-                  : "text-muted-foreground hover:text-foreground hover:bg-secondary/30"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
+        <Link to="/" className="flex items-center group" aria-label={`${BRAND_NAME} home`}><img src="/dubai-yachts-logo.png" alt={BRAND_NAME} width="569" height="127" className="h-10 w-auto transition-transform duration-300 group-hover:scale-105" /></Link>
+        <nav aria-label="Primary" className="hidden lg:flex items-center gap-1">{NAV_LINKS.map((link) => navLink(link))}</nav>
         <div className="hidden lg:flex items-center gap-3">
-          <a
-            href={getWhatsAppLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 text-sm font-medium liquid-btn text-green-400 border-green-500/20"
-          >
-            <MessageCircle className="w-4 h-4" /> WhatsApp
-          </a>
-          <a
-            href={getPhoneLink()}
-            className="flex items-center gap-2 px-4 py-2 text-sm font-medium liquid-btn-gold text-primary"
-          >
-            <Phone className="w-4 h-4" /> Call Now
-          </a>
+          <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 text-sm font-medium liquid-btn text-green-400"><MessageCircle className="w-4 h-4" aria-hidden="true" /> WhatsApp</a>
+          <a href={getPhoneLink()} className="flex items-center gap-2 px-4 py-2 text-sm font-medium liquid-btn-gold text-primary"><Phone className="w-4 h-4" aria-hidden="true" /> Call</a>
         </div>
-
-        <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden p-2 text-foreground" aria-label="Toggle menu">
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
+          <Dialog.Trigger asChild><button className="lg:hidden p-2 rounded-lg text-foreground focus-visible:ring-2 focus-visible:ring-primary" aria-label="Open navigation menu"><Menu className="w-6 h-6" /></button></Dialog.Trigger>
+          <Dialog.Portal>
+            <Dialog.Overlay className="fixed inset-0 z-[60] bg-background/80 backdrop-blur-md lg:hidden" />
+            <Dialog.Content className="fixed inset-0 z-[70] lg:hidden flex flex-col p-6 pt-20 bg-background/95 overflow-y-auto focus:outline-none">
+              <Dialog.Title className="sr-only">Navigation menu</Dialog.Title>
+              <Dialog.Description className="sr-only">Site pages and approved contact channels</Dialog.Description>
+              <Dialog.Close asChild><button className="absolute right-4 top-5 p-2 rounded-lg focus-visible:ring-2 focus-visible:ring-primary" aria-label="Close navigation menu"><X className="w-6 h-6" /></button></Dialog.Close>
+              <nav aria-label="Mobile primary" className="flex flex-col gap-2">{NAV_LINKS.map((link) => navLink(link, true))}</nav>
+              <div className="mt-8 flex flex-col gap-3">
+                <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-6 py-3 liquid-btn text-green-400"><MessageCircle className="w-5 h-5" aria-hidden="true" /> WhatsApp</a>
+                <a href={getPhoneLink()} className="flex items-center justify-center gap-2 px-6 py-3 liquid-btn-gold text-primary"><Phone className="w-5 h-5" aria-hidden="true" /> Call</a>
+              </div>
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>
       </div>
-
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 top-0 z-40 lg:hidden flex flex-col pt-20 px-6"
-            style={{
-              background: "linear-gradient(180deg, hsl(220 25% 6% / 0.95) 0%, hsl(220 25% 6% / 0.98) 100%)",
-              backdropFilter: "blur(60px) saturate(2)",
-            }}
-          >
-            <nav className="flex flex-col gap-2">
-              {NAV_LINKS.map((link, i) => (
-                <motion.div
-                  key={link.path}
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 + 0.1 }}
-                >
-                  <Link
-                    to={link.path}
-                    className={`block px-4 py-3 text-lg font-display rounded-2xl transition-all ${
-                      location.pathname === link.path ? "text-primary liquid-glass-gold" : "text-foreground hover:bg-secondary/30"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
-            </nav>
-            <div className="mt-8 flex flex-col gap-3">
-              <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-6 py-3 liquid-btn text-green-400 font-medium">
-                <MessageCircle className="w-5 h-5" /> WhatsApp
-              </a>
-              <a href={getPhoneLink()} className="flex items-center justify-center gap-2 px-6 py-3 liquid-btn-gold text-primary font-medium">
-                <Phone className="w-5 h-5" /> Call Now
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.header>
   );
 };

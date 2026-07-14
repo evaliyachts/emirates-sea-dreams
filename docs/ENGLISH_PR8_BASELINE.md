@@ -2,7 +2,7 @@
 
 Prepared: 2026-07-14
 
-Status: **measurement plan prepared; PR 8B implementation and before/after testing have not begun**
+Status: **PR 8B implementation underway; final preview measurements pending**
 
 Lighthouse is lab evidence, not field Core Web Vitals. Reference targets are LCP ≤ 2.5 seconds, field INP ≤ 200 ms, and CLS ≤ 0.1. Lighthouse TBT is recorded only as a lab responsiveness proxy and must not be reported as INP.
 
@@ -44,21 +44,27 @@ Network transfer sizes, image transfer, DOM size and route-level resource waterf
 
 Metric | Before PR 8B | After PR 8B | Evidence
 --- | --- | --- | ---
-Raw JavaScript | 753,045 bytes | pending | Current production bundle
-Raw CSS | 75,355 bytes | pending | Current production bundle
+Raw JavaScript | 753,045 bytes | 760,784 bytes (+7,739) | Production build output (`index-eZy9g0WJ.js`)
+Raw CSS | 75,355 bytes | 76,640 bytes (+1,285) | Production build output (`index-B23_gLnJ.css`)
 Compressed JavaScript transfer | pending | pending | DevTools/Lighthouse
 Image transfer by representative route | pending | pending | DevTools/Lighthouse
 DOM size | pending | pending | Lighthouse/DOM inspection
 Console errors | pending | pending | Browser console
-Keyboard navigation | pending | pending | Manual test record
-Reduced motion | pending | pending | Manual/emulated media query
+Keyboard navigation | pending | automated menu/contact checks pass; preview manual check pending | Vitest + preview checklist
+Reduced motion | pending | page, section and carousel safeguards implemented; preview emulation pending | source/test safeguard
 Mobile overflow | pending | pending | 320/360/390-pixel viewport checks
-Carousel behavior | pending | pending | Keyboard/pointer/fullscreen checks
+Carousel behavior | pending | existing staggered/fullscreen component retained; preview pointer/keyboard check pending | source/test safeguard
+
+## Automated accessibility result
+
+`axe-core` 4.10.3 rendered scans passed with **zero critical or serious findings** for the homepage, contact page, services index, birthday service, yacht catalogue, Royal Majesty detail and real 404 document. The color-contrast rule is excluded from the jsdom scan because jsdom does not calculate rendered color; contrast, overflow and focus visibility remain explicit Deploy Preview checks.
+
+The production-context Netlify build passed offline with the pinned project build command. Source maps are absent. The existing large JavaScript chunk notice remains a documented limitation; PR 8B does not claim a field Core Web Vitals improvement.
 
 ## Remaining limitations and approvals
 
-- Six linked support/legal routes remain 404 pending owner decisions.
-- Analytics and consent decisions remain pending; analytics stays disabled.
-- Contact form behavior and legal disclosures are not approved.
+- Five support/legal routes are approved for PR 8B preview publication; `/offers` remains a real 404.
+- Analytics is owner-approved as disabled for PR 8B.
+- Contact behavior and legal principles are approved; final visible Terms and Privacy wording still requires owner review.
 - Authorized yacht and homepage/service media retain their existing recorded scopes; this document grants no new media right.
 - Search Console Query × Page, Links, Page Indexing examples, Core Web Vitals, sitemap evidence and six authenticated Live URL Tests remain pending.
