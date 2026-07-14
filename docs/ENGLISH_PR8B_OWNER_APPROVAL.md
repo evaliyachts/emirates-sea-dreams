@@ -12,7 +12,7 @@ The alternate brand, separate legal entity name, email, physical address, operat
 
 The owner subsequently supplied the exact responsible person as **Mohammed Abdullah, Operation Manager**. This person is approved for visible identification as the operator of the English website and the controller or responsible business recipient for enquiry information. This approval does not create or infer a separate licensed legal-entity name.
 
-The Terms corrections requested on 2026-07-14 are conditionally approved subject to final rendered review. The Privacy Notice remains unapproved until the requested transparency corrections and final rendered review are complete. The actual production publication date remains pending and must not be inferred from the Draft preview date.
+The Terms corrections requested on 2026-07-14 were conditionally approved subject to final rendered review. The Privacy Notice required blocking transparency corrections and final rendered review. After reviewing the complete corrected wording, the owner instructed Codex to merge PR #18 on 2026-07-14. That instruction records final approval of both rendered documents, confirms that the stated purpose-based retention and security wording matches actual operations and safeguards, and authorizes **14 July 2026** as the actual production publication and effective date.
 
 The only approved departure wording is:
 
@@ -29,6 +29,6 @@ The only approved departure wording is:
 
 ## Legal review gate
 
-The owner approved the Terms principles conditionally after specified edits and required blocking Privacy transparency edits. Both complete rendered documents still require explicit final approval. PR 8B must remain **Draft** and must not merge until that approval is recorded against the final commit and the actual production publication date is supplied.
+The owner supplied final approval by instructing Codex to merge PR #18 after reviewing both complete rendered documents. The final release commit must preserve the approved identity, wording and effective date, pass the complete gate, and merge only after GitHub and Netlify checks succeed.
 
 Source of record: owner instruction supplied to Codex on 2026-07-14.

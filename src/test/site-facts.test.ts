@@ -23,7 +23,7 @@ describe("site fact approvals", () => {
     expect(getApprovedValue(siteFacts.brandName)).toBe("Dubai Yacht");
     expect(getApprovedValue(siteFacts.phoneDisplay)).toBe("+971 50 464 1020");
     expect(getApprovedValue(siteFacts.responsiblePerson)).toBe("Mohammed Abdullah, Operation Manager");
-    expect(siteFacts.legalPublicationDate.status).toBe("pending");
+    expect(getApprovedValue(siteFacts.legalPublicationDate)).toBe("14 July 2026");
     expect(getApprovedValue(siteFacts.analyticsEnabled)).toBe(false);
     expect(siteFacts.publicAddress.status).toBe("not-applicable");
     expect(siteFacts.operatingHours.status).toBe("not-applicable");

@@ -55,8 +55,8 @@ describe("PR 8B support, legal and contact publication", () => {
     expect(privacy).toContain("Analytics and advertising tracking are disabled in this release");
     expect(privacy).toContain("does not set other browser cookies or local storage in this release");
     expect(privacy).toContain("Reasonable technical and organisational measures are used to protect information");
-    expect(legalText.match(/Effective date: Pending production publication/g)).toHaveLength(2);
-    expect(legalText).not.toContain("Effective date: 14 July 2026");
+    expect(legalText.match(/Effective date: 14 July 2026/g)).toHaveLength(2);
+    expect(legalText).not.toContain("Pending production publication");
   });
 
   it("prepares WhatsApp successfully without asking for identity fields", async () => {

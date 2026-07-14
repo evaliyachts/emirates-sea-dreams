@@ -25,7 +25,7 @@ const Terms = () => (
       <div className="container mx-auto px-4 max-w-3xl">
         <AnimatedSection>
           <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-3">Website and Yacht Request Terms</h1>
-          <p className="text-sm text-muted-foreground mb-10">Effective date: {LEGAL_PUBLICATION_DATE ?? "Pending production publication"}</p>
+          <p className="text-sm text-muted-foreground mb-10">Effective date: {LEGAL_PUBLICATION_DATE}</p>
           <div className="space-y-8 text-muted-foreground text-sm leading-relaxed">
             {sections.map(([heading, body]) => <section key={heading}><h2 className="text-xl font-display font-semibold text-foreground mb-3">{heading}</h2><p>{body}</p></section>)}
           </div>

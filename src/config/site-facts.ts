@@ -64,8 +64,10 @@ export const siteFacts: SiteFacts = {
     approvedAt: "2026-07-14",
   },
   legalPublicationDate: {
-    status: "pending",
-    evidence: "Must be set to the actual production publication date; the Draft preview date is not approval.",
+    value: "14 July 2026",
+    status: "approved",
+    evidence: "Owner authorized merge and production publication on 2026-07-14 after reviewing the complete rendered legal wording.",
+    approvedAt: "2026-07-14",
   },
   phoneDisplay: {
     value: "+971 50 464 1020",

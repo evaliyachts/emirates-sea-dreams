@@ -378,7 +378,7 @@ if (languageMappingSummary.total + languageMappingPendingRouteIds.length !== pub
   failures.push("Language evidence must remain 33 verified mappings plus five PR 8B production-review-pending routes.");
 }
 if (englishArabicRouteMappings.some((record) => record.xDefaultAppropriate)) failures.push("x-default remains unapproved.");
-if (siteFacts.phoneDisplay.status !== "approved" || siteFacts.phoneE164.status !== "approved" || siteFacts.whatsappUrl.status !== "approved" || siteFacts.responsiblePerson.status !== "approved" || siteFacts.responsiblePerson.value !== "Mohammed Abdullah, Operation Manager" || siteFacts.analyticsEnabled.value !== false) {
+if (siteFacts.phoneDisplay.status !== "approved" || siteFacts.phoneE164.status !== "approved" || siteFacts.whatsappUrl.status !== "approved" || siteFacts.responsiblePerson.status !== "approved" || siteFacts.responsiblePerson.value !== "Mohammed Abdullah, Operation Manager" || siteFacts.legalPublicationDate.status !== "approved" || siteFacts.legalPublicationDate.value !== "14 July 2026" || siteFacts.analyticsEnabled.value !== false) {
   failures.push("PR 8B approved contact and analytics-disabled facts are incomplete.");
 }
 if (siteFacts.publicAddress.status === "approved" || siteFacts.socialProfiles.status === "approved" || siteFacts.operatingHours.status === "approved") {
