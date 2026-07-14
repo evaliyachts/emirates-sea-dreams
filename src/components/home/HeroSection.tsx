@@ -68,7 +68,7 @@ const HeroSection = () => {
           transition={{ duration: reduceMotion ? 0 : 0.8, delay: reduceMotion ? 0 : 0.25 }}
           className="mb-5 text-4xl font-display font-bold leading-tight text-foreground sm:text-5xl md:text-7xl"
         >
-          Private Yacht Rental in Dubai, <span className="text-gradient-gold">Compared with Verified Facts</span>
+          Dubai Yacht: Private Yacht Rental in Dubai, <span className="text-gradient-gold">Compared with Verified Facts</span>
         </motion.h1>
 
         <motion.p

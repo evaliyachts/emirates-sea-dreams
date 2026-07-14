@@ -1,80 +1,66 @@
-# English–Arabic Hreflang Readiness Map
+# English–Arabic Canonical Mapping Evidence
 
-Audit date: 2026-07-13. Publish **no** `hreflang` or `x-default` from this report.
+Verified: 2026-07-14
 
-Only the homepage is a verified live equivalent: it returns `200` and declares the exact English canonical `https://yachtrentaldxb.com/`. The other 51 English sitemap URLs return `404` and declare no canonical, so their URLs below are intended historical candidates—not verified English canonicals.
+This report records the exact self-canonical URLs declared by the 33 English routes currently published on `yachtrentaldxb.com` and the reviewed Arabic candidates on `yacht-dxb.com`. It is evidence for a future coordinated implementation, not live alternate-link output.
 
-Future language codes should be `en-AE` and `ar-AE` only after both pages are genuine equivalents, return 200, declare their own exact canonicals and publish reciprocal tags in one coordinated release. Do not add/remove an English trailing slash automatically. No `x-default` is approved.
+## Release state
 
-## Static and support routes
+- Published English routes reviewed: 33.
+- True equivalents: 28.
+- Related but not equivalent: 5.
+- Unmapped routes: 0.
+- Live `hreflang`: absent.
+- Live `x-default`: absent and not approved.
+- Reciprocal tags: not published. A true-equivalent row requires both the English and Arabic tags to ship in one coordinated future release.
 
-| Intended English URL | Arabic canonical | Decision | Blocker / reciprocal requirement |
-| --- | --- | --- | --- |
-| `https://yachtrentaldxb.com/` | `https://yacht-dxb.com/` | **Verified true equivalent** | Future reciprocal pair on both sites; not yet published |
-| `https://yachtrentaldxb.com/yachts` | `https://yacht-dxb.com/yachts/` | True-equivalent candidate; English broken | Restore/verify English canonical and matching catalogue intent |
-| `https://yachtrentaldxb.com/offers` | `https://yacht-dxb.com/أسعار-تأجير-اليخوت-في-دبي/` | Related, not yet equivalent | English offers contain packages; Arabic page owns price intent |
-| `https://yachtrentaldxb.com/services` | `https://yacht-dxb.com/الخدمات/` | True-equivalent hub candidate; English broken | Align scope without translating content |
-| `https://yachtrentaldxb.com/occasions` | `https://yacht-dxb.com/تأجير-يخت-للمناسبات-في-دبي/` | Related, not proven equivalent | Taxonomy/content scope differs |
-| `https://yachtrentaldxb.com/about` | `https://yacht-dxb.com/about/` | True-equivalent candidate; English broken | Business facts and reciprocal release |
-| `https://yachtrentaldxb.com/faq` | `https://yacht-dxb.com/الأسئلة-الشائعة/` | True-equivalent candidate; English broken | Remove unapproved operational promises |
-| `https://yachtrentaldxb.com/contact` | `https://yacht-dxb.com/contact/` | True-equivalent candidate; English broken | Verify English contact facts |
-| `https://yachtrentaldxb.com/terms` | `https://yacht-dxb.com/terms/` | True-equivalent function, not approved legal equivalent | Separate English legal approval required |
-| `https://yachtrentaldxb.com/privacy` | `https://yacht-dxb.com/privacy/` | True-equivalent function, not approved legal equivalent | Separate English privacy approval required |
+## Evidence method
 
-## Yacht routes
+On 2026-07-14, both sides of every row were requested directly. The recorded pages returned HTTP 200, declared `index, follow`, and self-canonicalized to the exact URLs below. Arabic membership was also compared with the live Arabic sitemap. Equivalence was accepted only when page intent and visible factual identity aligned; a price, identity, or taxonomy conflict keeps a row out of the true-equivalent set. Exact URL form is preserved: English inner canonicals have no trailing slash, while Arabic canonicals are encoded HTTPS URLs with a trailing slash.
 
-| Intended English URL | Arabic canonical | Decision |
-| --- | --- | --- |
-| `https://yachtrentaldxb.com/yachts/evali-yacht-55ft-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/عوامة-خاصة-55-قدم-للإيجار-في-دبي/` | Related record; public identity differs; English broken |
-| `https://yachtrentaldxb.com/yachts/50-feet-royal-majesty-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/رحلة-يخت-50-قدم-رويال-ماجستي/` | Entity-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/yachts/42-feet-azimut-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/يخت-42-قدم-ازيموت-للايجار/` | Entity-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/yachts/majesty-44-feet-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/يخت-ماجستي-44-قدم-للايجار/` | Entity-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/yachts/50-feet-azimut-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/يخت-أزيموت-50-قدم-للإيجار/` | Entity-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/yachts/oryx-50-feet-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/يخت-أوريكس-50-قدم-للإيجار/` | Entity-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/yachts/ferretti-50-feet-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/يخت-فيريتي-50-قدم-للإيجار/` | Entity-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/yachts/56-feet-majesty-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/رحلة-يخت-56-قدم-ماجستي/` | Entity-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/yachts/55-feet-azimut-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/رحلة-يخت-55-قدم-ازيموت/` | Entity-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/yachts/majesty-88ft-jacuzzi-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/ايجار-يخت-ماجستي-88-قدم-جاكوزي/` | Entity-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/yachts/sunseeker-82-feet-yacht-rental-dubai` | — | No Arabic equivalent identified |
-| `https://yachtrentaldxb.com/yachts/azimut-80-feet-yacht-rental-dubai` | — | No Arabic equivalent identified |
-| `https://yachtrentaldxb.com/yachts/benetti-110ft-jacuzzi-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/يخت-بينيتي-110-قدم-مع-جاكوزي/` | Entity-equivalent candidate; facts/media must match |
-| `https://yachtrentaldxb.com/yachts/majesty-101ft-jacuzzi-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/يخت-ماجستي-101-قدم-جاكوزي-للإيجار/` | Entity-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/yachts/heysea-90ft-jacuzzi-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/ايجار-يخت-هايغان-90-قدم-جاكوزي/` | Related but identity/spelling uncertain |
-| `https://yachtrentaldxb.com/yachts/doretty-90ft-jacuzzi-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/يخت-دوريتتي-90-قدم-جاكوزي/` | Entity-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/yachts/ocean-dream-143-feet-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/اوشن-دريم-يخت-143-قدم-للايجار/` | Entity-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/yachts/mzaail-135ft-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/ايجار-يخت-مزايل-135-قدم-دبي/` | Entity-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/yachts/doretty-95-feet-jacuzzi-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/يخت-95-قدم-دوريتتي-مع-جاكوزي/` | Entity-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/yachts/sunseeker-92-feet-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/يخت-سنسيكر-92-قدم-للايجار/` | Entity-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/yachts/sunseeker-90-feet-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/تأجير-يخت-سنسيكر-90-قدم/` | Entity-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/yachts/dynasty-151-feet-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/يخت-دي-تري-151-قدم-للايجار/` | Related; name/length identity conflict |
-| `https://yachtrentaldxb.com/yachts/luxury-120-feet-mega-yacht-rental-dubai` | — | No Arabic equivalent identified; English media conflict |
-| `https://yachtrentaldxb.com/yachts/omega-100-feet-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/يخت-اوميغا-100-قدم-للايجار/` | Entity-equivalent candidate; English broken |
+This live review supersedes older candidate-only mapping status for the currently published English set, but it does not rewrite the historical audit or authorize a deployment. Search Console Live URL Tests and reciprocal implementation approval remain separate release gates.
 
-## Service/event routes
+## Mapping table
 
-| Intended English URL | Arabic canonical | Decision |
-| --- | --- | --- |
-| `https://yachtrentaldxb.com/services/banana-boat-ride` | `https://yacht-dxb.com/يخت-مع-العاب-مائية-في-دبي/` | Related activity, not exact equivalent |
-| `https://yachtrentaldxb.com/services/swimming` | `https://yacht-dxb.com/سباحة-على-يخت-في-دبي/` | True-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/services/barbecue-on-the-yacht` | `https://yacht-dxb.com/حفلة-شواء-على-يخت-في-دبي/` | True-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/services/fishing` | `https://yacht-dxb.com/رحلة-صيد-على-يخت-في-دبي/` | True-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/services/birthday-party` | `https://yacht-dxb.com/عيد-ميلاد-على-يخت-في-دبي/` | True-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/services/graduation-parties` | `https://yacht-dxb.com/حفلة-تخرج-على-يخت-في-دبي/` | True-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/services/wedding-anniversary-parties` | `https://yacht-dxb.com/ذكرى-زواج-على-يخت-في-دبي/` | True-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/services/bachelor-parties` | `https://yacht-dxb.com/حفلة-وداع-عزوبية-على-يخت-في-دبي/` | True-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/services/marriage-proposal-party` | `https://yacht-dxb.com/طلب-زواج-على-يخت-في-دبي/` | True-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/services/gender-reveal-party` | `https://yacht-dxb.com/تحديد-جنس-المولود-على-يخت-في-دبي/` | True-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/services/engagement-and-wedding-parties` | — | Overlapping aggregate; no single Arabic equivalent |
-| `https://yachtrentaldxb.com/services/food-menu` | `https://yacht-dxb.com/عشاء-على-يخت-في-دبي/` | Related hospitality content, not equivalent |
-| `https://yachtrentaldxb.com/services/donut-ride` | `https://yacht-dxb.com/يخت-مع-العاب-مائية-في-دبي/` | Related activity, not exact equivalent |
-| `https://yachtrentaldxb.com/services/jet-ski` | `https://yacht-dxb.com/يخت-مع-جت-سكي-في-دبي/` | True-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/services/afternoon-tea-trip` | `https://yacht-dxb.com/افترنون-تي-على-يخت-في-دبي/` | True-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/services/morning-yacht-trips` | `https://yacht-dxb.com/رحلة-يخت-صباحية-في-دبي/` | True-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/services/engagement-parties` | `https://yacht-dxb.com/يخت-لحفلة-خطوبة-في-دبي/` | True-equivalent candidate; English broken |
-| `https://yachtrentaldxb.com/services/wedding-parties` | `https://yacht-dxb.com/حفلة-زفاف-على-يخت-في-دبي/` | True-equivalent candidate; English broken |
+English canonical | Arabic canonical | Equivalence | English reciprocal tag | Arabic reciprocal tag | x-default | Blocker or release condition
+--- | --- | --- | --- | --- | --- | ---
+`https://yachtrentaldxb.com/` | `https://yacht-dxb.com/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/yachts` | `https://yacht-dxb.com/yachts/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/services` | `https://yacht-dxb.com/%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/occasions` | `https://yacht-dxb.com/%D8%AA%D8%A3%D8%AC%D9%8A%D8%B1-%D9%8A%D8%AE%D8%AA-%D9%84%D9%84%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A7%D8%AA-%D9%81%D9%8A-%D8%AF%D8%A8%D9%8A/` | Related, not equivalent | Not approved | Not approved | No | The English hub is a seven-theme chooser while the Arabic owner is a focused yacht-for-occasions commercial page.
+`https://yachtrentaldxb.com/yachts/50-feet-royal-majesty-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/%D8%B1%D8%AD%D9%84%D8%A9-%D9%8A%D8%AE%D8%AA-50-%D9%82%D8%AF%D9%85-%D8%B1%D9%88%D9%8A%D8%A7%D9%84-%D9%85%D8%A7%D8%AC%D8%B3%D8%AA%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/yachts/42-feet-azimut-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/%D9%8A%D8%AE%D8%AA-42-%D9%82%D8%AF%D9%85-%D8%A7%D8%B2%D9%8A%D9%85%D9%88%D8%AA-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1/` | Related, not equivalent | Not approved | Not approved | No | Verified hourly price conflicts: English AED 500; Arabic AED 400.
+`https://yachtrentaldxb.com/yachts/majesty-44-feet-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/%D9%8A%D8%AE%D8%AA-%D9%85%D8%A7%D8%AC%D8%B3%D8%AA%D9%8A-44-%D9%82%D8%AF%D9%85-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1/` | Related, not equivalent | Not approved | Not approved | No | Verified hourly price conflicts: English AED 500; Arabic AED 450.
+`https://yachtrentaldxb.com/yachts/50-feet-azimut-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/%D9%8A%D8%AE%D8%AA-%D8%A3%D8%B2%D9%8A%D9%85%D9%88%D8%AA-50-%D9%82%D8%AF%D9%85-%D9%84%D9%84%D8%A5%D9%8A%D8%AC%D8%A7%D8%B1/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/yachts/oryx-50-feet-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/%D9%8A%D8%AE%D8%AA-%D8%A3%D9%88%D8%B1%D9%8A%D9%83%D8%B3-50-%D9%82%D8%AF%D9%85-%D9%84%D9%84%D8%A5%D9%8A%D8%AC%D8%A7%D8%B1/` | Related, not equivalent | Not approved | Not approved | No | Verified hourly price conflicts: English AED 550; Arabic AED 500.
+`https://yachtrentaldxb.com/yachts/ferretti-50-feet-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/%D9%8A%D8%AE%D8%AA-%D9%81%D9%8A%D8%B1%D9%8A%D8%AA%D9%8A-50-%D9%82%D8%AF%D9%85-%D9%84%D9%84%D8%A5%D9%8A%D8%AC%D8%A7%D8%B1/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/yachts/56-feet-majesty-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/%D8%B1%D8%AD%D9%84%D8%A9-%D9%8A%D8%AE%D8%AA-56-%D9%82%D8%AF%D9%85-%D9%85%D8%A7%D8%AC%D8%B3%D8%AA%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/yachts/55-feet-azimut-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/%D8%B1%D8%AD%D9%84%D8%A9-%D9%8A%D8%AE%D8%AA-55-%D9%82%D8%AF%D9%85-%D8%A7%D8%B2%D9%8A%D9%85%D9%88%D8%AA/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/yachts/majesty-88ft-jacuzzi-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1-%D9%8A%D8%AE%D8%AA-%D9%85%D8%A7%D8%AC%D8%B3%D8%AA%D9%8A-88-%D9%82%D8%AF%D9%85-%D8%AC%D8%A7%D9%83%D9%88%D8%B2%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/yachts/benetti-110ft-jacuzzi-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/%D9%8A%D8%AE%D8%AA-%D8%A8%D9%8A%D9%86%D9%8A%D8%AA%D9%8A-110-%D9%82%D8%AF%D9%85-%D9%85%D8%B9-%D8%AC%D8%A7%D9%83%D9%88%D8%B2%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/yachts/majesty-101ft-jacuzzi-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/%D9%8A%D8%AE%D8%AA-%D9%85%D8%A7%D8%AC%D8%B3%D8%AA%D9%8A-101-%D9%82%D8%AF%D9%85-%D8%AC%D8%A7%D9%83%D9%88%D8%B2%D9%8A-%D9%84%D9%84%D8%A5%D9%8A%D8%AC%D8%A7%D8%B1/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/yachts/heysea-90ft-jacuzzi-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1-%D9%8A%D8%AE%D8%AA-%D9%87%D8%A7%D9%8A%D8%BA%D8%A7%D9%86-90-%D9%82%D8%AF%D9%85-%D8%AC%D8%A7%D9%83%D9%88%D8%B2%D9%8A/` | Related, not equivalent | Not approved | Not approved | No | Public identity is unresolved: English uses Heysea while the Arabic owner uses هايغان.
+`https://yachtrentaldxb.com/yachts/doretty-90ft-jacuzzi-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/%D9%8A%D8%AE%D8%AA-%D8%AF%D9%88%D8%B1%D9%8A%D8%AA%D8%AA%D9%8A-90-%D9%82%D8%AF%D9%85-%D8%AC%D8%A7%D9%83%D9%88%D8%B2%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/yachts/ocean-dream-143-feet-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/%D8%A7%D9%88%D8%B4%D9%86-%D8%AF%D8%B1%D9%8A%D9%85-%D9%8A%D8%AE%D8%AA-143-%D9%82%D8%AF%D9%85-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/yachts/mzaail-135ft-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1-%D9%8A%D8%AE%D8%AA-%D9%85%D8%B2%D8%A7%D9%8A%D9%84-135-%D9%82%D8%AF%D9%85-%D8%AF%D8%A8%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/yachts/doretty-95-feet-jacuzzi-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/%D9%8A%D8%AE%D8%AA-95-%D9%82%D8%AF%D9%85-%D8%AF%D9%88%D8%B1%D9%8A%D8%AA%D8%AA%D9%8A-%D9%85%D8%B9-%D8%AC%D8%A7%D9%83%D9%88%D8%B2%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/yachts/sunseeker-92-feet-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/%D9%8A%D8%AE%D8%AA-%D8%B3%D9%86%D8%B3%D9%8A%D9%83%D8%B1-92-%D9%82%D8%AF%D9%85-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/yachts/sunseeker-90-feet-yacht-rental-dubai` | `https://yacht-dxb.com/yachts/%D8%AA%D8%A3%D8%AC%D9%8A%D8%B1-%D9%8A%D8%AE%D8%AA-%D8%B3%D9%86%D8%B3%D9%8A%D9%83%D8%B1-90-%D9%82%D8%AF%D9%85/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/yachts/omega-100-feet-dubai-yacht-rental` | `https://yacht-dxb.com/yachts/%D9%8A%D8%AE%D8%AA-%D8%A7%D9%88%D9%85%D9%8A%D8%BA%D8%A7-100-%D9%82%D8%AF%D9%85-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/services/barbecue-on-the-yacht` | `https://yacht-dxb.com/%D8%AD%D9%81%D9%84%D8%A9-%D8%B4%D9%88%D8%A7%D8%A1-%D8%B9%D9%84%D9%89-%D9%8A%D8%AE%D8%AA-%D9%81%D9%8A-%D8%AF%D8%A8%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/services/birthday-party` | `https://yacht-dxb.com/%D8%B9%D9%8A%D8%AF-%D9%85%D9%8A%D9%84%D8%A7%D8%AF-%D8%B9%D9%84%D9%89-%D9%8A%D8%AE%D8%AA-%D9%81%D9%8A-%D8%AF%D8%A8%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/services/graduation-parties` | `https://yacht-dxb.com/%D8%AD%D9%81%D9%84%D8%A9-%D8%AA%D8%AE%D8%B1%D8%AC-%D8%B9%D9%84%D9%89-%D9%8A%D8%AE%D8%AA-%D9%81%D9%8A-%D8%AF%D8%A8%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/services/wedding-anniversary-parties` | `https://yacht-dxb.com/%D8%B0%D9%83%D8%B1%D9%89-%D8%B2%D9%88%D8%A7%D8%AC-%D8%B9%D9%84%D9%89-%D9%8A%D8%AE%D8%AA-%D9%81%D9%8A-%D8%AF%D8%A8%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/services/bachelor-parties` | `https://yacht-dxb.com/%D8%AD%D9%81%D9%84%D8%A9-%D9%88%D8%AF%D8%A7%D8%B9-%D8%B9%D8%B2%D9%88%D8%A8%D9%8A%D8%A9-%D8%B9%D9%84%D9%89-%D9%8A%D8%AE%D8%AA-%D9%81%D9%8A-%D8%AF%D8%A8%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/services/marriage-proposal-party` | `https://yacht-dxb.com/%D8%B7%D9%84%D8%A8-%D8%B2%D9%88%D8%A7%D8%AC-%D8%B9%D9%84%D9%89-%D9%8A%D8%AE%D8%AA-%D9%81%D9%8A-%D8%AF%D8%A8%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/services/afternoon-tea-trip` | `https://yacht-dxb.com/%D8%A7%D9%81%D8%AA%D8%B1%D9%86%D9%88%D9%86-%D8%AA%D9%8A-%D8%B9%D9%84%D9%89-%D9%8A%D8%AE%D8%AA-%D9%81%D9%8A-%D8%AF%D8%A8%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/services/morning-yacht-trips` | `https://yacht-dxb.com/%D8%B1%D8%AD%D9%84%D8%A9-%D9%8A%D8%AE%D8%AA-%D8%B5%D8%A8%D8%A7%D8%AD%D9%8A%D8%A9-%D9%81%D9%8A-%D8%AF%D8%A8%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/services/engagement-parties` | `https://yacht-dxb.com/%D9%8A%D8%AE%D8%AA-%D9%84%D8%AD%D9%81%D9%84%D8%A9-%D8%AE%D8%B7%D9%88%D8%A8%D8%A9-%D9%81%D9%8A-%D8%AF%D8%A8%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
+`https://yachtrentaldxb.com/services/wedding-parties` | `https://yacht-dxb.com/%D8%AD%D9%81%D9%84%D8%A9-%D8%B2%D9%81%D8%A7%D9%81-%D8%B9%D9%84%D9%89-%D9%8A%D8%AE%D8%AA-%D9%81%D9%8A-%D8%AF%D8%A8%D9%8A/` | True equivalent | Required in coordinated release | Required in coordinated release | No | Coordinated reciprocal English and Arabic release approval remains pending.
 
-## Readiness count
+## Non-equivalent findings
 
-- Verified live English–Arabic equivalents: **1**.
-- Candidate mappings are not verified tags.
-- Unmapped/related pages must not receive hreflang.
+- `/occasions` is a seven-theme English chooser; the reviewed Arabic page is a focused yacht-for-occasions commercial owner.
+- Azimut 42, Majesty 44 and Oryx 50 publish conflicting hourly prices across the two sites.
+- The English Heysea 90 and Arabic هايغان 90 public identities require owner verification.
+- No row in this section may emit reciprocal alternate tags until its conflict is resolved and the mapping is reverified.

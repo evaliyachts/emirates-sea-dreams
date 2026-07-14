@@ -2,6 +2,7 @@ import type { YachtRecord } from "@/data/yachts";
 import { yachtPath } from "@/data/yachts";
 import { DOMAIN } from "@/lib/constants";
 import { NEUTRAL_YACHT_FALLBACK } from "@/data/media-rights";
+import { buildBreadcrumbNode, organizationReference, schemaGraph } from "@/lib/entity-schema";
 
 export const buildYachtSeo = (yacht: YachtRecord) => {
   const path = yachtPath(yacht.slug);
@@ -17,33 +18,28 @@ export const buildYachtSeo = (yacht: YachtRecord) => {
         width: primaryImage.width,
         height: primaryImage.height,
       };
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Service",
-        "@id": `${canonical}#service`,
-        name: yacht.name,
-        serviceType: "Private yacht rental in Dubai",
+  const jsonLd = schemaGraph([
+    {
+      "@type": "Service",
+      "@id": `${canonical}#service`,
+      name: yacht.name,
+      serviceType: "Private yacht rental in Dubai",
+      url: canonical,
+      provider: organizationReference,
+      offers: {
+        "@type": "Offer",
+        price: yacht.pricePerHour,
+        priceCurrency: "AED",
         url: canonical,
-        offers: {
-          "@type": "Offer",
-          price: yacht.pricePerHour,
-          priceCurrency: "AED",
-          url: canonical,
-          description: `Minimum booking duration: ${yacht.minimumDuration} hours.`,
-        },
+        description: `Minimum booking duration: ${yacht.minimumDuration} hours.`,
       },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: `${DOMAIN}/` },
-          { "@type": "ListItem", position: 2, name: "Yachts", item: `${DOMAIN}/yachts` },
-          { "@type": "ListItem", position: 3, name: yacht.name, item: canonical },
-        ],
-      },
-    ],
-  };
+    },
+    buildBreadcrumbNode(path, [
+      { name: "Home", path: "/" },
+      { name: "Yachts", path: "/yachts" },
+      { name: yacht.name, path },
+    ]),
+  ]);
 
   return { path, canonical, title, description, socialImage, jsonLd };
 };

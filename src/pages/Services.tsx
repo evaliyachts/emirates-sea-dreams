@@ -5,6 +5,7 @@ import { CommercialHero, FaqSection, Section, YachtFactLinks } from "@/component
 import SEOHead from "@/components/shared/SEOHead";
 import { approvedServices } from "@/data/approved-services";
 import { publishedYachtsById } from "@/lib/published-fleet";
+import { buildBreadcrumbSchema } from "@/lib/entity-schema";
 
 const comparisonYachts = publishedYachtsById("yacht-azimut-42", "yacht-majesty-56", "yacht-majesty-88");
 
@@ -56,6 +57,10 @@ const Services = () => (
       title="Private Yacht Service Planning in Dubai | Optional Requests"
       description="Plan private yacht celebration, romance, hospitality, water-activity and experience requests without assuming inclusions or availability."
       path="/services"
+      jsonLd={buildBreadcrumbSchema("/services", [
+        { name: "Home", path: "/" },
+        { name: "Services", path: "/services" },
+      ])}
     />
     <div data-commercial-content>
 

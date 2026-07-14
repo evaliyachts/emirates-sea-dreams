@@ -205,3 +205,9 @@ PR 5 enriches `/`, `/yachts`, `/services` and `/occasions` without changing thei
 PR 6B clears ten existing service owners for route-specific static publication after explicit capability, wording, yacht-selection and media approval. The generated sitemap expands from 23 to 33 production-authority URLs: four hubs, 19 yacht details and ten service details. The remaining eight service owners continue to generate no static file or Netlify rewrite and remain real direct-request 404s.
 
 The seven occasion records still create no detail route. Five yacht owners, `/offers`, `/contact`, `/terms`, `/privacy`, all six commercial candidates and unknown routes remain blocked. No redirect, wildcard, English trailing-slash migration, analytics, language alternate, Search Console action or default-Netlify-host redirect is introduced. Final Deploy Preview and post-merge production evidence belongs in `IMPLEMENTATION_PR6B_REPORT.md`.
+
+## PR 7 entity and bilingual-evidence update — 2026-07-14
+
+PR 7 leaves the publication inventory unchanged at 33 direct static owners and 33 sitemap URLs. It centralizes one homepage WebSite and minimal Organization identity, page-appropriate Service/Offer/Breadcrumb ownership, and exact published breadcrumb targets without activating any blocked route or redirect.
+
+The live bilingual review records 28 true equivalents and five related/non-equivalent pairs across the 33 published owners. It publishes no `hreflang` or `x-default`; reciprocal implementation and Search Console Live Tests remain future gates. Detailed entity and mapping evidence belongs in `IMPLEMENTATION_PR7_REPORT.md` and `ENGLISH_ARABIC_HREFLANG_MAP.md`.

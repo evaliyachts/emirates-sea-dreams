@@ -7,7 +7,7 @@ import { englishRouteManifest, routeGroups } from "./routes";
 import { searchConsoleAggregateBaseline } from "./search-console";
 import { sitemapMigrationMap } from "./sitemap-migration";
 
-const allowedSchemaOwners = new Set(["WebSite", "Organization", "ContactPoint", "Service", "BreadcrumbList"]);
+const allowedSchemaOwners = new Set(["WebSite", "Organization", "ContactPoint", "Service", "Offer", "BreadcrumbList"]);
 
 const duplicateValues = (values: string[]): string[] => {
   const seen = new Set<string>();

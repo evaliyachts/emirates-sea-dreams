@@ -88,3 +88,9 @@ Separately resolve the Dynasty 151-route/150-source conflict, missing source-to-
 ## Evidence remaining after PR 5
 
 The four published commercial/hub owners now provide evidence-safe decision content, but no historical commercial candidate was activated. Query × Page, Links and issue-URL evidence is still required before deciding whether any candidate deserves separate ownership or whether a current route should consolidate. PR 6B resolves the ten approved service owners only; the eight blocked service records still need separate capability and operational approval. Global phone, WhatsApp, brand, departure, hours and legal values remain pending unless separately approved.
+
+## Evidence remaining after PR 7
+
+The English–Arabic report now covers all 33 published English owners: 28 are verified true equivalents and five remain related but unsuitable for reciprocal tags. Resolve the Azimut 42, Majesty 44 and Oryx 50 price conflicts, the Heysea/هايغان identity, and the occasions-hub taxonomy mismatch before reconsidering those five rows. A coordinated release must be approved and deployed on both domains; no one-sided `hreflang` or `x-default` is authorized.
+
+The visible `Dubai Yacht` site name supports a minimal WebSite/Organization graph, but formal business-name approval, phone, WhatsApp, email, address, departure location, hours and social profiles remain pending. No ContactPoint or LocalBusiness may be emitted until the corresponding visible facts are approved. Query × Page, Links, issue-detail examples and the four Search Console Live URL Tests also remain open.

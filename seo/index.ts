@@ -1,6 +1,7 @@
 export * from "./authorities";
 export * from "./candidates";
 export * from "./contracts";
+export * from "./language-map";
 export * from "./occasions";
 export * from "./planned-output";
 export * from "./publication";

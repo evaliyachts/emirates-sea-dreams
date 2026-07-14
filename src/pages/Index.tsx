@@ -12,13 +12,15 @@ import RoutesSection from "@/components/home/RoutesSection";
 import HomeFAQ from "@/components/home/HomeFAQ";
 import CTAStrip from "@/components/home/CTAStrip";
 import SEOHead from "@/components/shared/SEOHead";
+import { buildHomepageEntitySchema } from "@/lib/entity-schema";
 
 const Index = () => (
   <Layout>
     <SEOHead
-      title="Private Yacht Rental Dubai | Compare Verified Yachts"
+      title="Private Yacht Rental Dubai | Dubai Yacht"
       description="Compare 19 verified private yachts in Dubai by hourly price, guest capacity and minimum duration, then prepare a factual rental request."
       path="/"
+      jsonLd={buildHomepageEntitySchema()}
     />
     <div data-commercial-content>
       <HeroSection />
