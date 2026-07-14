@@ -17,13 +17,14 @@ describe("PR 9 first-paint and media-loading boundaries", () => {
     expect(html).toContain("About Dubai Yacht");
   });
 
-  it("preloads exactly one viewport-appropriate homepage hero candidate", () => {
+  it("does not prioritize the decorative homepage hero above the measured text LCP", () => {
     const head = renderStaticRoute("/").head;
-    expect(head).toContain('href="/media/home/hero/yacht-cover-mobile.avif"');
-    expect(head).toContain('media="(max-width: 639px)"');
-    expect(head).toContain('href="/media/home/hero/yacht-cover-desktop.avif"');
-    expect(head).toContain('media="(min-width: 640px)"');
-    expect([...head.matchAll(/rel="preload"/g)]).toHaveLength(2);
+    const page = parse(renderStaticRoute("/").html);
+    const hero = page.querySelector<HTMLImageElement>('[data-home-section="hero"] picture img')!;
+    expect(head).not.toContain('href="/media/home/hero/yacht-cover-mobile.avif"');
+    expect(head).not.toContain('href="/media/home/hero/yacht-cover-desktop.avif"');
+    expect(hero.getAttribute("loading")).toBe("eager");
+    expect(hero.hasAttribute("fetchpriority")).toBe(false);
   });
 
   it("preloads and prioritizes only the initial yacht-detail center image", () => {
@@ -63,7 +64,9 @@ describe("PR 9 first-paint and media-loading boundaries", () => {
     const providers = read("src/app/AppProviders.tsx");
     expect(template).toContain('rel="preconnect" href="https://fonts.googleapis.com"');
     expect(template).toContain('rel="preconnect" href="https://fonts.gstatic.com" crossorigin');
-    expect(template).toContain('rel="stylesheet" href="https://fonts.googleapis.com/css2?');
+    expect(template).toContain('rel="preload" as="style" href="https://fonts.googleapis.com/css2?');
+    expect(template).toContain('rel="stylesheet" media="print" onload="this.media=\'all\'"');
+    expect(template).toContain("<noscript><link rel=\"stylesheet\"");
     expect(read("src/index.css")).not.toMatch(/^@import/m);
     expect(providers).not.toMatch(/QueryClientProvider|TooltipProvider|Toaster|Sonner/);
   });

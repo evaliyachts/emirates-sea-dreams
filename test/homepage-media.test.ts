@@ -63,7 +63,7 @@ describe("approved homepage media restoration", () => {
     expect(mobileSource?.getAttribute("height")).toBe(`${HOME_HERO_MOBILE.height}`);
     expect(desktopImage?.getAttribute("src")).toBe(HOME_HERO_DESKTOP.path);
     expect(desktopImage?.getAttribute("loading")).toBe("eager");
-    expect(desktopImage?.getAttribute("fetchpriority")).toBe("high");
+    expect(desktopImage?.hasAttribute("fetchpriority")).toBe(false);
 
     const serviceSection = document.querySelector<HTMLElement>('[data-home-section="services"]')!;
     const serviceImages = [...serviceSection.querySelectorAll<HTMLImageElement>('img[src^="/media/home/services/"]')];
