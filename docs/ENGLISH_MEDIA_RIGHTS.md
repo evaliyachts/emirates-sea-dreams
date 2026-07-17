@@ -99,6 +99,8 @@ The owner explicitly approved restoring the same prior media treatment on the En
 
 The approved source files were downloaded successfully, checked as decodable images, and committed as exact static snapshots under neutral local paths. This avoids a runtime dependency on a third-party branded host. The images are decorative support for the already approved, evidence-safe homepage copy; this approval does not reinstate historical service-detail routes, service inclusions, packages, availability, routes, operational promises, old metadata or old schema.
 
+The mobile homepage performance Draft later prepared a same-path 768×1376 AVIF rendition from the exact approved mobile source snapshot. The production candidate retains the same visual subject, source provenance and approved homepage-only surface. The original 1536×2752 snapshot checksum remains `3a1c62a8f21c968a16116198066bcb758016b3c051bfc7d21ef76105d3f0d875`; the optimized production-candidate checksum is recorded below for exact-head owner review.
+
 The documentation-only provenance mapping is:
 
 | Neutral production path | Historical source URL |
@@ -122,7 +124,7 @@ The documentation-only provenance mapping is:
 | Rights ID | Neutral production path | Dimensions | SHA-256 |
 | --- | --- | ---: | --- |
 | `english-home-hero-desktop-001` | `/media/home/hero/yacht-cover-desktop.avif` | 2752×1536 | `9095255cc998d6eaf68fdd5725185edcd4a9debbefe2c7af9371c7264cc9292b` |
-| `english-home-hero-mobile-001` | `/media/home/hero/yacht-cover-mobile.avif` | 1536×2752 | `3a1c62a8f21c968a16116198066bcb758016b3c051bfc7d21ef76105d3f0d875` |
+| `english-home-hero-mobile-001` | `/media/home/hero/yacht-cover-mobile.avif` | 768×1376 | `18da0d9a4102830e365c8799f90bfcdbe91f4907eface5cb518ac3f04121abca` |
 | `english-home-service-birthday-001` | `/media/home/services/birthday-party.webp` | 767×730 | `fe6bd6a1c2f3d19c18126568c918abd3d0716b59b3044d6b860e9527764657ed` |
 | `english-home-service-anniversary-001` | `/media/home/services/wedding-anniversary.webp` | 767×728 | `2526d6b111c109d19b300e3f6b28a6459034f4802bb464e6a77b36031d08ac28` |
 | `english-home-service-engagement-001` | `/media/home/services/engagement-party.webp` | 767×729 | `419ac07e6a72b6b77ff368697b46d334609455e0b015d87bdd56496c0f2606ea` |

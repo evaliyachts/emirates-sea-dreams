@@ -35,25 +35,38 @@ const SERVICES = HOME_SERVICE_MEDIA.map((image) => ({
 const ServicesSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
+  const activeRef = useRef(0);
+  const isFullyInViewRef = useRef(false);
   const lockRef = useRef(false);
   const touchStartY = useRef<number | null>(null);
 
   useEffect(() => {
-    const isInView = () => {
-      const element = sectionRef.current;
-      if (!element) return false;
-      const bounds = element.getBoundingClientRect();
-      return bounds.top <= 1 && bounds.bottom >= window.innerHeight - 1;
-    };
+    activeRef.current = active;
+  }, [active]);
+
+  useEffect(() => {
+    const element = sectionRef.current;
+    const observer = element && "IntersectionObserver" in window
+      ? new IntersectionObserver(
+        ([entry]) => { isFullyInViewRef.current = (entry?.intersectionRatio ?? 0) >= 0.45; },
+        { threshold: [0, 0.45] },
+      )
+      : null;
+    if (element && observer) observer.observe(element);
 
     const step = (direction: 1 | -1) => {
-      setActive((current) => Math.min(SERVICES.length - 1, Math.max(0, current + direction)));
+      setActive((current) => {
+        const next = Math.min(SERVICES.length - 1, Math.max(0, current + direction));
+        activeRef.current = next;
+        return next;
+      });
     };
 
     const onWheel = (event: WheelEvent) => {
-      if (!isInView()) return;
+      if (!isFullyInViewRef.current) return;
       const direction: 1 | -1 = event.deltaY > 0 ? 1 : -1;
-      const atBoundary = (active === 0 && direction === -1) || (active === SERVICES.length - 1 && direction === 1);
+      const current = activeRef.current;
+      const atBoundary = (current === 0 && direction === -1) || (current === SERVICES.length - 1 && direction === 1);
       if (atBoundary) return;
       event.preventDefault();
       if (lockRef.current) return;
@@ -66,11 +79,12 @@ const ServicesSection = () => {
       touchStartY.current = event.touches[0]?.clientY ?? null;
     };
     const onTouchMove = (event: TouchEvent) => {
-      if (!isInView() || touchStartY.current == null) return;
+      if (!isFullyInViewRef.current || touchStartY.current == null) return;
       const delta = touchStartY.current - (event.touches[0]?.clientY ?? 0);
       if (Math.abs(delta) < 40) return;
       const direction: 1 | -1 = delta > 0 ? 1 : -1;
-      const atBoundary = (active === 0 && direction === -1) || (active === SERVICES.length - 1 && direction === 1);
+      const current = activeRef.current;
+      const atBoundary = (current === 0 && direction === -1) || (current === SERVICES.length - 1 && direction === 1);
       if (atBoundary) return;
       event.preventDefault();
       if (lockRef.current) return;
@@ -84,11 +98,12 @@ const ServicesSection = () => {
     window.addEventListener("touchstart", onTouchStart, { passive: true });
     window.addEventListener("touchmove", onTouchMove, { passive: false });
     return () => {
+      observer?.disconnect();
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchmove", onTouchMove);
     };
-  }, [active]);
+  }, []);
 
   return (
     <section

@@ -15,7 +15,7 @@ import { verifyProductionHomepageMedia } from "../scripts/media-verify";
 
 const expectedHashes: Readonly<Record<string, string>> = {
   "/media/home/hero/yacht-cover-desktop.avif": "9095255cc998d6eaf68fdd5725185edcd4a9debbefe2c7af9371c7264cc9292b",
-  "/media/home/hero/yacht-cover-mobile.avif": "3a1c62a8f21c968a16116198066bcb758016b3c051bfc7d21ef76105d3f0d875",
+  "/media/home/hero/yacht-cover-mobile.avif": "18da0d9a4102830e365c8799f90bfcdbe91f4907eface5cb518ac3f04121abca",
   "/media/home/services/birthday-party.webp": "fe6bd6a1c2f3d19c18126568c918abd3d0716b59b3044d6b860e9527764657ed",
   "/media/home/services/wedding-anniversary.webp": "2526d6b111c109d19b300e3f6b28a6459034f4802bb464e6a77b36031d08ac28",
   "/media/home/services/engagement-party.webp": "419ac07e6a72b6b77ff368697b46d334609455e0b015d87bdd56496c0f2606ea",

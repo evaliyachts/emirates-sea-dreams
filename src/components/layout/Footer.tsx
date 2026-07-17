@@ -12,6 +12,10 @@ const Footer = () => (
             <img
               src="/dubai-yachts-logo.png"
               alt={BRAND_NAME}
+              width="358"
+              height="80"
+              loading="lazy"
+              decoding="async"
               className="h-8 w-auto"
             />
           </Link>

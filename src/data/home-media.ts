@@ -36,8 +36,8 @@ export const HOME_HERO_DESKTOP: HomepageMediaRecord = {
 export const HOME_HERO_MOBILE: HomepageMediaRecord = {
   id: "home-hero-mobile",
   path: "/media/home/hero/yacht-cover-mobile.avif",
-  width: 1536,
-  height: 2752,
+  width: 768,
+  height: 1376,
   alt: "",
   rightsRecordId: "english-home-hero-mobile-001",
   surface: "hero-mobile",
