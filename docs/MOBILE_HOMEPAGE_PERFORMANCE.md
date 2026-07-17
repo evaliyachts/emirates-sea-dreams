@@ -74,9 +74,35 @@ Lighthouse 12.8.2 against the production build served locally with the standard 
 | Render-blocking resource saving | 0 ms |
 | Image-delivery saving | 0 bytes |
 
-The local candidate and remote production baseline are not a controlled same-origin comparison. A Netlify Deploy Preview result is required before release review.
+The local candidate and remote production baseline are not a controlled same-origin comparison.
 
 At 390×844 in the controlled browser, the candidate retained the approved title, canonical and H1; the hero and 12 homepage sections were present; the generated CSS was inline; the application stylesheet link was absent; horizontal overflow was absent; and no console error or warning was recorded.
+
+## Deploy Preview evidence
+
+Validated preview: `https://deploy-preview-21--yachtrentaldxb.netlify.app/`
+
+Immutable Netlify deploy: `6a5a09538af9d70008d8380a`
+
+Three Lighthouse 12.8.2 mobile runs varied substantially with the throttled connection (scores 77, 63 and 98). The median result was:
+
+| Metric | Deploy Preview median |
+| --- | ---: |
+| Performance score | 77 |
+| First Contentful Paint | 3,603 ms |
+| Largest Contentful Paint | 3,603 ms |
+| Total Blocking Time | 15 ms |
+| Cumulative Layout Shift | 0 |
+| Time to First Byte | 471 ms |
+| LCP element-render delay | 431 ms |
+| Render-blocking resource saving | 0 ms |
+| Forced-reflow items | 0 |
+
+A same-window production run scored 75 with 3,846 ms FCP, 4,452 ms LCP, 49 ms TBT and 656 ms LCP element-render delay. These lab scores are network-sensitive and are not guaranteed field outcomes.
+
+The preview still reports 313,695 bytes of possible image savings, almost entirely from four inherited remote yacht-card sources whose transformation rights are not approved. This release does not bypass that evidence gate.
+
+The preview crawl passed 38 canonical `200` routes, 23 real-404 probes and exact equality with the 38-URL sitemap. At 390×844, title, description, H1 and canonical remained unchanged; the page had no horizontal overflow, live language alternates, console errors or hydration warnings.
 
 ## Safeguards and limitations
 
