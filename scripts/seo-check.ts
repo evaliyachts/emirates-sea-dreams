@@ -122,6 +122,10 @@ for (const route of publishedStaticRoutes) {
   if (/yachtrentaldxb\.netlify\.app|https:\/\/yacht-dxb\.com/i.test(head)) failures.push(`${route.path}: forbidden metadata authority.`);
   if (/hreflang\s*=|x-default/i.test(head)) failures.push(`${route.path}: live language alternates are prohibited.`);
   if (/<!--app-(?:head|html)-->/i.test(html)) failures.push(`${route.path}: static template markers remain.`);
+  if (route.path === "/") {
+    if (!/<style data-homepage-inline-css>/.test(head)) failures.push("/: generated stylesheet must be inlined for first-paint performance.");
+    if (/<link[^>]*rel=["']stylesheet["'][^>]*href=["']\/assets\//i.test(head)) failures.push("/: homepage must not retain the render-blocking generated stylesheet request.");
+  }
   if ((route.path === "/yachts" || route.pageType === "yacht") && /evaliyachts?|evali yacht|evaliyacht\.com|evaliyachts\.com/i.test(`${head}\n${visible}`)) {
     failures.push(`${route.path}: inherited Evali branding or authority appears in generated yacht output.`);
   }

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, useReducedMotion } from "framer-motion";
 import { Menu, Phone, MessageCircle, X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { NAV_LINKS, BRAND_NAME, getWhatsAppLink, getPhoneLink } from "@/lib/constants";
@@ -9,7 +8,6 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -29,9 +27,9 @@ const Header = () => {
   );
 
   return (
-    <motion.header initial={reduceMotion ? false : { y: -100 }} animate={{ y: 0 }} transition={{ duration: reduceMotion ? 0 : 0.6 }} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "liquid-header py-3" : "bg-transparent py-5"}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "liquid-header py-3" : "bg-transparent py-5"}`}>
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center group" aria-label={`${BRAND_NAME} home`}><img src="/dubai-yachts-logo.png" alt={BRAND_NAME} width="569" height="127" className="h-10 w-auto transition-transform duration-300 group-hover:scale-105" /></Link>
+        <Link to="/" className="flex items-center group" aria-label={`${BRAND_NAME} home`}><img src="/dubai-yachts-logo.png" alt={BRAND_NAME} width="358" height="80" className="h-10 w-auto transition-transform duration-300 group-hover:scale-105" decoding="async" /></Link>
         <nav aria-label="Primary" className="hidden lg:flex items-center gap-1">{NAV_LINKS.map((link) => navLink(link))}</nav>
         <div className="hidden lg:flex items-center gap-3">
           <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 text-sm font-medium liquid-btn text-green-400"><MessageCircle className="w-4 h-4" aria-hidden="true" /> WhatsApp</a>
@@ -54,7 +52,7 @@ const Header = () => {
           </Dialog.Portal>
         </Dialog.Root>
       </div>
-    </motion.header>
+    </header>
   );
 };
 

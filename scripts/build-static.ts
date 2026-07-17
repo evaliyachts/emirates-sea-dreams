@@ -3,6 +3,7 @@ import { resolve } from "node:path";
 import { publishedStaticRoutes } from "../seo/index";
 import { generateSitemapXml } from "./generate-sitemap";
 import { validateProductionData } from "./validate-production-data";
+import { getGeneratedStylesheetPath, inlineHomepageStylesheet } from "../src/lib/static-performance";
 
 interface RenderResult { html: string; head: string }
 interface ServerModule { renderStaticRoute(url: string, forceNotFound?: boolean): RenderResult }
@@ -11,6 +12,9 @@ const root = resolve(".");
 const dist = resolve(root, "dist");
 const serverOutput = resolve(root, ".static-ssr/entry-server.js");
 const template = await readFile(resolve(dist, "index.html"), "utf8");
+const generatedStylesheetPath = getGeneratedStylesheetPath(template);
+const homepageStylesheet = await readFile(resolve(dist, generatedStylesheetPath.slice(1)), "utf8");
+const homepageTemplate = inlineHomepageStylesheet(template, homepageStylesheet);
 validateProductionData();
 const { renderStaticRoute } = (await import(serverOutput)) as ServerModule;
 
@@ -29,7 +33,10 @@ export const assembleStaticDocument = (
 for (const route of publishedStaticRoutes) {
   const output = route.path === "/" ? resolve(dist, "index.html") : resolve(dist, `_static${route.path}.html`);
   await mkdir(resolve(output, ".."), { recursive: true });
-  await writeFile(output, assembleStaticDocument(template, renderStaticRoute(route.path)));
+  await writeFile(
+    output,
+    assembleStaticDocument(route.path === "/" ? homepageTemplate : template, renderStaticRoute(route.path)),
+  );
 }
 
 await writeFile(

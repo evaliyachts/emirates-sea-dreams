@@ -30,6 +30,7 @@ const YachtCard = ({ yacht, index = 0 }: YachtCardProps) => {
           height={primaryImage.height}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           loading="lazy"
+          decoding="async"
           onError={(event) => {
             const image = event.currentTarget;
             if (image.src.endsWith(NEUTRAL_YACHT_FALLBACK)) return;

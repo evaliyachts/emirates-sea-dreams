@@ -62,11 +62,15 @@ const approvedHomepageMediaRights: MediaRightsRecord[] = HOMEPAGE_MEDIA.map((med
   mediaRightsRecordSchema.parse({
     id: media.rightsRecordId,
     productionPath: media.path,
-    originalSource: "Exact prior homepage asset imported as a neutral local static snapshot.",
+    originalSource: media.id === "home-hero-mobile"
+      ? "Performance-optimized local rendition of the exact approved prior homepage snapshot; the source provenance and visual subject are unchanged."
+      : "Exact prior homepage asset imported as a neutral local static snapshot.",
     owner: "Business owner approval for yachtrentaldxb.com",
     evidence: approvedServiceDetailSurfaceByRightsId[media.rightsRecordId]
       ? "Owner approved reuse on the homepage and the exact matching service-detail primary-image surface on 2026-07-14."
-      : "Owner approved reuse of the prior desktop/mobile hero covers and service-card imagery on 2026-07-14.",
+      : media.id === "home-hero-mobile"
+        ? "Owner approved reuse of the prior mobile hero cover on 2026-07-14; a same-path, smaller local rendition was prepared for owner review in the mobile performance PR without changing the source image or approved surface."
+        : "Owner approved reuse of the prior desktop/mobile hero covers and service-card imagery on 2026-07-14.",
     approvedHosts: ["yachtrentaldxb.com"],
     approvedSurfaces: [
       media.surface === "service-card" ? "Homepage service-card imagery" : "Homepage hero cover",
