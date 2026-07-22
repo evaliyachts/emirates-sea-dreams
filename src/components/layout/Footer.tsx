@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { CheckCircle2, MessageCircle, Phone } from "lucide-react";
-import { BRAND_NAME, NAV_LINKS, getWhatsAppLink, getPhoneLink } from "@/lib/constants";
+import { BRAND_NAME, NAV_LINKS, SOCIAL_PROFILES, getWhatsAppLink, getPhoneLink } from "@/lib/constants";
 
 
 const Footer = () => (
@@ -30,6 +30,24 @@ const Footer = () => (
               <Phone className="w-4 h-4" />
             </a>
           </div>
+          <nav aria-label="Dubai Yacht social profiles" className="mt-5">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-foreground">Follow Dubai Yacht</p>
+            <ul className="flex flex-wrap gap-x-3 gap-y-2 text-xs">
+              {SOCIAL_PROFILES.map((profile) => (
+                <li key={profile.platform}>
+                  <a
+                    href={profile.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit Dubai Yacht on ${profile.platform}`}
+                    className="text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-primary focus-visible:text-primary"
+                  >
+                    {profile.platform}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
 
         <div>

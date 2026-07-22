@@ -2,6 +2,8 @@
 
 > PR 8B update (2026-07-14): the owner approved `Dubai Yacht`, phone `+971 50 464 1020`, E.164 `+971504641020`, WhatsApp `https://wa.me/971504641020`, the existing logo/favicon and the exact variable-departure wording in `ENGLISH_PR8B_OWNER_APPROVAL.md`. The owner subsequently identified **Mohammed Abdullah, Operation Manager** as the person operating the English website and controlling enquiry information. Email, address, hours, response promise, social profiles, alternate brand and a separate legal-entity name remain omitted.
 
+> Social-profile update (2026-07-22): the owner subsequently approved six exact profile URLs for visible footer links. This later approval supersedes only the earlier social-profile omission; it does not approve `sameAs` schema, analytics, a public address, operating hours or other business facts. See `SOCIAL_PROFILE_APPROVAL_20260722.md`.
+
 Repository evidence is not business approval. Values below must be explicitly confirmed before they enter a central production contract or structured data. Arabic constants must not be copied automatically.
 
 ## Implementation PR 1 status
@@ -17,7 +19,7 @@ The typed approval foundation now lives in `src/config/site-facts.ts`. The produ
 | Departure location | “Dubai Marina Dock” plus multiple route/location claims | Unverified | Confirm exact marina/departure process; do not treat as address |
 | Public physical address | None in visible source | Not approved | Omit LocalBusiness unless a verified public address is visibly published |
 | Hours | Daily 6:00 AM–11:00 PM; support 24/7 | Unverified | Confirm or remove; do not copy Arabic hours |
-| Social profiles | No approved profiles found in target source | Unverified | Supply exact official URLs or omit `sameAs` |
+| Social profiles | Six exact owner-supplied URLs recorded in `SOCIAL_PROFILE_APPROVAL_20260722.md` | Approved for visible footer links only | Keep `sameAs` omitted; do not add analytics or social pixels |
 | Analytics | No approved analytics configuration found | Unverified/disabled by absence | Confirm intended provider, consent and measurement ID before activation |
 | Fleet specifications | 24 records contain extensive facts | Unverified as a set | Approve each fact under a strict typed contract |
 | Prices | AED 500–7,500/hour in yacht data; fixed packages in offers | Unverified | Approve per-yacht price and effective date; remove stale package claims |

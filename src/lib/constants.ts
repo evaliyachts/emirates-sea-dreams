@@ -12,6 +12,7 @@ export const PHONE_E164 = requireApproved(getApprovedValue(siteFacts.phoneE164),
 export const WHATSAPP_URL = requireApproved(getApprovedValue(siteFacts.whatsappUrl), "WhatsApp URL");
 export const RESPONSIBLE_PERSON = requireApproved(getApprovedValue(siteFacts.responsiblePerson), "Responsible person");
 export const LEGAL_PUBLICATION_DATE = requireApproved(getApprovedValue(siteFacts.legalPublicationDate), "Legal publication date");
+export const SOCIAL_PROFILES = requireApproved(getApprovedValue(siteFacts.socialProfiles), "Social profiles");
 export const PLACEHOLDER_IMAGE = "/placeholder.svg";
 
 export const getWhatsAppLink = (message?: string) => {

@@ -1,5 +1,7 @@
 # English Final Business Approval Pack
 
+> Later evidence update (2026-07-22): six exact social profile URLs were approved for visible footer links. This historical pack otherwise remains unchanged. See `SOCIAL_PROFILE_APPROVAL_20260722.md` for the narrow approval and exclusions.
+
 Prepared: 2026-07-14
 
 Status: **superseded in part by `ENGLISH_PR8B_OWNER_APPROVAL.md` dated 2026-07-14**

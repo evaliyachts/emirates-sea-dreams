@@ -25,7 +25,7 @@ import { mediaRightsRegistry } from "../src/data/media-rights";
 import { approvedServices } from "../src/data/approved-services";
 import { publishableYachts } from "../src/data/yachts";
 import { siteFacts } from "../src/config/site-facts";
-import { BRAND_NAME } from "../src/lib/constants";
+import { BRAND_NAME, SOCIAL_PROFILES } from "../src/lib/constants";
 import {
   ORGANIZATION_ENTITY_ID,
   RESERVED_CONTACT_POINT_ENTITY_ID,
@@ -52,6 +52,14 @@ const publishedServicesById = new Map(approvedServices.map((service) => [service
 const commercialPaths = new Set(["/", "/yachts", "/services", "/occasions"]);
 const supportPaths = new Set(["/about", "/faq", "/contact", "/terms", "/privacy"]);
 const publishedPaths = new Set(publishedStaticRoutes.map((route) => route.path));
+const expectedSocialProfiles = [
+  ["Instagram", "https://www.instagram.com/dubai___yacht?igsh=aTFqbHNkYzhkZmo0&utm_source=qr"],
+  ["Facebook", "https://www.facebook.com/share/1Gd7YDGphg/?mibextid=wwXIfr"],
+  ["Threads", "https://www.threads.com/@dubai___yacht?igshid=NTc4MTIwNjQ2YQ=="],
+  ["X", "https://x.com/yacht_hire?s=11"],
+  ["TikTok", "https://www.tiktok.com/@dubaiyacht_rental?_r=1&_t=ZS-98EMXba1uDq"],
+  ["YouTube", "https://youtube.com/@luxury_yacht_rental_dubai?si=cTZtaKDe7TWrBnZP"],
+] as const;
 
 if (yachtCatalogueRegistry.length !== 24) failures.push(`Yacht inventory must contain 24 dispositions; found ${yachtCatalogueRegistry.length}.`);
 if (publishableYachts.length + blockedYachts.length !== 24) failures.push("Publishable and blocked yacht counts must total 24.");
@@ -122,6 +130,12 @@ for (const route of publishedStaticRoutes) {
   if (/yachtrentaldxb\.netlify\.app|https:\/\/yacht-dxb\.com/i.test(head)) failures.push(`${route.path}: forbidden metadata authority.`);
   if (/hreflang\s*=|x-default/i.test(head)) failures.push(`${route.path}: live language alternates are prohibited.`);
   if (/<!--app-(?:head|html)-->/i.test(html)) failures.push(`${route.path}: static template markers remain.`);
+  for (const [platform, url] of expectedSocialProfiles) {
+    const escapedUrl = url.replaceAll("&", "&amp;");
+    if (!body.includes(`href="${escapedUrl}"`) || !body.includes(`aria-label="Visit Dubai Yacht on ${platform}"`)) {
+      failures.push(`${route.path}: approved ${platform} footer profile is missing or altered.`);
+    }
+  }
   if (route.path === "/") {
     if (!/<style data-homepage-inline-css>/.test(head)) failures.push("/: generated stylesheet must be inlined for first-paint performance.");
     if (/<link[^>]*rel=["']stylesheet["'][^>]*href=["']\/assets\//i.test(head)) failures.push("/: homepage must not retain the render-blocking generated stylesheet request.");
@@ -387,8 +401,15 @@ if (englishArabicRouteMappings.some((record) => record.xDefaultAppropriate)) fai
 if (siteFacts.phoneDisplay.status !== "approved" || siteFacts.phoneE164.status !== "approved" || siteFacts.whatsappUrl.status !== "approved" || siteFacts.responsiblePerson.status !== "approved" || siteFacts.responsiblePerson.value !== "Mohammed Abdullah, Operation Manager" || siteFacts.legalPublicationDate.status !== "approved" || siteFacts.legalPublicationDate.value !== "14 July 2026" || siteFacts.analyticsEnabled.value !== false) {
   failures.push("PR 8B approved contact and analytics-disabled facts are incomplete.");
 }
-if (siteFacts.publicAddress.status === "approved" || siteFacts.socialProfiles.status === "approved" || siteFacts.operatingHours.status === "approved") {
-  failures.push("An omitted address, social profile or operating-hours fact was promoted.");
+if (siteFacts.publicAddress.status === "approved" || siteFacts.operatingHours.status === "approved") {
+  failures.push("An omitted address or operating-hours fact was promoted.");
+}
+if (
+  siteFacts.socialProfiles.status !== "approved" ||
+  siteFacts.socialProfiles.approvedAt !== "2026-07-22" ||
+  JSON.stringify(SOCIAL_PROFILES.map(({ platform, url }) => [platform, url])) !== JSON.stringify(expectedSocialProfiles)
+) {
+  failures.push("The owner-approved social profile contract is incomplete or altered.");
 }
 
 const netlify = await read("netlify.toml");
