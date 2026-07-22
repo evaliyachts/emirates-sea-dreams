@@ -14,3 +14,5 @@ The owner approved these exact external profile URLs for visible footer links on
 Evidence type: owner attestation in the website implementation task dated 2026-07-22. Each supplied destination returned HTTP `200` during pre-implementation verification on that date.
 
 The approval is limited to normal, visible, crawlable footer links. It does not authorize `sameAs` schema, analytics or social pixels, a cross-site editorial link, a route or sitemap change, or any change to the approved phone and WhatsApp facts.
+
+Presentation follow-up: the visible platform names were replaced with recognizable platform icons on 2026-07-22. Exact destinations are unchanged, and each icon link retains its explicit accessible platform label.

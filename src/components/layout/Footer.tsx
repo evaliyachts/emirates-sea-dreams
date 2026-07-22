@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { CheckCircle2, MessageCircle, Phone } from "lucide-react";
 import { BRAND_NAME, NAV_LINKS, SOCIAL_PROFILES, getWhatsAppLink, getPhoneLink } from "@/lib/constants";
+import { SocialPlatformIcon } from "@/components/shared/SocialPlatformIcon";
 
 
 const Footer = () => (
@@ -32,7 +33,7 @@ const Footer = () => (
           </div>
           <nav aria-label="Dubai Yacht social profiles" className="mt-5">
             <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-foreground">Follow Dubai Yacht</p>
-            <ul className="flex flex-wrap gap-x-3 gap-y-2 text-xs">
+            <ul className="flex flex-wrap gap-2">
               {SOCIAL_PROFILES.map((profile) => (
                 <li key={profile.platform}>
                   <a
@@ -40,9 +41,10 @@ const Footer = () => (
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Visit Dubai Yacht on ${profile.platform}`}
-                    className="text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-primary focus-visible:text-primary"
+                    className="liquid-btn inline-flex h-10 w-10 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:text-primary focus-visible:text-primary"
                   >
-                    {profile.platform}
+                    <SocialPlatformIcon platform={profile.platform} className="h-4 w-4" />
+                    <span className="sr-only">{profile.platform}</span>
                   </a>
                 </li>
               ))}
