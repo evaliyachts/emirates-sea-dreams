@@ -7,6 +7,13 @@ export interface ApprovedValue<T> {
   approvedAt?: string;
 }
 
+export type SocialPlatform = "Instagram" | "Facebook" | "Threads" | "X" | "TikTok" | "YouTube";
+
+export interface SocialProfile {
+  platform: SocialPlatform;
+  url: string;
+}
+
 export interface SiteFacts {
   productionUrl: ApprovedValue<string>;
   previewUrl: ApprovedValue<string>;
@@ -23,7 +30,7 @@ export interface SiteFacts {
   operatingHours: ApprovedValue<string>;
   bookingResponseHours: ApprovedValue<string>;
   publicAddress: ApprovedValue<string>;
-  socialProfiles: ApprovedValue<readonly string[]>;
+  socialProfiles: ApprovedValue<readonly SocialProfile[]>;
   analyticsEnabled: ApprovedValue<boolean>;
   logoPath: ApprovedValue<string>;
   faviconPath: ApprovedValue<string>;
@@ -97,7 +104,19 @@ export const siteFacts: SiteFacts = {
   operatingHours: { status: "not-applicable", evidence: "Owner directed operating hours to be omitted." },
   bookingResponseHours: { status: "not-applicable", evidence: "Owner prohibited a guaranteed response time." },
   publicAddress: { status: "not-applicable", evidence: "Owner directed public physical address to be omitted." },
-  socialProfiles: { status: "not-applicable", evidence: "Owner directed social profiles to be omitted pending approval." },
+  socialProfiles: {
+    value: [
+      { platform: "Instagram", url: "https://www.instagram.com/dubai___yacht?igsh=aTFqbHNkYzhkZmo0&utm_source=qr" },
+      { platform: "Facebook", url: "https://www.facebook.com/share/1Gd7YDGphg/?mibextid=wwXIfr" },
+      { platform: "Threads", url: "https://www.threads.com/@dubai___yacht?igshid=NTc4MTIwNjQ2YQ==" },
+      { platform: "X", url: "https://x.com/yacht_hire?s=11" },
+      { platform: "TikTok", url: "https://www.tiktok.com/@dubaiyacht_rental?_r=1&_t=ZS-98EMXba1uDq" },
+      { platform: "YouTube", url: "https://youtube.com/@luxury_yacht_rental_dubai?si=cTZtaKDe7TWrBnZP" },
+    ],
+    status: "approved",
+    evidence: "Owner supplied and approved the six exact social profile URLs for yachtrentaldxb.com on 2026-07-22.",
+    approvedAt: "2026-07-22",
+  },
   analyticsEnabled: {
     value: false,
     status: "approved",
