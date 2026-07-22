@@ -132,7 +132,7 @@ for (const route of publishedStaticRoutes) {
   if (/<!--app-(?:head|html)-->/i.test(html)) failures.push(`${route.path}: static template markers remain.`);
   for (const [platform, url] of expectedSocialProfiles) {
     const escapedUrl = url.replaceAll("&", "&amp;");
-    if (!body.includes(`href="${escapedUrl}"`) || !body.includes(`aria-label="Visit Dubai Yacht on ${platform}"`)) {
+    if (!body.includes(`href="${escapedUrl}"`) || !body.includes(`aria-label="Visit Dubai Yacht on ${platform}"`) || !body.includes(`data-social-icon="${platform}"`)) {
       failures.push(`${route.path}: approved ${platform} footer profile is missing or altered.`);
     }
   }

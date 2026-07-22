@@ -19,7 +19,7 @@ describe("owner-approved social profile links", () => {
     expect(SOCIAL_PROFILES).toEqual(expectedProfiles);
   });
 
-  it("renders accessible, crawlable footer anchors without altering entity schema", () => {
+  it("renders icon-only, accessible, crawlable footer anchors without altering entity schema", () => {
     const rendered = renderStaticRoute("/");
     const page = new DOMParser().parseFromString(rendered.html, "text/html");
     const nav = page.querySelector('nav[aria-label="Dubai Yacht social profiles"]');
@@ -28,7 +28,8 @@ describe("owner-approved social profile links", () => {
     expect(links).toHaveLength(expectedProfiles.length);
     links.forEach((link, index) => {
       const profile = expectedProfiles[index];
-      expect(link.textContent?.trim()).toBe(profile.platform);
+      expect(link.querySelector(`[data-social-icon="${profile.platform}"]`)).not.toBeNull();
+      expect(link.querySelector(".sr-only")?.textContent).toBe(profile.platform);
       expect(link.getAttribute("href")).toBe(profile.url);
       expect(link.getAttribute("target")).toBe("_blank");
       expect(link.getAttribute("rel")).toBe("noopener noreferrer");
