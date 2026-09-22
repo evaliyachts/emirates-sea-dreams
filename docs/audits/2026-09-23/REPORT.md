@@ -4,13 +4,15 @@ Audit date: 23 September 2026, Asia/Dubai. Domain: https://yachtrentaldxb.com.
 
 ## Release Record
 
-- CURRENT PRODUCTION COMMIT: `82acfbaae29d3d1c1f8f1c5c378702bb6e9228b4`, branch `main`.
-- Production deploy: `6a60af0feab5c90008b1ca57`, confirmed in the authenticated Netlify dashboard.
-- NEW COMMIT: see the tested application commit and final PR head in [verification.json](verification.json).
+- CURRENT PRODUCTION COMMIT: `e57f5d517e8da12cce4e040bd0f77a22b6fb4f1a`, branch `main` (PR #24 merge).
+- Production deploy: `6ab30e7c71289d0008b69eae`, confirmed published in the authenticated Netlify dashboard.
+- EXACT TESTED PR-HEAD COMMIT: `7e5af5dc69920a558bc222cd448e2f3f63e898ac`. Final Quality CI run `35796357641` passed at this exact revision. The production merge has the identical tree `95117307d406d4c8077f5bfbda315ec3f7f125da`.
+- BEFORE / ROLLBACK COMMIT: `82acfbaae29d3d1c1f8f1c5c378702bb6e9228b4`, preserved remotely and locally as `rollback/pre-seo-cleanup-2026-09-23`. Prior Netlify deploy: `6a60af0feab5c90008b1ca57`.
 - PR: https://github.com/evaliyachts/emirates-sea-dreams/pull/24
-- DEPLOYMENT: https://deploy-preview-24--yachtrentaldxb.netlify.app/ (review only).
+- DEPLOYMENT: https://yachtrentaldxb.com/; immutable release: https://6ab30e7c71289d0008b69eae--yachtrentaldxb.netlify.app/.
+- TESTED PREVIEW: https://6ab30b91d20aa600088e7fee--yachtrentaldxb.netlify.app/.
 - FILES CHANGED: [files-changed.txt](files-changed.txt).
-- Production was NOT deployed. No DNS, nameserver, registrar, Search Console, indexing, Ads or other-site changes were made.
+- The initial audit stopped at preview. The user subsequently authorized release of the tested improvements, production verification and limited recrawl requests. PR #24 was merged with an exact-head guard. No alias/routing, DNS, nameserver, registrar, Ads or other-site changes accompanied the release. See [RELEASE.md](RELEASE.md) for production checks and actual Search Console submission status.
 
 ## Scope and Baseline
 
@@ -207,10 +209,12 @@ Dependency audit: 13 existing advisories (5 high, 7 moderate, 1 low) across deve
 7. Brand artwork singular/plural decision and actual differentiation from Evali and the Arabic site. Reciprocal language mapping approval before hreflang.
 8. Current Search Console read-only exports by date/query/page/device/country, indexing examples, Google-selected canonicals, relevant links and field CWV to investigate the reported decline. Do not infer causality from an update date.
 9. Approval for technical .html alias normalization and any later hub/service consolidation. No deletion, live-route redirect, canonical transfer or noindex decision is included in this PR.
-10. Approval to merge/deploy, then production re-crawl. On the actual release date, update only genuinely changed sitemap lastmod entries; existing legal publication dates are not silently rewritten.
+10. The user approved PR #24's tested release; deployment and production re-crawl passed. Future content/routing changes still need their own review. Sitemap membership was preserved; a future metadata-only change should derive lastmod from actual page edits, not blanket-reset legal publication dates.
 
 ## Verification and Release Gate
 
-[verification.json](verification.json) records exact tests, code revisions, deployment, crawl results, responsive cases and limitations. The review branch is not permission to publish. After approval, repeat the production crawl and browser interaction tests, confirm all 38 legitimate routes remain 200, robots/canonicals/sitemap remain correct, unknown URLs remain 404, and approved media/contact actions work. Preserve before/after records.
+[verification.json](verification.json) records exact tests, code revisions, deployment, crawl results, responsive cases and limitations. The initial audit ended at review. Following the user's explicit release authorization, PR #24 was merged using its exact tested head and deployed. All 38 legitimate production routes passed raw and rendered checks, retained self-canonicals and the exact sitemap inventory, and had no accidental noindex. Unknown URLs remained genuine 404s. Mobile contact/booking interactions passed at four widths; no real messages or bookings were sent.
+
+Production evidence: [production-gate.json](production-gate.json), [production-after.json](production-after.json), [production-browser.json](production-browser.json), [production-interactions.json](production-interactions.json). The exact release and rollback records, Google live-test evidence and recrawl outcomes are in [RELEASE.md](RELEASE.md).
 
 The technical alias redirects, field performance verification, current Search Console causality analysis and missing business evidence remain explicit follow-up decisions. They do not justify fabricated content or automatic removal of customer pages.
