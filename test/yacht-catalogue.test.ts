@@ -124,7 +124,7 @@ describe("English PR 4 strict yacht catalogue", () => {
     const sitemap = read("public/sitemap.xml");
 
     expect(publishedYachtRoutes).toHaveLength(publishableYachts.length);
-    expect(catalogue.html).toContain("Compare Yachts for Rent in Dubai by Verified Facts");
+    expect(catalogue.html).toContain("Compare Yachts and Prices");
     publishableYachts.forEach((record) => expect(catalogue.html).toContain(`href="/yachts/${record.slug}"`));
     blockedYachts.forEach((record) => expect(sitemap).not.toContain(`/yachts/${record.historicalSlug}`));
     publishableYachts.forEach((record) => expect(sitemap).toContain(`/yachts/${record.slug}`));

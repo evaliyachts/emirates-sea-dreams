@@ -13,6 +13,7 @@ import { publishedYachtsById } from "@/lib/published-fleet";
 import { canonicalUrlForPath } from "../../seo/authorities";
 import { buildBreadcrumbNode, organizationReference, schemaGraph } from "@/lib/entity-schema";
 import NotFound from "./NotFound";
+import BookingActions from "@/components/shared/BookingActions";
 
 const categoryLabel = {
   celebration: "Private celebration",
@@ -64,10 +65,8 @@ const ServiceDetails = () => {
           introduction={service.introduction}
           directAnswer={service.directAnswer}
         >
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a href="#yacht-comparison" className="liquid-btn-primary px-6 py-3">Compare three yacht records</a>
-            <Link to="/services" className="liquid-btn px-6 py-3 text-foreground">All approved services</Link>
-          </div>
+          <div className="mt-6"><BookingActions /></div>
+          <a href="#yacht-comparison" className="mt-4 inline-flex min-h-11 items-center text-primary underline">Compare yacht prices and capacities</a>
         </CommercialHero>
 
         {service.media && (
@@ -84,14 +83,14 @@ const ServiceDetails = () => {
                   className="max-h-[620px] w-full object-cover"
                 />
                 <figcaption className="px-5 py-4 text-sm leading-6 text-muted-foreground">
-                  Neutral category image. It does not establish an optional item, supplier, route or vessel feature.
+                  Planning inspiration. Ask about the setup available for your yacht and date.
                 </figcaption>
               </figure>
             </div>
           </section>
         )}
 
-        <Section title="Availability and optional-request boundary">
+        <Section title="Optional arrangements">
           <div className="liquid-glass-gold max-w-4xl p-7">
             <div className="flex items-start gap-4">
               <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" aria-hidden="true" />
@@ -103,13 +102,13 @@ const ServiceDetails = () => {
           </div>
         </Section>
 
-        <Section title="Who this request is for">
+        <Section title="Plan for your guests">
           <div className="grid max-w-5xl gap-6 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="liquid-glass p-7">
               <p className="leading-7 text-muted-foreground">{service.whoItIsFor}</p>
             </div>
             <div className="liquid-glass-gold p-7">
-              <h3 className="text-xl font-semibold text-foreground">Suitable group or occasion types</h3>
+              <h3 className="text-xl font-semibold text-foreground">Your gathering</h3>
               <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
                 {service.suitableGroupTypes.map((group) => <li key={group}>• {group}</li>)}
               </ul>
@@ -127,7 +126,7 @@ const ServiceDetails = () => {
           </Section>
         ))}
 
-        <Section title={`How to prepare this ${service.name.toLowerCase()} request`}>
+        <Section title="How to get a quote">
           <ol className="grid gap-5 md:grid-cols-2">
             {service.bookingSteps.map((step, index) => (
               <li key={step} className="liquid-glass p-6">
@@ -140,7 +139,7 @@ const ServiceDetails = () => {
           </ol>
         </Section>
 
-        <Section title="What can affect the final request price">
+        <Section title="What affects the price">
           <div className="grid gap-5 md:grid-cols-2">
             {service.priceFactors.map((factor) => (
               <article key={factor} className="liquid-glass p-6">
@@ -150,15 +149,15 @@ const ServiceDetails = () => {
             ))}
           </div>
           <p className="mt-6 max-w-4xl leading-7 text-muted-foreground">
-            This page publishes no fixed service package or optional-extra price. The verified yacht rates below are vessel facts; any accepted supplier or setup request requires separate written pricing.
+            Start with the yacht rate below and your rental duration. Ask for a full quote for your date and any optional extras.
           </p>
         </Section>
 
         <div id="yacht-comparison">
-          <YachtFactLinks title="Three published yachts for a factual comparison" yachts={yachts} note={service.yachtSelectionNote} />
+          <YachtFactLinks title="Compare yacht options" yachts={yachts} note={service.yachtSelectionNote} />
         </div>
 
-        <Section title="Related approved private-yacht requests">
+        <Section title="More ways to celebrate">
           <div className="grid gap-4 md:grid-cols-3">
             {related.map((item) => (
               <Link
@@ -176,21 +175,21 @@ const ServiceDetails = () => {
 
         <FaqSection title={`${service.name} planning questions`} faqs={service.faqs} />
 
-        <Section title="Prepare the booking request">
+        <Section title="Request availability for your plans">
           <div className="liquid-glass-gold max-w-4xl p-7">
             <p data-service-confirmation-disclaimer className="leading-7 text-muted-foreground">
-              Preparing a request does not reserve a yacht or confirm availability. Optional details are confirmed only in the final written offer or WhatsApp confirmation for that request.
+              Send your date, guest count and preferred yacht. Our team will confirm available options and final pricing in your written offer or WhatsApp confirmation before you book.
             </p>
-            <Link data-service-booking-cta to="/#booking-request-guide" className="liquid-btn-primary mt-6 inline-flex px-6 py-3">
-              Prepare a booking request
+            <Link data-service-booking-cta to="/contact" className="liquid-btn-primary mt-6 inline-flex px-6 py-3">
+              Request a Quote
             </Link>
           </div>
         </Section>
 
-        <Section title="Continue with published planning pages">
+        <Section title="Explore more options">
           <div className="flex flex-wrap gap-4">
-            <Link to="/services" className="liquid-btn-primary px-6 py-3"><ArrowLeft className="mr-2 inline h-4 w-4" />Approved services</Link>
-            <Link to="/yachts" className="liquid-btn px-6 py-3 text-foreground">Compare all published yachts</Link>
+            <Link to="/services" className="liquid-btn-primary px-6 py-3"><ArrowLeft className="mr-2 inline h-4 w-4" />All services</Link>
+            <Link to="/yachts" className="liquid-btn px-6 py-3 text-foreground">Compare all yachts</Link>
             <Link to="/occasions" className="liquid-btn px-6 py-3 text-foreground">Browse occasion themes</Link>
           </div>
         </Section>

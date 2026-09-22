@@ -2,12 +2,12 @@ import { AnimatedSection, ParallaxSection } from "@/components/shared/AnimatedSe
 import { CalendarDays, Clock3, ListPlus, ShipWheel, Timer, Users } from "lucide-react";
 
 const requestDetails = [
-  { icon: CalendarDays, name: "Preferred date", note: "Prepare a date for availability checking" },
-  { icon: Clock3, name: "Start-time preference", note: "Treat timing as a request until confirmed" },
+  { icon: CalendarDays, name: "Preferred date", note: "Choose your preferred date" },
+  { icon: Clock3, name: "Start-time preference", note: "Tell us when you would like to start" },
   { icon: Timer, name: "Requested duration", note: "Meet the selected yacht's stated minimum" },
-  { icon: Users, name: "Complete guest count", note: "Keep the group within published capacity" },
-  { icon: ShipWheel, name: "Yacht shortlist", note: "Compare facts before requesting confirmation" },
-  { icon: ListPlus, name: "Optional requests", note: "List each item for separate confirmation" },
+  { icon: Users, name: "Complete guest count", note: "Include everyone who will board" },
+  { icon: ShipWheel, name: "Yacht shortlist", note: "Name a yacht or ask for options" },
+  { icon: ListPlus, name: "Optional requests", note: "Share food, celebration or access needs" },
 ] as const;
 
 const RoutesSection = () => (
@@ -16,10 +16,10 @@ const RoutesSection = () => (
       <AnimatedSection initiallyVisible className="mb-14 text-center">
         <span className="liquid-pill inline-block">Request details</span>
         <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
-          Prepare the Details Before Asking for Confirmation
+          What to Send with Your Enquiry
         </h2>
         <p className="mx-auto max-w-2xl text-muted-foreground">
-          No fixed sightseeing route or departure point is promised here. Operating and route details belong to the confirmation process.
+          These details help the team check availability and prepare options for your group.
         </p>
       </AnimatedSection>
 

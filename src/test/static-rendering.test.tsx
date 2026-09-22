@@ -10,13 +10,13 @@ import { renderStaticRoute } from "@/entry-server";
 describe("shared client and static route tree", () => {
   it.each([
     ["/", "Private Yacht Rental in Dubai"],
-    ["/yachts", "Compare Yachts for Rent in Dubai"],
-    ["/services", "Plan Optional Services"],
-    ["/occasions", "Choose a Private Yacht Occasion"],
-    ["/services/birthday-party", "Plan a Private Birthday Yacht Celebration"],
+    ["/yachts", "Compare Yachts and Prices"],
+    ["/services", "Plan Your Time on the Water"],
+    ["/occasions", "Choose Your Yacht Occasion"],
+    ["/services/birthday-party", "Birthday Parties on a Private Yacht"],
     ["/about", "About Dubai Yacht"],
     ["/faq", "Private Yacht Rental FAQ"],
-    ["/contact", "Prepare a Private Yacht Enquiry"],
+    ["/contact", "Check Yacht Availability"],
     ["/terms", "Website and Yacht Request Terms"],
     ["/privacy", "Privacy Notice"],
   ])("renders %s with route-specific initial HTML", (path, heading) => {
@@ -32,8 +32,8 @@ describe("shared client and static route tree", () => {
     const yachts = renderStaticRoute("/yachts");
     const services = renderStaticRoute("/services");
     expect(yachts.head).toContain("Yachts for Rent in Dubai");
-    expect(yachts.head).not.toContain("Private Yacht Service Planning");
-    expect(services.head).toContain("Private Yacht Service Planning");
+    expect(yachts.head).not.toContain("Private Yacht Celebrations");
+    expect(services.head).toContain("Private Yacht Celebrations");
     expect(services.head).not.toContain("Yachts for Rent in Dubai");
   });
 
@@ -45,7 +45,7 @@ describe("shared client and static route tree", () => {
         </MemoryRouter>
       </AppProviders>,
     );
-    expect(screen.getByRole("heading", { level: 1, name: /Plan Optional Services/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: /Plan Your Time on the Water/i })).toBeInTheDocument();
   });
 
   it("selects createRoot for empty and comment-only roots, and hydration for element markup", () => {

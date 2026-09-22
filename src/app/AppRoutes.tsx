@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import Index from "@/pages/Index";
 import Yachts from "@/pages/Yachts";
 import YachtDetails from "@/pages/YachtDetails";
-import Offers from "@/pages/Offers";
 import Services from "@/pages/Services";
 import ServiceDetails from "@/pages/ServiceDetails";
 import Occasions from "@/pages/Occasions";
@@ -23,7 +22,7 @@ export const AppRoutes = ({ forceNotFound = false }: { forceNotFound?: boolean }
       <Route path="/" element={<Index />} />
       <Route path="/yachts" element={<Yachts />} />
       <Route path="/yachts/:slug" element={<YachtDetails />} />
-      <Route path="/offers" element={<Offers />} />
+      <Route path="/offers" element={<NotFound />} />
       <Route path="/services" element={<Services />} />
       <Route path="/services/:slug" element={<ServiceDetails />} />
       <Route path="/occasions" element={<Occasions />} />

@@ -2,12 +2,11 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { AppProviders } from "../src/app/AppProviders";
-import { createAppQueryClient } from "../src/app/query-client";
 import { AppRoutes } from "../src/app/AppRoutes";
 import { renderStaticRoute } from "../src/entry-server";
 import { publishedStaticRoutes } from "../seo";
 
-const renderRoute = (path: string) => render(<AppProviders queryClient={createAppQueryClient()}><MemoryRouter initialEntries={[path]}><AppRoutes /></MemoryRouter></AppProviders>);
+const renderRoute = (path: string) => render(<AppProviders><MemoryRouter initialEntries={[path]}><AppRoutes /></MemoryRouter></AppProviders>);
 
 describe("PR 8B support, legal and contact publication", () => {
   afterEach(() => vi.restoreAllMocks());
@@ -68,7 +67,7 @@ describe("PR 8B support, legal and contact publication", () => {
     fireEvent.change(screen.getByLabelText("Preferred start time"), { target: { value: "16:00" } });
     fireEvent.change(screen.getByLabelText(/Requested duration/), { target: { value: "3" } });
     fireEvent.change(screen.getByLabelText("Guest count"), { target: { value: "8" } });
-    fireEvent.click(screen.getByRole("button", { name: "Prepare in WhatsApp" }));
+    fireEvent.click(screen.getByRole("button", { name: "Continue to WhatsApp" }));
     expect(window.open).toHaveBeenCalledWith("", "dubai_yacht_whatsapp");
     expect(popup.opener).toBeNull();
     expect(popup.location.href).toContain("https://wa.me/971504641020?text=");
@@ -85,7 +84,7 @@ describe("PR 8B support, legal and contact publication", () => {
     fireEvent.change(screen.getByLabelText("Preferred start time"), { target: { value: "16:00" } });
     fireEvent.change(screen.getByLabelText(/Requested duration/), { target: { value: "2" } });
     fireEvent.change(screen.getByLabelText("Guest count"), { target: { value: "4" } });
-    fireEvent.click(screen.getByRole("button", { name: "Prepare in WhatsApp" }));
+    fireEvent.click(screen.getByRole("button", { name: "Continue to WhatsApp" }));
     const status = await screen.findByRole("status");
     expect(status).toHaveTextContent("Nothing has been sent");
     expect(status).not.toHaveTextContent("has been prepared in WhatsApp");

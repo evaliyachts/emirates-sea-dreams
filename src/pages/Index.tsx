@@ -18,7 +18,7 @@ const Index = () => (
   <Layout>
     <SEOHead
       title="Private Yacht Rental Dubai | Dubai Yacht"
-      description="Compare 19 verified private yachts in Dubai by hourly price, guest capacity and minimum duration, then prepare a factual rental request."
+      description="Compare private yachts in Dubai by hourly price, guest capacity and rental duration. View photos and contact Dubai Yacht to check availability."
       path="/"
       jsonLd={buildHomepageEntitySchema()}
     />

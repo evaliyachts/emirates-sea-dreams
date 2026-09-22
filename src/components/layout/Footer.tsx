@@ -21,7 +21,7 @@ const Footer = () => (
             />
           </Link>
           <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-            Published yacht facts and planning guidance for private yacht requests in Dubai. Availability and optional services require confirmation.
+            Compare private yachts in Dubai and contact our team to plan your trip. Availability and optional services require confirmation.
           </p>
           <div className="flex gap-3">
             <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" aria-label="Contact Dubai Yacht on WhatsApp" className="p-2 liquid-btn rounded-xl text-green-400">
@@ -62,19 +62,19 @@ const Footer = () => (
         </div>
 
         <div>
-          <h2 className="font-display font-semibold text-foreground mb-4">Published Guides</h2>
+          <h2 className="font-display font-semibold text-foreground mb-4">Plan Your Trip</h2>
           <nav className="flex flex-col gap-2 text-sm">
-            <Link to="/yachts" className="text-muted-foreground hover:text-primary transition-colors">Compare verified yachts and prices</Link>
-            <Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">Review optional service categories</Link>
-            <Link to="/occasions" className="text-muted-foreground hover:text-primary transition-colors">Plan a private yacht occasion</Link>
+            <Link to="/yachts" className="text-muted-foreground hover:text-primary transition-colors">Yachts and prices</Link>
+            <Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">Celebrations and services</Link>
+            <Link to="/occasions" className="text-muted-foreground hover:text-primary transition-colors">Occasion ideas</Link>
           </nav>
         </div>
 
         <div>
-          <h2 className="font-display font-semibold text-foreground mb-4">Before You Request</h2>
+          <h2 className="font-display font-semibold text-foreground mb-4">Get in Touch</h2>
           <div className="flex items-start gap-2 text-sm text-muted-foreground">
             <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" aria-hidden="true" />
-            <p>Prepare your preferred date, duration, guest count, yacht shortlist and any optional requests. Confirm availability and operating details before relying on them.</p>
+            <p>Send your preferred date, duration and guest count. Tell us about any yacht or occasion you have in mind.</p>
           </div>
         </div>
       </div>

@@ -1,684 +1,909 @@
-import { HOME_SERVICE_MEDIA } from "./home-media";
 import { publishableYachts } from "./yachts";
-import type { ApprovedServiceMedia, ApprovedServiceRecord } from "./approved-service-schema";
-
+import type { ApprovedServiceRecord } from "./approved-service-schema";
 export type { ApprovedServiceMedia, ApprovedServiceRecord } from "./approved-service-schema";
 
-const serviceMedia = (rightsRecordId: string, alt: string): ApprovedServiceMedia => {
-  const source = HOME_SERVICE_MEDIA.find((record) => record.rightsRecordId === rightsRecordId);
-  if (!source) throw new Error(`Approved service media is missing from the local homepage registry: ${rightsRecordId}`);
-  return {
-    path: source.path,
-    alt,
-    width: source.width,
-    height: source.height,
-    rightsRecordId: source.rightsRecordId,
-  };
-};
-
-const approved = (record: ApprovedServiceRecord) => record;
-
 export const approvedServices: readonly ApprovedServiceRecord[] = [
-  approved({
-    id: "service-birthday",
-    slug: "birthday-party",
-    path: "/services/birthday-party",
-    name: "Private Birthday Yacht Celebration",
-    category: "celebration",
-    availability: "on request and subject to confirmation",
-    metadata: {
-      title: "Birthday Yacht Party Dubai | Private Request Planning",
-      description: "Plan a private birthday yacht request in Dubai by guest capacity, yacht price and optional celebration details that require separate confirmation.",
-      h1: "Plan a Private Birthday Yacht Celebration in Dubai",
+  {
+    "id": "service-birthday",
+    "slug": "birthday-party",
+    "path": "/services/birthday-party",
+    "name": "Private Birthday Yacht Celebration",
+    "category": "celebration",
+    "availability": "on request and subject to confirmation",
+    "metadata": {
+      "title": "Birthday Yacht Parties in Dubai | Dubai Yacht",
+      "description": "Plan a birthday around your guest list, budget and preferred time on the water.",
+      "h1": "Birthday Parties on a Private Yacht"
     },
-    introduction: "A birthday yacht request starts with the people attending, the date you prefer and the yacht facts that fit the group. This page separates those verified decisions from celebration ideas, so you can compare published capacity, hourly price and minimum duration before asking about any optional setup.",
-    directAnswer: "A private birthday yacht celebration is on request and subject to confirmation. Choose a published yacht that can hold the complete group, request a duration that meets its minimum, and list cake, decoration, music, dining or photography separately for supplier and price confirmation.",
-    whoItIsFor: "This request is for people planning a private birthday gathering who can confirm the complete guest count before comparing yacht capacity and optional celebration ideas.",
-    suitableGroupTypes: [
-      "A couple or small private birthday group within the selected yacht's published capacity.",
-      "Family and friends gathering for a birthday, with every adult and child counted.",
-      "A larger private birthday group that needs a higher-capacity published yacht comparison.",
+    "introduction": "Plan a birthday around your guest list, budget and preferred time on the water. Compare yacht capacities and hourly prices below, then share the celebration details you would like the team to arrange.",
+    "directAnswer": "Start with the full guest count, including children, and choose a yacht with enough capacity. Tell us whether you want a simple gathering or would like to discuss cake, decorations, food or photography.",
+    "whoItIsFor": "Birthday hosts choosing a private yacht for friends or family.",
+    "suitableGroupTypes": [
+      "Small birthday gatherings",
+      "Family celebrations with adults and children",
+      "Larger groups comparing guest capacity"
     ],
-    optionalRequestBoundary: "Cake, decoration, music, dining, photography, balloons and entertainment are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
-    sections: [
+    "optionalRequestBoundary": "Cake, decoration, music, dining, photography, balloons and entertainment are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
+    "sections": [
       {
-        heading: "Start with the birthday group, not a package label",
-        paragraphs: [
-          "Count every guest before comparing yachts. The published capacity is a maximum comparison limit, while the actual request still needs confirmation for the chosen date and group.",
-          "Then compare length, hourly price and minimum duration. A larger yacht or higher rate does not prove that a celebration extra, supplier or particular layout is available.",
-        ],
+        "heading": "Organise the guest list",
+        "paragraphs": [
+          "Count everyone who will board, including any photographer or entertainer you want to invite.",
+          "Share children's ages and any mobility needs when asking which yacht would work for the group."
+        ]
       },
       {
-        heading: "Separate the yacht request from celebration extras",
-        paragraphs: [
-          "Describe the preferred style and each optional item in writing. A photograph or birthday theme does not establish that cake, decoration, music, dining or a photographer forms part of the yacht price.",
-          "Ask for the availability, supplier, lead time and separate price of every requested addition. Rely only on the final written offer when deciding what has been confirmed.",
-        ],
+        "heading": "Plan the birthday moment",
+        "paragraphs": [
+          "Decide when you would like the cake, photos and any speeches during the trip.",
+          "Ask about cake storage, decoration access and setup time before ordering items from a supplier."
+        ]
       },
       {
-        heading: "Keep timing and movement flexible until confirmed",
-        paragraphs: [
-          "Prepare a preferred date, start time and requested number of hours, but do not rely on a fixed departure point, route, duration or landmark sequence from this page.",
-          "The useful outcome is a complete request: selected yacht, guest count, requested timing and a clearly separated optional list for confirmation.",
-        ],
+        "heading": "Budget for the whole celebration",
+        "paragraphs": [
+          "Use the hourly yacht rate and minimum duration to estimate the base rental cost.",
+          "List your optional extras together so you can compare the full quote against your budget."
+        ]
+      }
+    ],
+    "bookingSteps": [
+      "Choose a yacht that fits your complete guest count.",
+      "Send your preferred date, start time and duration.",
+      "Describe your celebration or trip plans and optional requests.",
+      "Review the full quote and booking terms before confirming."
+    ],
+    "priceFactors": [
+      "The yacht's hourly rate.",
+      "Your rental duration and the yacht's minimum booking time.",
+      "The yacht size needed for your group.",
+      "Optional arrangements with separate pricing."
+    ],
+    "faqs": [
+      {
+        "question": "Can I bring a birthday cake?",
+        "answer": "Tell us the cake size and whether it needs chilling. The team will check storage, boarding and serving arrangements for your yacht."
       },
+      {
+        "question": "Can children join the birthday trip?",
+        "answer": "Include children in the total guest count and share their ages so the team can explain the yacht-specific safety requirements."
+      },
+      {
+        "question": "Can decorations be arranged?",
+        "answer": "Describe the theme and your budget. Decorations, suppliers and setup times require separate confirmation and pricing."
+      },
+      {
+        "question": "How much time should I request?",
+        "answer": "Start with the yacht's minimum duration, then allow time for boarding, photos, cake and any other activities you want to discuss."
+      }
     ],
-    bookingSteps: [
-      "Confirm the complete birthday guest count, including children.",
-      "Compare three published yacht records by capacity, hourly price, size and minimum duration.",
-      "Prepare the preferred date, timing and requested duration without assuming a route or departure point.",
-      "List every optional celebration item and review the final written offer before relying on it.",
+    "yachtIds": [
+      "yacht-royal-majesty-50",
+      "yacht-majesty-56",
+      "yacht-majesty-88"
     ],
-    priceFactors: [
-      "The selected yacht's verified hourly price.",
-      "The requested hours, subject to that yacht's published minimum duration.",
-      "The complete guest count and the size of yacht selected.",
-      "Separately confirmed suppliers, styling, hospitality or entertainment requests.",
+    "yachtSelectionNote": "Compare guest capacities and rental costs for your group. Ask the team to check any specific layout or facilities you need.",
+    "relatedServiceIds": [
+      "service-graduation",
+      "service-anniversary",
+      "service-engagement"
     ],
-    faqs: [
-      { question: "Is birthday decoration part of the yacht's hourly price?", answer: "No decoration is assumed. Describe the requested setup and obtain availability, supplier and separate-price confirmation in the final written offer." },
-      { question: "Can a birthday yacht request be confirmed from this page?", answer: "No. The service is on request and subject to confirmation, including the yacht, date, timing and every optional item." },
-      { question: "How should I compare yachts for a birthday group?", answer: "Use the verified guest capacity first, then compare hourly price, minimum duration and length. Those facts do not confirm celebration equipment or extras." },
-      { question: "Does the birthday page promise a route or landmark stop?", answer: "No pre-set route, departure point or landmark coverage is published. Include timing preferences in the request and wait for written confirmation." },
-    ],
-    yachtIds: ["yacht-royal-majesty-50", "yacht-majesty-56", "yacht-majesty-88"],
-    yachtSelectionNote: "These three records provide factual capacity and price comparisons for small, medium and larger groups. The selection does not verify birthday equipment, suppliers or setup compatibility.",
-    relatedServiceIds: ["service-graduation", "service-anniversary", "service-engagement"],
-    media: serviceMedia("english-home-service-birthday-001", "Birthday celebration setting for a private yacht request"),
-  }),
-  approved({
-    id: "service-proposal",
-    slug: "marriage-proposal-party",
-    path: "/services/marriage-proposal-party",
-    name: "Private Yacht Marriage Proposal",
-    category: "private-experience",
-    availability: "on request and subject to confirmation",
-    metadata: {
-      title: "Yacht Proposal Dubai | Plan a Private Request",
-      description: "Prepare a private yacht proposal request in Dubai with verified yacht facts and optional styling, dining and photography confirmed separately.",
-      h1: "Plan a Private Yacht Marriage Proposal in Dubai",
+    "media": {
+      "path": "/media/home/services/birthday-party.webp",
+      "alt": "Birthday celebration setting for a private yacht request",
+      "width": 767,
+      "height": 730,
+      "rightsRecordId": "english-home-service-birthday-001"
+    }
+  },
+  {
+    "id": "service-proposal",
+    "slug": "marriage-proposal-party",
+    "path": "/services/marriage-proposal-party",
+    "name": "Private Yacht Marriage Proposal",
+    "category": "private-experience",
+    "availability": "on request and subject to confirmation",
+    "metadata": {
+      "title": "Private Yacht Proposals in Dubai | Dubai Yacht",
+      "description": "Plan a proposal with the timing, guest list and presentation that feel right for you.",
+      "h1": "Plan a Private Yacht Marriage Proposal"
     },
-    introduction: "A proposal request benefits from careful planning without assuming a ready-made setup. Begin with whether the trip is for two people or a small group, compare the published yacht limits, and describe the preferred timing and optional presentation in a way that can be checked before you rely on it.",
-    directAnswer: "A private yacht marriage proposal is on request and subject to confirmation. The yacht, date and timing must be confirmed, while letters, candles, flowers, decoration, dinner and photography remain optional requests with separate availability, supplier and price decisions.",
-    whoItIsFor: "This request is for a couple planning a private yacht proposal, with the option to include a small group only when the full guest count fits the selected yacht's published capacity.",
-    suitableGroupTypes: [
-      "A two-person proposal request built around verified yacht price and minimum-duration facts.",
-      "A proposal with a small private group, counted before the yacht shortlist is prepared.",
+    "introduction": "Plan a proposal with the timing, guest list and presentation that feel right for you. Compare yacht prices below, then tell the team whether you are arranging a surprise for two or inviting friends and family.",
+    "directAnswer": "Choose a yacht and send your preferred date, duration and guest count. Describe the proposal moment and any flowers, dinner or photography you would like to discuss so the team can check the arrangements.",
+    "whoItIsFor": "Couples planning a proposal, with or without a small group of guests.",
+    "suitableGroupTypes": [
+      "A proposal for two",
+      "A proposal with friends or family"
     ],
-    optionalRequestBoundary: "Letters, candles, flowers, styling, decoration, dinner, photography and music are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
-    sections: [
+    "optionalRequestBoundary": "Letters, candles, flowers, styling, decoration, dinner, photography and music are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
+    "sections": [
       {
-        heading: "Choose the yacht from verified facts",
-        paragraphs: [
-          "Use the complete guest count to stay within the published capacity, then compare length, hourly price and minimum duration. A yacht name or image does not prove privacy arrangements or proposal equipment.",
-          "A smaller group can still compare more than one vessel by budget and requested time. Availability remains a booking-time check rather than a promise made by this page.",
-        ],
+        "heading": "Keep the surprise organised",
+        "paragraphs": [
+          "Let the team know who should receive the planning messages and whether the proposal is a surprise.",
+          "Agree on how decorations or suppliers would board without revealing the plan early."
+        ]
       },
       {
-        heading: "Describe the proposal moment without assuming a setup",
-        paragraphs: [
-          "State the preferred atmosphere and list each optional request separately. Do not assume letters, candles, flowers, a photographer, dinner or decoration appears automatically.",
-          "Ask what can be supplied, what lead time applies and what the separate price will be. The final written offer is the source for any confirmed arrangement.",
-        ],
+        "heading": "Choose your photo priorities",
+        "paragraphs": [
+          "Explain whether you want a photographer, candid photos or a particular backdrop.",
+          "Ask which timing and route options suit those priorities; the trip details depend on the selected yacht and conditions."
+        ]
       },
       {
-        heading: "Plan timing with a flexible operational request",
-        paragraphs: [
-          "Share the preferred date and time, along with any sequencing question, but do not rely on a fixed departure, route, duration or landmark position.",
-          "A clear request combines yacht choice, guest count, requested duration and an optional-item list while leaving operational details open until confirmation.",
-        ],
+        "heading": "Plan the sequence",
+        "paragraphs": [
+          "Outline the order you have in mind: boarding, the proposal, photographs and any meal.",
+          "Ask about setup time and permitted decorations before purchasing props or booking another supplier."
+        ]
+      }
+    ],
+    "bookingSteps": [
+      "Choose a yacht that fits your complete guest count.",
+      "Send your preferred date, start time and duration.",
+      "Describe your celebration or trip plans and optional requests.",
+      "Review the full quote and booking terms before confirming."
+    ],
+    "priceFactors": [
+      "The yacht's hourly rate.",
+      "Your rental duration and the yacht's minimum booking time.",
+      "The yacht size needed for your group.",
+      "Optional arrangements with separate pricing."
+    ],
+    "faqs": [
+      {
+        "question": "Can I arrange flowers or proposal letters?",
+        "answer": "Share your ideas and budget. Letters, candles, flowers, decoration, dinner and photography remain optional requests, with arrangements and prices confirmed separately."
       },
+      {
+        "question": "Can a photographer join?",
+        "answer": "Include the photographer in your guest count and ask about boarding time, access and any setup requirements."
+      },
+      {
+        "question": "Can the proposal take place at sunset?",
+        "answer": "Send your preferred date and timing. The team will discuss available slots and route options for that day."
+      },
+      {
+        "question": "How do I keep planning private?",
+        "answer": "Tell the team which phone number to use and what information should stay out of general trip messages. Agree on the surprise details before booking."
+      }
     ],
-    bookingSteps: [
-      "Decide whether the request is for two people or includes additional guests.",
-      "Compare published yacht capacity, rate, length and minimum duration.",
-      "Write down the preferred date, timing and sequence without assuming a pre-set route.",
-      "Request each styling, dining or photography item separately and review the written response.",
+    "yachtIds": [
+      "yacht-azimut-42",
+      "yacht-royal-majesty-50",
+      "yacht-sunseeker-92"
     ],
-    priceFactors: [
-      "The verified hourly rate of the selected yacht.",
-      "The requested booking time and the yacht's minimum duration.",
-      "The number of guests and vessel size chosen for the request.",
-      "Separately confirmed styling, flowers, dining, photography or other supplier work.",
+    "yachtSelectionNote": "Compare prices and rental time for your proposal. Ask the team to check any specific layout or facilities you need.",
+    "relatedServiceIds": [
+      "service-engagement",
+      "service-anniversary",
+      "service-wedding"
     ],
-    faqs: [
-      { question: "Are proposal letters or candles automatically provided?", answer: "No. Letters, candles and other styling are optional requests that require availability, supplier and separate-price confirmation." },
-      { question: "Is a photographer part of the proposal request?", answer: "Photography is not assumed. Ask whether a supplier can be confirmed for the date and rely only on the final written offer." },
-      { question: "Can I select a precise proposal landmark from this page?", answer: "No pre-set route or landmark coverage is promised. Describe the preference and wait for operational confirmation." },
-      { question: "When is a proposal yacht request confirmed?", answer: "It remains on request and subject to confirmation until the chosen yacht, date, timing and accepted optional items are confirmed in writing." },
-    ],
-    yachtIds: ["yacht-azimut-42", "yacht-royal-majesty-50", "yacht-sunseeker-92"],
-    yachtSelectionNote: "These records compare different sizes, rates and minimum durations for a two-person or small-group request. They do not verify proposal styling, privacy features or supplier access.",
-    relatedServiceIds: ["service-engagement", "service-anniversary", "service-wedding"],
-    media: serviceMedia("english-home-service-proposal-001", "Marriage proposal celebration setting for a private yacht request"),
-  }),
-  approved({
-    id: "service-anniversary",
-    slug: "wedding-anniversary-parties",
-    path: "/services/wedding-anniversary-parties",
-    name: "Private Yacht Anniversary Celebration",
-    category: "celebration",
-    availability: "on request and subject to confirmation",
-    metadata: {
-      title: "Yacht Anniversary Dubai | Private Celebration Planning",
-      description: "Plan a private yacht anniversary request in Dubai by verified capacity and price, with dining, styling and photography treated as optional.",
-      h1: "Plan a Private Yacht Anniversary Celebration in Dubai",
+    "media": {
+      "path": "/media/home/services/marriage-proposal.webp",
+      "alt": "Marriage proposal celebration setting for a private yacht request",
+      "width": 767,
+      "height": 730,
+      "rightsRecordId": "english-home-service-proposal-001"
+    }
+  },
+  {
+    "id": "service-anniversary",
+    "slug": "wedding-anniversary-parties",
+    "path": "/services/wedding-anniversary-parties",
+    "name": "Private Yacht Anniversary Celebration",
+    "category": "celebration",
+    "availability": "on request and subject to confirmation",
+    "metadata": {
+      "title": "Yacht Anniversary Celebrations in Dubai | Dubai Yacht",
+      "description": "Choose an anniversary trip for two or bring family and friends together.",
+      "h1": "Celebrate Your Anniversary on a Yacht"
     },
-    introduction: "An anniversary may be a quiet request for two people or a private gathering with family and friends. Define the complete group first, then compare yacht capacity, hourly price and minimum duration before discussing any optional dining, styling, flowers, music or photography.",
-    directAnswer: "A private yacht anniversary celebration is on request and subject to confirmation. Yacht availability and timing must be checked, and dining, decoration, flowers, music and photography are separate optional requests rather than assumptions attached to the anniversary label.",
-    whoItIsFor: "This request is for a couple marking an anniversary or for a private anniversary gathering whose complete group can be compared with published yacht capacity.",
-    suitableGroupTypes: [
-      "A two-person private anniversary request.",
-      "An anniversary gathering with family or friends within a published yacht's capacity.",
+    "introduction": "Choose an anniversary trip for two or bring family and friends together. Compare yacht prices, capacity and minimum duration, then discuss the food, photographs or personal touches you would like for your celebration.",
+    "directAnswer": "Send the anniversary date, guest count and preferred duration. Decide whether the focus is quiet time together, a meal or a larger gathering, then ask for a quote for the yacht and any optional arrangements.",
+    "whoItIsFor": "Couples marking an anniversary privately or with invited guests.",
+    "suitableGroupTypes": [
+      "An anniversary for two",
+      "A family anniversary gathering"
     ],
-    optionalRequestBoundary: "Dining, decoration, flowers, cake, music, photography and styling are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
-    sections: [
+    "optionalRequestBoundary": "Dining, decoration, flowers, cake, music, photography and styling are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
+    "sections": [
       {
-        heading: "Define the anniversary format and full group",
-        paragraphs: [
-          "State whether the request is for a couple or a larger private gathering. Use the complete number of guests to compare only yachts whose published capacity can accommodate that number.",
-          "Length and price help compare records, but they do not prove a dining layout, decoration option or other celebration feature.",
-        ],
+        "heading": "Choose the kind of celebration",
+        "paragraphs": [
+          "Decide whether you want a private trip together or a gathering with guests.",
+          "That choice helps set the yacht capacity, budget and amount of time you need."
+        ]
       },
       {
-        heading: "Request hospitality and styling as separate decisions",
-        paragraphs: [
-          "Describe any dining, flowers, cake, music, photography or styling request one item at a time. No optional item is assumed from a photograph or page theme.",
-          "For each request, ask about supplier availability, lead time and separate pricing. Confirmed details belong in the final written offer.",
-        ],
+        "heading": "Add personal details",
+        "paragraphs": [
+          "Tell the team about a favourite colour, flowers, photographs or music you would like to discuss.",
+          "Check what can be arranged on the yacht and the separate cost before buying or booking extras."
+        ]
       },
       {
-        heading: "Compare time and cost without a fixed itinerary",
-        paragraphs: [
-          "Use the yacht's hourly rate and minimum duration to estimate the base vessel comparison. The final request can state a preferred date and time without relying on a fixed departure point or route.",
-          "This approach keeps the anniversary personal while preserving an accurate boundary between published yacht facts and details that require confirmation.",
-        ],
+        "heading": "Leave time for your plans",
+        "paragraphs": [
+          "Outline any meal, toast or photo session you would like during the rental.",
+          "Compare that outline with the yacht's minimum duration and ask about a longer slot when needed."
+        ]
+      }
+    ],
+    "bookingSteps": [
+      "Choose a yacht that fits your complete guest count.",
+      "Send your preferred date, start time and duration.",
+      "Describe your celebration or trip plans and optional requests.",
+      "Review the full quote and booking terms before confirming."
+    ],
+    "priceFactors": [
+      "The yacht's hourly rate.",
+      "Your rental duration and the yacht's minimum booking time.",
+      "The yacht size needed for your group.",
+      "Optional arrangements with separate pricing."
+    ],
+    "faqs": [
+      {
+        "question": "Can we bring family?",
+        "answer": "Yes, you can request a yacht for your full group. Choose a capacity that covers everyone and confirm the guest list during booking."
       },
+      {
+        "question": "Can we request dinner?",
+        "answer": "Share dietary needs and preferred dining arrangements. Ask for available menus, service details and a separate quote."
+      },
+      {
+        "question": "Can we use our own photos or decorations?",
+        "answer": "Describe what you want to bring and ask about attachment, setup and removal rules for the selected yacht."
+      },
+      {
+        "question": "Can we recreate a previous trip?",
+        "answer": "Share what you enjoyed, including the yacht or timing if known. The team will check current options and explain any differences."
+      }
     ],
-    bookingSteps: [
-      "Confirm whether the anniversary is for two people or a larger private group.",
-      "Shortlist yachts using published capacity, hourly price, length and minimum duration.",
-      "Prepare a preferred date, start time and requested number of hours.",
-      "List dining, styling, flowers, music and photography separately for written confirmation.",
+    "yachtIds": [
+      "yacht-azimut-42",
+      "yacht-azimut-55",
+      "yacht-sunseeker-90"
     ],
-    priceFactors: [
-      "The selected yacht's published hourly rate.",
-      "The requested duration compared with the vessel's minimum.",
-      "The group size and vessel size chosen.",
-      "Any supplier-confirmed hospitality, styling, flowers, music or photography.",
+    "yachtSelectionNote": "Compare guest capacities and rental costs for your group. Ask the team to check any specific layout or facilities you need.",
+    "relatedServiceIds": [
+      "service-proposal",
+      "service-engagement",
+      "service-birthday"
     ],
-    faqs: [
-      { question: "Is anniversary dining part of the yacht price?", answer: "No dining service is assumed. Menu, supplier, lead time and separate price must be confirmed before relying on it." },
-      { question: "Can an anniversary request include family and friends?", answer: "You may submit the complete group as a request, provided the shortlist respects each yacht's published capacity. Final availability still requires confirmation." },
-      { question: "Does this page confirm flowers or photography?", answer: "No. Flowers and photography are optional supplier requests with separate availability and pricing." },
-      { question: "Is there a fixed anniversary trip duration?", answer: "No fixed service duration is published. The requested hours must meet the chosen yacht's verified minimum and remain subject to confirmation." },
-    ],
-    yachtIds: ["yacht-azimut-42", "yacht-azimut-55", "yacht-sunseeker-90"],
-    yachtSelectionNote: "These yacht records compare a range of capacities, lengths, rates and minimum durations. They do not establish anniversary dining, decoration or photography capability.",
-    relatedServiceIds: ["service-proposal", "service-engagement", "service-birthday"],
-    media: serviceMedia("english-home-service-anniversary-001", "Anniversary celebration setting for a private yacht request"),
-  }),
-  approved({
-    id: "service-engagement",
-    slug: "engagement-parties",
-    path: "/services/engagement-parties",
-    name: "Private Yacht Engagement Celebration",
-    category: "celebration",
-    availability: "on request and subject to confirmation",
-    metadata: {
-      title: "Engagement Yacht Party Dubai | Private Request Guide",
-      description: "Prepare a private engagement yacht request in Dubai with verified yacht choices and optional styling, catering and photography confirmed separately.",
-      h1: "Plan a Private Engagement Yacht Celebration in Dubai",
+    "media": {
+      "path": "/media/home/services/wedding-anniversary.webp",
+      "alt": "Anniversary celebration setting for a private yacht request",
+      "width": 767,
+      "height": 728,
+      "rightsRecordId": "english-home-service-anniversary-001"
+    }
+  },
+  {
+    "id": "service-engagement",
+    "slug": "engagement-parties",
+    "path": "/services/engagement-parties",
+    "name": "Private Yacht Engagement Celebration",
+    "category": "celebration",
+    "availability": "on request and subject to confirmation",
+    "metadata": {
+      "title": "Engagement Yacht Parties in Dubai | Dubai Yacht",
+      "description": "Bring friends and family together to celebrate your engagement.",
+      "h1": "Plan Your Engagement Celebration on a Yacht"
     },
-    introduction: "An engagement gathering needs a clear group count and a yacht comparison before any styling or hospitality discussion. Use the verified fleet fields to identify possible sizes and budgets, then describe optional celebration requests without treating them as a package or a confirmed part of the yacht.",
-    directAnswer: "A private engagement yacht celebration is on request and subject to confirmation. Compare the group against published yacht capacity, meet the vessel's minimum duration, and request cake, decoration, music, dining, flowers or photography separately for supplier and price confirmation.",
-    whoItIsFor: "This request is for a couple, family or invited private group preparing an engagement gathering and comparing yachts by verified capacity, size, rate and minimum duration.",
-    suitableGroupTypes: [
-      "A small engagement gathering with a complete confirmed guest count.",
-      "A family engagement celebration requiring a medium-capacity yacht comparison.",
-      "A larger private engagement group that remains within a selected yacht's published capacity.",
+    "introduction": "Bring friends and family together to celebrate your engagement. Start with a complete guest list and a budget, then compare yachts and plan the toasts, photos and optional hospitality around your chosen rental time.",
+    "directAnswer": "Choose a yacht that fits everyone attending, including any suppliers coming aboard. Share your date and event outline, then request a quote covering the yacht and any decoration, food, music or photography you want to discuss.",
+    "whoItIsFor": "Couples and families organising a celebration after an engagement.",
+    "suitableGroupTypes": [
+      "An intimate engagement gathering",
+      "An engagement celebration with both families"
     ],
-    optionalRequestBoundary: "Cake, decoration, music, dining, flowers, balloons, photography and styling are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
-    sections: [
+    "optionalRequestBoundary": "Cake, decoration, music, dining, flowers, balloons, photography and styling are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
+    "sections": [
       {
-        heading: "Build the engagement shortlist around capacity",
-        paragraphs: [
-          "Count all guests and compare that number with the published limits. A yacht with a higher capacity may offer a different price and minimum duration, but no event setup is inferred from those facts.",
-          "Use length as another comparison point rather than a promise about seating, layout, decoration space or equipment.",
-        ],
+        "heading": "Bring the guest lists together",
+        "paragraphs": [
+          "Combine both families' lists before choosing the yacht.",
+          "Ask about boarding arrangements and any access needs early, especially when guests are arriving separately."
+        ]
       },
       {
-        heading: "Turn styling ideas into confirmable requests",
-        paragraphs: [
-          "List cake, flowers, balloons, decoration, dining, music and photography separately. A service image provides category context and does not establish what a supplier can provide.",
-          "Ask for availability, supplier confirmation, lead time and separate pricing. Check every accepted element in the final written offer.",
-        ],
+        "heading": "Plan the shared moments",
+        "paragraphs": [
+          "Allow time for introductions, toasts and group photos in your event outline.",
+          "Share any seating or meal preferences so the team can check the practical arrangements on your chosen yacht."
+        ]
       },
       {
-        heading: "Keep the engagement plan operationally flexible",
-        paragraphs: [
-          "Submit a preferred date, timing and requested duration without relying on a particular departure point, route or landmark sequence.",
-          "The final request should identify the chosen yacht, group size and optional details while leaving operational confirmation to the written booking process.",
-        ],
+        "heading": "Coordinate suppliers",
+        "paragraphs": [
+          "Name any photographer, decorator or food supplier you would like to use.",
+          "Ask about access, setup times, permissions and separate pricing before making outside arrangements."
+        ]
+      }
+    ],
+    "bookingSteps": [
+      "Choose a yacht that fits your complete guest count.",
+      "Send your preferred date, start time and duration.",
+      "Describe your celebration or trip plans and optional requests.",
+      "Review the full quote and booking terms before confirming."
+    ],
+    "priceFactors": [
+      "The yacht's hourly rate.",
+      "Your rental duration and the yacht's minimum booking time.",
+      "The yacht size needed for your group.",
+      "Optional arrangements with separate pricing."
+    ],
+    "faqs": [
+      {
+        "question": "How is this different from a proposal trip?",
+        "answer": "An engagement celebration usually involves invited guests after the proposal. Plan around the combined guest list, shared photos and any hospitality."
       },
+      {
+        "question": "Can both families attend?",
+        "answer": "Compare the full group against each yacht's maximum guest capacity and share access needs with the team."
+      },
+      {
+        "question": "Can we have toasts or music?",
+        "answer": "Describe your plans and ask about the selected yacht's equipment and operating rules before booking."
+      },
+      {
+        "question": "What should our quote cover?",
+        "answer": "Ask for the yacht, date, duration, guest count and every agreed extra, together with payment and cancellation terms."
+      }
     ],
-    bookingSteps: [
-      "Create one complete engagement guest count.",
-      "Compare published yacht capacity, price, length and minimum duration.",
-      "State the preferred date and timing without assuming an itinerary.",
-      "Submit each styling, catering, music or photography request separately for confirmation.",
+    "yachtIds": [
+      "yacht-royal-majesty-50",
+      "yacht-majesty-56",
+      "yacht-majesty-88"
     ],
-    priceFactors: [
-      "The selected yacht's verified hourly price.",
-      "The requested booking hours and published minimum duration.",
-      "The guest count and vessel size compared.",
-      "Separately confirmed cake, styling, hospitality, music or photography suppliers.",
+    "yachtSelectionNote": "Compare guest capacities and rental costs for your group. Ask the team to check any specific layout or facilities you need.",
+    "relatedServiceIds": [
+      "service-proposal",
+      "service-wedding",
+      "service-anniversary"
     ],
-    faqs: [
-      { question: "Is engagement decoration automatically arranged?", answer: "No. Decoration is an optional request requiring supplier availability and separate pricing in the final written offer." },
-      { question: "Can I rely on cake or dining from the page image?", answer: "No. Images do not establish an inclusion, menu or supplier. Submit the request and wait for written confirmation." },
-      { question: "How many guests can attend an engagement request?", answer: "Use the chosen yacht's verified capacity as the published maximum comparison limit, then submit the actual group for confirmation." },
-      { question: "Is the engagement route combined with wedding parties?", answer: "No. This page keeps a distinct engagement intent. The historical combined route remains blocked and no redirect or consolidation is approved." },
-    ],
-    yachtIds: ["yacht-royal-majesty-50", "yacht-majesty-56", "yacht-majesty-88"],
-    yachtSelectionNote: "The three records provide factual comparisons across group limits and hourly rates. They do not confirm engagement styling, catering, music or photography features.",
-    relatedServiceIds: ["service-proposal", "service-wedding", "service-anniversary"],
-    media: serviceMedia("english-home-service-engagement-001", "Engagement celebration setting for a private yacht request"),
-  }),
-  approved({
-    id: "service-wedding",
-    slug: "wedding-parties",
-    path: "/services/wedding-parties",
-    name: "Private Yacht Wedding Celebration",
-    category: "celebration",
-    availability: "on request and subject to confirmation",
-    metadata: {
-      title: "Wedding Yacht Party Dubai | Private Celebration Guide",
-      description: "Plan a private yacht wedding celebration in Dubai as a requestable gathering, with yacht facts and optional suppliers confirmed separately.",
-      h1: "Plan a Private Yacht Wedding Celebration in Dubai",
+    "media": {
+      "path": "/media/home/services/engagement-party.webp",
+      "alt": "Engagement celebration setting for a private yacht request",
+      "width": 767,
+      "height": 729,
+      "rightsRecordId": "english-home-service-engagement-001"
+    }
+  },
+  {
+    "id": "service-wedding",
+    "slug": "wedding-parties",
+    "path": "/services/wedding-parties",
+    "name": "Private Yacht Wedding Celebration",
+    "category": "celebration",
+    "availability": "on request and subject to confirmation",
+    "metadata": {
+      "title": "Private Yacht Wedding Celebrations | Dubai Yacht",
+      "description": "Plan a private wedding celebration with your guests, photos and hospitality in mind.",
+      "h1": "Wedding Celebrations on a Private Yacht"
     },
-    introduction: "This page covers a private yacht celebration or gathering connected with a wedding. It does not establish legal ceremony authority. Start with the full guest count and verified yacht comparison, then prepare any hospitality, styling, music or photography requests for separate supplier confirmation.",
-    directAnswer: "A private yacht wedding celebration is on request and subject to confirmation. It is presented as a private gathering rather than a legally authorized ceremony, and decoration, cake, catering, flowers, music, photography and entertainment remain optional requests with separate pricing.",
-    whoItIsFor: "This request is for a couple and invited private group planning a wedding-related yacht celebration or gathering, not for arranging a legally authorized ceremony.",
-    suitableGroupTypes: [
-      "A private wedding-related gathering with family and close guests.",
-      "A larger private celebration that requires a verified higher-capacity yacht comparison.",
+    "introduction": "Plan a private wedding celebration with your guests, photos and hospitality in mind. Compare yacht capacities and rental rates, then discuss how the event could work aboard your preferred yacht before committing to suppliers.",
+    "directAnswer": "Begin with the full headcount and event schedule. Ask the team to check layout, access, supplier arrangements and rental timing for your chosen yacht. This service concerns the celebration; it does not establish legal ceremony authority.",
+    "whoItIsFor": "Couples planning a wedding-related gathering, reception or post-ceremony celebration.",
+    "suitableGroupTypes": [
+      "A small wedding celebration",
+      "A reception or post-ceremony gathering"
     ],
-    optionalRequestBoundary: "Decoration, cake, catering, flowers, music, photography, dining, styling and entertainment are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
-    sections: [
+    "optionalRequestBoundary": "Decoration, cake, catering, flowers, music, photography, dining, styling and entertainment are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
+    "sections": [
       {
-        heading: "Treat the page as celebration planning, not ceremony authority",
-        paragraphs: [
-          "The request may concern a private gathering before or after a wedding, but this page does not claim authority to conduct or legalize a marriage ceremony.",
-          "Any legal, officiant or ceremony requirement needs separate qualified advice and is not represented by the yacht service described here.",
-        ],
+        "heading": "Check capacity and layout together",
+        "paragraphs": [
+          "A yacht's guest limit is the starting point for your shortlist.",
+          "Discuss dining, seating and movement with the team because maximum capacity alone does not describe an event layout."
+        ]
       },
       {
-        heading: "Use capacity and price to build a factual vessel shortlist",
-        paragraphs: [
-          "Count every guest, then compare that total with published yacht capacity. Review length, hourly price and minimum duration without inferring a floor plan or event equipment.",
-          "The selection is a starting point for a request. The yacht, date, timing and compatibility with each optional detail remain subject to confirmation.",
-        ],
+        "heading": "Build a practical schedule",
+        "paragraphs": [
+          "Share the expected boarding time, photos, speeches and any meal service.",
+          "Ask how supplier setup and clearing away fit into the agreed rental time."
+        ]
       },
       {
-        heading: "Confirm every celebration supplier separately",
-        paragraphs: [
-          "List decoration, cake, catering, flowers, music, photography, dining and entertainment individually. None is assumed from a wedding theme or image.",
-          "Ask about supplier availability, access, lead time and separate price, and rely on the final written offer for accepted arrangements.",
-        ],
+        "heading": "Keep the legal arrangements separate",
+        "paragraphs": [
+          "Confirm any legal ceremony requirements with the appropriate authority or your wedding planner.",
+          "For the yacht celebration, ask for a written list of the arrangements, prices and supplier responsibilities."
+        ]
+      }
+    ],
+    "bookingSteps": [
+      "Choose a yacht that fits your complete guest count.",
+      "Send your preferred date, start time and duration.",
+      "Describe your celebration or trip plans and optional requests.",
+      "Review the full quote and booking terms before confirming."
+    ],
+    "priceFactors": [
+      "The yacht's hourly rate.",
+      "Your rental duration and the yacht's minimum booking time.",
+      "The yacht size needed for your group.",
+      "Optional arrangements with separate pricing."
+    ],
+    "faqs": [
+      {
+        "question": "Can we hold a legally recognised ceremony aboard?",
+        "answer": "This page does not establish legal ceremony authority. Check the legal requirements separately before making ceremony arrangements."
       },
+      {
+        "question": "Does maximum capacity mean everyone can sit for a meal?",
+        "answer": "No. Ask about seating and the proposed dining layout for the specific yacht and guest count."
+      },
+      {
+        "question": "Can our wedding suppliers come aboard?",
+        "answer": "Give the team the supplier names, access needs and setup schedule so they can check permission and capacity."
+      },
+      {
+        "question": "How should we compare quotes?",
+        "answer": "Compare the total rental time, yacht, full guest count, hospitality, setup and supplier charges, as well as payment and change terms."
+      }
     ],
-    bookingSteps: [
-      "Define the private celebration or gathering without assuming legal ceremony capability.",
-      "Confirm the full guest count and compare published yacht limits and prices.",
-      "Prepare preferred timing and duration without relying on a pre-set route or departure.",
-      "Submit each supplier and setup request separately and review the final written offer.",
+    "yachtIds": [
+      "yacht-majesty-56",
+      "yacht-majesty-88",
+      "yacht-ocean-dream-143"
     ],
-    priceFactors: [
-      "The chosen yacht's verified hourly rate.",
-      "The requested hours and the vessel's published minimum duration.",
-      "The group size and vessel size selected.",
-      "Separately confirmed styling, hospitality, music, photography or entertainment suppliers.",
+    "yachtSelectionNote": "Compare guest capacities and rental costs for your group. Ask the team to check any specific layout or facilities you need.",
+    "relatedServiceIds": [
+      "service-engagement",
+      "service-anniversary",
+      "service-proposal"
     ],
-    faqs: [
-      { question: "Does this service perform a legal wedding ceremony?", answer: "No legal ceremony authority is claimed. The page describes a requestable private yacht celebration or gathering only." },
-      { question: "Are catering and decoration part of the yacht rate?", answer: "No. Catering and decoration are optional supplier requests requiring availability and separate-price confirmation." },
-      { question: "Can a wedding gathering use a large yacht?", answer: "You may compare larger published capacity records, but the actual group, date and requested arrangements remain subject to confirmation." },
-      { question: "Is the historical combined engagement and wedding page active?", answer: "No. That overlapping owner remains blocked, with no approved redirect or consolidation." },
-    ],
-    yachtIds: ["yacht-majesty-56", "yacht-majesty-88", "yacht-ocean-dream-143"],
-    yachtSelectionNote: "These records span verified capacities for different group sizes. They do not establish ceremony authority, layouts, suppliers or wedding equipment.",
-    relatedServiceIds: ["service-engagement", "service-anniversary", "service-proposal"],
-    media: serviceMedia("english-home-service-wedding-001", "Wedding celebration setting for a private yacht request"),
-  }),
-  approved({
-    id: "service-graduation",
-    slug: "graduation-parties",
-    path: "/services/graduation-parties",
-    name: "Private Yacht Graduation Celebration",
-    category: "celebration",
-    availability: "on request and subject to confirmation",
-    metadata: {
-      title: "Graduation Yacht Party Dubai | Private Request Guide",
-      description: "Plan a private graduation yacht request in Dubai by verified group capacity and price, with cake, decoration, music and photos optional.",
-      h1: "Plan a Private Graduation Yacht Celebration in Dubai",
+    "media": {
+      "path": "/media/home/services/wedding-party.webp",
+      "alt": "Wedding celebration setting for a private yacht request",
+      "width": 767,
+      "height": 730,
+      "rightsRecordId": "english-home-service-wedding-001"
+    }
+  },
+  {
+    "id": "service-graduation",
+    "slug": "graduation-parties",
+    "path": "/services/graduation-parties",
+    "name": "Private Yacht Graduation Celebration",
+    "category": "celebration",
+    "availability": "on request and subject to confirmation",
+    "metadata": {
+      "title": "Graduation Yacht Celebrations in Dubai | Dubai Yacht",
+      "description": "Bring your graduation group together for a private yacht trip.",
+      "h1": "Celebrate Graduation on a Private Yacht"
     },
-    introduction: "A graduation gathering can be prepared accurately by separating the student group and yacht comparison from optional celebration ideas. Confirm every guest, compare verified capacity and price, and submit any cake, decoration, music, dining or photography request as a separate item.",
-    directAnswer: "A private graduation yacht celebration is on request and subject to confirmation. The yacht and timing must be checked, while cake, decoration, music, dining, balloons and photography remain optional supplier requests with separate pricing.",
-    whoItIsFor: "This request is for a graduate and a private group of family or friends who can provide the complete guest count before choosing a yacht.",
-    suitableGroupTypes: [
-      "A small graduation gathering with family or close friends.",
-      "A medium or larger private graduation group matched to published yacht capacity.",
+    "introduction": "Bring your graduation group together for a private yacht trip. Use the guest count and budget to compare yachts, then plan group photos and any food or decorations around the time you want on the water.",
+    "directAnswer": "Send your preferred date, guest count and duration. Agree on who will coordinate the booking and gather the group details before requesting the yacht and any optional celebration extras.",
+    "whoItIsFor": "Graduates, friends and families arranging a private graduation celebration.",
+    "suitableGroupTypes": [
+      "A graduate celebrating with family",
+      "A group of graduates and friends"
     ],
-    optionalRequestBoundary: "Cake, decoration, music, dining, balloons, photography, styling and entertainment are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
-    sections: [
+    "optionalRequestBoundary": "Cake, decoration, music, dining, balloons, photography, styling and entertainment are optional requests subject to availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
+    "sections": [
       {
-        heading: "Count the graduation group before comparing yachts",
-        paragraphs: [
-          "Include graduates, family members and friends in one complete number. Compare it with each yacht's published capacity rather than estimating from photographs.",
-          "Review the hourly rate, minimum duration and length for budget and size context. These facts do not confirm event equipment or a celebration layout.",
-        ],
+        "heading": "Choose one group organiser",
+        "paragraphs": [
+          "Have one person collect the guest count, preferred date and budget.",
+          "Keep a shared list of questions so the quote reflects the whole group's plans."
+        ]
       },
       {
-        heading: "Keep graduation additions optional and itemized",
-        paragraphs: [
-          "Describe cake, balloons, decoration, music, dining and photography separately. Nothing is assumed simply because a graduation request is accepted for review.",
-          "Ask about supplier availability, lead time and separate price. Check the final written offer before planning around an addition.",
-        ],
+        "heading": "Plan graduation photos",
+        "paragraphs": [
+          "Tell the team whether you want to bring gowns, signs or a photographer.",
+          "Ask about changing space, boarding and photo timing before finalising the plan."
+        ]
       },
       {
-        heading: "Prepare a flexible timing request",
-        paragraphs: [
-          "State the preferred date, start time and requested hours while respecting the selected yacht's minimum duration. No fixed itinerary or landmark coverage is published.",
-          "A careful request combines verified vessel facts with an explicit optional list, allowing each operational detail to be confirmed without overpromising.",
-        ],
+        "heading": "Agree on costs early",
+        "paragraphs": [
+          "Calculate the base rental from the hourly rate and requested duration.",
+          "Decide how the group will handle optional extras and review the payment terms before collecting contributions."
+        ]
+      }
+    ],
+    "bookingSteps": [
+      "Choose a yacht that fits your complete guest count.",
+      "Send your preferred date, start time and duration.",
+      "Describe your celebration or trip plans and optional requests.",
+      "Review the full quote and booking terms before confirming."
+    ],
+    "priceFactors": [
+      "The yacht's hourly rate.",
+      "Your rental duration and the yacht's minimum booking time.",
+      "The yacht size needed for your group.",
+      "Optional arrangements with separate pricing."
+    ],
+    "faqs": [
+      {
+        "question": "Can we bring graduation gowns?",
+        "answer": "Mention gowns and any props when enquiring, and ask about changing or storage space on the yacht."
       },
+      {
+        "question": "How do we plan for a large group?",
+        "answer": "Confirm the headcount first and shortlist yachts that meet it. Tell the team about invited photographers or other suppliers too."
+      },
+      {
+        "question": "Can the group share the cost?",
+        "answer": "You can organise contributions privately. Confirm the booking payment process and responsible contact with the team."
+      },
+      {
+        "question": "Can we arrange food or decorations?",
+        "answer": "Send your ideas and budget. The team will check available options and provide separate pricing for agreed extras."
+      }
     ],
-    bookingSteps: [
-      "Create one complete guest count for graduates, family and friends.",
-      "Compare published yachts by capacity, hourly price, length and minimum duration.",
-      "Prepare a date and timing request without assuming a route or departure point.",
-      "List cake, decoration, music, dining and photography separately for confirmation.",
+    "yachtIds": [
+      "yacht-royal-majesty-50",
+      "yacht-majesty-56",
+      "yacht-doretty-90"
     ],
-    priceFactors: [
-      "The published hourly rate of the selected yacht.",
-      "The requested number of hours and the yacht's minimum duration.",
-      "The complete group size and vessel size selected.",
-      "Separately confirmed cake, styling, hospitality, music or photography suppliers.",
+    "yachtSelectionNote": "Compare guest capacities and rental costs for your group. Ask the team to check any specific layout or facilities you need.",
+    "relatedServiceIds": [
+      "service-birthday",
+      "service-bachelor",
+      "service-engagement"
     ],
-    faqs: [
-      { question: "Does a graduation request come with cake or balloons?", answer: "No. Cake and balloons are optional requests requiring supplier availability and separate-price confirmation." },
-      { question: "Can students choose a yacht by the group size?", answer: "Yes, compare the complete group with verified capacity, but the actual yacht and date remain on request and subject to confirmation." },
-      { question: "Is music or photography confirmed by this page?", answer: "No. Both are optional supplier requests and must appear in the final written offer before you rely on them." },
-      { question: "Does the graduation service follow a set route?", answer: "No pre-set route, departure point or landmark sequence is published. Submit preferences for operational confirmation." },
-    ],
-    yachtIds: ["yacht-royal-majesty-50", "yacht-majesty-56", "yacht-doretty-90"],
-    yachtSelectionNote: "The selected records compare verified capacity and hourly-rate ranges for different group sizes. They do not verify graduation equipment, styling or supplier access.",
-    relatedServiceIds: ["service-birthday", "service-bachelor", "service-engagement"],
-    media: serviceMedia("english-home-service-graduation-001", "Graduation celebration setting for a private yacht request"),
-  }),
-  approved({
-    id: "service-bachelor",
-    slug: "bachelor-parties",
-    path: "/services/bachelor-parties",
-    name: "Private Yacht Bachelor Gathering",
-    category: "celebration",
-    availability: "on request and subject to confirmation",
-    metadata: {
-      title: "Bachelor Yacht Party Dubai | Respectful Private Planning",
-      description: "Plan a respectful private bachelor yacht gathering in Dubai using verified yacht facts, with conduct, music and setup requests confirmed.",
-      h1: "Plan a Respectful Private Bachelor Yacht Gathering in Dubai",
+    "media": {
+      "path": "/media/home/services/graduation-party.webp",
+      "alt": "Graduation celebration setting for a private yacht request",
+      "width": 767,
+      "height": 729,
+      "rightsRecordId": "english-home-service-graduation-001"
+    }
+  },
+  {
+    "id": "service-bachelor",
+    "slug": "bachelor-parties",
+    "path": "/services/bachelor-parties",
+    "name": "Private Yacht Bachelor Gathering",
+    "category": "celebration",
+    "availability": "on request and subject to confirmation",
+    "metadata": {
+      "title": "Private Bachelor Yacht Celebrations | Dubai Yacht",
+      "description": "Organise a private gathering with friends before the wedding.",
+      "h1": "Plan a Private Bachelor Yacht Celebration"
     },
-    introduction: "A bachelor gathering can be planned as a respectful private group experience without adult-entertainment implications. Start with the complete guest count and published yacht limits, then describe music, setup, dining or entertainment preferences as optional requests governed by yacht rules and confirmation.",
-    directAnswer: "A private bachelor yacht gathering is on request and subject to confirmation. Choose a yacht by verified capacity, price and minimum duration; conduct, music, setup, dining and entertainment requests remain subject to yacht rules, availability, supplier confirmation and separate pricing.",
-    whoItIsFor: "This request is for friends planning a respectful private bachelor gathering and willing to follow the selected yacht's conduct rules and confirmation process.",
-    suitableGroupTypes: [
-      "A small private group comparing yachts by verified price and capacity.",
-      "A larger group whose complete guest count fits a published yacht limit.",
+    "introduction": "Organise a private gathering with friends before the wedding. Compare yacht capacity, hourly rates and rental time, then discuss the group's plans with the team so the arrangements suit the selected vessel and its operating rules.",
+    "directAnswer": "Choose one organiser, confirm the guest count and share your date, duration and budget. This is a respectful private group experience; agree on conduct and yacht rules before booking and list any food, music or photography requests.",
+    "whoItIsFor": "Friends organising a respectful private group experience before a wedding.",
+    "suitableGroupTypes": [
+      "A small gathering of friends",
+      "A larger private bachelor celebration"
     ],
-    optionalRequestBoundary: "Music, setup, dining, styling, photography and entertainment are optional requests subject to yacht rules, availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
-    sections: [
+    "optionalRequestBoundary": "Music, setup, dining, styling, photography and entertainment are optional requests subject to yacht rules, availability, supplier confirmation and separate pricing unless the final written offer states otherwise.",
+    "sections": [
       {
-        heading: "Plan a private gathering with respectful expectations",
-        paragraphs: [
-          "This page supports a private group celebration and does not suggest adult entertainment. Guests remain responsible for conduct that follows the confirmed yacht rules.",
-          "Describe the group and preferred atmosphere clearly so that music, setup and other requests can be reviewed before the date.",
-        ],
+        "heading": "Keep the group organised",
+        "paragraphs": [
+          "Choose a lead contact for the guest list, timing and quote.",
+          "Share the final boarding instructions with everyone once the booking details are confirmed."
+        ]
       },
       {
-        heading: "Compare yacht limits before discussing setup",
-        paragraphs: [
-          "Use the full guest count against verified capacity, then compare hourly price, length and minimum duration. No sound equipment, layout or entertainment feature is inferred.",
-          "A factual shortlist allows the request to be evaluated without claiming that a particular yacht supports an unverified setup.",
-        ],
+        "heading": "Discuss the yacht rules",
+        "paragraphs": [
+          "Explain your plans for music, hospitality and activities when enquiring.",
+          "Confirm conduct and yacht rules with the team so guests understand what is permitted."
+        ]
       },
       {
-        heading: "Confirm music, dining and entertainment separately",
-        paragraphs: [
-          "List each optional request and ask whether it complies with yacht rules, supplier availability and operating requirements. No item is assumed from the page title.",
-          "Request separate pricing and rely only on the final written offer for accepted details, timing and any applicable restrictions.",
-        ],
+        "heading": "Allow time for the group",
+        "paragraphs": [
+          "Consider arrivals, boarding and any plans after the yacht trip when choosing a start time.",
+          "Meet the yacht's minimum rental duration and ask about longer slots if the group wants more time."
+        ]
+      }
+    ],
+    "bookingSteps": [
+      "Choose a yacht that fits your complete guest count.",
+      "Send your preferred date, start time and duration.",
+      "Describe your celebration or trip plans and optional requests.",
+      "Review the full quote and booking terms before confirming."
+    ],
+    "priceFactors": [
+      "The yacht's hourly rate.",
+      "Your rental duration and the yacht's minimum booking time.",
+      "The yacht size needed for your group.",
+      "Optional arrangements with separate pricing."
+    ],
+    "faqs": [
+      {
+        "question": "Can we request music?",
+        "answer": "Ask what equipment is available and which sound or operating rules apply to your selected yacht."
       },
+      {
+        "question": "Can we add food?",
+        "answer": "Tell the team your group size and dietary needs, then request available options and separate prices."
+      },
+      {
+        "question": "Who should organise the booking?",
+        "answer": "A single lead contact makes it easier to agree on the guest list, quote, payment and boarding details."
+      },
+      {
+        "question": "What rules apply?",
+        "answer": "Ask for the yacht's conduct, safety and hospitality rules before booking, and share them with the whole group."
+      }
     ],
-    bookingSteps: [
-      "Confirm the complete guest count and the respectful private-gathering purpose.",
-      "Compare published yacht capacity, rate, length and minimum duration.",
-      "Prepare preferred timing and duration without assuming a route or departure point.",
-      "Submit music, conduct, setup, dining and entertainment questions for written confirmation.",
+    "yachtIds": [
+      "yacht-majesty-56",
+      "yacht-sunseeker-90",
+      "yacht-doretty-95"
     ],
-    priceFactors: [
-      "The selected yacht's verified hourly price.",
-      "The requested hours and published minimum duration.",
-      "The group size and yacht size compared.",
-      "Any separately confirmed setup, music, dining, photography or entertainment supplier.",
-    ],
-    faqs: [
-      { question: "Does this page promote adult entertainment?", answer: "No. It describes a respectful private group gathering, with conduct and setup subject to yacht rules and confirmation." },
-      { question: "Is music automatically available for a bachelor gathering?", answer: "No music feature is assumed. Submit the request so compatibility, rules, availability and separate pricing can be checked." },
-      { question: "How should a bachelor group choose a yacht?", answer: "Compare complete guest count with verified capacity, then review hourly price, minimum duration and length. No event equipment is implied." },
-      { question: "Can the gathering be confirmed immediately?", answer: "No. The service is on request and subject to confirmation, including the yacht, date, conduct expectations and optional requests." },
-    ],
-    yachtIds: ["yacht-majesty-56", "yacht-sunseeker-90", "yacht-doretty-95"],
-    yachtSelectionNote: "These records compare verified capacities, rates and minimum durations for different group sizes. They do not establish music, event equipment, setup or entertainment capability.",
-    relatedServiceIds: ["service-birthday", "service-graduation", "service-morning-trip"],
-  }),
-  approved({
-    id: "service-afternoon-tea",
-    slug: "afternoon-tea-trip",
-    path: "/services/afternoon-tea-trip",
-    name: "Private Yacht Afternoon Tea Request",
-    category: "hospitality",
-    availability: "on request and subject to confirmation",
-    metadata: {
-      title: "Afternoon Tea Yacht Dubai | Private Hospitality Request",
-      description: "Prepare a private yacht afternoon tea request in Dubai, with yacht facts verified and menu, supplier, lead time and price confirmed separately.",
-      h1: "Plan a Private Yacht Afternoon Tea Request in Dubai",
+    "yachtSelectionNote": "Compare guest capacities and rental costs for your group. Ask the team to check any specific layout or facilities you need.",
+    "relatedServiceIds": [
+      "service-birthday",
+      "service-graduation",
+      "service-morning-trip"
+    ]
+  },
+  {
+    "id": "service-afternoon-tea",
+    "slug": "afternoon-tea-trip",
+    "path": "/services/afternoon-tea-trip",
+    "name": "Private Yacht Afternoon Tea Request",
+    "category": "hospitality",
+    "availability": "on request and subject to confirmation",
+    "metadata": {
+      "title": "Private Yacht Afternoon Tea Requests | Dubai Yacht",
+      "description": "Explore an afternoon yacht trip with tea or light refreshments as an optional hospitality request.",
+      "h1": "Plan Afternoon Tea on a Private Yacht"
     },
-    introduction: "An afternoon tea idea is published here only as a requestable private yacht hospitality experience. Choose the yacht from verified capacity, price and duration fields, then ask whether a menu and supplier can be arranged for the preferred date rather than relying on a standard offering.",
-    directAnswer: "A private yacht afternoon tea experience is on request and subject to confirmation. Tea service is not assumed in the yacht price; the menu, supplier, dietary questions, lead time and separate price must be confirmed in the final written offer.",
-    whoItIsFor: "This request is for a couple or private small group interested in asking whether an afternoon hospitality arrangement can be confirmed separately for a selected yacht.",
-    suitableGroupTypes: [
-      "A couple requesting a private afternoon yacht experience.",
-      "A small family or friends group within the selected yacht's published capacity.",
+    "introduction": "Explore an afternoon yacht trip with tea or light refreshments as an optional hospitality request. Choose a yacht by capacity and budget, then discuss the menu, serving arrangements and timing with the team.",
+    "directAnswer": "Send your date, group size, preferred afternoon start and requested duration. Ask about available tea or food options and how they would be served aboard the yacht, with the yacht rental and hospitality priced separately.",
+    "whoItIsFor": "Couples and small groups planning an afternoon trip with optional refreshments.",
+    "suitableGroupTypes": [
+      "An afternoon trip for two",
+      "An afternoon gathering with friends or family"
     ],
-    optionalRequestBoundary: "Afternoon tea, menu items, dining setup, flowers, styling and photography are optional requests subject to availability, supplier confirmation, lead time and separate pricing unless the final written offer states otherwise.",
-    sections: [
+    "optionalRequestBoundary": "Afternoon tea, menu items, dining setup, flowers, styling and photography are optional requests subject to availability, supplier confirmation, lead time and separate pricing unless the final written offer states otherwise.",
+    "sections": [
       {
-        heading: "Choose the vessel before requesting hospitality",
-        paragraphs: [
-          "Compare the full group with published yacht capacity, then review hourly price, length and minimum duration. Those facts do not confirm dining furniture, serviceware or hospitality staff.",
-          "Shortlisting by verified facts creates a clear vessel request before menu and supplier questions are introduced.",
-        ],
+        "heading": "Start with the menu questions",
+        "paragraphs": [
+          "Share dietary needs, allergies and the number of guests who would like refreshments.",
+          "Ask for the menu, supplier, lead time and separate price before deciding on hospitality."
+        ]
       },
       {
-        heading: "Ask for a menu and supplier instead of assuming one",
-        paragraphs: [
-          "No fixed tea selection or menu item is published. State any dietary question and ask what a confirmed supplier can provide for the date and group.",
-          "Menu, supplier, lead time and separate price all require confirmation. Do not assume preparation occurs onboard.",
-        ],
+        "heading": "Check the serving arrangements",
+        "paragraphs": [
+          "Discuss how food and drinks would be delivered, stored and served on your selected yacht.",
+          "Ask about seating, table space and any equipment needed for the proposed service."
+        ]
       },
       {
-        heading: "Prepare time preferences without a fixed trip plan",
-        paragraphs: [
-          "Afternoon describes the requested timing, not a confirmed departure, route, duration or landmark sequence. The requested hours must also meet the yacht's published minimum.",
-          "A complete request combines yacht, group, date, timing and hospitality questions so each element can be answered in writing.",
-        ],
+        "heading": "Choose your afternoon timing",
+        "paragraphs": [
+          "Give a preferred start window and compare it with the yacht's minimum rental duration.",
+          "Include time for boarding, refreshments and the trip itself when discussing the schedule."
+        ]
+      }
+    ],
+    "bookingSteps": [
+      "Choose a yacht that fits your complete guest count.",
+      "Send your preferred date, start time and duration.",
+      "Describe your hospitality plans and optional requests.",
+      "Review the full quote and booking terms before confirming."
+    ],
+    "priceFactors": [
+      "The yacht's hourly rate.",
+      "Your rental duration and the yacht's minimum booking time.",
+      "The yacht size needed for your group.",
+      "Optional arrangements with separate pricing."
+    ],
+    "faqs": [
+      {
+        "question": "Is afternoon tea part of the hourly yacht price?",
+        "answer": "Tea and food are optional requests with separate pricing. Ask for a quote for the menu and serving arrangements you choose."
       },
+      {
+        "question": "Can dietary needs be accommodated?",
+        "answer": "Send your requirements before choosing a menu. The team needs supplier confirmation for any dietary arrangement."
+      },
+      {
+        "question": "Will food be prepared onboard?",
+        "answer": "Ask how the selected supplier will prepare and serve the food. Onboard preparation depends on the agreed service method."
+      },
+      {
+        "question": "Can we choose the afternoon start time?",
+        "answer": "Share your preferred window. The team will check yacht availability and discuss the rental duration with you."
+      }
     ],
-    bookingSteps: [
-      "Confirm the complete afternoon-tea group size.",
-      "Compare published yacht capacity, rate, length and minimum duration.",
-      "Prepare the preferred date and afternoon timing without assuming an itinerary.",
-      "Request menu, supplier, dietary, lead-time and separate-price details in writing.",
+    "yachtIds": [
+      "yacht-azimut-42",
+      "yacht-majesty-44",
+      "yacht-azimut-55"
     ],
-    priceFactors: [
-      "The verified hourly rate of the selected yacht.",
-      "The requested hours and the yacht's minimum duration.",
-      "The full group size and vessel size selected.",
-      "A separately confirmed hospitality supplier, menu and any optional styling.",
-    ],
-    faqs: [
-      { question: "Is afternoon tea part of the yacht's hourly price?", answer: "No tea service is assumed. Menu, supplier, lead time and separate price must be confirmed in writing." },
-      { question: "Is there a published afternoon tea menu?", answer: "No fixed menu is published. Submit dietary questions and wait for the available supplier options and prices." },
-      { question: "Will afternoon tea be prepared onboard?", answer: "No onboard-cooking or preparation promise is made. The supplier and service method require confirmation." },
-      { question: "Does afternoon tea follow a set route?", answer: "No. Afternoon is a timing preference; departure, route, duration and operational details remain subject to confirmation." },
-    ],
-    yachtIds: ["yacht-azimut-42", "yacht-majesty-44", "yacht-azimut-55"],
-    yachtSelectionNote: "These records compare verified small-group capacity, rate, size and minimum duration. They do not confirm a menu, dining setup or hospitality supplier.",
-    relatedServiceIds: ["service-barbecue", "service-morning-trip", "service-anniversary"],
-  }),
-  approved({
-    id: "service-morning-trip",
-    slug: "morning-yacht-trips",
-    path: "/services/morning-yacht-trips",
-    name: "Private Morning Yacht Experience",
-    category: "private-experience",
-    availability: "on request and subject to confirmation",
-    metadata: {
-      title: "Morning Yacht Trip Dubai | Private Experience Planning",
-      description: "Plan a private morning yacht request in Dubai by verified yacht capacity, price and duration without assuming breakfast, route or activities.",
-      h1: "Plan a Private Morning Yacht Experience in Dubai",
+    "yachtSelectionNote": "Compare yacht prices before adding afternoon hospitality. Ask the team to check any specific layout or facilities you need.",
+    "relatedServiceIds": [
+      "service-barbecue",
+      "service-morning-trip",
+      "service-anniversary"
+    ]
+  },
+  {
+    "id": "service-morning-trip",
+    "slug": "morning-yacht-trips",
+    "path": "/services/morning-yacht-trips",
+    "name": "Private Morning Yacht Experience",
+    "category": "private-experience",
+    "availability": "on request and subject to confirmation",
+    "metadata": {
+      "title": "Morning Yacht Trips in Dubai | Dubai Yacht",
+      "description": "Choose a morning on the water that fits your group and the rest of your day.",
+      "h1": "Plan a Private Morning Yacht Trip"
     },
-    introduction: "A morning yacht trip is treated as a timing preference for a private experience, not a fixed itinerary or package. Compare published yacht facts for the complete group, choose a requested duration that respects the vessel minimum, and list breakfast or other hospitality ideas separately if you want them checked.",
-    directAnswer: "A private morning yacht experience is on request and subject to confirmation. No fixed departure point, route, duration, breakfast, tea or activity is promised; hospitality requests require menu, supplier, lead-time and separate-price confirmation.",
-    whoItIsFor: "This request is for a couple, family or private group that prefers a morning timing request and can keep route, departure and hospitality details open until confirmation.",
-    suitableGroupTypes: [
-      "A couple or small group comparing a private morning timing request.",
-      "A family or friends group whose complete count fits the selected yacht's published capacity.",
+    "introduction": "Choose a morning on the water that fits your group and the rest of your day. Compare yacht prices and minimum rental times, then share your preferred start and any breakfast or photography requests with the team.",
+    "directAnswer": "Send your date, morning start window, guest count and duration. Mention any latest return time, then check the yacht, departure point and route options before booking. Breakfast and other hospitality are optional requests.",
+    "whoItIsFor": "Couples, families and friends arranging a private trip earlier in the day.",
+    "suitableGroupTypes": [
+      "A morning trip for a couple",
+      "A morning gathering with family or friends"
     ],
-    optionalRequestBoundary: "Breakfast, tea, dining, photography, music and other hospitality or entertainment ideas are optional requests subject to availability, supplier confirmation, lead time and separate pricing unless the final written offer states otherwise.",
-    sections: [
+    "optionalRequestBoundary": "Breakfast, tea, dining, photography, music and other hospitality or entertainment ideas are optional requests subject to availability, supplier confirmation, lead time and separate pricing unless the final written offer states otherwise.",
+    "sections": [
       {
-        heading: "Use morning as a requested time, not an itinerary",
-        paragraphs: [
-          "State the preferred date and morning start window, but do not rely on a particular departure point, route, landmark sequence or water condition.",
-          "Operational timing and the requested hours remain subject to confirmation, and the duration must meet the chosen yacht's verified minimum.",
-        ],
+        "heading": "Work backwards from your return time",
+        "paragraphs": [
+          "Tell the team about any lunch reservation, transfer or other plan after the yacht trip.",
+          "Choose a rental duration that meets the yacht's minimum and discuss the boarding and return schedule."
+        ]
       },
       {
-        heading: "Compare yachts by the facts the fleet publishes",
-        paragraphs: [
-          "Use complete guest count, capacity, hourly price, minimum duration and length to build a shortlist. None of these fields proves a breakfast service, activity or route.",
-          "Choose the comparison that fits the group and budget, then submit the specific date and requested time for confirmation.",
-        ],
+        "heading": "Plan the start of your day",
+        "paragraphs": [
+          "Ask for the boarding location and arrival instructions with your confirmed booking.",
+          "Share any guest access needs or timing constraints before choosing the final start time."
+        ]
       },
       {
-        heading: "Treat breakfast and other additions as separate requests",
-        paragraphs: [
-          "No breakfast, tea or dining item is assumed. If hospitality is requested, ask for the menu, supplier, lead time, service method and separate price.",
-          "Do not assume food is prepared onboard. Rely only on the final written offer for any accepted hospitality or entertainment detail.",
-        ],
+        "heading": "Discuss breakfast separately",
+        "paragraphs": [
+          "Mention whether you want to ask about breakfast, tea or other refreshments.",
+          "Check the menu, supplier, lead time and separate price, including how any food would be served."
+        ]
+      }
+    ],
+    "bookingSteps": [
+      "Choose a yacht that fits your complete guest count.",
+      "Send your preferred date, start time and duration.",
+      "Describe your celebration or trip plans and optional requests.",
+      "Review the full quote and booking terms before confirming."
+    ],
+    "priceFactors": [
+      "The yacht's hourly rate.",
+      "Your rental duration and the yacht's minimum booking time.",
+      "The yacht size needed for your group.",
+      "Optional arrangements with separate pricing."
+    ],
+    "faqs": [
+      {
+        "question": "Is breakfast part of the morning trip?",
+        "answer": "Breakfast is an optional request. Ask about available menus, serving arrangements and separate pricing."
       },
+      {
+        "question": "Can we return by a specific time?",
+        "answer": "Share that time before booking so the team can discuss a suitable start and rental duration."
+      },
+      {
+        "question": "Can we stay longer than the minimum rental?",
+        "answer": "Request the number of hours you want. The team will check the yacht's schedule for your chosen date."
+      },
+      {
+        "question": "Can we request a particular route?",
+        "answer": "Describe your preferences and timing. The team will explain route options and operating conditions for the selected yacht."
+      }
     ],
-    bookingSteps: [
-      "Confirm the full morning-trip guest count.",
-      "Compare verified capacity, hourly price, length and minimum duration.",
-      "Prepare a preferred date, morning start window and requested hours.",
-      "List breakfast, tea or other optional requests separately for written confirmation.",
+    "yachtIds": [
+      "yacht-royal-majesty-50",
+      "yacht-azimut-55",
+      "yacht-sunseeker-92"
     ],
-    priceFactors: [
-      "The selected yacht's verified hourly rate.",
-      "The requested hours and the yacht's published minimum duration.",
-      "The complete group size and yacht size compared.",
-      "Any separately confirmed menu, hospitality supplier or optional arrangement.",
-    ],
-    faqs: [
-      { question: "Does a morning yacht request include breakfast?", answer: "No breakfast is assumed. Menu, supplier, lead time, service method and separate price require confirmation." },
-      { question: "Is a morning route already decided?", answer: "No pre-set route, departure point or landmark sequence is published. Morning is a requested time subject to operational confirmation." },
-      { question: "Can I request more than the minimum duration?", answer: "You may submit a longer requested duration. The chosen yacht, date, timing and total hours still require confirmation." },
-      { question: "Are morning water activities offered?", answer: "No activity capability is claimed on this page. Swimming, fishing and water-activity detail owners remain blocked." },
-    ],
-    yachtIds: ["yacht-royal-majesty-50", "yacht-azimut-55", "yacht-sunseeker-92"],
-    yachtSelectionNote: "These records compare verified capacities, hourly rates and minimum durations. They do not confirm a morning route, breakfast, tea or activity.",
-    relatedServiceIds: ["service-afternoon-tea", "service-barbecue", "service-proposal"],
-  }),
-  approved({
-    id: "service-barbecue",
-    slug: "barbecue-on-the-yacht",
-    path: "/services/barbecue-on-the-yacht",
-    name: "Private Yacht Barbecue Request",
-    category: "hospitality",
-    availability: "on request and subject to confirmation",
-    metadata: {
-      title: "Yacht BBQ Dubai | Private Hospitality Request",
-      description: "Prepare a private yacht BBQ request in Dubai with verified yacht choices and menu, supplier, lead time, service method and price confirmed.",
-      h1: "Plan a Private Yacht Barbecue Request in Dubai",
+    "yachtSelectionNote": "Compare minimum rental times for your morning plan. Ask the team to check any specific layout or facilities you need.",
+    "relatedServiceIds": [
+      "service-afternoon-tea",
+      "service-barbecue",
+      "service-proposal"
+    ]
+  },
+  {
+    "id": "service-barbecue",
+    "slug": "barbecue-on-the-yacht",
+    "path": "/services/barbecue-on-the-yacht",
+    "name": "Private Yacht Barbecue Request",
+    "category": "hospitality",
+    "availability": "on request and subject to confirmation",
+    "metadata": {
+      "title": "Private Yacht Barbecue Requests | Dubai Yacht",
+      "description": "Discuss barbecue hospitality for a private yacht trip with friends or family.",
+      "h1": "Plan a Barbecue on a Private Yacht"
     },
-    introduction: "A barbecue idea is published only as a requestable private yacht hospitality option. Select a yacht using verified capacity, hourly price and minimum duration, then ask whether a menu and supplier can be confirmed for the chosen date instead of assuming food or cooking forms part of the vessel booking.",
-    directAnswer: "A private yacht barbecue request is on request and subject to confirmation. BBQ is not assumed in the yacht price, onboard cooking is not promised, and the menu, supplier, lead time, service method and separate price must be confirmed in writing.",
-    whoItIsFor: "This request is for a private group that wants to ask whether separate barbecue hospitality can be arranged for a selected yacht without assuming food or cooking is part of the vessel price.",
-    suitableGroupTypes: [
-      "A family or friends group comparing yachts by verified capacity and rate.",
-      "A private celebration group requesting a separately confirmed hospitality arrangement.",
+    "introduction": "Discuss barbecue hospitality for a private yacht trip with friends or family. Start with your guest count and yacht budget, then ask about food options, service arrangements and the total cost for your chosen date.",
+    "directAnswer": "Choose a yacht and share the number of people eating, dietary needs and preferred meal time. The team will check the hospitality options and quote separately for the agreed menu and service.",
+    "whoItIsFor": "Private groups planning a yacht trip with an optional barbecue meal.",
+    "suitableGroupTypes": [
+      "A meal with family or friends",
+      "A private celebration with a barbecue request"
     ],
-    optionalRequestBoundary: "BBQ, catering, menu items, dining setup, music, photography and styling are optional requests subject to availability, supplier confirmation, lead time and separate pricing unless the final written offer states otherwise.",
-    sections: [
+    "optionalRequestBoundary": "BBQ, catering, menu items, dining setup, music, photography and styling are optional requests subject to availability, supplier confirmation, lead time and separate pricing unless the final written offer states otherwise.",
+    "sections": [
       {
-        heading: "Shortlist the yacht before discussing a barbecue supplier",
-        paragraphs: [
-          "Compare the complete group with the published capacity, then review length, hourly price and minimum duration. No cooking equipment or dining setup is inferred from those facts.",
-          "The three yacht links provide a factual range for comparison only; actual compatibility with the hospitality request needs confirmation.",
-        ],
+        "heading": "Build the food request",
+        "paragraphs": [
+          "List the number of people eating and any allergies or dietary preferences.",
+          "Ask about the menu, supplier, lead time and separate price before selecting the food."
+        ]
       },
       {
-        heading: "Confirm menu, supplier and service method",
-        paragraphs: [
-          "No fixed BBQ menu is published. Submit dietary questions and ask which supplier, menu and lead time may be available for the date.",
-          "Do not assume food is prepared onboard. Ask how the confirmed service would be supplied and what separate price applies.",
-        ],
+        "heading": "Check how the meal is served",
+        "paragraphs": [
+          "Ask whether the proposed food is delivered prepared or requires equipment aboard the yacht.",
+          "The supplier and yacht must confirm the service method; photos alone do not establish cooking facilities."
+        ]
       },
       {
-        heading: "Keep route and timing outside the food promise",
-        paragraphs: [
-          "A BBQ request does not establish a fixed departure point, route, landmark sequence or service duration. Submit the preferred timing and hours as part of the wider yacht request.",
-          "Rely on the final written offer for the yacht, date, timing and every accepted hospitality detail.",
-        ],
+        "heading": "Fit the meal into the trip",
+        "paragraphs": [
+          "Give the team your preferred meal time and rental duration.",
+          "Discuss setup, serving and clearing away alongside the yacht schedule so the quote covers the practical arrangements."
+        ]
+      }
+    ],
+    "bookingSteps": [
+      "Choose a yacht that fits your complete guest count.",
+      "Send your preferred date, start time and duration.",
+      "Describe your hospitality plans and optional requests.",
+      "Review the full quote and booking terms before confirming."
+    ],
+    "priceFactors": [
+      "The yacht's hourly rate.",
+      "Your rental duration and the yacht's minimum booking time.",
+      "The yacht size needed for your group.",
+      "Optional arrangements with separate pricing."
+    ],
+    "faqs": [
+      {
+        "question": "Is barbecue part of the hourly yacht rate?",
+        "answer": "Barbecue is an optional hospitality request with separate pricing. Review the menu and service quote alongside the yacht rental."
       },
+      {
+        "question": "Will the food be cooked aboard?",
+        "answer": "The team will check the supplier and service method for the selected yacht. Do not order equipment or food until those arrangements are agreed."
+      },
+      {
+        "question": "Can we choose the menu?",
+        "answer": "Share your preferences and dietary needs. Ask for available supplier options and prices for your date."
+      },
+      {
+        "question": "What should I include in the enquiry?",
+        "answer": "Send your date, yacht shortlist, guest count, number of people eating, preferred meal time and dietary requirements."
+      }
     ],
-    bookingSteps: [
-      "Confirm the complete group size for the private hospitality request.",
-      "Compare verified yacht capacity, hourly price, length and minimum duration.",
-      "Prepare the preferred date, timing and requested hours without assuming a route.",
-      "Request menu, supplier, dietary, lead-time, service-method and price details in writing.",
+    "yachtIds": [
+      "yacht-majesty-44",
+      "yacht-majesty-56",
+      "yacht-doretty-90"
     ],
-    priceFactors: [
-      "The verified hourly rate of the selected yacht.",
-      "The requested hours and the yacht's minimum duration.",
-      "The group size and vessel size chosen.",
-      "A separately confirmed BBQ supplier, menu, service method and optional setup.",
+    "yachtSelectionNote": "Compare guest capacity and yacht rental costs for your meal. Ask the team to check any specific layout or facilities you need.",
+    "relatedServiceIds": [
+      "service-afternoon-tea",
+      "service-morning-trip",
+      "service-birthday"
     ],
-    faqs: [
-      { question: "Is BBQ part of the yacht's hourly price?", answer: "No BBQ service is assumed. Menu, supplier, lead time, method and separate price must appear in the final written offer." },
-      { question: "Will food be cooked onboard?", answer: "No onboard-cooking promise is made. The confirmed supplier and service method determine how any accepted request is handled." },
-      { question: "Is there a standard barbecue menu?", answer: "No fixed menu is published. Submit dietary questions and wait for available supplier options and separate prices." },
-      { question: "Does a BBQ request guarantee a particular route?", answer: "No. The hospitality idea does not establish a route, departure point, landmark sequence or duration." },
-    ],
-    yachtIds: ["yacht-majesty-44", "yacht-majesty-56", "yacht-doretty-90"],
-    yachtSelectionNote: "These records compare verified capacity, size, price and minimum duration. They do not confirm cooking equipment, dining setup, a menu or a supplier.",
-    relatedServiceIds: ["service-afternoon-tea", "service-morning-trip", "service-birthday"],
-    media: serviceMedia("english-home-service-barbecue-001", "Barbecue hospitality setting for a private yacht request"),
-  }),
-] as const;
+    "media": {
+      "path": "/media/home/services/barbecue.webp",
+      "alt": "Barbecue hospitality setting for a private yacht request",
+      "width": 461,
+      "height": 472,
+      "rightsRecordId": "english-home-service-barbecue-001"
+    }
+  }
+];
 
 export const approvedServiceIds = new Set(approvedServices.map((service) => service.id));
 export const approvedServicePaths = new Set(approvedServices.map((service) => service.path));

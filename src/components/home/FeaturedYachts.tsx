@@ -17,10 +17,10 @@ const FeaturedYachts = () => {
         <AnimatedSection initiallyVisible className="text-center mb-14">
           <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase">Our Fleet</span>
           <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mt-2 mb-4">
-            Featured Yachts with Verified Rental Facts
+            Find Your Yacht
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Yacht records shown here have passed the current factual, offer and media-rights publication checks.
+            Compare guest capacities, hourly rates and minimum rental times, then view the yacht photos and details.
           </p>
         </AnimatedSection>
 
@@ -35,7 +35,7 @@ const FeaturedYachts = () => {
             to="/yachts"
             className="inline-flex items-center gap-2 px-8 py-3 rounded-xl glass-button text-foreground font-medium hover:scale-105 transition-transform"
           >
-            View All Published Yachts <ArrowRight className="w-4 h-4" />
+            View All Yachts <ArrowRight className="w-4 h-4" />
           </Link>
         </AnimatedSection>
       </div>

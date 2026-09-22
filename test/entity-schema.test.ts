@@ -42,7 +42,7 @@ describe("English PR 7 entity schema ownership", () => {
     });
     expect(page.document.title).toBe("Private Yacht Rental Dubai | Dubai Yacht");
     expect(page.document.querySelector('meta[property="og:site_name"]')?.getAttribute("content")).toBe("Dubai Yacht");
-    expect(page.document.querySelector("h1")?.textContent).toContain("Dubai Yacht");
+    expect(page.document.querySelector('[data-home-section="hero"]')?.textContent).toContain("Dubai Yacht");
     expect(JSON.stringify(page.blocks)).not.toContain("alternateName");
   });
 

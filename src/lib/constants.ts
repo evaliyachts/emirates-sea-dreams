@@ -16,7 +16,7 @@ export const SOCIAL_PROFILES = requireApproved(getApprovedValue(siteFacts.social
 export const PLACEHOLDER_IMAGE = "/placeholder.svg";
 
 export const getWhatsAppLink = (message?: string) => {
-  const defaultMsg = "Hello Dubai Yacht, I would like to enquire about a private yacht in Dubai.";
+  const defaultMsg = "Hi Dubai Yacht, I'd like to check yacht availability.\nDate:\nTime:\nGuests:\nPreferred yacht:";
   return `${WHATSAPP_URL}?text=${encodeURIComponent(message || defaultMsg)}`;
 };
 

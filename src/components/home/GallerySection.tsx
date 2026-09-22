@@ -5,7 +5,7 @@ import { publishableYachts, yachtPath } from "@/data/yachts";
 import { formatAed } from "@/lib/published-fleet";
 
 const GallerySection = () => {
-  const heights = ["h-48", "h-64", "h-56", "h-72", "h-52", "h-60", "h-44", "h-68"];
+  const heights = ["h-48", "h-64", "h-56", "h-72", "h-52", "h-60", "h-44", "h-[17rem]"];
   const yachtCards = publishableYachts.slice(0, heights.length);
 
   return (
@@ -14,10 +14,10 @@ const GallerySection = () => {
         <AnimatedSection initiallyVisible className="mb-14 text-center">
           <span className="liquid-pill inline-block">Fleet gallery</span>
           <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
-            Explore Published Yacht Records Visually
+            Take a Closer Look
           </h2>
           <p className="mx-auto max-w-2xl text-muted-foreground">
-            Each image belongs to a verified, publishable record. Open the yacht page for its factual capacity, price and minimum duration.
+            Open a yacht to see more photos, guest capacity, prices and rental details.
           </p>
         </AnimatedSection>
 

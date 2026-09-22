@@ -52,7 +52,7 @@ const YachtCard = ({ yacht, index = 0 }: YachtCardProps) => {
             AED {yacht.pricePerHour.toLocaleString()}<span className="text-xs text-muted-foreground font-body">/hour</span>
           </p>
           <Link to={yachtPath(yacht.slug)} className="text-sm font-medium px-4 py-2 liquid-btn-gold text-primary">
-            View verified facts
+            View yacht
           </Link>
         </div>
       </div>
