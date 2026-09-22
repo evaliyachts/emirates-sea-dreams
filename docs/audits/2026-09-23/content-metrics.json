@@ -1,0 +1,526 @@
+{
+  "keywordCounts": [
+    {
+      "term": "verified",
+      "before": 210,
+      "after": 0
+    },
+    {
+      "term": "published",
+      "before": 190,
+      "after": 11
+    },
+    {
+      "term": "confirmation",
+      "before": 206,
+      "after": 81
+    },
+    {
+      "term": "synonym",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "term": "yacht rental dubai",
+      "before": 0,
+      "after": 0
+    },
+    {
+      "term": "yacht rental in dubai",
+      "before": 1,
+      "after": 1
+    },
+    {
+      "term": "dubai yacht rental",
+      "before": 0,
+      "after": 0
+    },
+    {
+      "term": "yacht charter dubai",
+      "before": 0,
+      "after": 0
+    },
+    {
+      "term": "yacht hire dubai",
+      "before": 0,
+      "after": 0
+    },
+    {
+      "term": "rent yacht dubai",
+      "before": 0,
+      "after": 0
+    },
+    {
+      "term": "rent yacht in dubai",
+      "before": 0,
+      "after": 0
+    },
+    {
+      "term": "book yacht dubai",
+      "before": 0,
+      "after": 0
+    },
+    {
+      "term": "yacht for rent dubai",
+      "before": 0,
+      "after": 0
+    }
+  ],
+  "serviceShingleSimilarity": {
+    "method": "Five-word Jaccard on initial main text, excluding footer; descriptive review aid, not a Google metric or duplicate verdict.",
+    "before": [
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/afternoon-tea-trip",
+        "jaccard": 0.17152373022481265
+      },
+      {
+        "a": "/services/birthday-party",
+        "b": "/services/engagement-parties",
+        "jaccard": 0.15713196033562166
+      },
+      {
+        "a": "/services/graduation-parties",
+        "b": "/services/engagement-parties",
+        "jaccard": 0.143317230273752
+      },
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/graduation-parties",
+        "jaccard": 0.14057507987220447
+      },
+      {
+        "a": "/services/birthday-party",
+        "b": "/services/graduation-parties",
+        "jaccard": 0.13948170731707318
+      },
+      {
+        "a": "/services/engagement-parties",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.13312202852614896
+      },
+      {
+        "a": "/services/graduation-parties",
+        "b": "/services/wedding-anniversary-parties",
+        "jaccard": 0.1328560063643596
+      },
+      {
+        "a": "/services/afternoon-tea-trip",
+        "b": "/services/morning-yacht-trips",
+        "jaccard": 0.13168724279835392
+      },
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/wedding-anniversary-parties",
+        "jaccard": 0.13063763608087092
+      },
+      {
+        "a": "/services/graduation-parties",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.13001605136436598
+      },
+      {
+        "a": "/services/birthday-party",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.12987987987987987
+      },
+      {
+        "a": "/services/wedding-anniversary-parties",
+        "b": "/services/afternoon-tea-trip",
+        "jaccard": 0.12510024057738572
+      },
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/morning-yacht-trips",
+        "jaccard": 0.12371946414499606
+      },
+      {
+        "a": "/services/wedding-anniversary-parties",
+        "b": "/services/engagement-parties",
+        "jaccard": 0.12354312354312354
+      },
+      {
+        "a": "/services/wedding-anniversary-parties",
+        "b": "/services/morning-yacht-trips",
+        "jaccard": 0.122336227308603
+      },
+      {
+        "a": "/services/birthday-party",
+        "b": "/services/wedding-anniversary-parties",
+        "jaccard": 0.12168141592920353
+      },
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/engagement-parties",
+        "jaccard": 0.1205564142194745
+      },
+      {
+        "a": "/services/birthday-party",
+        "b": "/services/marriage-proposal-party",
+        "jaccard": 0.12
+      },
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/birthday-party",
+        "jaccard": 0.11885546588407923
+      },
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.1181959564541213
+      },
+      {
+        "a": "/services/marriage-proposal-party",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.11773584905660377
+      },
+      {
+        "a": "/services/wedding-anniversary-parties",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.11769290724863601
+      },
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/marriage-proposal-party",
+        "jaccard": 0.11764705882352941
+      },
+      {
+        "a": "/services/marriage-proposal-party",
+        "b": "/services/engagement-parties",
+        "jaccard": 0.11751497005988024
+      },
+      {
+        "a": "/services/wedding-anniversary-parties",
+        "b": "/services/marriage-proposal-party",
+        "jaccard": 0.116331096196868
+      },
+      {
+        "a": "/services/graduation-parties",
+        "b": "/services/marriage-proposal-party",
+        "jaccard": 0.11608497723823975
+      },
+      {
+        "a": "/services/bachelor-parties",
+        "b": "/services/morning-yacht-trips",
+        "jaccard": 0.11541565778853914
+      },
+      {
+        "a": "/services/marriage-proposal-party",
+        "b": "/services/afternoon-tea-trip",
+        "jaccard": 0.11452728670253651
+      },
+      {
+        "a": "/services/morning-yacht-trips",
+        "b": "/services/engagement-parties",
+        "jaccard": 0.11215686274509803
+      },
+      {
+        "a": "/services/marriage-proposal-party",
+        "b": "/services/morning-yacht-trips",
+        "jaccard": 0.11203633610900833
+      },
+      {
+        "a": "/services/birthday-party",
+        "b": "/services/bachelor-parties",
+        "jaccard": 0.11186186186186187
+      },
+      {
+        "a": "/services/graduation-parties",
+        "b": "/services/bachelor-parties",
+        "jaccard": 0.11164658634538152
+      },
+      {
+        "a": "/services/birthday-party",
+        "b": "/services/morning-yacht-trips",
+        "jaccard": 0.11086309523809523
+      },
+      {
+        "a": "/services/bachelor-parties",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.10987261146496816
+      },
+      {
+        "a": "/services/graduation-parties",
+        "b": "/services/morning-yacht-trips",
+        "jaccard": 0.10881652104845115
+      },
+      {
+        "a": "/services/bachelor-parties",
+        "b": "/services/afternoon-tea-trip",
+        "jaccard": 0.108130081300813
+      },
+      {
+        "a": "/services/graduation-parties",
+        "b": "/services/afternoon-tea-trip",
+        "jaccard": 0.10691318327974277
+      },
+      {
+        "a": "/services/wedding-anniversary-parties",
+        "b": "/services/bachelor-parties",
+        "jaccard": 0.10675039246467818
+      },
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/bachelor-parties",
+        "jaccard": 0.1046875
+      },
+      {
+        "a": "/services/morning-yacht-trips",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.10361067503924647
+      },
+      {
+        "a": "/services/birthday-party",
+        "b": "/services/afternoon-tea-trip",
+        "jaccard": 0.10164424514200299
+      },
+      {
+        "a": "/services/bachelor-parties",
+        "b": "/services/engagement-parties",
+        "jaccard": 0.10101801096319499
+      },
+      {
+        "a": "/services/afternoon-tea-trip",
+        "b": "/services/engagement-parties",
+        "jaccard": 0.1007081038552321
+      },
+      {
+        "a": "/services/afternoon-tea-trip",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.09904912836767037
+      },
+      {
+        "a": "/services/bachelor-parties",
+        "b": "/services/marriage-proposal-party",
+        "jaccard": 0.09302325581395349
+      }
+    ],
+    "after": [
+      {
+        "a": "/services/birthday-party",
+        "b": "/services/engagement-parties",
+        "jaccard": 0.2695356738391846
+      },
+      {
+        "a": "/services/birthday-party",
+        "b": "/services/graduation-parties",
+        "jaccard": 0.2483221476510067
+      },
+      {
+        "a": "/services/graduation-parties",
+        "b": "/services/engagement-parties",
+        "jaccard": 0.24659090909090908
+      },
+      {
+        "a": "/services/engagement-parties",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.24303232998885171
+      },
+      {
+        "a": "/services/birthday-party",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.2366412213740458
+      },
+      {
+        "a": "/services/graduation-parties",
+        "b": "/services/wedding-anniversary-parties",
+        "jaccard": 0.2240618101545254
+      },
+      {
+        "a": "/services/wedding-anniversary-parties",
+        "b": "/services/engagement-parties",
+        "jaccard": 0.22283205268935236
+      },
+      {
+        "a": "/services/graduation-parties",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.21710526315789475
+      },
+      {
+        "a": "/services/marriage-proposal-party",
+        "b": "/services/engagement-parties",
+        "jaccard": 0.21606948968512488
+      },
+      {
+        "a": "/services/birthday-party",
+        "b": "/services/wedding-anniversary-parties",
+        "jaccard": 0.21566523605150215
+      },
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/graduation-parties",
+        "jaccard": 0.2123510292524377
+      },
+      {
+        "a": "/services/wedding-anniversary-parties",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.21052631578947367
+      },
+      {
+        "a": "/services/graduation-parties",
+        "b": "/services/bachelor-parties",
+        "jaccard": 0.20870535714285715
+      },
+      {
+        "a": "/services/wedding-anniversary-parties",
+        "b": "/services/marriage-proposal-party",
+        "jaccard": 0.2055378061767838
+      },
+      {
+        "a": "/services/wedding-anniversary-parties",
+        "b": "/services/bachelor-parties",
+        "jaccard": 0.20481927710843373
+      },
+      {
+        "a": "/services/bachelor-parties",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.20459518599562362
+      },
+      {
+        "a": "/services/marriage-proposal-party",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.20403825717321997
+      },
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/afternoon-tea-trip",
+        "jaccard": 0.2032258064516129
+      },
+      {
+        "a": "/services/afternoon-tea-trip",
+        "b": "/services/morning-yacht-trips",
+        "jaccard": 0.20217391304347826
+      },
+      {
+        "a": "/services/birthday-party",
+        "b": "/services/marriage-proposal-party",
+        "jaccard": 0.20021074815595363
+      },
+      {
+        "a": "/services/wedding-anniversary-parties",
+        "b": "/services/afternoon-tea-trip",
+        "jaccard": 0.1989189189189189
+      },
+      {
+        "a": "/services/graduation-parties",
+        "b": "/services/marriage-proposal-party",
+        "jaccard": 0.19763694951664876
+      },
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/engagement-parties",
+        "jaccard": 0.19701810436634717
+      },
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/wedding-anniversary-parties",
+        "jaccard": 0.1957894736842105
+      },
+      {
+        "a": "/services/bachelor-parties",
+        "b": "/services/engagement-parties",
+        "jaccard": 0.1956043956043956
+      },
+      {
+        "a": "/services/birthday-party",
+        "b": "/services/bachelor-parties",
+        "jaccard": 0.19546436285097193
+      },
+      {
+        "a": "/services/marriage-proposal-party",
+        "b": "/services/morning-yacht-trips",
+        "jaccard": 0.19470899470899472
+      },
+      {
+        "a": "/services/morning-yacht-trips",
+        "b": "/services/engagement-parties",
+        "jaccard": 0.18950749464668093
+      },
+      {
+        "a": "/services/wedding-anniversary-parties",
+        "b": "/services/morning-yacht-trips",
+        "jaccard": 0.18710359408033828
+      },
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/birthday-party",
+        "jaccard": 0.18691588785046728
+      },
+      {
+        "a": "/services/graduation-parties",
+        "b": "/services/morning-yacht-trips",
+        "jaccard": 0.18669527896995708
+      },
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/morning-yacht-trips",
+        "jaccard": 0.1839080459770115
+      },
+      {
+        "a": "/services/birthday-party",
+        "b": "/services/morning-yacht-trips",
+        "jaccard": 0.180773249738767
+      },
+      {
+        "a": "/services/marriage-proposal-party",
+        "b": "/services/afternoon-tea-trip",
+        "jaccard": 0.17989417989417988
+      },
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/marriage-proposal-party",
+        "jaccard": 0.1797520661157025
+      },
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.17946058091286307
+      },
+      {
+        "a": "/services/barbecue-on-the-yacht",
+        "b": "/services/bachelor-parties",
+        "jaccard": 0.17709437963944857
+      },
+      {
+        "a": "/services/morning-yacht-trips",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.1769633507853403
+      },
+      {
+        "a": "/services/afternoon-tea-trip",
+        "b": "/services/engagement-parties",
+        "jaccard": 0.1745182012847966
+      },
+      {
+        "a": "/services/bachelor-parties",
+        "b": "/services/morning-yacht-trips",
+        "jaccard": 0.17326203208556148
+      },
+      {
+        "a": "/services/bachelor-parties",
+        "b": "/services/afternoon-tea-trip",
+        "jaccard": 0.17207792207792208
+      },
+      {
+        "a": "/services/graduation-parties",
+        "b": "/services/afternoon-tea-trip",
+        "jaccard": 0.17041800643086816
+      },
+      {
+        "a": "/services/bachelor-parties",
+        "b": "/services/marriage-proposal-party",
+        "jaccard": 0.17037037037037037
+      },
+      {
+        "a": "/services/birthday-party",
+        "b": "/services/afternoon-tea-trip",
+        "jaccard": 0.16981132075471697
+      },
+      {
+        "a": "/services/afternoon-tea-trip",
+        "b": "/services/wedding-parties",
+        "jaccard": 0.16842105263157894
+      }
+    ]
+  }
+}

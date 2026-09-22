@@ -1,0 +1,742 @@
+[
+  {
+    "path": "/_static/yachts.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/services.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/services.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/services/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/occasions.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/occasions",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/occasions.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/occasions/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/occasions",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/about.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/about",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/about.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/about/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/about",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/faq.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/faq",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/faq.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/faq/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/faq",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/contact.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/contact",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/contact.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/contact/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/contact",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/terms.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/terms",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/terms.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/terms/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/terms",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/privacy.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/privacy",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/privacy.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/privacy/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/privacy",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/50-feet-royal-majesty-dubai-yacht-rental.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/50-feet-royal-majesty-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/50-feet-royal-majesty-dubai-yacht-rental.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/50-feet-royal-majesty-dubai-yacht-rental/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/50-feet-royal-majesty-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/42-feet-azimut-yacht-rental-dubai.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/42-feet-azimut-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/42-feet-azimut-yacht-rental-dubai.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/42-feet-azimut-yacht-rental-dubai/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/42-feet-azimut-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/majesty-44-feet-dubai-yacht-rental.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/majesty-44-feet-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/majesty-44-feet-dubai-yacht-rental.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/majesty-44-feet-dubai-yacht-rental/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/majesty-44-feet-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/50-feet-azimut-yacht-rental-dubai.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/50-feet-azimut-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/50-feet-azimut-yacht-rental-dubai.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/50-feet-azimut-yacht-rental-dubai/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/50-feet-azimut-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/oryx-50-feet-dubai-yacht-rental.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/oryx-50-feet-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/oryx-50-feet-dubai-yacht-rental.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/oryx-50-feet-dubai-yacht-rental/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/oryx-50-feet-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/ferretti-50-feet-yacht-rental-dubai.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/ferretti-50-feet-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/ferretti-50-feet-yacht-rental-dubai.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/ferretti-50-feet-yacht-rental-dubai/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/ferretti-50-feet-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/56-feet-majesty-dubai-yacht-rental.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/56-feet-majesty-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/56-feet-majesty-dubai-yacht-rental.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/56-feet-majesty-dubai-yacht-rental/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/56-feet-majesty-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/55-feet-azimut-yacht-rental-dubai.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/55-feet-azimut-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/55-feet-azimut-yacht-rental-dubai.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/55-feet-azimut-yacht-rental-dubai/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/55-feet-azimut-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/majesty-88ft-jacuzzi-dubai-yacht-rental.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/majesty-88ft-jacuzzi-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/majesty-88ft-jacuzzi-dubai-yacht-rental.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/majesty-88ft-jacuzzi-dubai-yacht-rental/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/majesty-88ft-jacuzzi-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/benetti-110ft-jacuzzi-yacht-rental-dubai.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/benetti-110ft-jacuzzi-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/benetti-110ft-jacuzzi-yacht-rental-dubai.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/benetti-110ft-jacuzzi-yacht-rental-dubai/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/benetti-110ft-jacuzzi-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/majesty-101ft-jacuzzi-dubai-yacht-rental.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/majesty-101ft-jacuzzi-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/majesty-101ft-jacuzzi-dubai-yacht-rental.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/majesty-101ft-jacuzzi-dubai-yacht-rental/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/majesty-101ft-jacuzzi-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/heysea-90ft-jacuzzi-yacht-rental-dubai.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/heysea-90ft-jacuzzi-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/heysea-90ft-jacuzzi-yacht-rental-dubai.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/heysea-90ft-jacuzzi-yacht-rental-dubai/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/heysea-90ft-jacuzzi-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/doretty-90ft-jacuzzi-dubai-yacht-rental.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/doretty-90ft-jacuzzi-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/doretty-90ft-jacuzzi-dubai-yacht-rental.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/doretty-90ft-jacuzzi-dubai-yacht-rental/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/doretty-90ft-jacuzzi-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/ocean-dream-143-feet-yacht-rental-dubai.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/ocean-dream-143-feet-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/ocean-dream-143-feet-yacht-rental-dubai.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/ocean-dream-143-feet-yacht-rental-dubai/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/ocean-dream-143-feet-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/mzaail-135ft-dubai-yacht-rental.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/mzaail-135ft-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/mzaail-135ft-dubai-yacht-rental.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/mzaail-135ft-dubai-yacht-rental/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/mzaail-135ft-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/doretty-95-feet-jacuzzi-yacht-rental-dubai.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/doretty-95-feet-jacuzzi-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/doretty-95-feet-jacuzzi-yacht-rental-dubai.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/doretty-95-feet-jacuzzi-yacht-rental-dubai/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/doretty-95-feet-jacuzzi-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/sunseeker-92-feet-dubai-yacht-rental.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/sunseeker-92-feet-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/sunseeker-92-feet-dubai-yacht-rental.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/sunseeker-92-feet-dubai-yacht-rental/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/sunseeker-92-feet-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/sunseeker-90-feet-yacht-rental-dubai.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/sunseeker-90-feet-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/sunseeker-90-feet-yacht-rental-dubai.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/sunseeker-90-feet-yacht-rental-dubai/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/sunseeker-90-feet-yacht-rental-dubai",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/yachts/omega-100-feet-dubai-yacht-rental.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/omega-100-feet-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/yachts/omega-100-feet-dubai-yacht-rental.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/yachts/omega-100-feet-dubai-yacht-rental/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/yachts/omega-100-feet-dubai-yacht-rental",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/services/barbecue-on-the-yacht.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/barbecue-on-the-yacht",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/services/barbecue-on-the-yacht.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/services/barbecue-on-the-yacht/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/barbecue-on-the-yacht",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/services/birthday-party.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/birthday-party",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/services/birthday-party.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/services/birthday-party/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/birthday-party",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/services/graduation-parties.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/graduation-parties",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/services/graduation-parties.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/services/graduation-parties/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/graduation-parties",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/services/wedding-anniversary-parties.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/wedding-anniversary-parties",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/services/wedding-anniversary-parties.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/services/wedding-anniversary-parties/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/wedding-anniversary-parties",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/services/bachelor-parties.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/bachelor-parties",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/services/bachelor-parties.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/services/bachelor-parties/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/bachelor-parties",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/services/marriage-proposal-party.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/marriage-proposal-party",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/services/marriage-proposal-party.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/services/marriage-proposal-party/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/marriage-proposal-party",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/services/afternoon-tea-trip.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/afternoon-tea-trip",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/services/afternoon-tea-trip.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/services/afternoon-tea-trip/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/afternoon-tea-trip",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/services/morning-yacht-trips.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/morning-yacht-trips",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/services/morning-yacht-trips.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/services/morning-yacht-trips/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/morning-yacht-trips",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/services/engagement-parties.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/engagement-parties",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/services/engagement-parties.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/services/engagement-parties/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/engagement-parties",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/_static/services/wedding-parties.html",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/wedding-parties",
+    "robots": "index, follow"
+  },
+  {
+    "path": "/services/wedding-parties.html",
+    "status": 404,
+    "location": null,
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/services/wedding-parties/",
+    "status": 200,
+    "location": null,
+    "canonical": "https://yachtrentaldxb.com/services/wedding-parties",
+    "robots": "index, follow"
+  }
+]
