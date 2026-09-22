@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { JSDOM } from "jsdom";
 import { MemoryRouter } from "react-router-dom";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { AppProviders } from "../src/app/AppProviders";
 import { AppRoutes } from "../src/app/AppRoutes";
 import { renderStaticRoute } from "../src/entry-server";
@@ -14,6 +14,13 @@ const renderRoute = (path: string) => render(<AppProviders><MemoryRouter initial
 const parse = (path: string) => new JSDOM(renderStaticRoute(path).html).window.document;
 
 describe("customer-first booking journey", () => {
+  it("returns yacht navigation to the heading and booking actions", () => {
+    renderRoute("/yachts");
+    vi.mocked(window.scrollTo).mockClear();
+    fireEvent.click(screen.getAllByRole("link", { name: "View yacht" })[0]);
+    expect(screen.getByRole("heading", { level: 1, name: "Royal Majesty 50" })).toBeInTheDocument();
+    expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: "instant" });
+  });
   it("includes FAQ answers in initial HTML with native disclosure controls", () => {
     const home = parse("/");
     const faq = parse("/faq");
