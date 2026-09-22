@@ -9,19 +9,19 @@ const estimateSteps = [
   {
     title: "Choose an hourly rate",
     value: `${formatAed(publishedFleetSummary.pricePerHour.minimum)}–${formatAed(publishedFleetSummary.pricePerHour.maximum)}`,
-    note: "per hour across the published fleet",
-    points: ["Compare the selected yacht's own rate", "Use only the price on its factual detail page", "Do not infer a discount or package price"],
+    note: "per hour across the yacht selection",
+    points: ["Compare the selected yacht's own rate", "Open the yacht page for its minimum duration", "Ask for a quote for your chosen date"],
   },
   {
     title: "Apply its minimum duration",
     value: `${publishedFleetSummary.minimumDuration.minimum}–${publishedFleetSummary.minimumDuration.maximum} hours`,
-    note: "current range of published minimums",
-    points: ["Check the individual yacht minimum", "Multiply by the requested qualifying hours", "Treat the result as a base amount"],
+    note: "minimum rental time varies by yacht",
+    points: ["Check the individual yacht minimum", "Multiply the hourly price by your rental time", "Use the result for your initial budget"],
   },
   {
     title: "List optional requests",
     value: "Confirm separately",
-    note: "no universal inclusion is assumed",
+    note: "ask for a full quote with any extras",
     points: ["Name every optional service or setup", "Ask whether it is available for the date", "Request its separate confirmed price"],
   },
 ] as const;
@@ -32,10 +32,10 @@ const PackagesSection = () => (
       <AnimatedSection initiallyVisible className="mb-14 text-center">
         <span className="liquid-pill inline-block">Price planning</span>
         <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
-          Build a Factual Yacht Rental Estimate
+          Plan Your Yacht Budget
         </h2>
         <p className="mx-auto max-w-xl text-muted-foreground">
-          The site publishes yacht-specific hourly rates and minimum durations, not fixed all-purpose packages.
+          Compare the yacht rate and rental time first, then add any optional arrangements to your quote.
         </p>
       </AnimatedSection>
 
@@ -65,7 +65,7 @@ const PackagesSection = () => (
 
       <AnimatedSection initiallyVisible className="text-center">
         <Link to="/yachts" className="font-semibold text-primary hover:underline">
-          Compare the verified hourly rates in the yacht catalogue
+          View yachts and hourly prices
         </Link>
       </AnimatedSection>
     </div>

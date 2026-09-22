@@ -14,8 +14,7 @@ describe("mobile homepage performance safeguards", () => {
 
   it("removes synchronous geometry reads from the services input path", () => {
     const services = readFileSync("src/components/home/ServicesSection.tsx", "utf8");
-    expect(services).toContain("IntersectionObserver");
-    expect(services).toContain("intersectionRatio");
+    expect(services).not.toMatch(/preventDefault|addEventListener\(["'](?:wheel|touchmove)/u);
     expect(services).not.toMatch(/getBoundingClientRect|offsetWidth|offsetHeight|clientWidth|clientHeight/u);
   });
 

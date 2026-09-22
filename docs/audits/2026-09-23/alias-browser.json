@@ -1,0 +1,32 @@
+[
+  {
+    "path": "/index.html",
+    "http": 200,
+    "h1": [
+      "Page not found"
+    ],
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/_static/services.html",
+    "http": 200,
+    "h1": [
+      "Page not found"
+    ],
+    "robots": "noindex, follow"
+  },
+  {
+    "path": "/this-page-must-not-exist-928374",
+    "http": 404,
+    "h1": [
+      "Page not found"
+    ],
+    "robots": "noindex, follow"
+  },
+  {
+    "afterClickHome": [
+      "Page not found"
+    ],
+    "url": "https://yachtrentaldxb.com/"
+  }
+]

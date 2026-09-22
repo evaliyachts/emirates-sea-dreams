@@ -6,7 +6,7 @@ import { AnimatedSection } from "@/components/shared/AnimatedSection";
 import { buildBreadcrumbNode, organizationReference, schemaGraph } from "@/lib/entity-schema";
 
 const facts = [
-  { icon: Scale, title: "Compare verified facts", text: "Compare published length, guest capacity, year, hourly price and minimum duration without inferred specifications." },
+  { icon: Scale, title: "Compare yachts", text: "Compare photos, length, guest capacity, hourly price and rental duration." },
   { icon: Ship, title: "Shortlist a private yacht", text: "Use the catalogue to identify yachts that fit the published capacity and planning budget for your request." },
   { icon: ClipboardCheck, title: "Prepare a request", text: "Share the intended date, time, duration, guest count and optional requests for availability confirmation." },
   { icon: Anchor, title: "Confirm operating details", text: "Departure location, route and optional services are confirmed for the selected yacht and booking." },
@@ -16,7 +16,7 @@ const About = () => (
   <Layout>
     <SEOHead
       title="About Dubai Yacht | Private Yacht Comparison Service"
-      description="Learn how Dubai Yacht helps visitors compare verified yacht facts and prepare private yacht availability requests in Dubai."
+      description="Learn how Dubai Yacht helps you compare private yachts and request availability in Dubai. Contact the team to discuss your group and trip."
       path="/about"
       jsonLd={schemaGraph([
         { ...organizationReference, "@type": "Organization", name: "Dubai Yacht", url: "https://yachtrentaldxb.com/" },
@@ -36,12 +36,12 @@ const About = () => (
         <AnimatedSection className="liquid-glass-gold p-7 md:p-10 mb-12">
           <h2 className="text-3xl font-display font-bold text-foreground mb-4">What the website provides</h2>
           <p className="text-muted-foreground leading-relaxed">
-            The yacht catalogue publishes evidence-cleared hourly prices, minimum durations, capacities and vessel facts. Service pages explain requests that may be discussed for a private booking. Availability and every optional item remain subject to confirmation through WhatsApp or phone.
+            Browse yacht photos, capacities, prices and rental times, or explore the celebration and hospitality guides. Then contact the team by WhatsApp or phone to check availability and discuss your plans.
           </p>
         </AnimatedSection>
 
         <section aria-labelledby="planning-process" className="mb-12">
-          <h2 id="planning-process" className="text-3xl font-display font-bold text-foreground mb-7 text-center">A factual planning process</h2>
+          <h2 id="planning-process" className="text-3xl font-display font-bold text-foreground mb-7 text-center">Plan your trip with us</h2>
           <div className="grid gap-5 md:grid-cols-2">
             {facts.map(({ icon: Icon, title, text }, index) => (
               <AnimatedSection key={title} delay={index * 0.05} className="glass-card p-6">
@@ -54,9 +54,9 @@ const About = () => (
         </section>
 
         <AnimatedSection className="glass-card p-7">
-          <h2 className="text-2xl font-display font-bold text-foreground mb-3">What confirmation means</h2>
+          <h2 className="text-2xl font-display font-bold text-foreground mb-3">Before you book</h2>
           <p className="text-muted-foreground leading-relaxed mb-5">
-            An enquiry does not reserve a yacht. The yacht, date, start time, duration, guest count, price, departure details and any optional requests must appear in the final written confirmation before they can be relied on.
+            Review the yacht, date, start time, duration, guest count, price and departure details in your written offer. Check the agreed extras and booking terms before confirming.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link to="/yachts" className="liquid-btn-gold px-5 py-3 text-primary">Compare yachts</Link>

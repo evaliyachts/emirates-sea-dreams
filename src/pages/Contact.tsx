@@ -38,7 +38,7 @@ const Contact = () => {
       await navigator.clipboard.writeText(prepared.message);
       setStatus("The prepared enquiry message has been copied. Nothing has been sent.");
     } catch {
-      setStatus("The message could not be copied automatically. Nothing has been sent; use the prepared WhatsApp link or call the approved number.");
+      setStatus("The message could not be copied automatically. Nothing has been sent; use the prepared WhatsApp link or call us.");
     }
     focusStatus();
   };
@@ -47,8 +47,8 @@ const Contact = () => {
   return (
     <Layout>
       <SEOHead
-        title="Contact Dubai Yacht | Prepare a Yacht Enquiry"
-        description="Prepare a private yacht enquiry for WhatsApp or call Dubai Yacht using the approved contact number. An enquiry is not a confirmed booking."
+        title="Contact Dubai Yacht | Check Availability"
+        description="Contact Dubai Yacht by WhatsApp or phone to check availability. Send your date, guest count, preferred yacht and duration to request a quote."
         path="/contact"
         jsonLd={buildBreadcrumbSchema("/contact", [{ name: "Home", path: "/" }, { name: "Contact", path: "/contact" }])}
       />
@@ -56,8 +56,8 @@ const Contact = () => {
         <div className="container mx-auto px-4 max-w-5xl">
           <AnimatedSection initiallyVisible className="text-center mb-12">
             <span className="liquid-pill inline-block mb-4">Contact</span>
-            <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-4">Prepare a Private Yacht Enquiry</h1>
-            <p className="text-muted-foreground max-w-2xl mx-auto">Compare a yacht first, then prepare the details needed to ask about availability. This browser form does not submit a booking.</p>
+            <h1 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-4">Check Yacht Availability</h1>
+            <p className="text-muted-foreground max-w-2xl mx-auto">Tell us your preferred date and group size. Choose a yacht or ask us to help you compare options.</p>
           </AnimatedSection>
 
           <div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
@@ -70,10 +70,10 @@ const Contact = () => {
                   <label className="text-sm text-foreground">Guest count<input required type="number" min="1" step="1" value={form.guests} onChange={(e) => update("guests", e.target.value)} className={`${inputClass} mt-2`} /></label>
                 </div>
                 <label className="text-sm text-foreground">Yacht interest<input value={form.yacht} onChange={(e) => update("yacht", e.target.value)} className={`${inputClass} mt-2`} placeholder="Optional yacht name or shortlist" /></label>
-                <label className="text-sm text-foreground">Occasion or optional requests<textarea rows={3} value={form.occasion} onChange={(e) => update("occasion", e.target.value)} className={`${inputClass} mt-2`} placeholder="Optional requests remain subject to confirmation and separate pricing" /></label>
+                <label className="text-sm text-foreground">Occasion or optional requests<textarea rows={3} value={form.occasion} onChange={(e) => update("occasion", e.target.value)} className={`${inputClass} mt-2`} placeholder="For example: birthday decorations, food or access needs" /></label>
                 <label className="text-sm text-foreground">General note (optional)<textarea rows={3} value={form.note} onChange={(e) => update("note", e.target.value)} className={`${inputClass} mt-2`} /></label>
-                <p id="form-disclosure" className="text-xs text-muted-foreground leading-relaxed">The form prepares a message locally in this browser. It does not send values to this website, Netlify, email, a database or an internal API. Transmission happens only if you press Send in WhatsApp.</p>
-                <button type="submit" className="w-full flex items-center justify-center gap-2 py-3 liquid-btn-primary"><Send className="w-4 h-4" aria-hidden="true" /> Prepare in WhatsApp</button>
+                <p id="form-disclosure" className="text-xs text-muted-foreground leading-relaxed">Your message opens in WhatsApp for you to review and send. Sending an enquiry does not reserve a yacht.</p>
+                <button type="submit" className="w-full flex items-center justify-center gap-2 py-3 liquid-btn-primary"><Send className="w-4 h-4" aria-hidden="true" /> Continue to WhatsApp</button>
               </form>
             </AnimatedSection>
 
@@ -84,7 +84,7 @@ const Contact = () => {
               <a href={getPhoneLink()} className="liquid-glass p-5 flex items-center gap-4 block">
                 <Phone className="w-6 h-6 text-primary" aria-hidden="true" /><span><strong className="block text-foreground">Call Dubai Yacht</strong><span className="text-xs text-muted-foreground">{PHONE_NUMBER}</span></span>
               </a>
-              {departure && <div className="glass-card p-5 text-xs text-muted-foreground leading-relaxed"><strong className="block text-sm text-foreground mb-2">Departure reference</strong>{departure}</div>}
+              {departure && <div className="glass-card p-5 text-xs text-muted-foreground leading-relaxed"><strong className="block text-sm text-foreground mb-2">Where to board</strong>{departure}</div>}
             </AnimatedSection>
           </div>
 

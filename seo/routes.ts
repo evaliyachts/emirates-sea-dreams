@@ -121,8 +121,8 @@ const homeRoute: EnglishRouteRecord = {
   metadataOwnership: {
     status: "approved",
     title: "Private Yacht Rental Dubai | Dubai Yacht",
-    description: "Compare 19 verified private yachts in Dubai by hourly price, guest capacity and minimum duration, then prepare a factual rental request.",
-    h1: "Dubai Yacht: Private Yacht Rental in Dubai, Compared with Verified Facts",
+    description: "Compare private yachts in Dubai by hourly price, guest capacity and rental duration. View photos and contact Dubai Yacht to check availability.",
+    h1: "Private Yacht Rental in Dubai",
     note: "PR 5 assigns broad private-rental ownership to the homepage without activating a synonym candidate route.",
   },
   schemaOwnership: ["WebSite", "Organization"],
@@ -146,9 +146,9 @@ const staticRoutes: EnglishRouteRecord[] = [
     renderingEligible: true,
     metadataOwnership: {
       status: "approved",
-      title: "Yachts for Rent in Dubai | Compare 19 Verified Records",
-      description: "Compare 19 published Dubai yacht records by capacity, hourly price, minimum duration, length and verified vessel facts.",
-      h1: "Compare Yachts for Rent in Dubai by Verified Facts",
+      title: "Yachts for Rent in Dubai | Prices & Capacity | Dubai Yacht",
+      description: "Compare private yachts in Dubai by guest capacity, hourly price and rental duration. Browse photos and ask Dubai Yacht about your preferred date.",
+      h1: "Compare Yachts and Prices",
       note: "PR 5 assigns factual fleet-comparison and for-rent intent to the existing catalogue owner.",
     },
     notes: ["Catalogue path is preserved; verified record publication belongs to PR 4."],
@@ -173,9 +173,9 @@ const staticRoutes: EnglishRouteRecord[] = [
     renderingEligible: true,
     metadataOwnership: {
       status: "approved",
-      title: "Private Yacht Service Planning in Dubai | Optional Requests",
-      description: "Plan private yacht celebration, romance, hospitality, water-activity and experience requests without assuming inclusions or availability.",
-      h1: "Plan Optional Services for a Private Yacht Request",
+      title: "Private Yacht Celebrations & Services | Dubai Yacht",
+      description: "Explore birthday parties, proposals, wedding celebrations and private yacht trips. Compare planning options and request availability with Dubai Yacht.",
+      h1: "Plan Your Time on the Water",
       note: "PR 5 approves hub-level planning copy only; detail service capability remains blocked for PR 6.",
     },
   }),
@@ -190,8 +190,8 @@ const staticRoutes: EnglishRouteRecord[] = [
     metadataOwnership: {
       status: "approved",
       title: "Private Yacht Occasions in Dubai | Planning Guide",
-      description: "Compare seven private-yacht occasion themes, the decisions to prepare and verified yacht facts without assuming packages, routes or inclusions.",
-      h1: "Choose a Private Yacht Occasion by the Decisions It Requires",
+      description: "Choose an occasion for your private yacht trip. Plan your guest list, timing and priorities, then explore service guides and yacht options.",
+      h1: "Choose Your Yacht Occasion",
       note: "PR 5 approves hub-only chooser copy for all seven source themes without creating occasion detail routes.",
     },
     notes: ["Seven source occasions remain hub-only dispositions in this phase."],
@@ -204,7 +204,7 @@ const staticRoutes: EnglishRouteRecord[] = [
     schemaOwnership: ["Organization", "BreadcrumbList"],
     verificationRequired: [],
     title: "About Dubai Yacht | Private Yacht Comparison Service",
-    description: "Learn how Dubai Yacht helps visitors compare verified yacht facts and prepare private yacht availability requests in Dubai.",
+    description: "Learn how Dubai Yacht helps you compare private yachts and request availability in Dubai. Contact the team to discuss your group and trip.",
     h1: "About Dubai Yacht",
   }),
   approvedSupportRoute({
@@ -226,9 +226,9 @@ const staticRoutes: EnglishRouteRecord[] = [
     secondaryIntents: ["booking contact endpoint"],
     schemaOwnership: ["BreadcrumbList"],
     verificationRequired: [],
-    title: "Contact Dubai Yacht | Prepare a Yacht Enquiry",
-    description: "Prepare a private yacht enquiry for WhatsApp or call Dubai Yacht using the approved contact number. An enquiry is not a confirmed booking.",
-    h1: "Prepare a Private Yacht Enquiry",
+    title: "Contact Dubai Yacht | Check Availability",
+    description: "Contact Dubai Yacht by WhatsApp or phone to check availability. Send your date, guest count, preferred yacht and duration to request a quote.",
+    h1: "Check Yacht Availability",
   }),
   approvedSupportRoute({
     id: "terms",
@@ -364,7 +364,7 @@ const serviceRoutes = serviceInputs.map((input): EnglishRouteRecord => {
       },
       evidence: [...route.evidence, serviceOwnerApprovalEvidence],
       verificationRequired: [],
-      notes: [...route.notes, "Owner-approved for evidence-bounded static publication in PR 6B."],
+      notes: [...(route.notes ?? []), "Owner-approved for evidence-bounded static publication in PR 6B."],
     };
   }
 
@@ -381,7 +381,7 @@ const serviceRoutes = serviceInputs.map((input): EnglishRouteRecord => {
   return {
     ...route,
     decisionStatus: "blocked",
-    notes: [...route.notes, "Owner explicitly kept this service owner blocked for PR 6B."],
+    notes: [...(route.notes ?? []), "Owner explicitly kept this service owner blocked for PR 6B."],
   };
 });
 

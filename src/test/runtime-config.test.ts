@@ -25,7 +25,7 @@ describe("runtime configuration", () => {
 
     expect(packageJson.scripts.predev).toBe("tsx scripts/generate-sitemap.ts");
     expect(packageJson.scripts.prebuild).toBe("tsx scripts/generate-sitemap.ts");
-    expect(packageJson.scripts.typecheck).toBe("tsc --noEmit");
+    expect(packageJson.scripts.typecheck).toBe("tsc -p tsconfig.app.json --noEmit");
     expect(packageJson.scripts.test).toBe("vitest run");
     expect(packageJson.scripts["seo:check"]).toBe("tsx scripts/seo-check.ts");
     expect(JSON.stringify(packageJson.scripts)).not.toMatch(/bunx|\bbun\b/);

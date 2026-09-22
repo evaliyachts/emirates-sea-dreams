@@ -52,7 +52,7 @@ describe("approved homepage media restoration", () => {
     });
   });
 
-  it("uses responsive hero covers and all service images in route-specific initial HTML", () => {
+  it("uses responsive hero covers and approved service imagery with all service links in initial HTML", () => {
     const rendered = renderStaticRoute("/");
     const document = new JSDOM(rendered.html).window.document;
     const hero = document.querySelector<HTMLElement>('[data-home-section="hero"]')!;
@@ -63,18 +63,18 @@ describe("approved homepage media restoration", () => {
     expect(mobileSource?.getAttribute("height")).toBe(`${HOME_HERO_MOBILE.height}`);
     expect(desktopImage?.getAttribute("src")).toBe(HOME_HERO_DESKTOP.path);
     expect(desktopImage?.getAttribute("loading")).toBe("eager");
-    expect(desktopImage?.hasAttribute("fetchpriority")).toBe(false);
+    expect(desktopImage?.getAttribute("fetchpriority")).toBe("high");
 
     const serviceSection = document.querySelector<HTMLElement>('[data-home-section="services"]')!;
     const serviceImages = [...serviceSection.querySelectorAll<HTMLImageElement>('img[src^="/media/home/services/"]')];
-    expect(serviceImages).toHaveLength(13);
-    expect(serviceImages.map((image) => image.getAttribute("src"))).toEqual(HOME_SERVICE_MEDIA.map((media) => media.path));
+    expect(serviceImages).toHaveLength(1);
+    expect(serviceImages[0].getAttribute("src")).toBe(HOME_SERVICE_MEDIA[0].path);
     serviceImages.forEach((image, index) => {
       expect(image.getAttribute("loading")).toBe("lazy");
       expect(image.getAttribute("width")).toBe(`${HOME_SERVICE_MEDIA[index].width}`);
       expect(image.getAttribute("height")).toBe(`${HOME_SERVICE_MEDIA[index].height}`);
     });
-    expect(serviceSection.querySelectorAll('a[href="/services"]')).toHaveLength(13);
+    expect(new Set([...serviceSection.querySelectorAll<HTMLAnchorElement>('a[href^="/services/"]')].map((link) => link.getAttribute("href")))).toHaveLength(10);
   });
 
   it("keeps approved homepage SEO ownership and avoids external media runtime URLs", () => {
@@ -91,7 +91,7 @@ describe("approved homepage media restoration", () => {
     expect(rendered.head).not.toMatch(/hreflang|x-default|name="keywords"/i);
     expect(restoredMediaUrls.every((url) => url.startsWith("/media/home/"))).toBe(true);
     expect(restoredMediaSections.map((section) => section.textContent).join(" ")).not.toMatch(/evali|supabase/i);
-    expect(rendered.html).toContain("Private Yacht Rental in Dubai, ");
+    expect(rendered.html).toContain("Private Yacht Rental in Dubai");
   });
 
   it("decodes and verifies every local homepage image through media:verify", async () => {

@@ -7,7 +7,7 @@ import { buildBreadcrumbNode, organizationReference, schemaGraph } from "@/lib/e
 export const buildYachtSeo = (yacht: YachtRecord) => {
   const path = yachtPath(yacht.slug);
   const canonical = `${DOMAIN}${path}`;
-  const title = `${yacht.name} | Verified Price and Capacity — Dubai Yacht`;
+  const title = `${yacht.name} Yacht Rental | Dubai Yacht`;
   const description = `${yacht.name}: ${yacht.lengthFt} ft, capacity for ${yacht.guestCapacity}, built in ${yacht.yearBuilt}, from AED ${yacht.pricePerHour.toLocaleString()} per hour with a ${yacht.minimumDuration}-hour minimum.`;
   const primaryImage = yacht.media.find((media) => media.featured) ?? yacht.media[0];
   const socialImage = primaryImage.path === NEUTRAL_YACHT_FALLBACK
@@ -31,7 +31,7 @@ export const buildYachtSeo = (yacht: YachtRecord) => {
         price: yacht.pricePerHour,
         priceCurrency: "AED",
         url: canonical,
-        description: `Minimum booking duration: ${yacht.minimumDuration} hours.`,
+        description: `Hourly yacht rental rate. Minimum booking duration: ${yacht.minimumDuration} hours. Availability on request.`,
       },
     },
     buildBreadcrumbNode(path, [

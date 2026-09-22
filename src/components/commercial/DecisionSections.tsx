@@ -21,17 +21,13 @@ export const CommercialHero = ({
   directAnswer: string;
   children?: ReactNode;
 }) => (
-  <section className="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24">
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,hsl(var(--gold)/0.16),transparent_42%),radial-gradient(circle_at_bottom_right,hsl(var(--navy)/0.75),transparent_48%)]" />
+  <section className="relative overflow-hidden pt-28 pb-10 md:pt-32 md:pb-14">
     <div className="container relative mx-auto px-4">
-      <p className="mb-4 text-sm font-semibold uppercase tracking-[0.24em] text-primary">{eyebrow}</p>
+      <p className="mb-4 text-sm font-semibold text-primary">{eyebrow}</p>
       <h1 className="max-w-5xl text-4xl font-bold leading-tight text-foreground md:text-6xl">{title}</h1>
       <p data-page-introduction className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground">{introduction}</p>
-      <div data-direct-answer className="liquid-glass-gold mt-8 max-w-4xl p-6 md:p-8">
-        <h2 className="text-2xl font-semibold text-foreground">Direct answer</h2>
-        <p className="mt-3 leading-7 text-muted-foreground">{directAnswer}</p>
-      </div>
       {children}
+      <p data-direct-answer className="mt-6 max-w-3xl leading-7 text-muted-foreground">{directAnswer}</p>
     </div>
   </section>
 );

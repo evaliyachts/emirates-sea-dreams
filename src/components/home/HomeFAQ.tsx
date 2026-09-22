@@ -1,28 +1,23 @@
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
 import { formatAed, publishedFleetSummary } from "@/lib/published-fleet";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import FAQDisclosure from "@/components/shared/FAQDisclosure";
 
 const faqs = [
   {
     question: "Is this a private yacht rental or a shared cruise?",
-    answer: "The published fleet is presented for private yacht requests. It is not described as a public, ticketed or shared cruise service.",
+    answer: "You are enquiring about a private yacht for your group, rather than individual tickets on a shared cruise.",
   },
   {
     question: "How is the starting rental cost calculated?",
-    answer: `Each yacht has a verified hourly rate and minimum duration. The current catalogue ranges from ${formatAed(publishedFleetSummary.pricePerHour.minimum)} to ${formatAed(publishedFleetSummary.pricePerHour.maximum)} per hour, with minimum durations from ${publishedFleetSummary.minimumDuration.minimum} to ${publishedFleetSummary.minimumDuration.maximum} hours. Any additional request must be confirmed separately.`,
+    answer: `Multiply the hourly rate by your rental time, allowing for the yacht's minimum duration. Rates range from ${formatAed(publishedFleetSummary.pricePerHour.minimum)} to ${formatAed(publishedFleetSummary.pricePerHour.maximum)} per hour, with minimum durations from ${publishedFleetSummary.minimumDuration.minimum} to ${publishedFleetSummary.minimumDuration.maximum} hours. Ask for a complete quote for your date and any extras.`,
   },
   {
     question: "What information should I prepare before making a request?",
-    answer: "Prepare your preferred date, requested duration, guest count, yacht shortlist and any optional occasion or service requests. Availability and additional details still need confirmation.",
+    answer: "Send your date, preferred start time, duration and guest count. Add a yacht name if you have one in mind, or ask the team for options within your budget.",
   },
   {
-    question: "Does the catalogue guarantee that a yacht is available?",
-    answer: "No. Every published yacht is shown as available on request. Current availability must be confirmed again for the requested date and time.",
+    question: "How do I check availability for my date?",
+    answer: "Choose a yacht and contact us with your preferred date and time. The team will check its schedule and confirm the available options before you book.",
   },
 ] as const;
 
@@ -35,23 +30,14 @@ const HomeFAQ = () => (
           Private Yacht Rental Questions
         </h2>
         <p className="mx-auto max-w-2xl text-muted-foreground">
-          Factual answers about private positioning, published rates, request preparation and availability confirmation.
+          Answers to help you choose a yacht and plan your enquiry.
         </p>
       </AnimatedSection>
 
       <AnimatedSection initiallyVisible>
-        <Accordion type="single" collapsible className="space-y-3">
-          {faqs.map((faq, index) => (
-            <AccordionItem key={faq.question} value={`faq-${index}`} className="liquid-glass border-0 px-6">
-              <AccordionTrigger className="py-5 text-left text-base font-display font-semibold text-foreground hover:no-underline">
-                <span data-faq-question>{faq.question}</span>
-              </AccordionTrigger>
-              <AccordionContent className="pb-5 text-sm leading-relaxed text-muted-foreground">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <div className="space-y-3">
+          {faqs.map((faq) => <FAQDisclosure key={faq.question} question={faq.question} answer={faq.answer} />)}
+        </div>
       </AnimatedSection>
     </div>
   </section>

@@ -17,14 +17,14 @@ describe("PR 9 first-paint and media-loading boundaries", () => {
     expect(html).toContain("About Dubai Yacht");
   });
 
-  it("does not prioritize the decorative homepage hero above the measured text LCP", () => {
+  it("prioritizes the first hero image without loading both responsive variants", () => {
     const head = renderStaticRoute("/").head;
     const page = parse(renderStaticRoute("/").html);
     const hero = page.querySelector<HTMLImageElement>('[data-home-section="hero"] picture img')!;
     expect(head).not.toContain('href="/media/home/hero/yacht-cover-mobile.avif"');
     expect(head).not.toContain('href="/media/home/hero/yacht-cover-desktop.avif"');
     expect(hero.getAttribute("loading")).toBe("eager");
-    expect(hero.hasAttribute("fetchpriority")).toBe(false);
+    expect(hero.getAttribute("fetchpriority")).toBe("high");
   });
 
   it("preloads and prioritizes only the initial yacht-detail center image", () => {

@@ -14,11 +14,10 @@ const SitemapSection = () => {
     >
       <div className="container mx-auto px-4">
         <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-2">
-          Published Page Directory
+          Explore Dubai Yacht
         </h2>
         <p className="text-sm text-muted-foreground mb-8 max-w-3xl">
-          Use these links to reach the current indexable commercial owners and
-          every published yacht record and approved service owner. Unpublished routes are not listed.
+          Find yacht details, celebration ideas and information for planning your booking.
         </p>
 
         <div className="grid gap-8 text-sm md:grid-cols-3">
@@ -28,13 +27,13 @@ const SitemapSection = () => {
               Main Pages
             </h3>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-muted-foreground hover:text-primary transition-colors">Private yacht rental guide</Link></li>
-              <li><Link to="/yachts" className="text-muted-foreground hover:text-primary transition-colors">Compare verified yachts and prices</Link></li>
-              <li><Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">Optional service planning</Link></li>
-              <li><Link to="/occasions" className="text-muted-foreground hover:text-primary transition-colors">Private occasion chooser</Link></li>
+              <li><Link to="/" className="text-muted-foreground hover:text-primary transition-colors">Home</Link></li>
+              <li><Link to="/yachts" className="text-muted-foreground hover:text-primary transition-colors">Yachts and prices</Link></li>
+              <li><Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">Services</Link></li>
+              <li><Link to="/occasions" className="text-muted-foreground hover:text-primary transition-colors">Occasions</Link></li>
               <li><Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">About Dubai Yacht</Link></li>
               <li><Link to="/faq" className="text-muted-foreground hover:text-primary transition-colors">Yacht rental FAQ</Link></li>
-              <li><Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors">Prepare an enquiry</Link></li>
+              <li><Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors">Contact us</Link></li>
               <li><Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors">Website and request terms</Link></li>
               <li><Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">Privacy notice</Link></li>
             </ul>
@@ -43,7 +42,7 @@ const SitemapSection = () => {
           {/* Approved services */}
           <div>
             <h3 className="font-display font-semibold text-foreground mb-3">
-              Approved Services ({approvedServices.length})
+              Services ({approvedServices.length})
             </h3>
             <ul className="space-y-2">
               {approvedServices.map((service) => (
@@ -59,7 +58,7 @@ const SitemapSection = () => {
           {/* Yachts */}
           <div>
             <h3 className="font-display font-semibold text-foreground mb-3">
-              Verified Yacht Records ({publishableYachts.length})
+              Yachts ({publishableYachts.length})
             </h3>
             <ul className="space-y-2 grid grid-cols-1 sm:grid-cols-2">
               {publishableYachts.map((yacht) => (

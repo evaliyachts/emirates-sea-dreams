@@ -1,5 +1,6 @@
 import { readdir, readFile, stat } from "node:fs/promises";
 import { join, resolve } from "node:path";
+import { JSDOM } from "jsdom";
 import {
   ENGLISH_PRODUCTION_ORIGIN,
   approvedCommercialConsolidations,
@@ -38,8 +39,9 @@ validateProductionData();
 const read = (path: string) => readFile(resolve(path), "utf8");
 const escape = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const routeFile = (path: string) => path === "/" ? "dist/index.html" : `dist/_static${path}.html`;
+const decodeHtml = (value: string) => JSDOM.fragment(value).textContent ?? "";
 const matchAttr = (html: string, tag: string, attribute: string, value: string, target: string) =>
-  html.match(new RegExp(`<${tag}[^>]*${attribute}=["']${escape(value)}["'][^>]*${target}=["']([^"']*)["'][^>]*>`, "i"))?.[1];
+  decodeHtml(html.match(new RegExp(`<${tag}[^>]*${attribute}=["']${escape(value)}["'][^>]*${target}=["']([^"']*)["'][^>]*>`, "i"))?.[1] ?? "");
 
 const titles = new Set<string>();
 const descriptions = new Set<string>();
@@ -86,7 +88,7 @@ for (const route of publishedStaticRoutes) {
   const html = await read(routeFile(route.path));
   const head = html.match(/<head>([\s\S]*?)<\/head>/i)?.[1] ?? "";
   const body = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1] ?? "";
-  const title = head.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1].trim() ?? "";
+  const title = decodeHtml(head.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1].trim() ?? "");
   const description = matchAttr(head, "meta", "name", "description", "content") ?? "";
   const robots = matchAttr(head, "meta", "name", "robots", "content") ?? "";
   const canonical = matchAttr(head, "link", "rel", "canonical", "href") ?? "";
@@ -157,7 +159,7 @@ for (const route of publishedStaticRoutes) {
     const commercialContent = body.match(/data-commercial-content="true">([\s\S]*?)<\/main>/i)?.[1] ?? "";
     if (!commercialContent) failures.push(`${route.path}: PR 5 content boundary is missing.`);
     for (const href of [...commercialContent.matchAll(/href="([^"]+)"/g)].map((match) => match[1])) {
-      if (href.startsWith("#")) continue;
+      if (href.startsWith("#") || href.startsWith("https://wa.me/971504641020?text=") || href === "tel:+971504641020") continue;
       const target = new URL(href, ENGLISH_PRODUCTION_ORIGIN);
       if (target.origin !== ENGLISH_PRODUCTION_ORIGIN || !publishedPaths.has(target.pathname)) {
         failures.push(`${route.path}: changed commercial content links to unpublished destination ${href}.`);
@@ -213,7 +215,7 @@ for (const route of publishedStaticRoutes) {
     if (organization?.["@id"] !== ORGANIZATION_ENTITY_ID || organization?.name !== BRAND_NAME || organization?.url !== `${ENGLISH_PRODUCTION_ORIGIN}/`) {
       failures.push("/: Organization identity must remain minimal and match the visible brand.");
     }
-    if ("alternateName" in (website ?? {}) || !title.includes(BRAND_NAME) || !h1.includes(BRAND_NAME)) {
+    if ("alternateName" in (website ?? {}) || !title.includes(BRAND_NAME) || !body.includes(`>${BRAND_NAME}</p>`)) {
       failures.push("/: site-name signals must use Dubai Yacht without an unapproved alternate name.");
     }
     if ((visible.match(/Dubai Yacht/g) ?? []).length < 2) failures.push("/: visible header/footer brand signals are inconsistent.");
@@ -312,10 +314,10 @@ for (const route of publishedStaticRoutes) {
       if (!serviceVisible.includes(service.whoItIsFor) || service.suitableGroupTypes.some((group) => !serviceVisible.includes(group))) {
         failures.push(`${route.path}: approved audience or suitable-group guidance is missing.`);
       }
-      if (!/data-service-booking-cta="true"[^>]+href="\/#booking-request-guide"/.test(serviceContent)) {
+      if (!/data-service-booking-cta="true"[^>]+href="\/contact"/.test(serviceContent)) {
         failures.push(`${route.path}: safe booking-request CTA is missing.`);
       }
-      if (!/does not reserve a yacht or confirm availability/i.test(serviceVisible) || !/final written offer or WhatsApp confirmation/i.test(serviceVisible)) {
+      if (!/confirm available options and final pricing/i.test(serviceVisible) || !/written offer or WhatsApp confirmation before you book/i.test(serviceVisible)) {
         failures.push(`${route.path}: booking confirmation boundary is missing.`);
       }
       const yachtLinks = [...serviceContent.matchAll(/href="(\/yachts\/[^"]+)"/g)].map((match) => match[1]);

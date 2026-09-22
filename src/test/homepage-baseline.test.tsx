@@ -22,11 +22,11 @@ describe("homepage commercial owner", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: /Private Yacht Rental in Dubai, Compared with Verified Facts/i,
+        name: /Private Yacht Rental in Dubai/i,
       }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/The current published catalogue contains 19 verified yacht records/i)).toBeInTheDocument();
-    expect(screen.getByText(/not described as a public, ticketed or shared cruise service/i)).toBeInTheDocument();
+    expect(screen.getByText(/Compare 19 yachts from AED 500 per hour/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /View yachts and prices/i })).toHaveAttribute("href", "/yachts");
   });
 
   it("emits the approved homepage metadata helper output", async () => {
@@ -43,7 +43,7 @@ describe("homepage commercial owner", () => {
     });
 
     expect(document.querySelector('meta[name="description"]')?.getAttribute("content")).toContain(
-      "Compare 19 verified private yachts in Dubai",
+      "Compare private yachts in Dubai by hourly price",
     );
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe(
       "https://yachtrentaldxb.com/",

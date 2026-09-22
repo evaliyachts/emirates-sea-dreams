@@ -108,15 +108,18 @@ describe("English PR 6B approved service owners", () => {
 
       expect(route.metadataOwnership).toMatchObject({ status: "approved", title, description, h1 });
       expect(content.querySelectorAll("h1")).toHaveLength(1);
-      expect(introduction.split(/\s+/).length).toBeGreaterThan(35);
-      expect(directAnswer.split(/\s+/).length).toBeGreaterThan(30);
+      expect(introduction).toBe(service.introduction);
+      expect(directAnswer).toBe(service.directAnswer);
       expect(text(content)).toContain(audience);
       service.suitableGroupTypes.forEach((group) => expect(text(content)).toContain(group));
-      expect(headings).toContain("Who this request is for");
-      expect(text(content)).toContain("Suitable group or occasion types");
+      expect(headings).toContain("Plan for your guests");
+      expect(text(content)).toContain("Your gathering");
       expect(headings.length).toBeGreaterThanOrEqual(9);
       expect(faqs).toHaveLength(4);
-      expect(text(content).split(/\s+/).length).toBeGreaterThan(500);
+      service.sections.forEach((section) => {
+        expect(headings).toContain(section.heading);
+        section.paragraphs.forEach((paragraph) => expect(text(content)).toContain(paragraph));
+      });
 
       titles.add(title);
       descriptions.add(description);
@@ -183,15 +186,15 @@ describe("English PR 6B approved service owners", () => {
       const cta = content.querySelector<HTMLAnchorElement>("[data-service-booking-cta]");
       const disclaimer = text(content.querySelector("[data-service-confirmation-disclaimer]"));
 
-      expect(cta?.getAttribute("href")).toBe("/#booking-request-guide");
-      expect(text(cta)).toBe("Prepare a booking request");
-      expect(disclaimer).toContain("does not reserve a yacht or confirm availability");
-      expect(disclaimer).toContain("final written offer or WhatsApp confirmation");
+      expect(cta?.getAttribute("href")).toBe("/contact");
+      expect(text(cta)).toBe("Request a Quote");
+      expect(disclaimer).toContain("confirm available options and final pricing");
+      expect(disclaimer).toContain("written offer or WhatsApp confirmation before you book");
       expect(disclaimer).not.toMatch(/instant confirmation|guaranteed/i);
 
       [...content.querySelectorAll<HTMLAnchorElement>("a[href]")].forEach((link) => {
         const href = link.getAttribute("href")!;
-        expect(href === "/#booking-request-guide" || href.startsWith("#") || publishedPaths.has(href)).toBe(true);
+        expect(href.startsWith("https://wa.me/971504641020?text=") || href === "tel:+971504641020" || href.startsWith("#") || publishedPaths.has(href)).toBe(true);
       });
     });
   });

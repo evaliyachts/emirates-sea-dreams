@@ -7,33 +7,33 @@ import { formatAed, publishedFleetSummary } from "@/lib/published-fleet";
 const highlights = [
   {
     icon: Anchor,
-    title: "Verified catalogue",
-    desc: `Compare ${publishedFleetSummary.yachtCount} publishable yacht records rather than an unverified package list.`,
+    title: "19 yachts to compare",
+    desc: `Browse ${publishedFleetSummary.yachtCount} yachts with photos, prices and specifications in one place.`,
   },
   {
     icon: Users,
     title: "Capacity first",
-    desc: `Published capacities currently range from ${publishedFleetSummary.guestCapacity.minimum} to ${publishedFleetSummary.guestCapacity.maximum} guests. Match the complete group to a stated limit.`,
+    desc: `Choose from guest capacities of ${publishedFleetSummary.guestCapacity.minimum} to ${publishedFleetSummary.guestCapacity.maximum}. Include everyone in your group when comparing.`,
   },
   {
     icon: Ruler,
-    title: "Factual dimensions",
-    desc: `The current published fleet ranges from ${publishedFleetSummary.lengthFt.minimum} to ${publishedFleetSummary.lengthFt.maximum} feet, with individual facts on every yacht page.`,
+    title: "Size and space",
+    desc: `Compare yachts from ${publishedFleetSummary.lengthFt.minimum} to ${publishedFleetSummary.lengthFt.maximum} feet, then explore their photos and specifications.`,
   },
   {
     icon: CircleDollarSign,
-    title: "Published hourly rates",
-    desc: `Base hourly prices range from ${formatAed(publishedFleetSummary.pricePerHour.minimum)} to ${formatAed(publishedFleetSummary.pricePerHour.maximum)} before any separately confirmed request.`,
+    title: "Clear hourly prices",
+    desc: `Hourly rates range from ${formatAed(publishedFleetSummary.pricePerHour.minimum)} to ${formatAed(publishedFleetSummary.pricePerHour.maximum)}. Each yacht page helps you estimate the base rental cost.`,
   },
   {
     icon: Calendar,
     title: "Minimum duration shown",
-    desc: `Each record states its own minimum, currently between ${publishedFleetSummary.minimumDuration.minimum} and ${publishedFleetSummary.minimumDuration.maximum} hours.`,
+    desc: `Minimum rental times range from ${publishedFleetSummary.minimumDuration.minimum} to ${publishedFleetSummary.minimumDuration.maximum} hours. Choose a duration that fits your plans.`,
   },
   {
     icon: CircleHelp,
-    title: "Confirmation boundaries",
-    desc: "Availability, operating details and optional services must be confirmed for the selected yacht, date and request.",
+    title: "Talk through your plans",
+    desc: "Send your date, group size and preferences by WhatsApp or call to discuss your options.",
   },
 ] as const;
 
@@ -41,12 +41,12 @@ const WhyChooseUs = () => (
   <section data-home-section="decision-facts" className="section-padding liquid-divider">
     <div className="container mx-auto px-4">
       <AnimatedSection initiallyVisible className="mb-14 text-center">
-        <span className="liquid-pill inline-block">Why compare here</span>
+        <span className="liquid-pill inline-block">Choose your yacht</span>
         <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
-          Choose with Published Facts, Not Package Assumptions
+          A Clearer Way to Compare
         </h2>
         <p className="mx-auto max-w-2xl text-muted-foreground">
-          The useful comparison is the yacht record itself: capacity, length, year built, hourly price, minimum duration and bedrooms where recorded.
+          Start with your group size and budget, then compare the details that matter to your trip.
         </p>
       </AnimatedSection>
 

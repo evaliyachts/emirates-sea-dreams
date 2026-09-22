@@ -6,18 +6,18 @@ import { staggerItemVariants } from "@/lib/animation-variants";
 const checkpoints = [
   {
     icon: ListChecks,
-    title: "Facts to compare",
-    copy: "Check capacity, length, year built, hourly price, minimum duration and bedrooms only where the record verifies them.",
+    title: "Your yacht",
+    copy: "Make sure the yacht, capacity and rental time in your quote match what you selected.",
   },
   {
     icon: CalendarCheck,
-    title: "Details to prepare",
-    copy: "Prepare a preferred date, start-time preference, requested duration, complete guest count and a yacht shortlist.",
+    title: "Your schedule",
+    copy: "Check the date, start time and boarding location, and share the instructions with your group.",
   },
   {
     icon: CircleDollarSign,
-    title: "Items to confirm",
-    copy: "Confirm availability, operating details and every optional request or separate price before relying on the plan.",
+    title: "Your total price",
+    copy: "Review the full amount, agreed extras, payment schedule and cancellation terms before confirming.",
   },
 ] as const;
 
@@ -25,12 +25,12 @@ const TestimonialsSection = () => (
   <section data-home-section="planning-checkpoints" className="section-padding">
     <div className="container mx-auto px-4">
       <AnimatedSection initiallyVisible className="mb-14 text-center">
-        <span className="liquid-pill inline-block">Decision checkpoints</span>
+        <span className="liquid-pill inline-block">Before booking</span>
         <h2 className="mt-4 mb-4 text-3xl font-display font-bold text-foreground md:text-5xl">
-          What a Careful Yacht Request Should Separate
+          Check Your Quote Before You Book
         </h2>
         <p className="mx-auto max-w-2xl text-muted-foreground">
-          Published facts, request details and later confirmations serve different purposes. Keeping them separate prevents assumptions.
+          Keep your yacht choice, trip details and agreed price together in the written booking confirmation.
         </p>
       </AnimatedSection>
 
