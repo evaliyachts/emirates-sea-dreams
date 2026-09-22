@@ -1,0 +1,50 @@
+{
+  "capturedAt": "2026-09-22T23:38:43.106Z",
+  "property": "sc-domain:yachtrentaldxb.com",
+  "requests": [
+    {
+      "url": "https://yachtrentaldxb.com/",
+      "status": "Indexing requested",
+      "verifiedAt": "2026-09-22T23:33:03.770Z",
+      "liveTest": "Successful; crawl and indexing allowed; self-canonical"
+    },
+    {
+      "url": "https://yachtrentaldxb.com/yachts",
+      "status": "Indexing requested",
+      "verifiedAt": "2026-09-22T23:34:37.949Z",
+      "before": "URL is on Google"
+    },
+    {
+      "url": "https://yachtrentaldxb.com/yachts/50-feet-royal-majesty-dubai-yacht-rental",
+      "status": "Indexing requested",
+      "verifiedAt": "2026-09-22T23:36:29.689Z",
+      "before": "Not indexed: historical 404 from 2026-06-01; current production 200"
+    },
+    {
+      "url": "https://yachtrentaldxb.com/services/birthday-party",
+      "status": "Indexing requested",
+      "verifiedAt": "2026-09-22T23:38:39.965Z",
+      "before": "Not indexed: historical 404 from 2026-05-08; current production 200"
+    }
+  ],
+  "sitemap": {
+    "url": "https://yachtrentaldxb.com/sitemap.xml",
+    "status": "Sitemap submitted successfully",
+    "submittedDate": "2026-09-23",
+    "verifiedAt": "2026-09-22T23:35:18.526Z",
+    "discoveredPages": 38,
+    "reportedStatus": "Success",
+    "lastReadShown": "2026-09-21",
+    "note": "Submission accepted; new processing is asynchronous. Historical sitemap_index.xml and post-sitemap.xml errors left unchanged."
+  },
+  "notResubmitted": [
+    {
+      "url": "https://yachtrentaldxb.com/yachts/heysea-90ft-jacuzzi-yacht-rental-dubai",
+      "reason": "Existing Indexing requested status in the shared tab; no duplicate request",
+      "historicalCrawl": "2026-06-20",
+      "historicalStatus": 404,
+      "currentHttpStatus": 200
+    }
+  ],
+  "limits": "Submission accepted is not indexed status or a ranking-recovery guarantee. No removals or ownership changes were made."
+}
