@@ -13,7 +13,7 @@ describe("homepage commercial owner", () => {
   it("renders the PR 5 H1 and factual direct answer", () => {
     render(
       <HelmetProvider>
-        <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <MemoryRouter>
           <Index />
         </MemoryRouter>
       </HelmetProvider>,
@@ -32,7 +32,7 @@ describe("homepage commercial owner", () => {
   it("emits the approved homepage metadata helper output", async () => {
     render(
       <HelmetProvider>
-        <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <MemoryRouter>
           <Index />
         </MemoryRouter>
       </HelmetProvider>,

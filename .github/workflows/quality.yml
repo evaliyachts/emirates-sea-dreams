@@ -27,4 +27,5 @@ jobs:
       - run: npm test
       - run: npm run build
       - run: npm run seo:check
+      - run: npm audit --omit=dev
       - run: npm run media:verify
