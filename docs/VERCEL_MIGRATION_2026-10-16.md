@@ -5,17 +5,34 @@ State: Draft; production release and DNS cutover not approved.
 ## Authority and scope
 
 - Repository: `evaliyachts/emirates-sea-dreams`.
-- Base main: `e57f5d517e8da12cce4e040bd0f77a22b6fb4f1a`.
+- Refreshed base main: `20d21ae8b2ce4c94eaa0d9fb45d6e10d7af7feae`.
 - Branch: `agent/dxb-vercel-migration`.
-- Current live Netlify deploy: `6ab30e7c71289d0008b69eae`, from the same main.
+- Current live Netlify deploy: `6ad1c6424c7c8076ad112432`, from the stabilized main.
 - Vercel team: `evali1`; project: `emirates-sea-dreams`.
 - Vercel project ID: `prj_fV926FA9seZ7Sbz8HKO2ehF2BhRn`.
 
 Hosting configuration and validation only. No component, business fact, media,
 title, description, H1, canonical, schema, link, sitemap ownership, analytics,
 dependency or lockfile change is included. No HREF, redirect or consolidation
-project is started. Existing Draft work and the previous historical-site
-migration PR are unchanged.
+project is started. No other PR or application repository is modified by this
+refresh.
+
+## Refresh provenance
+
+Merged stabilized main into the existing migration branch without rewriting its
+history. The previously accepted dependency changes come exclusively from PR
+#27, merged as `20d21ae8b2ce4c94eaa0d9fb45d6e10d7af7feae`; this migration
+introduces no additional package, lockfile or application-source change relative
+to that main. The existing routing adapter is preserved byte-for-byte.
+
+The previous migration head `c9447027cf145b1c0084dce0f311f6793f08e0b6` and
+its Preview predate stabilization and are superseded for exact-head approval.
+The new head and its immutable Preview evidence are recorded in PR #26.
+The existing Vercel production target is
+`dpl_7Ka2XBakBpyaXwcR5RjGuqL7Zi1b`; it remains unchanged during Preview work.
+That production build lacks this branch's routing adapter, so its `/yachts`
+404 must not be mistaken for a defect in the newly tested Preview or permission
+to switch nameservers before the migration release.
 
 ## Routing adapter
 
@@ -71,18 +88,20 @@ PR report. Evidence output remains outside Git. Use the existing authenticated
 Preview session or narrowly scoped linked development token; never disable
 deployment protection or include credentials in results.
 
-Existing `npm audit --omit=dev` fails with **12 findings: 8 high and 4 moderate**.
-The full dependency tree has **28 findings: 8 moderate, 18 high, 2 critical**.
-These are inherited from unchanged main/lockfile, not introduced by migration.
-Do not claim zero vulnerabilities or silently apply an audit override, forced
-major upgrade or dependency migration. This is an unresolved production-release
-gate even if the hosting Preview and functional tests pass.
+The original pre-stabilization audit reported **12 production findings (8 high,
+4 moderate)** and **28 full-tree findings (8 moderate, 18 high, 2 critical)**.
+This historical assessment is superseded by the separately approved PR #27:
+the stabilized main has **zero production vulnerabilities**, while **9
+development-only findings (5 high, 4 moderate)** remain deferred. The complete
+tree is not vulnerability-free. This refresh inherits that approved lockfile
+unchanged; no override, audit suppression or additional dependency migration is
+included. Rerun both the functional gates and production audit for the new head.
 
 ## Release gates
 
 1. Validate the exact-head Git-generated Preview and keep the PR Draft.
-2. Resolve or separately obtain an explicit owner decision for the inherited
-   security gate; no dependency remediation is authorized by this PR.
+2. Confirm the separately approved stabilization remains intact and the fresh
+   production audit passes; no additional dependency remediation is authorized.
 3. Obtain exact-head owner approval before Ready/merge.
 4. Deploy and validate merged main on Vercel only after release approval.
 5. Obtain separate cutover approval; verify custom-domain TLS, apex/www routing,
