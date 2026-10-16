@@ -1,0 +1,317 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "npx --yes npm@11.16.0 ci",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "cleanUrls": false,
+  "rewrites": [
+    {
+      "source": "/yachts",
+      "destination": "/_static/yachts.html"
+    },
+    {
+      "source": "/yachts/",
+      "destination": "/_static/yachts.html"
+    },
+    {
+      "source": "/services",
+      "destination": "/_static/services.html"
+    },
+    {
+      "source": "/services/",
+      "destination": "/_static/services.html"
+    },
+    {
+      "source": "/services/birthday-party",
+      "destination": "/_static/services/birthday-party.html"
+    },
+    {
+      "source": "/services/birthday-party/",
+      "destination": "/_static/services/birthday-party.html"
+    },
+    {
+      "source": "/services/marriage-proposal-party",
+      "destination": "/_static/services/marriage-proposal-party.html"
+    },
+    {
+      "source": "/services/marriage-proposal-party/",
+      "destination": "/_static/services/marriage-proposal-party.html"
+    },
+    {
+      "source": "/services/wedding-anniversary-parties",
+      "destination": "/_static/services/wedding-anniversary-parties.html"
+    },
+    {
+      "source": "/services/wedding-anniversary-parties/",
+      "destination": "/_static/services/wedding-anniversary-parties.html"
+    },
+    {
+      "source": "/services/engagement-parties",
+      "destination": "/_static/services/engagement-parties.html"
+    },
+    {
+      "source": "/services/engagement-parties/",
+      "destination": "/_static/services/engagement-parties.html"
+    },
+    {
+      "source": "/services/wedding-parties",
+      "destination": "/_static/services/wedding-parties.html"
+    },
+    {
+      "source": "/services/wedding-parties/",
+      "destination": "/_static/services/wedding-parties.html"
+    },
+    {
+      "source": "/services/graduation-parties",
+      "destination": "/_static/services/graduation-parties.html"
+    },
+    {
+      "source": "/services/graduation-parties/",
+      "destination": "/_static/services/graduation-parties.html"
+    },
+    {
+      "source": "/services/bachelor-parties",
+      "destination": "/_static/services/bachelor-parties.html"
+    },
+    {
+      "source": "/services/bachelor-parties/",
+      "destination": "/_static/services/bachelor-parties.html"
+    },
+    {
+      "source": "/services/afternoon-tea-trip",
+      "destination": "/_static/services/afternoon-tea-trip.html"
+    },
+    {
+      "source": "/services/afternoon-tea-trip/",
+      "destination": "/_static/services/afternoon-tea-trip.html"
+    },
+    {
+      "source": "/services/morning-yacht-trips",
+      "destination": "/_static/services/morning-yacht-trips.html"
+    },
+    {
+      "source": "/services/morning-yacht-trips/",
+      "destination": "/_static/services/morning-yacht-trips.html"
+    },
+    {
+      "source": "/services/barbecue-on-the-yacht",
+      "destination": "/_static/services/barbecue-on-the-yacht.html"
+    },
+    {
+      "source": "/services/barbecue-on-the-yacht/",
+      "destination": "/_static/services/barbecue-on-the-yacht.html"
+    },
+    {
+      "source": "/occasions",
+      "destination": "/_static/occasions.html"
+    },
+    {
+      "source": "/occasions/",
+      "destination": "/_static/occasions.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/_static/about.html"
+    },
+    {
+      "source": "/about/",
+      "destination": "/_static/about.html"
+    },
+    {
+      "source": "/faq",
+      "destination": "/_static/faq.html"
+    },
+    {
+      "source": "/faq/",
+      "destination": "/_static/faq.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/_static/contact.html"
+    },
+    {
+      "source": "/contact/",
+      "destination": "/_static/contact.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/_static/terms.html"
+    },
+    {
+      "source": "/terms/",
+      "destination": "/_static/terms.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/_static/privacy.html"
+    },
+    {
+      "source": "/privacy/",
+      "destination": "/_static/privacy.html"
+    },
+    {
+      "source": "/yachts/50-feet-royal-majesty-dubai-yacht-rental",
+      "destination": "/_static/yachts/50-feet-royal-majesty-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/50-feet-royal-majesty-dubai-yacht-rental/",
+      "destination": "/_static/yachts/50-feet-royal-majesty-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/42-feet-azimut-yacht-rental-dubai",
+      "destination": "/_static/yachts/42-feet-azimut-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/42-feet-azimut-yacht-rental-dubai/",
+      "destination": "/_static/yachts/42-feet-azimut-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/majesty-44-feet-dubai-yacht-rental",
+      "destination": "/_static/yachts/majesty-44-feet-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/majesty-44-feet-dubai-yacht-rental/",
+      "destination": "/_static/yachts/majesty-44-feet-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/50-feet-azimut-yacht-rental-dubai",
+      "destination": "/_static/yachts/50-feet-azimut-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/50-feet-azimut-yacht-rental-dubai/",
+      "destination": "/_static/yachts/50-feet-azimut-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/oryx-50-feet-dubai-yacht-rental",
+      "destination": "/_static/yachts/oryx-50-feet-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/oryx-50-feet-dubai-yacht-rental/",
+      "destination": "/_static/yachts/oryx-50-feet-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/ferretti-50-feet-yacht-rental-dubai",
+      "destination": "/_static/yachts/ferretti-50-feet-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/ferretti-50-feet-yacht-rental-dubai/",
+      "destination": "/_static/yachts/ferretti-50-feet-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/56-feet-majesty-dubai-yacht-rental",
+      "destination": "/_static/yachts/56-feet-majesty-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/56-feet-majesty-dubai-yacht-rental/",
+      "destination": "/_static/yachts/56-feet-majesty-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/55-feet-azimut-yacht-rental-dubai",
+      "destination": "/_static/yachts/55-feet-azimut-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/55-feet-azimut-yacht-rental-dubai/",
+      "destination": "/_static/yachts/55-feet-azimut-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/majesty-88ft-jacuzzi-dubai-yacht-rental",
+      "destination": "/_static/yachts/majesty-88ft-jacuzzi-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/majesty-88ft-jacuzzi-dubai-yacht-rental/",
+      "destination": "/_static/yachts/majesty-88ft-jacuzzi-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/benetti-110ft-jacuzzi-yacht-rental-dubai",
+      "destination": "/_static/yachts/benetti-110ft-jacuzzi-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/benetti-110ft-jacuzzi-yacht-rental-dubai/",
+      "destination": "/_static/yachts/benetti-110ft-jacuzzi-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/majesty-101ft-jacuzzi-dubai-yacht-rental",
+      "destination": "/_static/yachts/majesty-101ft-jacuzzi-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/majesty-101ft-jacuzzi-dubai-yacht-rental/",
+      "destination": "/_static/yachts/majesty-101ft-jacuzzi-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/heysea-90ft-jacuzzi-yacht-rental-dubai",
+      "destination": "/_static/yachts/heysea-90ft-jacuzzi-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/heysea-90ft-jacuzzi-yacht-rental-dubai/",
+      "destination": "/_static/yachts/heysea-90ft-jacuzzi-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/doretty-90ft-jacuzzi-dubai-yacht-rental",
+      "destination": "/_static/yachts/doretty-90ft-jacuzzi-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/doretty-90ft-jacuzzi-dubai-yacht-rental/",
+      "destination": "/_static/yachts/doretty-90ft-jacuzzi-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/ocean-dream-143-feet-yacht-rental-dubai",
+      "destination": "/_static/yachts/ocean-dream-143-feet-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/ocean-dream-143-feet-yacht-rental-dubai/",
+      "destination": "/_static/yachts/ocean-dream-143-feet-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/mzaail-135ft-dubai-yacht-rental",
+      "destination": "/_static/yachts/mzaail-135ft-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/mzaail-135ft-dubai-yacht-rental/",
+      "destination": "/_static/yachts/mzaail-135ft-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/doretty-95-feet-jacuzzi-yacht-rental-dubai",
+      "destination": "/_static/yachts/doretty-95-feet-jacuzzi-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/doretty-95-feet-jacuzzi-yacht-rental-dubai/",
+      "destination": "/_static/yachts/doretty-95-feet-jacuzzi-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/sunseeker-92-feet-dubai-yacht-rental",
+      "destination": "/_static/yachts/sunseeker-92-feet-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/sunseeker-92-feet-dubai-yacht-rental/",
+      "destination": "/_static/yachts/sunseeker-92-feet-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/sunseeker-90-feet-yacht-rental-dubai",
+      "destination": "/_static/yachts/sunseeker-90-feet-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/sunseeker-90-feet-yacht-rental-dubai/",
+      "destination": "/_static/yachts/sunseeker-90-feet-yacht-rental-dubai.html"
+    },
+    {
+      "source": "/yachts/omega-100-feet-dubai-yacht-rental",
+      "destination": "/_static/yachts/omega-100-feet-dubai-yacht-rental.html"
+    },
+    {
+      "source": "/yachts/omega-100-feet-dubai-yacht-rental/",
+      "destination": "/_static/yachts/omega-100-feet-dubai-yacht-rental.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}
