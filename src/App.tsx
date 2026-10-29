@@ -1,11 +1,11 @@
 import { BrowserRouter } from "react-router-dom";
 import { AppProviders } from "@/app/AppProviders";
-import { AppRoutes } from "@/app/AppRoutes";
+import { LazyAppRoutes } from "@/app/LazyAppRoutes";
 
 const App = ({ forceNotFound = false }: { forceNotFound?: boolean }) => (
   <AppProviders>
     <BrowserRouter>
-      <AppRoutes forceNotFound={forceNotFound} />
+      <LazyAppRoutes forceNotFound={forceNotFound} />
     </BrowserRouter>
   </AppProviders>
 );
