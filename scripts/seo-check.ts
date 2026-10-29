@@ -395,7 +395,7 @@ const robots = await read("dist/robots.txt");
 if (!robots.includes(`Sitemap: ${ENGLISH_PRODUCTION_ORIGIN}/sitemap.xml`)) failures.push("robots.txt has the wrong sitemap authority.");
 
 const languageReport = await read("docs/ENGLISH_ARABIC_HREFLANG_MAP.md");
-if (languageReport !== generateEnglishArabicMappingReport()) failures.push("Committed English–Arabic mapping report is stale.");
+if (languageReport.replace(/\r\n/g, "\n") !== generateEnglishArabicMappingReport().replace(/\r\n/g, "\n")) failures.push("Committed English–Arabic mapping report is stale.");
 if (languageMappingSummary.total !== publishedStaticRoutes.length || languageMappingPendingRouteIds.length !== 0 || languageMappingSummary.trueEquivalents !== 31 || languageMappingSummary.relatedNotEquivalent !== 7 || languageMappingSummary.unmapped !== 0) {
   failures.push("Language evidence must cover all 38 published routes with 31 true equivalents and seven related non-equivalents.");
 }
@@ -440,7 +440,7 @@ const collectFiles = async (directory: string): Promise<string[]> => {
 };
 const distFiles = await collectFiles(resolve("dist"));
 if (distFiles.some((file) => file.endsWith(".map"))) failures.push("Production source map found.");
-const runtimeSourceFiles = (await collectFiles(resolve("src"))).filter((file) => /\.(?:ts|tsx)$/.test(file) && !file.includes("/test/"));
+const runtimeSourceFiles = (await collectFiles(resolve("src"))).filter((file) => /\.(?:ts|tsx)$/.test(file) && !file.replace(/\\/g, "/").includes("/test/"));
 const runtimeSource = (await Promise.all(runtimeSourceFiles.map((file) => readFile(file, "utf8")))).join("\n");
 const builtRuntime = (await Promise.all(distFiles.filter((file) => /\.(?:html|js)$/.test(file)).map((file) => readFile(file, "utf8")))).join("\n");
 if (/approved business recipient/i.test(builtRuntime)) failures.push("Vague legal recipient wording remains in production output.");
@@ -449,9 +449,9 @@ if (/\bdataLayer\b|\bgtag\s*\(|googletagmanager|GTM-[A-Z0-9]+|\bfbq\s*\(|connect
 }
 const generatedHtml = distFiles.filter((file) => file.endsWith(".html"));
 if (generatedHtml.length !== publishedStaticRoutes.length + 1) failures.push("Unexpected generated HTML page count.");
-const generatedYachtFiles = generatedHtml.filter((file) => file.includes("/_static/yachts/") && file.endsWith(".html"));
+const generatedYachtFiles = generatedHtml.filter((file) => file.replace(/\\/g, "/").includes("/_static/yachts/") && file.endsWith(".html"));
 if (generatedYachtFiles.length !== publishableYachts.length) failures.push("Generated yacht HTML count does not equal publishable yacht count.");
-const generatedServiceFiles = generatedHtml.filter((file) => file.includes("/_static/services/") && file.endsWith(".html"));
+const generatedServiceFiles = generatedHtml.filter((file) => file.replace(/\\/g, "/").includes("/_static/services/") && file.endsWith(".html"));
 if (generatedServiceFiles.length !== approvedServices.length) failures.push("Generated service HTML count does not equal approved service count.");
 for (const route of blockedStaticRoutes) {
   if (generatedHtml.includes(resolve(routeFile(route.path)))) failures.push(`${route.path}: blocked route generated an HTML file.`);
