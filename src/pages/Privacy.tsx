@@ -35,7 +35,7 @@ const Privacy = () => (
       <div className="container mx-auto px-4 max-w-3xl">
         <AnimatedSection initiallyVisible>
           <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-3">Privacy Notice</h1>
-          <p className="text-sm text-muted-foreground mb-10">Effective date: {LEGAL_PUBLICATION_DATE}</p>
+          <p className="text-sm text-muted-foreground mb-10">Effective date: {LEGAL_PUBLICATION_DATE}. Last updated: 30 October 2026.</p>
           <div className="space-y-8 text-muted-foreground text-sm leading-relaxed">
             <section>
               <h2 className="text-xl font-display font-semibold text-foreground mb-3">1. Responsible person and scope</h2>
@@ -43,7 +43,7 @@ const Privacy = () => (
             </section>
             <section>
               <h2 className="text-xl font-display font-semibold text-foreground mb-3">2. Browser-prepared enquiry form</h2>
-              <p>The website form prepares a message locally in your browser. It does not submit the form values to this website, Netlify, email, a form-submission database or an internal API. Website-generated form values are not retained by the website after the browser session.</p>
+              <p>The website form prepares a message locally in your browser. It does not submit the form values to this website, its hosting providers, email, a form-submission database or an internal API. Website-generated form values are not retained by the website after the browser session.</p>
             </section>
             <section>
               <h2 className="text-xl font-display font-semibold text-foreground mb-3">3. Information that may be processed</h2>
@@ -58,7 +58,7 @@ const Privacy = () => (
             </section>
             <section>
               <h2 className="text-xl font-display font-semibold text-foreground mb-3">5. Hosting and production media</h2>
-              <p>Netlify may process technical request, diagnostic and security logs while hosting the website. Approved production image hosts receive ordinary technical requests, which may include an IP address, browser or device information, requested resource or page, timestamp and security-log information, to deliver images and protect their services.</p>
+              <p>Vercel delivers the production website and may process technical request, diagnostic and security logs. Netlify may process those technical details when its legacy or preview hosting is accessed. DigitalOcean Spaces delivers approved yacht images, and Google Fonts delivers font styles and font files. These providers receive ordinary technical requests, which may include an IP address, browser or device information, requested resource or page, timestamp and security-log information, to deliver their resources and protect their services.</p>
             </section>
             <section>
               <h2 className="text-xl font-display font-semibold text-foreground mb-3">6. Purposes and processing basis</h2>
@@ -66,7 +66,7 @@ const Privacy = () => (
             </section>
             <section>
               <h2 className="text-xl font-display font-semibold text-foreground mb-3">7. Providers and international processing</h2>
-              <p>Information may be processed by WhatsApp/Meta, the applicable telephone-network provider, Netlify, approved production image hosts, yacht providers and approved optional-service providers, as relevant to your use of the website or request. Information is shared with yacht or optional-service providers only as needed to answer or fulfil your request. Some processing may occur outside the UAE. Cross-border processing remains subject to applicable legal requirements and relevant provider arrangements.</p>
+              <p>Information may be processed by WhatsApp/Meta, the applicable telephone-network provider, Vercel, Netlify when its hosting is accessed, DigitalOcean Spaces, Google Fonts, yacht providers and approved optional-service providers, as relevant to your use of the website or request. Information is shared with yacht or optional-service providers only as needed to answer or fulfil your request. Some processing may occur outside the UAE. Cross-border processing remains subject to applicable legal requirements and relevant provider arrangements.</p>
             </section>
             <section>
               <h2 className="text-xl font-display font-semibold text-foreground mb-3">8. Retention</h2>
@@ -82,7 +82,7 @@ const Privacy = () => (
             </section>
             <section>
               <h2 className="text-xl font-display font-semibold text-foreground mb-3">10. Analytics, cookies and technical storage</h2>
-              <p>Analytics and advertising tracking are disabled in this release. The website does not use GA4, Google Tag Manager, Meta Pixel, advertising tags, conversion events, consent mode, analytics cookies or advertising cookies. The website application does not set other browser cookies or local storage in this release. Netlify, WhatsApp/Meta, telephone-network providers and approved production image hosts may use essential technical or provider-set technologies when their services are requested, under their own policies.</p>
+              <p>Analytics and advertising tracking are disabled in this release. The website does not use GA4, Google Tag Manager, Meta Pixel, advertising tags, conversion events, consent mode, analytics cookies or advertising cookies. The website application does not set other browser cookies or local storage in this release. Vercel, Netlify when its hosting is accessed, Google Fonts, WhatsApp/Meta, telephone-network providers and approved production image hosts may use essential technical or provider-set technologies when their services are requested, under their own policies.</p>
             </section>
             <section>
               <h2 className="text-xl font-display font-semibold text-foreground mb-3">11. Security</h2>

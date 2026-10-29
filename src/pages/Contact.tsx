@@ -1,4 +1,4 @@
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { Clipboard, MessageCircle, Phone, Send } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import SEOHead from "@/components/shared/SEOHead";
@@ -7,6 +7,7 @@ import { buildBreadcrumbSchema } from "@/lib/entity-schema";
 import { getPhoneLink, getWhatsAppLink, PHONE_NUMBER } from "@/lib/constants";
 import { openPreparedWhatsApp, prepareYachtEnquiry, type YachtEnquiryFields } from "@/lib/contact-request";
 import { getApprovedValue, siteFacts } from "@/config/site-facts";
+import { getDubaiDate, getEnquiryLimits, validateYachtEnquiry } from "@/lib/contact-validation";
 
 const EMPTY_FORM: YachtEnquiryFields = { date: "", time: "", duration: "", guests: "", yacht: "", occasion: "", note: "" };
 const PREPARED_CONFIRMATION = "Your enquiry has been prepared in WhatsApp. It is not sent until you press Send in WhatsApp, and it is not a confirmed booking.";
@@ -18,12 +19,29 @@ const Contact = () => {
   const [blocked, setBlocked] = useState(false);
   const statusRef = useRef<HTMLDivElement>(null);
   const departure = getApprovedValue(siteFacts.departureLocation);
+  const [today, setToday] = useState("");
+  const limits = getEnquiryLimits(form.yacht);
+  useEffect(() => {
+    const updateToday = () => setToday(getDubaiDate());
+    updateToday();
+    const timer = window.setInterval(updateToday, 60_000);
+    return () => window.clearInterval(timer);
+  }, []);
+
 
   const update = (field: keyof YachtEnquiryFields, value: string) => setForm((current) => ({ ...current, [field]: value }));
   const focusStatus = () => window.setTimeout(() => statusRef.current?.focus(), 0);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
+    const error = validateYachtEnquiry(form);
+    if (error) {
+      setPrepared(null);
+      setBlocked(false);
+      setStatus(error);
+      focusStatus();
+      return;
+    }
     const next = prepareYachtEnquiry(form);
     setPrepared(next);
     const opened = openPreparedWhatsApp(next.url);
@@ -64,10 +82,10 @@ const Contact = () => {
             <AnimatedSection>
               <form onSubmit={handleSubmit} className="liquid-glass-gold p-6 md:p-8 space-y-5" aria-describedby="form-disclosure">
                 <div className="grid sm:grid-cols-2 gap-4">
-                  <label className="text-sm text-foreground">Preferred date<input required type="date" value={form.date} onChange={(e) => update("date", e.target.value)} className={`${inputClass} mt-2`} /></label>
+                  <label className="text-sm text-foreground">Preferred date<input required type="date" min={today || undefined} value={form.date} onChange={(e) => update("date", e.target.value)} className={`${inputClass} mt-2`} /></label>
                   <label className="text-sm text-foreground">Preferred start time<input required type="time" value={form.time} onChange={(e) => update("time", e.target.value)} className={`${inputClass} mt-2`} /></label>
-                  <label className="text-sm text-foreground">Requested duration (hours)<input required type="number" min="1" step="1" value={form.duration} onChange={(e) => update("duration", e.target.value)} className={`${inputClass} mt-2`} /></label>
-                  <label className="text-sm text-foreground">Guest count<input required type="number" min="1" step="1" value={form.guests} onChange={(e) => update("guests", e.target.value)} className={`${inputClass} mt-2`} /></label>
+                  <label className="text-sm text-foreground">Requested duration (hours)<input required type="number" min={limits.minimumDuration} step="1" value={form.duration} onChange={(e) => update("duration", e.target.value)} className={`${inputClass} mt-2`} /></label>
+                  <label className="text-sm text-foreground">Guest count<input required type="number" min="1" max={limits.maximumGuests} step="1" value={form.guests} onChange={(e) => update("guests", e.target.value)} className={`${inputClass} mt-2`} /></label>
                 </div>
                 <label className="text-sm text-foreground">Yacht interest<input value={form.yacht} onChange={(e) => update("yacht", e.target.value)} className={`${inputClass} mt-2`} placeholder="Optional yacht name or shortlist" /></label>
                 <label className="text-sm text-foreground">Occasion or optional requests<textarea rows={3} value={form.occasion} onChange={(e) => update("occasion", e.target.value)} className={`${inputClass} mt-2`} placeholder="For example: birthday decorations, food or access needs" /></label>
