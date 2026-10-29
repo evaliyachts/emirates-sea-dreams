@@ -4,6 +4,7 @@ import { CalendarDays, Clock, Ruler, Users } from "lucide-react";
 import type { YachtRecord } from "@/data/yachts";
 import { yachtPath } from "@/data/yachts";
 import { NEUTRAL_YACHT_FALLBACK } from "@/data/media-constants";
+import { responsiveImageAttributes } from "@/lib/responsive-image";
 
 interface YachtCardProps {
   yacht: YachtRecord;
@@ -25,6 +26,7 @@ const YachtCard = ({ yacht, index = 0 }: YachtCardProps) => {
       <div className="relative h-56 overflow-hidden">
         <img
           src={primaryImage.path}
+          {...responsiveImageAttributes(primaryImage.path, primaryImage.width, "(min-width: 1536px) 496px, (min-width: 1280px) 410px, (min-width: 1024px) 330px, (min-width: 768px) 360px, calc(100vw - 2rem)")}
           alt={primaryImage.alt}
           width={primaryImage.width}
           height={primaryImage.height}
@@ -33,6 +35,12 @@ const YachtCard = ({ yacht, index = 0 }: YachtCardProps) => {
           decoding="async"
           onError={(event) => {
             const image = event.currentTarget;
+            if (image.hasAttribute("srcset")) {
+              image.removeAttribute("srcset");
+              image.removeAttribute("sizes");
+              image.src = primaryImage.path;
+              return;
+            }
             if (image.src.endsWith(NEUTRAL_YACHT_FALLBACK)) return;
             image.src = NEUTRAL_YACHT_FALLBACK;
           }}
