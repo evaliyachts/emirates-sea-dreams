@@ -23,6 +23,7 @@ import {
   yachtCatalogueRegistry,
 } from "../seo/index";
 import { mediaRightsRegistry } from "../src/data/media-rights";
+import { BRAND_SOCIAL_IMAGE } from "../src/data/brand-social";
 import { approvedServices } from "../src/data/approved-services";
 import { publishableYachts } from "../src/data/yachts";
 import { siteFacts } from "../src/config/site-facts";
@@ -328,7 +329,7 @@ for (const route of publishedStaticRoutes) {
       if (JSON.stringify(yachtLinks.filter((path, index, all) => all.indexOf(path) === index)) !== JSON.stringify(expectedYachtLinks)) {
         failures.push(`${route.path}: service must link exactly three selected publishable yachts in contract order.`);
       }
-      if (ogImage || twitterImage) failures.push(`${route.path}: service social preview images are not approved.`);
+      if (ogImage !== BRAND_SOCIAL_IMAGE.url || twitterImage !== BRAND_SOCIAL_IMAGE.url || ogImageWidth !== "1200" || ogImageHeight !== "630") failures.push(`${route.path}: only the approved brand social preview is permitted.`);
       if (service.media) {
         const imagePattern = new RegExp(`<img[^>]*src=["']${escape(service.media.path)}["'][^>]*>`, "i");
         if (!imagePattern.test(body)) failures.push(`${route.path}: approved local primary image is missing.`);

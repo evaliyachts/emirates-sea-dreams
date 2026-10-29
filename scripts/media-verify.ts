@@ -1,4 +1,7 @@
 import { readFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { responsiveYachtMedia } from "../src/data/responsive-media";
+import { BRAND_SOCIAL_IMAGE } from "../src/data/brand-social";
 import { extname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { HOMEPAGE_MEDIA, type HomepageMediaRecord } from "../src/data/home-media";
@@ -229,11 +232,35 @@ export const verifyProductionServiceMedia = async () => {
   return { serviceCount: approvedServices.length, imageCount: records.length, textOnlyCount: approvedServices.length - records.length };
 };
 
+export const verifyResponsiveMedia = async () => {
+  const originals = publishableYachts.flatMap((yacht) => yacht.media);
+  const seen = new Set<string>();
+  for (const [source, record] of Object.entries(responsiveYachtMedia)) {
+    const original = originals.find((image) => image.path === source);
+    const rights = mediaRightsRegistry.find((entry) => entry.id === record.rightsRecordId);
+    if (!original || original.rightsRecordId !== record.rightsRecordId || !rights?.localResponsiveDerivativesApproved || rights.productionPath !== source || !rights.approvedHosts.includes("yachtrentaldxb.com")) throw new Error(`${source}: derivative lacks exact approved source rights.`);
+    if (!/^[a-f0-9]{64}$/.test(record.sourceSha256)) throw new Error(`${source}: missing source provenance hash.`);
+    for (const variant of record.variants) {
+      if (!/^\/media\/responsive\/[a-f0-9]{16}-(480|960|1600)\.webp$/.test(variant.path) || seen.has(variant.path) || variant.width >= original.width) throw new Error(`${variant.path}: invalid or duplicate responsive derivative.`);
+      seen.add(variant.path);
+      const bytes = await readFile(resolve("public", variant.path.slice(1)));
+      const dimensions = decodeImageDimensions(bytes, "image/webp");
+      if (bytes.length !== variant.bytes || createHash("sha256").update(bytes).digest("hex") !== variant.sha256 || dimensions?.width !== variant.width || dimensions?.height !== variant.height || Math.abs(variant.height - original.height * variant.width / original.width) > 1) throw new Error(`${variant.path}: integrity, dimensions or uncropped proportions failed.`);
+    }
+  }
+  const brandRights = mediaRightsRegistry.find((record) => record.id === BRAND_SOCIAL_IMAGE.rightsRecordId);
+  if (!brandRights?.socialPreviewApproved || brandRights.productionPath !== new URL(BRAND_SOCIAL_IMAGE.url).pathname) throw new Error("Brand sharing image lacks its approved rights scope.");
+  const brand = await verifyLocalImage(new URL(BRAND_SOCIAL_IMAGE.url).pathname);
+  if (brand.width !== BRAND_SOCIAL_IMAGE.width || brand.height !== BRAND_SOCIAL_IMAGE.height) throw new Error("Brand sharing image dimensions differ from metadata.");
+  return { sourceCount: Object.keys(responsiveYachtMedia).length, variantCount: seen.size };
+};
+
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
-  const [yachts, homepage, services] = await Promise.all([
+  const [yachts, homepage, services, responsive] = await Promise.all([
     verifyProductionYachtMedia(),
     verifyProductionHomepageMedia(),
     verifyProductionServiceMedia(),
+    verifyResponsiveMedia(),
   ]);
-  console.log(`Media verification passed: ${yachts.imageCount} production yacht images across ${yachts.yachtCount} publishable yachts; ${homepage.imageCount} approved local homepage images; ${services.imageCount} matching service-detail images across ${services.serviceCount} approved services (${services.textOnlyCount} text-only); neutral fallback decoded successfully.`);
+  console.log(`Media verification passed: ${yachts.imageCount} production yacht images across ${yachts.yachtCount} publishable yachts; ${homepage.imageCount} approved local homepage images; ${services.imageCount} matching service-detail images across ${services.serviceCount} approved services (${services.textOnlyCount} text-only); neutral fallback decoded successfully; ${responsive.variantCount} responsive variants across ${responsive.sourceCount} original photos and approved brand social image verified.`);
 }
