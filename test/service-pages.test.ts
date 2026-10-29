@@ -212,7 +212,9 @@ describe("English PR 6B approved service owners", () => {
       expect(graph.map((node) => node["@type"])).toEqual(["Service", "BreadcrumbList"]);
       expect(graph[0]).toMatchObject({ name: service.name, url: canonicalUrlForPath(service.path) });
       expect(JSON.stringify(graph)).not.toMatch(/Event|FAQPage|Product|Review|AggregateRating|LocalBusiness|Offer|rating/i);
-      expect(page.head).not.toMatch(/og:image|twitter:image|hreflang|x-default|name="keywords"/i);
+      expect(page.head).not.toMatch(/hreflang|x-default|name="keywords"/i);
+      expect(page.head).toContain('property="og:image" content="https://yachtrentaldxb.com/brand-social.png"');
+      expect(page.head).toContain('name="twitter:image" content="https://yachtrentaldxb.com/brand-social.png"');
     });
   });
 

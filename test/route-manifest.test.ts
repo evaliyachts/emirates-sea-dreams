@@ -164,7 +164,8 @@ describe("English PR 2 route ownership manifest", () => {
     expect(sitemapMigrationMap).toHaveLength(52);
     const dated = englishRouteManifest.filter((route) => route.lastSignificantUpdate);
     expect(dated.map((route) => route.path)).toEqual(["/about", "/faq", "/contact", "/terms", "/privacy"]);
-    expect(dated.every((route) => route.lastSignificantUpdate === "2026-07-14")).toBe(true);
+    expect(dated.find((route) => route.path === "/privacy")?.lastSignificantUpdate).toBe("2026-10-30");
+    expect(dated.filter((route) => route.path !== "/privacy").every((route) => route.lastSignificantUpdate === "2026-07-14")).toBe(true);
     expect(sitemapMigrationMap.filter((entry) => entry.lastmodStatus === "verified")).toHaveLength(5);
     expect(sitemapMigrationMap.filter((entry) => entry.lastmodStatus === "omitted-unverified").every((entry) => entry.lastSignificantUpdate === undefined)).toBe(true);
   });
@@ -181,7 +182,7 @@ describe("English PR 2 route ownership manifest", () => {
   });
 
   it("preserves route declarations while integrating publication only into build output", () => {
-    const appSource = read("src/app/AppRoutes.tsx");
+    const appSource = read("src/app/RouteTable.tsx");
     const routePaths = [...appSource.matchAll(/<Route path="([^"]+)"/g)].map((match) => match[1]);
 
     expect(routePaths.slice(-13)).toEqual([
