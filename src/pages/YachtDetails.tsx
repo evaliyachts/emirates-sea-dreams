@@ -10,6 +10,7 @@ import { getPublishableYachtBySlug, publishableYachts, yachtPath } from "@/data/
 import { buildYachtSeo } from "@/lib/yacht-seo";
 import { formatAed } from "@/lib/published-fleet";
 import NotFound from "./NotFound";
+import { responsiveImageAttributes } from "@/lib/responsive-image";
 
 const YachtDetails = () => {
   const { slug } = useParams();
@@ -17,6 +18,7 @@ const YachtDetails = () => {
   if (!yacht) return <NotFound />;
   const { path, title, description, socialImage, jsonLd } = buildYachtSeo(yacht);
   const initialCarouselImage = getInitialCarouselImage(yacht.media);
+  const initialResponsiveImage = initialCarouselImage ? responsiveImageAttributes(initialCarouselImage.path, initialCarouselImage.width, "(min-width: 640px) 420px, 300px") : {};
   const relatedYachts = publishableYachts.filter((candidate) => candidate.id !== yacht.id)
     .sort((a, b) => Math.abs(a.guestCapacity - yacht.guestCapacity) - Math.abs(b.guestCapacity - yacht.guestCapacity)
       || Math.abs(a.pricePerHour - yacht.pricePerHour) - Math.abs(b.pricePerHour - yacht.pricePerHour)).slice(0, 3);
@@ -30,7 +32,7 @@ const YachtDetails = () => {
   return (
     <Layout>
       <SEOHead title={title} description={description} path={path} jsonLd={jsonLd} socialImage={socialImage}
-        preloadImages={initialCarouselImage ? [{ url: initialCarouselImage.path, referrerPolicy: "no-referrer" }] : []} />
+        preloadImages={initialCarouselImage ? [{ url: initialCarouselImage.path, referrerPolicy: "no-referrer", imageSrcSet: initialResponsiveImage.srcSet, imageSizes: initialResponsiveImage.sizes }] : []} />
       <div className="pt-28 pb-16">
         <div className="container mx-auto px-4">
           <Link to="/yachts" className="inline-flex min-h-11 items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4"><ArrowLeft className="w-4 h-4" /> Back to yachts</Link>
