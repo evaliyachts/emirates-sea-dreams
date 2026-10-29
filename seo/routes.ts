@@ -1,4 +1,4 @@
-import type { EnglishRouteRecord, MetadataOwnership, PageType, RouteEvidence, SchemaOwner } from "./contracts";
+import type { EnglishRouteRecord, IsoDate, MetadataOwnership, PageType, RouteEvidence, SchemaOwner } from "./contracts";
 import { approvedServiceIds, getApprovedServiceById } from "../src/data/approved-services";
 
 const sitemapEvidence: RouteEvidence = {
@@ -38,9 +38,9 @@ const pr8bOwnerApprovalEvidence: RouteEvidence = {
 };
 
 const approvedSupportRoute = (
-  input: PreservedRouteInput & { title: string; description: string; h1: string },
+  input: PreservedRouteInput & { title: string; description: string; h1: string; lastSignificantUpdate?: IsoDate },
 ): EnglishRouteRecord => {
-  const { title, description, h1, ...routeInput } = input;
+  const { title, description, h1, lastSignificantUpdate = "2026-07-14", ...routeInput } = input;
   const route = preservedRoute({ ...routeInput, renderingEligible: true });
   return {
     ...route,
@@ -56,7 +56,7 @@ const approvedSupportRoute = (
     },
     evidence: [...route.evidence, pr8bOwnerApprovalEvidence],
     verificationRequired: [],
-    lastSignificantUpdate: "2026-07-14",
+    lastSignificantUpdate,
   };
 };
 
@@ -244,6 +244,7 @@ const staticRoutes: EnglishRouteRecord[] = [
   }),
   approvedSupportRoute({
     id: "privacy",
+    lastSignificantUpdate: "2026-10-30",
     path: "/privacy",
     pageType: "legal",
     primaryIntent: "review approved website privacy practices",
