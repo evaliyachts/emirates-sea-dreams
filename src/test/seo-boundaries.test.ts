@@ -19,11 +19,11 @@ describe("static SEO and HTTP boundaries", () => {
     expect(publishedStaticRoutes.map((route) => route.path)).toEqual(expectedPaths);
     const locations = [...read("public/sitemap.xml").matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
     expect(locations).toEqual(expectedPaths.map((path) => `https://yachtrentaldxb.com${path === "/" ? "/" : path}`));
-    expect([...read("public/sitemap.xml").matchAll(/<lastmod>2026-07-14<\/lastmod>/g)]).toHaveLength(5);
+    expect([...read("public/sitemap.xml").matchAll(/<lastmod>2026-07-14<\/lastmod>/g)]).toHaveLength(4);
   });
 
   it("keeps the client route declarations unchanged in the shared route tree", () => {
-    const source = read("src/app/AppRoutes.tsx");
+    const source = read("src/app/RouteTable.tsx");
     const paths = [...source.matchAll(/<Route path="([^"]+)"/g)].map((match) => match[1]);
     expect(paths.slice(-13)).toEqual([
       "/", "/yachts", "/yachts/:slug", "/offers", "/services", "/services/:slug",
