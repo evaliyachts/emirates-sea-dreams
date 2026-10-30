@@ -56,7 +56,7 @@ describe("English PR 7 bilingual evidence report", () => {
 
   it("keeps the generated evidence report current without publishing live alternates", () => {
     const report = readFileSync(resolve("docs/ENGLISH_ARABIC_HREFLANG_MAP.md"), "utf8");
-    expect(report).toBe(generateEnglishArabicMappingReport());
+    expect(report.replaceAll("\r\n", "\n")).toBe(generateEnglishArabicMappingReport().replaceAll("\r\n", "\n"));
     englishArabicRouteMappings.forEach((record) => {
       expect(report).toContain(record.englishCanonical);
       expect(report).toContain(record.arabicCanonical);

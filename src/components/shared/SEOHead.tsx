@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { BRAND_NAME, DOMAIN } from "@/lib/constants";
+import { BRAND_SOCIAL_IMAGE } from "@/data/brand-social";
 
 interface SEOHeadProps {
   title: string;
@@ -17,10 +18,12 @@ interface SEOHeadProps {
     media?: string;
     type?: string;
     referrerPolicy?: "no-referrer";
+    imageSrcSet?: string;
+    imageSizes?: string;
   }[];
 }
 
-const SEOHead = ({ title, description, path, jsonLd, socialImage, preloadImages = [] }: SEOHeadProps) => (
+const SEOHead = ({ title, description, path, jsonLd, socialImage = BRAND_SOCIAL_IMAGE, preloadImages = [] }: SEOHeadProps) => (
   <Helmet>
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -43,6 +46,8 @@ const SEOHead = ({ title, description, path, jsonLd, socialImage, preloadImages 
         media={image.media}
         type={image.type}
         referrerPolicy={image.referrerPolicy}
+        imageSrcSet={image.imageSrcSet}
+        imageSizes={image.imageSizes}
         {...{ fetchpriority: "high" }}
       />
     ))}

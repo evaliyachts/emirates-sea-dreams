@@ -4,8 +4,9 @@ import { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import type { YachtMediaRecord } from "@/data/yachts";
+import { responsiveImageAttributes } from "@/lib/responsive-image";
 
 interface Props { images: readonly YachtMediaRecord[]; altPrefix?: string; fallbackSrc: string }
 type UsableImage = YachtMediaRecord & { carouselId: string };
@@ -61,7 +62,16 @@ export const StaggerImageCarousel = ({ images, altPrefix = "Yacht image", fallba
             aria-label={isCenter ? `Open ${image.alt} fullscreen` : `Select ${image.alt}`}
             className={cn("absolute left-1/2 top-1/2 cursor-pointer border-2 overflow-hidden rounded-xl focus-visible:ring-2 focus-visible:ring-primary", !reduceMotion && "transition-all duration-500 ease-in-out", isCenter ? "z-10 border-primary/60 shadow-[0_8px_30px_-10px_hsl(var(--primary)/0.4)]" : "z-0 border-border/40 hover:border-primary/30")}
             style={{ width: cardSize, height: cardSize * 0.65, transform: `translate(-50%, -50%) translateX(${(cardSize / 1.5) * position}px) translateY(${isCenter ? -30 : position % 2 ? 15 : -15}px) rotate(${isCenter ? 0 : position % 2 ? 2.5 : -2.5}deg) scale(${isCenter ? 1 : 0.9})` }}
-          ><img src={image.path} alt={image.alt} width={image.width} height={image.height} loading={isCenter ? "eager" : "lazy"} {...(isCenter ? { fetchpriority: "high" } : {})} className="w-full h-full object-cover" referrerPolicy="no-referrer" onError={() => image.path !== fallbackSrc && removeFailed(image)} /></button>;
+          ><img src={image.path} {...responsiveImageAttributes(image.path, image.width, "(min-width: 640px) 420px, 300px")} alt={image.alt} width={image.width} height={image.height} loading={isCenter ? "eager" : "lazy"} {...(isCenter ? { fetchpriority: "high" } : {})} className="w-full h-full object-cover" referrerPolicy="no-referrer" onError={(event) => {
+            const element = event.currentTarget;
+            if (element.hasAttribute("srcset")) {
+              element.removeAttribute("srcset");
+              element.removeAttribute("sizes");
+              element.src = image.path;
+              return;
+            }
+            if (image.path !== fallbackSrc) removeFailed(image);
+          }} /></button>;
         })}
         {displayed.length > 1 && <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-3 z-20">
           <button type="button" onClick={() => move(-1)} className="flex h-12 w-12 items-center justify-center rounded-full bg-background/80 backdrop-blur border border-border hover:bg-primary hover:text-primary-foreground" aria-label="Previous image"><ChevronLeft className="w-5 h-5" /></button>
@@ -71,6 +81,7 @@ export const StaggerImageCarousel = ({ images, altPrefix = "Yacht image", fallba
       <Dialog open={Boolean(fullscreen)} onOpenChange={(open) => !open && setFullscreen(null)}>
         <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 border-0 bg-black/95 flex items-center justify-center">
           <DialogTitle className="sr-only">Fullscreen yacht image</DialogTitle>
+          <DialogDescription className="sr-only">{fullscreen?.alt ?? "Yacht image"}. Use the close button or Escape to return to the gallery.</DialogDescription>
           {fullscreen && <img src={fullscreen.path} alt={fullscreen.alt} width={fullscreen.width} height={fullscreen.height} className="max-w-full max-h-[90vh] object-contain" referrerPolicy="no-referrer" onError={() => removeFailed(fullscreen)} />}
         </DialogContent>
       </Dialog>

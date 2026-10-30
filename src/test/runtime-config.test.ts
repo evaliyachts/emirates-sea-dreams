@@ -10,7 +10,7 @@ describe("runtime configuration", () => {
     const workflow = read(".github/workflows/quality.yml");
     const netlify = read("netlify.toml");
 
-    expect(read(".nvmrc")).toBe("24.18.0\n");
+    expect(read(".nvmrc").trim()).toBe("24.18.0");
     expect(packageJson.engines.node).toBe(">=24.18.0 <25");
     expect(packageJson.packageManager).toBe("npm@11.16.0");
     expect(workflow).toContain("node-version: 24.18.0");

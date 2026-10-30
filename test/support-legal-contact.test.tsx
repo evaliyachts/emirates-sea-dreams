@@ -5,6 +5,7 @@ import { AppProviders } from "../src/app/AppProviders";
 import { AppRoutes } from "../src/app/AppRoutes";
 import { renderStaticRoute } from "../src/entry-server";
 import { publishedStaticRoutes } from "../seo";
+import { getDubaiDate } from "../src/lib/contact-validation";
 
 const renderRoute = (path: string) => render(<AppProviders><MemoryRouter initialEntries={[path]}><AppRoutes /></MemoryRouter></AppProviders>);
 
@@ -63,7 +64,7 @@ describe("PR 8B support, legal and contact publication", () => {
     vi.spyOn(window, "open").mockReturnValue(popup as unknown as Window);
     renderRoute("/contact");
     expect(screen.queryByLabelText(/name|email|phone/i)).not.toBeInTheDocument();
-    fireEvent.change(screen.getByLabelText("Preferred date"), { target: { value: "2026-08-10" } });
+    fireEvent.change(screen.getByLabelText("Preferred date"), { target: { value: getDubaiDate(new Date(Date.now() + 86_400_000)) } });
     fireEvent.change(screen.getByLabelText("Preferred start time"), { target: { value: "16:00" } });
     fireEvent.change(screen.getByLabelText(/Requested duration/), { target: { value: "3" } });
     fireEvent.change(screen.getByLabelText("Guest count"), { target: { value: "8" } });
@@ -80,7 +81,7 @@ describe("PR 8B support, legal and contact publication", () => {
     vi.spyOn(window, "open").mockReturnValue(null);
     Object.assign(navigator, { clipboard: { writeText: vi.fn().mockResolvedValue(undefined) } });
     renderRoute("/contact");
-    fireEvent.change(screen.getByLabelText("Preferred date"), { target: { value: "2026-08-10" } });
+    fireEvent.change(screen.getByLabelText("Preferred date"), { target: { value: getDubaiDate(new Date(Date.now() + 86_400_000)) } });
     fireEvent.change(screen.getByLabelText("Preferred start time"), { target: { value: "16:00" } });
     fireEvent.change(screen.getByLabelText(/Requested duration/), { target: { value: "2" } });
     fireEvent.change(screen.getByLabelText("Guest count"), { target: { value: "4" } });

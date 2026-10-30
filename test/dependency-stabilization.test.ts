@@ -22,10 +22,17 @@ describe("dependency security boundaries", () => {
   });
 
   it("removes the vulnerable test-worker dependency and pins patched tooling", () => {
-    expect(manifest.devDependencies.vitest).toBe("4.1.11");
+    expect(manifest.devDependencies.vitest).toBe("4.1.12");
     expect(manifest.devDependencies.vite).toBe("7.3.7");
     expect(Object.keys(lock.packages).some((path) => path.endsWith("/tinypool"))).toBe(false);
-    expect(manifest.overrides).toBeUndefined();
+    expect(manifest.dependencies.zod).toBe("4.6.7");
+    expect(manifest.overrides).toEqual({ "postcss-selector-parser@<6.1.5": "6.1.5" });
+    const parsers = Object.entries(lock.packages).filter(([path]) => path.endsWith("/postcss-selector-parser"));
+    expect(parsers.length).toBeGreaterThan(0);
+    for (const [, item] of parsers) {
+      const version = (item as { version: string }).version.split(".").map(Number);
+      expect(version[0] === 6 ? version[1] > 1 || (version[1] === 1 && version[2] >= 5) : version[0] > 7 || (version[0] === 7 && (version[1] > 1 || (version[1] === 1 && version[2] >= 6)))).toBe(true);
+    }
   });
 
   it("preserves the earlier browser target and production audit gate", () => {
