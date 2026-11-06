@@ -51,25 +51,27 @@ const approvedRemoteMediaRights: MediaRightsRecord[] = approvedYachtMedia.map((m
 );
 
 const approvedServiceDetailSurfaceByRightsId: Readonly<Record<string, string>> = {
-  "english-home-service-birthday-001": "/services/birthday-party",
-  "english-home-service-proposal-001": "/services/marriage-proposal-party",
-  "english-home-service-anniversary-001": "/services/wedding-anniversary-parties",
-  "english-home-service-engagement-001": "/services/engagement-parties",
-  "english-home-service-wedding-001": "/services/wedding-parties",
-  "english-home-service-graduation-001": "/services/graduation-parties",
-  "english-home-service-barbecue-001": "/services/barbecue-on-the-yacht",
+  "english-home-service-birthday-002": "/services/birthday-party",
+  "english-home-service-proposal-002": "/services/marriage-proposal-party",
+  "english-home-service-anniversary-002": "/services/wedding-anniversary-parties",
+  "english-home-service-engagement-002": "/services/engagement-parties",
+  "english-home-service-wedding-002": "/services/wedding-parties",
+  "english-home-service-graduation-002": "/services/graduation-parties",
+  "english-home-service-barbecue-002": "/services/barbecue-on-the-yacht",
 };
 
 const approvedHomepageMediaRights: MediaRightsRecord[] = HOMEPAGE_MEDIA.map((media) =>
   mediaRightsRecordSchema.parse({
     id: media.rightsRecordId,
     productionPath: media.path,
-    originalSource: media.id === "home-hero-mobile"
+    originalSource: approvedServiceDetailSurfaceByRightsId[media.rightsRecordId]
+      ? "Owner-supplied photograph from the private 55-foot yacht photo set."
+      : media.id === "home-hero-mobile"
       ? "Performance-optimized local rendition of the exact approved prior homepage snapshot; the source provenance and visual subject are unchanged."
       : "Exact prior homepage asset imported as a neutral local static snapshot.",
     owner: "Business owner approval for yachtrentaldxb.com",
     evidence: approvedServiceDetailSurfaceByRightsId[media.rightsRecordId]
-      ? "Owner approved reuse on the homepage and the exact matching service-detail primary-image surface on 2026-07-14."
+      ? "On 2026-11-06 the owner requested use of the supplied photos on this English site. These photos illustrate yacht spaces on the homepage and matching service pages."
       : media.id === "home-hero-mobile"
         ? "Owner approved reuse of the prior mobile hero cover on 2026-07-14; a same-path, smaller local rendition was prepared for owner review in the mobile performance PR without changing the source image or approved surface."
         : "Owner approved reuse of the prior desktop/mobile hero covers and service-card imagery on 2026-07-14.",
@@ -84,7 +86,7 @@ const approvedHomepageMediaRights: MediaRightsRecord[] = HOMEPAGE_MEDIA.map((med
     socialPreviewApproved: false,
     netlifyImageCdnTransformationApproved: false,
     unresolvedIssues: [],
-    approvalDate: "2026-07-14",
+    approvalDate: approvedServiceDetailSurfaceByRightsId[media.rightsRecordId] ? "2026-11-06" : "2026-07-14",
     status: "approved",
   }),
 );
