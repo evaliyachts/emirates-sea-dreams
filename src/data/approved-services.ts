@@ -89,11 +89,11 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
       "service-engagement"
     ],
     "media": {
-      "path": "/media/home/services/birthday-party.webp",
-      "alt": "Birthday celebration setting for a private yacht request",
-      "width": 767,
-      "height": 730,
-      "rightsRecordId": "english-home-service-birthday-001"
+      "path": "/media/home/services/04ed317f13d8d1d3-private-yacht-55ft-02-salon.webp",
+      "alt": "Main salon seating aboard a private yacht",
+      "width": 1150,
+      "height": 1280,
+      "rightsRecordId": "english-home-service-birthday-002"
     }
   },
   {
@@ -181,11 +181,11 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
       "service-wedding"
     ],
     "media": {
-      "path": "/media/home/services/marriage-proposal.webp",
-      "alt": "Marriage proposal celebration setting for a private yacht request",
-      "width": 767,
-      "height": 730,
-      "rightsRecordId": "english-home-service-proposal-001"
+      "path": "/media/home/services/bb6fa6c92c1726f4-private-yacht-55ft-07-bow-marina.webp",
+      "alt": "Forward yacht seating overlooking the marina",
+      "width": 900,
+      "height": 1600,
+      "rightsRecordId": "english-home-service-proposal-002"
     }
   },
   {
@@ -273,11 +273,11 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
       "service-birthday"
     ],
     "media": {
-      "path": "/media/home/services/wedding-anniversary.webp",
-      "alt": "Anniversary celebration setting for a private yacht request",
-      "width": 767,
-      "height": 728,
-      "rightsRecordId": "english-home-service-anniversary-001"
+      "path": "/media/home/services/2bc37a1679d813c5-private-yacht-55ft-08-aft-seating.webp",
+      "alt": "Aft deck seating overlooking the water",
+      "width": 900,
+      "height": 1600,
+      "rightsRecordId": "english-home-service-anniversary-002"
     }
   },
   {
@@ -365,11 +365,11 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
       "service-anniversary"
     ],
     "media": {
-      "path": "/media/home/services/engagement-party.webp",
-      "alt": "Engagement celebration setting for a private yacht request",
-      "width": 767,
-      "height": 729,
-      "rightsRecordId": "english-home-service-engagement-001"
+      "path": "/media/home/services/fef28f32686ec686-private-yacht-55ft-06-bow-seating.webp",
+      "alt": "Open seating on the forward yacht deck",
+      "width": 1536,
+      "height": 1024,
+      "rightsRecordId": "english-home-service-engagement-002"
     }
   },
   {
@@ -457,11 +457,11 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
       "service-proposal"
     ],
     "media": {
-      "path": "/media/home/services/wedding-party.webp",
-      "alt": "Wedding celebration setting for a private yacht request",
-      "width": 767,
-      "height": 730,
-      "rightsRecordId": "english-home-service-wedding-001"
+      "path": "/media/home/services/f82dfa26e591ffae-private-yacht-55ft-04-flybridge.webp",
+      "alt": "Upper-deck seating with a view of Ain Dubai",
+      "width": 1448,
+      "height": 1086,
+      "rightsRecordId": "english-home-service-wedding-002"
     }
   },
   {
@@ -549,11 +549,11 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
       "service-engagement"
     ],
     "media": {
-      "path": "/media/home/services/graduation-party.webp",
-      "alt": "Graduation celebration setting for a private yacht request",
-      "width": 767,
-      "height": 729,
-      "rightsRecordId": "english-home-service-graduation-001"
+      "path": "/media/home/services/63d7fb8c286f0452-private-yacht-55ft-05-flybridge-skyline.webp",
+      "alt": "Upper-deck lounge overlooking the Dubai skyline",
+      "width": 1086,
+      "height": 1448,
+      "rightsRecordId": "english-home-service-graduation-002"
     }
   },
   {
@@ -896,11 +896,11 @@ export const approvedServices: readonly ApprovedServiceRecord[] = [
       "service-birthday"
     ],
     "media": {
-      "path": "/media/home/services/barbecue.webp",
-      "alt": "Barbecue hospitality setting for a private yacht request",
-      "width": 461,
-      "height": 472,
-      "rightsRecordId": "english-home-service-barbecue-001"
+      "path": "/media/home/services/c471f05e21df327c-private-yacht-55ft-03-salon-media.webp",
+      "alt": "Indoor yacht lounge with seating and a low table",
+      "width": 1200,
+      "height": 1600,
+      "rightsRecordId": "english-home-service-barbecue-002"
     }
   }
 ];
